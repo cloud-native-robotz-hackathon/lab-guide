@@ -289,8 +289,14 @@
 <p>Next, we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift ressource scaling. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service on <strong>OpenShift AI</strong> and serve it to our application.</p>
 </div>
 <div class="paragraph">
-<p>In JupyterLab navigate to the directory <code>object-detection-notebooks/model-training</code>. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a configuration.yaml file as well as pipeline definition itself. By clicking on the different script, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so lets open it:
-* Double click on <code>model-training-cpu.pipeline</code></p>
+<p>In JupyterLab navigate to the directory <code>object-detection-notebooks/model-training</code>. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a configuration.yaml file as well as pipeline definition itself. By clicking on the different script, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so lets open it:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Double click on <code>model-training-cpu.pipeline</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Have a look at the pipeline steps:</p>
