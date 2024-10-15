@@ -67,7 +67,8 @@ The first thing we notice when logging into our workbench is that it's quite emp
 
 Next, we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift ressource scaling. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
-In JupyterLab navigate to the directory `object-detection-notebooks/model-training`. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a configuration.yaml file as well as pipeline definition itself. By clicking on the different script, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so lets open it: 
+In JupyterLab navigate to the directory `object-detection-notebooks/model-training`. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a configuration.yaml file as well as pipeline definition itself. By clicking on the different script, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so lets open it:
+
 * Double click on `model-training-cpu.pipeline`
 
 Have a look at the pipeline steps:
@@ -118,8 +119,8 @@ This will show the running steps of the pipeline
 
 image::running-pipeline.png[]
 
-Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the Yolov5 model family https://docs.ultralytics.com/models/yolov5/ 
-There are different sizing versions of the Yolov5 and compute requirements. In the model_training.py you can find which one is being used. 
+Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the Yolov5 model family https://docs.ultralytics.com/models/yolov5/
+There are different sizing versions of the Yolov5 and compute requirements. In the model_training.py you can find which one is being used.
 
 Once the pipeline has run successfully the final model named `latest-version.onnx` will be saved in your S3 bucket.
 
