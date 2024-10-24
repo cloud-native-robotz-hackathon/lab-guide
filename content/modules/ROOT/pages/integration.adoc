@@ -14,8 +14,59 @@ The basic flow for your app will be:
 ** coordinates of the bounding boxes in your camera image
 * working with the result to determine where the robot should move to next
 
-== Collaboration
-You will work collaboratively between dev and ml team to gradually optimize the behavior.
+== MVP (Minimal Viable Product)
+
+To speed things up we will give you a solution as an MVP.
+
+Change you code to this :
+
+[source,python,role=execute]
+----
+# Drop your code here
+turn_counter = 0
+while True:
+    objects = take_picture_and_detect_objects()
+    coordinates = find_highest_score(objects)
+
+    if coordinates and coordinates.confidence_score > 0.5:
+        print(f'''Object with highest score -> [
+            confidence score: {coordinates.confidence_score},
+            x upper left corner: {coordinates.x_upper_left},
+            y upper left corner: {coordinates.y_upper_left},
+            x lower right corner: {coordinates.x_lower_right},
+            y lower right corner: {coordinates.y_lower_right},
+            object class: {coordinates.object_class} ]''')
+
+        move_x = (coordinates.x_upper_left + coordinates.x_lower_right) / 2
+        print(f'move_x: {move_x}')
+        if move_x < 320:
+            turn_left(10)
+        else:
+            turn_right(10)
+
+        delta = coordinates.x_lower_right - coordinates.x_upper_left
+        print(f'delta: {delta}')
+        if delta < 350:
+            move_forward(10)
+        else:
+            print('Done - arrived at the object')
+            return
+
+    else:
+        if turn_counter < 360:
+            turn_left(10)
+            turn_counter = turn_counter + 10
+        else:
+            print('Done - no object found')
+            return
+
+print('Done')
+----
+
+Now place a Fedora somewhere near your robot and see if it can find it.
+
+== Dev & AI Collaboration
+Have look at this code. Perhaps there is something you can optimize?
 
 Think about these points :
 
@@ -23,8 +74,43 @@ Think about these points :
 * How do I know when to stop the robot
 * How can I optimize the "think" and "react" phases
 * How can I handle corner cases
+* Perhaps the model should be tuned increase detection results?
 
 == Feature Freeze
-While you have time to develop your solution, as in real life projects there will be a "Feature Freeze" where everyting needs to be finished.  You will be given the time of the feature freeze.
+While you have time to work on your solution, as in real life projects there will be a "Feature Freeze" where everyting needs to be finished.  You will be given the time of the feature freeze.
+
+== Pushing your Code
+Currently your code only resides in your Workspace, which is called the "Inner Loop" in Development terms. To publish and build you will need to push your code to your Git repository.
+
+To be able to push you need to set up your git email
+
+* Open a new Terminal by click on the **+** Icon in the bottom right and choosing **New Terminal**
+
+image::open-terminal.png[]
+
+* enter
++
+[source,bash,role=execute,subs="attributes"]
+----
+git config --global user.email "pilot@robot.to"
+git config --global user.name "pilot"
+----
+
+To push your code:
+
+* In the Dev Spaces menu on the left click on the Git icon
+* Your modified files will be shown
+* Select the relevant files (`app.py` and `config.py`)
++
+image::git-push.png[]
+
+* Right Click and select **Stage Changes**
+* Enter a comment in the top field
+* At the blue **Commit** button, click on the downwards bracket at the very right and choose **Commit & Push**
+* When prompted, enter you Gitea username and password
+** username: {user}
+** password : {password}
+
+== Next Steps
 
 Your deliverable will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.

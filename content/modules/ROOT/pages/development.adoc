@@ -2,7 +2,7 @@
 
 == Start Coding in Dev Spaces
 
-To develop our flashy AI enhanced app we will use **OpenShift Dev Spaces**, a web IDE that comes with every OpenShift installation. No need to setup IDEs, runtimes and tools on your laptop.
+To develop our flashy AI enhanced app, we will use **OpenShift Dev Spaces**, a web IDE that comes with every OpenShift installation. No need to setup IDEs, runtimes and tools on your laptop.
 
 
 * If you are not already logged in, login into the {openshift_console_url}[OpenShift Console,window=_blank] with:
@@ -13,7 +13,9 @@ To develop our flashy AI enhanced app we will use **OpenShift Dev Spaces**, a we
 * Login with your OpenShift credentials
 * Give permissions if required
 
-Next we are going to start a new Workspace where all the editing is done and we will initialize it with a **DevFile**.  A https://devfile.io/[DevFile] is a definition for environment, tooling, settings and runtimes for our development workspace. No more endless installations and configurations. We will be  ready to hack right away. Since a matching **DevFile** is already checked into out Git repo, we can use it directly to initialize a workspace.
+Next we are going to start a new Workspace where all the editing is done and we will initialize it with a https://devfile.io/[DevFile].
+
+TIP: A  **DevFile** is a definition for environment, tooling, settings and runtimes for our development Workspace. No more endless installations and configurations. We will be  ready to hack right away. Since a matching **DevFile** is already checked into out Git repo, we can use it directly to initialize a workspace.
 
 * Select **Create Workspace** in the left menu
 * Enter **Git Repo URL** :
@@ -23,22 +25,22 @@ Next we are going to start a new Workspace where all the editing is done and we 
 {gitea_console_url}/{user}/starter-app-python/raw/branch/master/devfile.yaml
 ----
 
-TIP: You can find the url to the DevFile manually by opening your {gitea_console_url}[Gitea,window=_blank], navigate to the repo `starter-app-python` and then `devfile.yaml`. Click on "Originalversion / Raw" and
-copy the URL
+TIP: You can find the url to this DevFile manually by opening your {gitea_console_url}[Gitea,window=_blank], navigate to the repo `starter-app-python` and then `devfile.yaml`. Click on "Originalversion / Raw" and
+copy the URL.
 
 * Click on **Create and Open**
 
 image::devspaces-create-workspace.png[]
 
-Wait for the Workspace to deploy (this may take some time). Once you Workspace is up an running you should see a view that looks familiar if you have used VSCode before.
+Wait for the Workspace to deploy (this may take some time). Once you Workspace is up an running, you should see a view that looks familiar if you have used VSCode before.
 
-We have prepared some sample code that you can use to quickly get started with your app. We will clone the repo next.
+We have prepared some sample code that you can use to quickly get started with your app.
 
 * If you see a Popup asking you to "Do you trust the authors", click check **Always ...**  and click **Yes ...**
 
 image::vscode-trust.png[]
 
-Next we will clone the starter code for our robot control app into our workspace.
+Next we will clone the starter code for our robot control app into our Workspace.
 
 * On the left side click on the button **Clone Repository**
 * In the form at the top enter the git url
@@ -48,33 +50,33 @@ Next we will clone the starter code for our robot control app into our workspace
 {gitea_console_url}/{user}/starter-app-python.git
 ----
 * Hit **Enter**
-* In the next form keep the path as is ( /projects ) and hit **Enter** again
-* In the next dialoge select **Open** to reopen the Browser tab in this project
+* In the next form keep the path as is ( `/projects` ) and hit **Enter** again
+* In the next dialog click on the **Open** button to reopen the workspace in this directory
 
-Your will see the starter code on the left side.
+Your will now see the starter code on the left side.
 
 === Start the App
 
-You have 2 options to run th app. You can either use a task that is defined in the **DevFile** and runs all the pip and python commands under the hood. Or you can open a terminal and run these commands yourself, to have full control.
+You have two options to run the app. You can either use a task that is defined in the **DevFile** and runs all the pip and python commands under the hood. Or you can open a terminal and run these commands yourself, to have full control.
 
-==== Option 1 : Starting the App through the Workspace Task
+=== Option 1 : Starting the App through the Workspace Task
 
-* In the top left click on the "hamburger" menu > **Terminal** > **Run Task ...**
+* In the top left, click on the "hamburger" menu > **Terminal** > **Run Task ...**
 * In the selection menu at the top, click on **devfile**
 * Then click on **devfile: Run the application**
 
-This will install the python dependencies and start the webserver of your app. Please proceed to chapter **Open the App Website**
+This will install the python dependencies and start the server of your app. You can now proceed to chapter **Open the App Website**
 
 
 === Option 2: Starting the App from the Terminal
 
-We will need to install a couple of python dependencies with pip.
+Let's install the app dependencies with pip.
 
 * Open a Terminal by clicking the “Hamburger Icon” > **Terminal** > **New Terminal** in the top left
 
-In the terminal enter :
+TIP: Depending on your browser you may need to allow pasting into the Terminal via a Popup
 
-TIP: Depending on your browser you may need to allow pasting into the Terminal via a PopUp
+In the Terminal enter :
 
 [source,bash,role=execute]
 ----
@@ -85,9 +87,9 @@ export PATH=$PATH:/home/user/.local/bin
 gunicorn -b 0.0.0.0:8080 app --reload
 ----
 
-=== Open the App Website
+=== Open the Robot Control Page
 
-**Important** : Once gunicorn is starting you will see two Popups in the bottom right corner that you will need to approve. These will publish a Route in OpenShift through which you can reach the website of your app running the the Workspace
+Once the gunicorn server is starting, you will see two Popups in the bottom right corner that you will need to approve. These will publish a **Route** in OpenShift through which you can reach the website of your app running the the Workspace
 
 * Click on **Yes**
 
@@ -97,49 +99,36 @@ image::devspaces-allow_route.png[]
 
 image::devspaces-open-new-tab.png[]
 
-* Click on **Open*
+* Click on **Open**
 
 image::devspaces-open-tab.png[]
 
-A new Browser tab with the web interface of the Robot Control app will open. Make sure you are on http:// if the page does not open
+A new Browser tab with the web interface of the Robot Control app will open. Make sure you are on `http://` if the page does not open.
 
-TIP: If you have missed one of the PopUps, just stop and restart gunicorn with Strg-C and rerunning the last Task or command.
+If you have missed one of the Popups there is another way to open them:
 
-The website features a **Run** button that you can use to execute your code.
+* In the left pane at the bottom expand the **ENDPOINTS** section
+* Hover over the entry `user-port-forward(8080)`
+* Click in the icon ('Open in new Tab')
+* A tab with the Robot Control App will open in your Browser
 
-Now let's connect our app to the object detection service. Edit the `config.py` to add your inferencing endpoint that you created in the previous chapter.
+image::open-endpoints.png[]
 
-Replace the following placeholders:
+=== Robot Control Page Overview
 
-* **<REPLACE_WITH_ROBOT_API>** :
-+
-[source,bash,role=execute,subs="attributes"]
-----
-http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot
-----
-* **<REPLACE_WITH_ROBOT_NAME>** : 
-+
-[source,bash,role=execute,subs="attributes"]
-----
-include::partial${user}.adoc[]
-----
+This webpage has a few buttons that essentially just call RESTful endpoints in your app.  You can use it to start you robot control code.   The website features a **Run** button that you can use to execute your code.
 
-* **<REPLACE_WITH_INFERENCING_API>**
-+
-(The Object Detection Service from the previous chapter)
-* **<REPLACE_WITH_INFERENCING_API_TOKEN>**
-+
-(The Token of the Object Detection Service from the previous chapter)
+The buttons:
 
-Next let's write some code
-
-* Open the file `app.py` and look at the commented out code samples
-* Start to code by writing a robot command to drive your robot forward a few units
-* Call the run function by clicking on the **Run** button on the app website
+* **Status** - Calls the app to see if the robot is connected
+* **Run** - Calls your `startRobot()` function in the `app.py`. This is where you will add your code
+* **Reload** - Reloads the Browser tab (should not be necessary)
 
 === The Robot API
 
-The robot Restful API is fairly simple:
+Now that our app is running, let's take a monent to explore the Robot REST API.
+
+It is fairly simple:
 
 * POST /forward/<length>
 ** Drive forward by length
@@ -156,16 +145,20 @@ The robot Restful API is fairly simple:
 * GET /power
 ** Returns the current power of the robot
 
-For testing purposes you can call the Robot API directly from you Workspace Terminal with curl. Make sure to replace <REPLACE_WITH_USER_KEY> with your Robot name.
+For testing purposes you can call the Robot API directly from your Workspace Terminal with `curl`.
 
-To drive forward 10 units, call:
+* Click in the **Terminal** area at the bottom
+* To drive forward 10 units (make sure your Robot is not falling off the table) , call:
 
 [source,bash,role=execute]
 ----
 include::partial$export-{user}.adoc[]
 
-curl -X POST -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/backward/10?user_key=${ROBOT_NAME}
+curl -X POST http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/forward/2 -d user_key=${ROBOT_NAME}
+
 ----
+
+Awesome, right? You are now an official robot pilot.
 
 To retrieve a camera image and save it as a file:
 
@@ -175,4 +168,128 @@ include::partial$export-{user}.adoc[]
 
 curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/camera?user_key=${ROBOT_NAME} | base64 -d > image.jpg
 ----
+
+You will find the image as `image.jpg` in the root folder and click on it to view.
+
+That was neat, but of course you want to give the robot some personality with your code. Let's move on to configure the app.
+
+=== Connecting the App to Endpoints
+
+Our app is running in a **Dev Spaces** container. We need to call the Robot API as well as the Inferencing API to do our coding magic.
+
+So let's go ahead and set up these connection variables. Edit the file `config.py` to add your inferencing endpoint that you created in the previous chapter.
+
+Replace the following placeholders:
+
+
+
+
+* **<REPLACE_WITH_ROBOT_NAME>**:
++
+[source,bash,role=execute,subs="attributes"]
+----
+include::partial${user}.adoc[]
+----
+* **<REPLACE_WITH_INFERENCING_API>**
++
+(The Object Detection Service from the DataScience chapter)
+* **<REPLACE_WITH_INFERENCING_API_TOKEN>**
++
+(The Token of the Object Detection Service from the DataScience chapter)
+
+
+TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus guicorn reloads your python app, so there is also no need to restart you app.
+
+=== First Code
+
+To make things a bit easier some helper functions are already in place, for example to create REST requests for the robot operations and to work with the array response coming from the inferencing service.
+
+Next let's write some code and drive our robot, but this time from our code.
+
+* Open the file `app.py`
+* Look for the function `start_robot()` and the comment `# Drop your code here`
+* Add a `move_forward()` function call with 10 units, like this:
+
+[source,bash,role=execute,subs="attributes"]
+----
+# Drop your code here
+move_forward(10)
+print('Done')
+----
+
+* Now back on your Robot Control Page click on the **Run** button
+
+If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness!
+
+If it doesn't move, have look at the Terminal output in **Dev Spaces** and recheck your `confg.py` entries.
+
+=== Advanced movement
+
+Now let the robot do a drive forward, look left and right and then retreat again.
+
+Edit the code so it looks like this:
+
+[source,python,role=execute,subs="attributes"]
+----
+# Drop your code here
+move_forward(10)
+turn_left(90)
+turn_right(180)
+turn_left(90)
+move_backward(10)
+print('Done')
+----
+
+Run the code by clicking the **Run** button.
+
+Wow, almost a robot ballet there.
+
+=== Robo Vision
+
+Our robot is still a bit blind so let's work with the camera now.
+
+We have two functions that will help us:
+
+* `take_picture_and_detect_objects()`- gets a camera image, runs it through the inferencing and returns an array of detected objects
+* `find_highest_score(objects)`- returns the object with the highest score.
+
+The `object` itself will have these fields that you can use:
+
+* `object class` - what object class was detected (will be 0 for a fedora)
+* `confidence_score` - How certain is the inferencing service that this is actually the detected object (the higher the better)
+* `x_upper_left` - Bounding box upper left corner x coordinate
+* `y_upper_left` - Bounding box upper left corner y coordinate
+* `x_lower_right` - Bounding box lower right corner x coordinate
+* `y_lower_right` - Bounding box lower left corner y coordinate
+
+Change your code to detect an object through the camera and print the resulting object :
+
+[source,python,role=execute,subs="attributes"]
+----
+# Drop your code here
+objects = take_picture_and_detect_objects()
+coordinates = find_highest_score(objects)
+
+if coordinates:
+    print(f'''Object with highest score -> [
+        confidence score: {coordinates.confidence_score},
+        x upper left corner: {coordinates.x_upper_left},
+        y upper left corner: {coordinates.y_upper_left},
+        x lower right corner: {coordinates.x_lower_right},
+        y lower right corner: {coordinates.y_lower_right},
+        object class: {coordinates.object_class} ]''')
+print('Done')
+----
+
+* Now place some objects in front of the camera and execute your code by pressing the **Run** button
+* Place a fedora in front of the camera, run your code again and see if that makes a difference
+
+=== Ready
+
+You now have all the tools required to create a fedora seeking robot. Head on over to the next chapter to put it all together.
+
+
+
+
+
 
