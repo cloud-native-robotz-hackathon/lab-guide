@@ -149,10 +149,67 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_collaboration"><a class="anchor" href="#_collaboration"></a>Collaboration</h2>
+<h2 id="_mvp_minimal_viable_product"><a class="anchor" href="#_mvp_minimal_viable_product"></a>MVP (Minimal Viable Product)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You will work collaboratively between dev and ml team to gradually optimize the behavior.</p>
+<p>To speed things up we will give you a solution as an MVP.</p>
+</div>
+<div class="paragraph">
+<p>Change you code to this :</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
+turn_counter = 0
+while True:
+    objects = take_picture_and_detect_objects()
+    coordinates = find_highest_score(objects)
+
+    if coordinates and coordinates.confidence_score &gt; 0.5:
+        print(f'''Object with highest score -&gt; [
+            confidence score: {coordinates.confidence_score},
+            x upper left corner: {coordinates.x_upper_left},
+            y upper left corner: {coordinates.y_upper_left},
+            x lower right corner: {coordinates.x_lower_right},
+            y lower right corner: {coordinates.y_lower_right},
+            object class: {coordinates.object_class} ]''')
+
+        move_x = (coordinates.x_upper_left + coordinates.x_lower_right) / 2
+        print(f'move_x: {move_x}')
+        if move_x &lt; 320:
+            turn_left(10)
+        else:
+            turn_right(10)
+
+        delta = coordinates.x_lower_right - coordinates.x_upper_left
+        print(f'delta: {delta}')
+        if delta &lt; 350:
+            move_forward(10)
+        else:
+            print('Done - arrived at the object')
+            return
+
+    else:
+        if turn_counter &lt; 360:
+            turn_left(10)
+            turn_counter = turn_counter + 10
+        else:
+            print('Done - no object found')
+            return
+
+print('Done')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now place a Fedora somewhere near your robot and see if it can find it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dev_ai_collaboration"><a class="anchor" href="#_dev_ai_collaboration"></a>Dev &amp; AI Collaboration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Have look at this code. Perhaps there is something you can optimize?</p>
 </div>
 <div class="paragraph">
 <p>Think about these points :</p>
@@ -171,6 +228,9 @@
 <li>
 <p>How can I handle corner cases</p>
 </li>
+<li>
+<p>Perhaps the model should be tuned increase detection results?</p>
+</li>
 </ul>
 </div>
 </div>
@@ -179,8 +239,92 @@
 <h2 id="_feature_freeze"><a class="anchor" href="#_feature_freeze"></a>Feature Freeze</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>While you have time to develop your solution, as in real life projects there will be a "Feature Freeze" where everyting needs to be finished.  You will be given the time of the feature freeze.</p>
+<p>While you have time to work on your solution, as in real life projects there will be a "Feature Freeze" where everyting needs to be finished.  You will be given the time of the feature freeze.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pushing_your_code"><a class="anchor" href="#_pushing_your_code"></a>Pushing your Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Currently your code only resides in your Workspace, which is called the "Inner Loop" in Development terms. To publish and build you will need to push your code to your Git repository.</p>
+</div>
+<div class="paragraph">
+<p>To be able to push you need to set up your git email</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open a new Terminal by click on the <strong>+</strong> Icon in the bottom right and choosing <strong>New Terminal</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/open-terminal.png" alt="open terminal">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>enter</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git config --global user.email "pilot@robot.to"
+git config --global user.name "pilot"</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To push your code:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the Dev Spaces menu on the left click on the Git icon</p>
+</li>
+<li>
+<p>Your modified files will be shown</p>
+</li>
+<li>
+<p>Select the relevant files (<code>app.py</code> and <code>config.py</code>)</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/git-push.png" alt="git push">
+</div>
+</div>
+</li>
+<li>
+<p>Right Click and select <strong>Stage Changes</strong></p>
+</li>
+<li>
+<p>Enter a comment in the top field</p>
+</li>
+<li>
+<p>At the blue <strong>Commit</strong> button, click on the downwards bracket at the very right and choose <strong>Commit &amp; Push</strong></p>
+</li>
+<li>
+<p>When prompted, enter you Gitea username and password</p>
+<div class="ulist">
+<ul>
+<li>
+<p>username: team-1</p>
+</li>
+<li>
+<p>password : secret-password</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next Steps</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Your deliverable will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.</p>
 </div>
