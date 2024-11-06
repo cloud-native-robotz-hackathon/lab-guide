@@ -7,7 +7,7 @@ The task that you are working on will be to enable your robot to identify a red 
 The basic flow for your app will be:
 
 * retrieving an image
-* sending it the object detection service
+* sending it to the object detection service
 * analyzing the results
 ** detected class
 ** confidence score
