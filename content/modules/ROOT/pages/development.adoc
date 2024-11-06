@@ -25,7 +25,7 @@ TIP: A  **DevFile** is a definition for environment, tooling, settings and runti
 {gitea_console_url}/{user}/starter-app-python/raw/branch/master/devfile.yaml
 ----
 
-TIP: You can find the url to this DevFile manually by opening your {gitea_console_url}[Gitea,window=_blank], navigate to the repo `starter-app-python` and then `devfile.yaml`. Click on "Originalversion / Raw" and
+TIP: You could also find the url to this DevFile manually by opening your {gitea_console_url}[Gitea,window=_blank], navigate to the repo `starter-app-python` and then `devfile.yaml`. Click on "Originalversion / Raw" and
 copy the URL.
 
 * Click on **Create and Open**
@@ -65,7 +65,7 @@ You have two options to run the app. You can either use a task that is defined i
 * In the selection menu at the top, click on **devfile**
 * Then click on **devfile: Run the application**
 
-This will install the python dependencies and start the server of your app. You can now proceed to chapter **Open the App Website**
+This will install the python dependencies and start the server of your app. You can now proceed to **Open the Robot Control Page** below.
 
 
 === Option 2: Starting the App from the Terminal
@@ -116,7 +116,9 @@ image::open-endpoints.png[]
 
 === Robot Control Page Overview
 
-This webpage has a few buttons that essentially just call RESTful endpoints in your app.  You can use it to start you robot control code.   The website features a **Run** button that you can use to execute your code.
+This webpage has a few buttons that essentially just call RESTful endpoints in your app.  You can use it to start your robot control code.   The website features a **Run** button that you can use to execute your code.
+
+WARNING: Don't click any of the buttons yet, we need to setup things before. 
 
 The buttons:
 
@@ -198,7 +200,7 @@ include::partial${user}.adoc[]
 (The Token of the Object Detection Service from the DataScience chapter)
 
 
-TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus guicorn reloads your python app, so there is also no need to restart you app.
+TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart you app.
 
 === First Code
 
@@ -221,7 +223,7 @@ print('Done')
 
 If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness!
 
-If it doesn't move, have look at the Terminal output in **Dev Spaces** and recheck your `confg.py` entries.
+If it doesn't move, have look at the Terminal output in **Dev Spaces** and recheck your `config.py` entries.
 
 === Advanced movement
 
