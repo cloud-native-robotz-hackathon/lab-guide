@@ -65,7 +65,7 @@ The first thing we notice when logging into our workbench is that it's quite emp
 * Click on **Clone**
 * On the left side in the menu click on the **Folder** icon.
 
-Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
+Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training,, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
 In JupyterLab navigate to the directory `object-detection-notebooks/model-training`. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a configuration.yaml file as well as pipeline definition itself. By clicking on the different scripts, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so lets open it:
 
@@ -90,7 +90,9 @@ The pipeline can be configured to download and train on specifc image object cla
 names: ['Fedora',]
 ----
 * Save the file by pressing **CTRL+s**
+* Save the file by pressing **CTRL+s**
 
+This image class is now mapped to the class number 0.
 This image class is now mapped to the class number 0.
 
 * Now back in the `model-training-pipeline`, on the top menu on the left click on the play icon
@@ -142,9 +144,34 @@ ovms
 
 The browser will show you the contents of your bucket. I should be pretty empty at the moment.
 
+With the default settings, the Pipeline will run around 15 minutes.  Let's use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.
+
+* In your project go on the tab **Workbenches**
+* Click on **Create workbench** and enter these values
+** Name
++
+[source,bash,role=execute,subs="attributes"]
+----
+ovms
+----
+** Data Connections
+*** Use existing data connection
+**** `workbench-bucket`
+* Click on **Create Workbench**
+* When the Workbench hast started click the **Open** link
+* Login in with your OpenShift credentials
+** username: {user}
+** password : {password}
+* Accept the disclaimer
+
+The browser will show you the contents of your bucket. I should be pretty empty at the moment.
+
 Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the Yolov5 model family https://docs.ultralytics.com/models/yolov5/
 There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.
 
+Once the pipeline has run (Check the run) successfully the final model named `latest-version.onnx` will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
+
+image::s3-browser.png[]
 Once the pipeline has run (Check the run) successfully the final model named `latest-version.onnx` will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
 
 image::s3-browser.png[]
@@ -186,7 +213,7 @@ image::serving-runtime.png[]
 fedora-detection-service
 ----
 ** Model framework (name-version): `onnx-1`
-** Existing data connection: `data-science-workbench-bucket`
+** Existing data connection: `data-science-data-science-workbench-bucket`
 ** Path:
 +
 [source,bash,role=execute,subs="attributes"]
@@ -208,6 +235,14 @@ image::copy-inference-url.png[]
 image::copy-token.png[]
 
 * Back in your JupyterLab Workbench in the `object-detection-notebooks` directory, open the `online-scoring.ipynb` notebook
+* Look for the variables `prediction_url` and `token`
++
+[source,python]
+----
+prediction_url = 'REPLACE_ME'
+token = 'REPLACE_ME'
+----
+* Paste the inference endpoint URL and the token into the placeholders
 * Look for the variables `prediction_url` and `token`
 +
 [source,python]
