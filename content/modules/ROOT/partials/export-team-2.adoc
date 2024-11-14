@@ -1,1 +1,1 @@
-t-1000
+export ROBOT_NAME=t-1000.lan

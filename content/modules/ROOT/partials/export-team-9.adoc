@@ -1,1 +1,1 @@
-export ROBOT_NAME=ultron
+export ROBOT_NAME=ultron.lan
