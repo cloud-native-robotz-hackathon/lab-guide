@@ -1,1 +1,1 @@
-terminator
+terminator.lan

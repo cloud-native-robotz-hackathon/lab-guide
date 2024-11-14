@@ -1,1 +1,1 @@
-export ROBOT_NAME=marc13
+export ROBOT_NAME=marc13.lan

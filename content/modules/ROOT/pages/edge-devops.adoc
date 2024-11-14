@@ -15,7 +15,8 @@ An OpenShift pipeline based on Tekton has been prepared for you
 
 - Login into the {openshift_console_url}["OpenShift Console",window=_blank] with username: {user} and password : {password}
 
-- Go to **Pipelines**
+- Go to the the project {user}-ai
+- Click **Pipelines** on the left
 - Click on the Pipeline `model-image-build`
 
 - Click on Actions -> Start
@@ -33,6 +34,7 @@ When done with the app we will package it in a Container Image as well. A matchi
 * Login into {gitea_console_url}/{user}/starter-app-python[Gitea] with
 ** username: {user}
 ** password : {password}
+* Select the repository `starter-app-python`
 * Click on **Releases**
 +
 image::gitea-release.png[]

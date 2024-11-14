@@ -1,1 +1,1 @@
-c3po
+export ROBOT_NAME=c3po.lan
