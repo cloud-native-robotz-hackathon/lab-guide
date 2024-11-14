@@ -55,11 +55,11 @@ Next we will clone the starter code for our robot control app into our Workspace
 
 Your will now see the starter code on the left side.
 
-This is python application that is served as a RESTful API through a gunicorn server. YOu will call the endpoints through a website and the app in turn will call the endpoints of the Robot.
+This is Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.
 
 === Start the App
 
-To start the app you can use a task that is defined in the **DevFile** and runs all the pip and python commands under the hood.
+To start the app you can use a task that is defined in the **DevFile** and runs all the pip and Python commands under the hood.
 
 === Starting the App through the Workspace Task
 
@@ -67,11 +67,10 @@ To start the app you can use a task that is defined in the **DevFile** and runs 
 * In the selection menu at the top, click on **devfile**
 * Then click on **devfile: Run the application**
 
-This will install the python dependencies and start the server of your app. You can now proceed to **Open the Robot Control Page** below.
-
+This will install the python dependencies and start the server of your app.
 === Open the Robot Control Page
 
-Once the gunicorn server is starting, you will see two Popups in the bottom right corner that you will need to approve. These will publish a **Route** in OpenShift through which you can reach the website of your app running the the Workspace
+**Important:** Once the Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a **Route** in OpenShift through which you can reach the website of your app running the the Workspace.
 
 * Click on **Yes**
 
@@ -87,7 +86,18 @@ image::devspaces-open-tab.png[]
 
 A new Browser tab with the web interface of the Robot Control app will open. Make sure you are on `http://` if the page does not open.
 
-If you have missed the first Popup, you need to end the process via the kill icon on the right of the terminal. If you have missed the second of the Popups there is another way to open it:
+image::robot-control-page.png[]
+
+If you have missed the first Popup (the port forwarding), you need to end and restart the process:
+
+* Click on the garbage can icon on the right of the terminal
+
+image::kill-terminal.png[]
+
+* Now restart the Gunicorn server with the task as explained above
+
+
+ If you have missed the second of the Popups (opening the Route), there is another way to open it:
 
 * In the left pane at the bottom expand the **ENDPOINTS** section
 * Hover over the entry `user-port-forward(8080)`
@@ -98,7 +108,7 @@ image::open-endpoints.png[]
 
 === Robot Control Page Overview
 
-This webpage has a few buttons that essentially just call RESTful endpoints in your app.  You can use it to start your robot control code.   The website features a **Run** button that you can use to execute your code.
+This webpage has a few buttons that essentially just call REST endpoints in your app.  You will use it to start your robot control code.   The website features a **Run** button that you will use to execute your code.
 
 WARNING: Don't click any of the buttons yet, we need to setup things before.
 
@@ -110,7 +120,7 @@ The buttons:
 
 === The Robot API
 
-Now that our app is running, let's take a moment to have a look at the Robot REST API.
+Now that our app is running, let's take a moment to have a look at the Robot REST API that we will be calling.
 
 It is fairly simple:
 
@@ -131,8 +141,8 @@ It is fairly simple:
 
 For testing purposes you can call the Robot API directly from your Workspace Terminal with `curl`.
 
-* Click in the **Terminal** area at the bottom
-* To drive forward 10 units (make sure your Robot is not falling off the table) , call:
+* Open a new Terminal with the **+** Icon at the top right of the current Gunicorn Terminal
+* To drive forward 10 units (make sure your Robot is not falling off the table), enter an execute:
 
 [source,bash,role=execute]
 ----
@@ -141,6 +151,8 @@ include::partial$export-{user}.adoc[]
 curl -X POST http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/forward/2 -d user_key=${ROBOT_NAME}
 
 ----
+
+TIP: Some Browers wil ask you wether to allow pasting text. Approve this to proceed.
 
 Awesome, right? You are now an official robot pilot.
 
