@@ -2,7 +2,7 @@
 
 == The Challenge
 
-The task that you are working on will be to enable your robot to identify a red fedora on the floor. Your robot should drive towards the fedora and stop shortly before it.
+The task that you are working on will be to enable your robot to identify a fedora on the floor. Your robot should drive towards the fedora and stop shortly before it.
 
 The basic flow for your app will be:
 
@@ -18,13 +18,13 @@ The basic flow for your app will be:
 
 To speed things up we will give you a solution as an MVP.
 
-Change you code to this :
+Change your code to this :
 
 [source,python,role=execute]
 ----
 # Drop your code here
 turn_counter = 0
-while True:
+while thread_event.is_set()::
     objects = take_picture_and_detect_objects()
     coordinates = find_highest_score(objects)
 
