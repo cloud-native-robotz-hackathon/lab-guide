@@ -110,13 +110,15 @@ image::open-endpoints.png[]
 
 This webpage has a few buttons that essentially just call REST endpoints in your app.  You will use it to start your robot control code.   The website features a **Run** button that you will use to execute your code.
 
+image::robot-control-page.png[]
+
 WARNING: Don't click any of the buttons yet, we need to setup things before.
 
 The buttons:
 
-* **Status** - Calls the app to see if the robot is connected
+* **Check Status** - Calls the app to see if the robot is connected
 * **Run** - Calls your `startRobot()` function in the `app.py`. This is where you will add your code
-* **Reload** - Reloads the Browser tab (should not be necessary)
+* **Stop** - Stop execution of you app
 
 === The Robot API
 
@@ -142,7 +144,7 @@ It is fairly simple:
 For testing purposes you can call the Robot API directly from your Workspace Terminal with `curl`.
 
 * Open a new Terminal with the **+** Icon at the top right of the current Gunicorn Terminal
-* To drive forward 10 units (make sure your Robot is not falling off the table), enter an execute:
+* To drive forward 2 units (make sure your Robot is not falling off the table), enter an execute:
 
 [source,bash,role=execute]
 ----
@@ -207,11 +209,11 @@ You should see a confirmation that your Robot is doing ok. If not have a look at
 
 To make things a bit easier some helper functions are already in place, for example to create REST requests for the robot operations and to work with the array response coming from the inferencing service.
 
-Let's write some code and drive our robot, but this time from our code.
+Let's write some code and drive our robot, but this time from our code:
 
 * Open the file `app.py`
 * Look for the function `start_robot()` and the comment `# Drop your code here`
-* Add a `move_forward()` function call with 10 units, so your code looks like this:
+* Add a `move_forward()` function call with 10 units, so your code looks like this (watch out for Python indentation):
 
 [source,bash,role=execute,subs="attributes"]
 ----
@@ -281,12 +283,14 @@ if coordinates:
         x lower right corner: {coordinates.x_lower_right},
         y lower right corner: {coordinates.y_lower_right},
         object class: {coordinates.object_class} ]''')
+else:
+    print('No objects found')
 print('Done')
 ----
 
 * Now place some objects in front of the camera and execute your code by pressing the **Run** button
 * Have a look at the Console output in your Dev Spaces Workspace
-* Place a fedora in front of the camera, run your code again and see if that makes a difference
+* Place a fedora in front of the camera, run your code again and see if that makes a difference:
 
 You should now see an output similar to this :
 
@@ -301,6 +305,8 @@ Object with highest score -> [
 ----
 
 Note that we have found a Fedora (object class = 0) and a pretty certain of of it (confidence score = 0.8).
+
+The robot control page will also display the last image from the camera every 5 seconds. You can use this check the robot and camera alignment.
 
 === Ready
 
