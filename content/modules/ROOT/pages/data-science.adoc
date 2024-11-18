@@ -17,7 +17,7 @@ image::rhoai-menu.png[]
 * Click on **Login with OpenShift**
 * Login with the same credentials as before
 
-The is the main Console where all DataScience related projects and assets are managed
+This is the main Console where all Data Science related projects and assets are managed.
 
 - In the left menu click on **Data Science Projects** to see all available Data Science Projects
 - A project has already been prepared for you to work in
@@ -38,7 +38,12 @@ fedora-detection
 ** Deployment size: 'Small'
 ** Cluster storage
 *** Create new persistent storage:
-**** Name : `fedora-detection`
+**** Name :
++
+[source,bash,role=execute]
+----
+fedora-detection
+----
 ** Data connections
 *** Use a data connection
 **** Use existing data connection: `workbench-bucket`
@@ -51,11 +56,11 @@ image::workbench-running.png[]
 * Click on the **Open** link, next to the `fedora-detection` Workbench to open the JuypterLab Workbench
 * Login with you OpenShift credentials and allow selected permissions
 
-The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced data scientists that know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:
+The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced data scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:
 
 * In the menu on the left, click on the **Git** icon
 * Click on **Clone a Repository**
-* Enter the Git Url to the notebooks Repo that has been prepared for you :
+* Enter the Git Url to the notebooks repo that has been prepared for you:
 +
 [source,bash,role=execute,subs="attributes"]
 ----
@@ -65,7 +70,7 @@ The first thing we notice when logging into our workbench is that it's quite emp
 * Click on **Clone**
 * On the left side in the menu click on the **Folder** icon.
 
-Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
+Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
 In JupyterLab navigate to the directory `object-detection-notebooks/model-training`. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a `configuration.yaml` file as well as pipeline definition itself. By clicking on the different scripts, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so let's open it:
 
@@ -73,13 +78,14 @@ In JupyterLab navigate to the directory `object-detection-notebooks/model-traini
 
 Have a look at the pipeline steps:
 
-* We are downloading a set of sample images with labels and coordinates for our fedora class from the https://storage.googleapis.com/openimages/web/index.html[OpenImages website,window=_blank].
+* Step 1 : Downloading a set of sample images with labels and coordinates for our fedora class from the https://storage.googleapis.com/openimages/web/index.html[OpenImages website,window=_blank].
 
 image::open-images.png[]
 
-* Preparing the class labels and training sets
-* Running the actual training on a Yolo 5 Model
-* Converting the model format to onnx and then uploading it to an ODF S3 bucket
+* Step 2 : Preparing the class labels and training sets
+* Step 3 : Running the actual training on a Yolo 5 Model
+* Step 4 : Converting the model format to onnx
+* Step 5 : Uploading it to an ODF S3 bucket
 
 The pipeline can be configured to download and train on specifc image object class (e.g. Fedoras). To configure a class, open the file called `configuration.yaml`. You will see that an image class is already defined ('Laptop',). Looking for a new Laptop is great but we want to find red hats today.
 
@@ -89,7 +95,7 @@ The pipeline can be configured to download and train on specifc image object cla
 ----
 names: ['Fedora',]
 ----
-* Save the file by pressing **CTRL+s**
+* Save the file by pressing **ctrl+s**
 
 This image class is now mapped to the class number 0.
 
@@ -179,7 +185,7 @@ image::serving-runtime.png[]
 * Click **Go to Models** next to your just created model server
 * Click **Deploy model**
 * In the form enter
-** Model Name:
+** Model name:
 +
 [source,bash,role=execute,subs="attributes"]
 ----
@@ -217,7 +223,7 @@ token = 'REPLACE_ME'
 ----
 * Paste the inference endpoint URL and the token into the placeholders
 
-* Run the full notebook (The button with the two play icons in the top menu)
+* Run the full notebook (the button with the two play icons in the top menu)
 * Confirm to **Restart the Kernel**
 
 You will see any identified classes with bounding boxes and confidence score at the end of the notebook.
