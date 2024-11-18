@@ -133,7 +133,7 @@ With the default settings, the Pipeline will run around 15 minutes.  Let's use t
 s3-browser
 ----
 ** Image Selection
-*** `S3 Browser``
+*** `S3 Browser`
 ** Data Connections
 *** Use existing data connection
 **** `workbench-bucket`
@@ -166,10 +166,9 @@ ovms
 ** password : {password}
 * Accept the disclaimer
 
-The browser will show you the contents of your bucket. I should be pretty empty at the moment.
+The browser will show you the contents of your bucket. It should be pretty empty at the moment.
 
-Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the Yolov5 model family https://docs.ultralytics.com/models/yolov5/
-There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.
+Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.
 
 Once the pipeline has run (Check the run) successfully the final model named `latest-version.onnx` will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
 
@@ -186,7 +185,7 @@ You now have a trained model for object recognition. To use the model we will de
 First we need to configue a model server:
 
 * Click on **Data Science Projects** in the main menu on the left and make sure you have selected your project again
-* Select your Data Science Project {user}-ai
+* Select your Data Science Project `{user}-ai`
 * Under the section **Serve models** click on **Add model server**
 * Model server name :
 +
@@ -215,7 +214,7 @@ image::serving-runtime.png[]
 fedora-detection-service
 ----
 ** Model framework (name-version): `onnx-1`
-** Existing data connection: `data-science-data-science-workbench-bucket`
+** Existing data connection: `workbench-bucket`
 ** Path:
 +
 [source,bash,role=execute,subs="attributes"]
