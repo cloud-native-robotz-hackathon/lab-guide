@@ -68,6 +68,7 @@ To start the app you can use a task that is defined in the **DevFile** and runs 
 * Then click on **devfile: Run the application**
 
 This will install the python dependencies and start the server of your app.
+
 === Open the Robot Control Page
 
 **Important:** Once the Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a **Route** in OpenShift through which you can reach the website of your app running the the Workspace.
@@ -86,9 +87,7 @@ image::devspaces-open-tab.png[]
 
 A new Browser tab with the web interface of the Robot Control app will open. Make sure you are on `http://` if the page does not open.
 
-image::robot-control-page.png[]
-
-If you have missed the first Popup (the port forwarding), you need to end and restart the process:
+**If you have missed the first Popup (the port forwarding), you need to end and restart the process:**
 
 * Click on the garbage can icon on the right of the terminal
 
@@ -96,8 +95,7 @@ image::kill-terminal.png[]
 
 * Now restart the Gunicorn server with the task as explained above
 
-
- If you have missed the second of the Popups (opening the Route), there is another way to open it:
+If you have missed the second of the Popups (opening the Route), there is another way to open it:
 
 * In the left pane at the bottom expand the **ENDPOINTS** section
 * Hover over the entry `user-port-forward(8080)`
@@ -108,11 +106,11 @@ image::open-endpoints.png[]
 
 === Robot Control Page Overview
 
+WARNING: Don't click any of the buttons yet, we need to setup things before.
+
 This webpage has a few buttons that essentially just call REST endpoints in your app.  You will use it to start your robot control code.   The website features a **Run** button that you will use to execute your code.
 
 image::robot-control-page.png[]
-
-WARNING: Don't click any of the buttons yet, we need to setup things before.
 
 The buttons:
 
@@ -202,7 +200,7 @@ Now to check if everything is setup correctly and your app can reach the robot:
 
 * On the Robot Control Page click on **Check Status**
 
-You should see a confirmation that your Robot is doing ok. If not have a look at the console output in your Dev Spaves Workspace and recheck `configuration.py`.
+You should see a confirmation that your Robot is doing ok. If not have a look at the console output in your Dev Spaves Workspace and recheck `config.py`.
 
 
 === First Code
@@ -212,7 +210,7 @@ To make things a bit easier some helper functions are already in place, for exam
 Let's write some code and drive our robot, but this time from our code:
 
 * Open the file `app.py`
-* Look for the function `start_robot()` and the comment `# Drop your code here`
+* Look for the function `startRobot()` and the comment `# Drop your code here`
 * Add a `move_forward()` function call with 10 units, so your code looks like this (watch out for Python indentation):
 
 [source,bash,role=execute,subs="attributes"]
