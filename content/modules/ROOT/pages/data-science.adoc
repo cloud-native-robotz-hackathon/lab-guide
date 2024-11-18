@@ -184,8 +184,7 @@ You now have a trained model for object recognition. To use the model we will de
 
 First we need to configue a model server:
 
-* Click on **Data Science Projects** in the main menu on the left and make sure you have selected your project again
-* Select your Data Science Project `{user}-ai`
+* Click on **Data Science Projects** in the main menu on the left and make sure you have selected your `{user}-ai` again
 * Under the section **Serve models** click on **Add model server**
 * Model server name :
 +
