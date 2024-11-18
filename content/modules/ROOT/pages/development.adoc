@@ -32,7 +32,7 @@ copy the URL.
 
 image::devspaces-create-workspace.png[]
 
-Wait for the Workspace to deploy (this may take some time). Once you Workspace is up an running, you should see a view that looks familiar if you have used VSCode before.
+Wait for the Workspace to deploy (this may take some time). Once your Workspace is up and running, you should see a view that looks familiar if you have used VSCode before.
 
 We have prepared some sample code that you can use to quickly get started with your app.
 
@@ -53,9 +53,9 @@ Next we will clone the starter code for our robot control app into our Workspace
 * In the next form keep the path as is ( `/projects` ) and hit **Enter** again
 * In the next dialog click on the **Open** button to reopen the workspace in this directory
 
-Your will now see the starter code on the left side.
+You will now see the starter code on the left side.
 
-This is Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.
+This is a Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.
 
 === Start the App
 
@@ -71,7 +71,7 @@ This will install the python dependencies and start the server of your app.
 
 === Open the Robot Control Page
 
-**Important:** Once the Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a **Route** in OpenShift through which you can reach the website of your app running the the Workspace.
+**Important:** Once the Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a **Route** in OpenShift through which you can reach the website of your app running the Workspace.
 
 * Click on **Yes**
 
@@ -99,7 +99,7 @@ If you have missed the second of the Popups (opening the Route), there is anothe
 
 * In the left pane at the bottom expand the **ENDPOINTS** section
 * Hover over the entry `user-port-forward(8080)`
-* Click in the icon ('Open in new Tab')
+* Click in the icon (`Open in new Tab`)
 * A tab with the Robot Control App will open in your Browser
 
 image::open-endpoints.png[]
