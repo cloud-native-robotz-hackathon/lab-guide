@@ -77,40 +77,6 @@ Think about these points :
 * Perhaps the model should be tuned increase detection results?
 
 == Feature Freeze
-While you have time to work on your solution, as in real life projects there will be a "Feature Freeze" where everyting needs to be finished.  You will be given the time of the feature freeze.
+That's it. You now have a fully autonmous robot that can help you find your lost Fedora.
 
-== Pushing your Code
-Currently your code only resides in your Workspace, which is called the "Inner Loop" in Development terms. To publish and build you will need to push your code to your Git repository.
-
-To be able to push you need to set up your git email
-
-* Open a new Terminal by click on the **+** Icon in the bottom right and choosing **New Terminal**
-
-image::open-terminal.png[]
-
-* enter
-+
-[source,bash,role=execute,subs="attributes"]
-----
-git config --global user.email "pilot@robot.to"
-git config --global user.name "pilot"
-----
-
-To push your code:
-
-* In the Dev Spaces menu on the left click on the Git icon
-* Your modified files will be shown
-* Select the relevant files (`app.py` and `config.py`)
-+
-image::git-push.png[]
-
-* Right Click and select **Stage Changes**
-* Enter a comment in the top field
-* At the blue **Commit** button, click on the downwards bracket at the very right and choose **Commit & Push**
-* When prompted, enter you Gitea username and password
-** username: {user}
-** password : {password}
-
-== Next Steps
-
-Your deliverable will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.
+This was actually the short version of our Robo Vision AI Workshop. There is a longer version, where you will build and deploy your app and model directly to the robot. It can then run completely disconnected as an autonomous Edge Unit. Reach out to your Red Hat team if you are interested.
