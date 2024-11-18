@@ -24,7 +24,7 @@ Change your code to this :
 ----
 # Drop your code here
 turn_counter = 0
-while thread_event.is_set()::
+while thread_event.is_set():
     objects = take_picture_and_detect_objects()
     coordinates = find_highest_score(objects)
 
