@@ -69,6 +69,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="final-run.html">4. Final Run</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix.html">Appendix</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -111,7 +114,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>As data scientists, we have been given a task to provide a robot the understanding of what a red fedora looks like, correctly identify it and act on the object detection. You will be fine tuning an already existing object dection model from the YOLO-family (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use <strong>OpenShift AI</strong>, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries</p>
+<p>As data scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an already existing object dection model from the YOLO-family (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use <strong>OpenShift AI</strong>, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries</p>
 </div>
 </div>
 </div>
@@ -157,7 +160,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>The is the main Console where all DataScience related projects and assets are managed</p>
+<p>This is the main Console where all Data Science related projects and assets are managed.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -173,7 +176,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>As data scientists, we are need of an interactive developement environment(IDE) to do our programming. One of the most common one(and provided by OpenShift AI) is JupyterLab. Let&#8217;s create a new JupyterLab Workbench in our data science project and get started:</p>
+<p>As data scientists, we are in need of an interactive developement environment(IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let&#8217;s create a new JupyterLab Workbench in our data science project and get started:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -207,7 +210,12 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Name : <code>fedora-detection</code></p>
+<p>Name :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">fedora-detection</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -259,7 +267,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>The first thing we notice when logging into our workbench is that it&#8217;s quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But dont worry, we are experienced data scientists that know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:</p>
+<p>The first thing we notice when logging into our workbench is that it&#8217;s quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don&#8217;t worry, we are experienced data scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -270,7 +278,7 @@
 <p>Click on <strong>Clone a Repository</strong></p>
 </li>
 <li>
-<p>Enter the Git Url to the notebooks Repo that has been prepared for you :</p>
+<p>Enter the Git Url to the notebooks repo that has been prepared for you:</p>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">https://gitea.apps.example.com/team-1/object-detection-notebooks.git</code></pre>
@@ -281,15 +289,15 @@
 <p>Click on <strong>Clone</strong></p>
 </li>
 <li>
-<p>On the left side in the menu click on the <strong>Folder</strong> icon and navigate to <code>object-detection-notebooks</code> directory</p>
+<p>On the left side in the menu click on the <strong>Folder</strong> icon.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Next, we will train a model on the basis of a Yolo4 Image Detection model to identify fedoras by giving it sample images. The whole training process will run in a Pipeline leveraging OpenShift ressource scaling. Sample images will be downloaded automatically and after the training the model will be exported in onnx format to your S3 ODF store. In this format we can deploy it to an inferencing service on <strong>OpenShift AI</strong> and serve it to our application.</p>
+<p>Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 <strong>ODF</strong> (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on <strong>OpenShift AI</strong> and serve it to our application.</p>
 </div>
 <div class="paragraph">
-<p>In JupyterLab navigate to the directory <code>object-detection-notebooks/model-training</code>. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a configuration.yaml file as well as pipeline definition itself. By clicking on the different script, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so lets open it:</p>
+<p>In JupyterLab navigate to the directory <code>object-detection-notebooks/model-training</code>. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a <code>configuration.yaml</code> file as well as pipeline definition itself. By clicking on the different scripts, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so let&#8217;s open it:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -304,7 +312,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>We are downloading a set of sample images with labels and coordinates for our fedora class from the <a href="https://storage.googleapis.com/openimages/web/index.html" target="_blank" rel="noopener">OpenImages website</a>.</p>
+<p>Step 1 : Downloading a set of sample images with labels and coordinates for our fedora class from the <a href="https://storage.googleapis.com/openimages/web/index.html" target="_blank" rel="noopener">OpenImages website</a>.</p>
 </li>
 </ul>
 </div>
@@ -316,18 +324,21 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Preparing the class labels and training sets</p>
+<p>Step 2 : Preparing the class labels and training sets</p>
 </li>
 <li>
-<p>Running the actual training on a Yolo 5 Model</p>
+<p>Step 3 : Running the actual training on a Yolo 5 Model</p>
 </li>
 <li>
-<p>Converting the model format to onnx and then uploading it to an ODF S3 bucket</p>
+<p>Step 4 : Converting the model format to onnx</p>
+</li>
+<li>
+<p>Step 5 : Uploading it to an ODF S3 bucket</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The pipeline can be configured to download and train on specifc image object class (e.g. Fedoras). To configure a class, open the file called <code>configuration.yaml</code>. You will see there is a class already defined ('Laptop',). We will change this class to the object we are looking for.</p>
+<p>The pipeline can be configured to download and train on specifc image object class (e.g. Fedoras). To configure a class, open the file called <code>configuration.yaml</code>. You will see that an image class is already defined ('Laptop',). Looking for a new Laptop is great but we want to find red hats today.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -341,8 +352,16 @@
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">names: ['Fedora',]</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Save the file by pressing <strong>ctrl+s</strong></p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
-<p>This image class is mapped to the class number 0, press Ctrl-s to save your changes.</p>
+<p>This image class is now mapped to the class number 0.
+This image class is now mapped to the class number 0.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -409,11 +428,167 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the Yolov5 model family <a href="https://docs.ultralytics.com/models/yolov5/" class="bare">https://docs.ultralytics.com/models/yolov5/</a>
-There are different sizing versions of the Yolov5 and compute requirements. In the model_training.py you can find which one is being used.</p>
+<p>With the default settings, the Pipeline will run around 15 minutes.  Let&#8217;s use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In your project go on the tab <strong>Workbenches</strong></p>
+</li>
+<li>
+<p>Click on <strong>Create workbench</strong> and enter these values</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Name</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">s3-browser</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Image Selection</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>S3 Browser</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Data Connections</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use existing data connection</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>workbench-bucket</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click on <strong>Create Workbench</strong></p>
+</li>
+<li>
+<p>When the Workbench hast started click the <strong>Open</strong> link</p>
+</li>
+<li>
+<p>Login in with your OpenShift credentials</p>
+<div class="ulist">
+<ul>
+<li>
+<p>username: team-1</p>
+</li>
+<li>
+<p>password : secret-password</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Accept the disclaimer</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Once the pipeline has run successfully the final model named <code>latest-version.onnx</code> will be saved in your S3 bucket.</p>
+<p>The browser will show you the contents of your bucket. I should be pretty empty at the moment.</p>
+</div>
+<div class="paragraph">
+<p>With the default settings, the Pipeline will run around 15 minutes.  Let&#8217;s use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In your project go on the tab <strong>Workbenches</strong></p>
+</li>
+<li>
+<p>Click on <strong>Create workbench</strong> and enter these values</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Name</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ovms</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Data Connections</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use existing data connection</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>workbench-bucket</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click on <strong>Create Workbench</strong></p>
+</li>
+<li>
+<p>When the Workbench hast started click the <strong>Open</strong> link</p>
+</li>
+<li>
+<p>Login in with your OpenShift credentials</p>
+<div class="ulist">
+<ul>
+<li>
+<p>username: team-1</p>
+</li>
+<li>
+<p>password : secret-password</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Accept the disclaimer</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The browser will show you the contents of your bucket. It should be pretty empty at the moment.</p>
+</div>
+<div class="paragraph">
+<p>Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolov5 model family</a>. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.</p>
+</div>
+<div class="paragraph">
+<p>Once the pipeline has run (Check the run) successfully the final model named <code>latest-version.onnx</code> will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s3-browser.png" alt="s3 browser">
+</div>
+</div>
+<div class="paragraph">
+<p>Once the pipeline has run (Check the run) successfully the final model named <code>latest-version.onnx</code> will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s3-browser.png" alt="s3 browser">
+</div>
 </div>
 </div>
 </div>
@@ -431,10 +606,7 @@ There are different sizing versions of the Yolov5 and compute requirements. In t
 <div class="ulist">
 <ul>
 <li>
-<p>Click on <strong>Data Science Projects</strong> in the main menu on the left and make sure you have selected your project again</p>
-</li>
-<li>
-<p>Select your Data Science Project team-1-ai</p>
+<p>Click on <strong>Data Science Projects</strong> in the main menu on the left and make sure you have selected your <code>team-1-ai</code> again</p>
 </li>
 <li>
 <p>Under the section <strong>Serve models</strong> click on <strong>Add model server</strong></p>
@@ -492,7 +664,7 @@ There are different sizing versions of the Yolov5 and compute requirements. In t
 <div class="ulist">
 <ul>
 <li>
-<p>Model Name:</p>
+<p>Model name:</p>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">fedora-detection-service</code></pre>
@@ -557,10 +729,31 @@ There are different sizing versions of the Yolov5 and compute requirements. In t
 <p>Back in your JupyterLab Workbench in the <code>object-detection-notebooks</code> directory, open the <code>online-scoring.ipynb</code> notebook</p>
 </li>
 <li>
-<p>Look for the variables <code>prediction_url</code> and <code>token</code> and paste the inference endpoint URL and the token into the placeholders</p>
+<p>Look for the variables <code>prediction_url</code> and <code>token</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">prediction_url = 'REPLACE_ME'
+token = 'REPLACE_ME'</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Run the full notebook (The button with the two play icons in the top menu)</p>
+<p>Paste the inference endpoint URL and the token into the placeholders</p>
+</li>
+<li>
+<p>Look for the variables <code>prediction_url</code> and <code>token</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">prediction_url = 'REPLACE_ME'
+token = 'REPLACE_ME'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Paste the inference endpoint URL and the token into the placeholders</p>
+</li>
+<li>
+<p>Run the full notebook (the button with the two play icons in the top menu)</p>
 </li>
 <li>
 <p>Confirm to <strong>Restart the Kernel</strong></p>
@@ -568,7 +761,7 @@ There are different sizing versions of the Yolov5 and compute requirements. In t
 </ul>
 </div>
 <div class="paragraph">
-<p>You will see any identified classes with bounding boxes and confidence score. Bummer! As the sample image doesn&#8217;t have any fedoras you will not see any detections yet. Let&#8217;s give our more model some more interesting pictures.</p>
+<p>You will see any identified classes with bounding boxes and confidence score at the end of the notebook.</p>
 </div>
 <div class="paragraph">
 <p>You can test your model with different images in the <code>sample-images</code> folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the <code>sample_images</code> folder.  Make sure you adjust the image name in <code>image_path</code> variable before running the notebook again. You should see some awsesome detections now.</p>

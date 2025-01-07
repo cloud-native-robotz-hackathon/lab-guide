@@ -69,6 +69,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="final-run.html">4. Final Run</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix.html">Appendix</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -112,7 +115,7 @@
 <h2 id="_the_challenge"><a class="anchor" href="#_the_challenge"></a>The Challenge</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The task that you are working on will be to enable your robot to identify a red fedora on the floor. Your robot should drive towards the fedora and stop shortly before it.</p>
+<p>The task that you are working on will be to enable your robot to identify a fedora on the floor. Your robot should drive towards the fedora and stop shortly before it.</p>
 </div>
 <div class="paragraph">
 <p>The basic flow for your app will be:</p>
@@ -123,7 +126,7 @@
 <p>retrieving an image</p>
 </li>
 <li>
-<p>sending it the object detection service</p>
+<p>sending it to the object detection service</p>
 </li>
 <li>
 <p>analyzing the results</p>
@@ -155,13 +158,13 @@
 <p>To speed things up we will give you a solution as an MVP.</p>
 </div>
 <div class="paragraph">
-<p>Change you code to this :</p>
+<p>Change your code to this :</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
 turn_counter = 0
-while True:
+while thread_event.is_set():
     objects = take_picture_and_detect_objects()
     coordinates = find_highest_score(objects)
 

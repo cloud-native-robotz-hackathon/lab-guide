@@ -69,6 +69,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="final-run.html">4. Final Run</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix.html">Appendix</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -177,7 +180,7 @@ A  <strong>DevFile</strong> is a definition for environment, tooling, settings a
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can find the url to this DevFile manually by opening your <a href="https://gitea.apps.example.com" target="_blank" rel="noopener">Gitea</a>, navigate to the repo <code>starter-app-python</code> and then <code>devfile.yaml</code>. Click on "Originalversion / Raw" and
+You could also find the url to this DevFile manually by opening your <a href="https://gitea.apps.example.com" target="_blank" rel="noopener">Gitea</a>, navigate to the repo <code>starter-app-python</code> and then <code>devfile.yaml</code>. Click on "Originalversion / Raw" and
 copy the URL.
 </td>
 </tr>
@@ -196,7 +199,7 @@ copy the URL.
 </div>
 </div>
 <div class="paragraph">
-<p>Wait for the Workspace to deploy (this may take some time). Once you Workspace is up an running, you should see a view that looks familiar if you have used VSCode before.</p>
+<p>Wait for the Workspace to deploy (this may take some time). Once your Workspace is up and running, you should see a view that looks familiar if you have used VSCode before.</p>
 </div>
 <div class="paragraph">
 <p>We have prepared some sample code that you can use to quickly get started with your app.</p>
@@ -241,16 +244,19 @@ copy the URL.
 </ul>
 </div>
 <div class="paragraph">
-<p>Your will now see the starter code on the left side.</p>
+<p>You will now see the starter code on the left side.</p>
+</div>
+<div class="paragraph">
+<p>This is a Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.</p>
 </div>
 <div class="sect2">
 <h3 id="_start_the_app"><a class="anchor" href="#_start_the_app"></a>Start the App</h3>
 <div class="paragraph">
-<p>You have two options to run the app. You can either use a task that is defined in the <strong>DevFile</strong> and runs all the pip and python commands under the hood. Or you can open a terminal and run these commands yourself, to have full control.</p>
+<p>To start the app you can use a task that is defined in the <strong>DevFile</strong> and runs all the pip and Python commands under the hood.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_option_1_starting_the_app_through_the_workspace_task"><a class="anchor" href="#_option_1_starting_the_app_through_the_workspace_task"></a>Option 1 : Starting the App through the Workspace Task</h3>
+<h3 id="_starting_the_app_through_the_workspace_task"><a class="anchor" href="#_starting_the_app_through_the_workspace_task"></a>Starting the App through the Workspace Task</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -265,50 +271,13 @@ copy the URL.
 </ul>
 </div>
 <div class="paragraph">
-<p>This will install the python dependencies and start the server of your app. You can now proceed to chapter <strong>Open the App Website</strong></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_option_2_starting_the_app_from_the_terminal"><a class="anchor" href="#_option_2_starting_the_app_from_the_terminal"></a>Option 2: Starting the App from the Terminal</h3>
-<div class="paragraph">
-<p>Let&#8217;s install the app dependencies with pip.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Open a Terminal by clicking the “Hamburger Icon” &gt; <strong>Terminal</strong> &gt; <strong>New Terminal</strong> in the top left</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Depending on your browser you may need to allow pasting into the Terminal via a Popup
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>In the Terminal enter :</p>
-</div>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd starter-project-python
-pip install -r requirements.txt
-export PYTHONDONTWRITEBYTECODE=1
-export PATH=$PATH:/home/user/.local/bin
-gunicorn -b 0.0.0.0:8080 app --reload</code></pre>
-</div>
+<p>This will install the python dependencies and start the server of your app.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_open_the_robot_control_page"><a class="anchor" href="#_open_the_robot_control_page"></a>Open the Robot Control Page</h3>
 <div class="paragraph">
-<p>Once the gunicorn server is starting, you will see two Popups in the bottom right corner that you will need to approve. These will publish a <strong>Route</strong> in OpenShift through which you can reach the website of your app running the the Workspace</p>
+<p><strong>Important:</strong> Once the Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a <strong>Route</strong> in OpenShift through which you can reach the website of your app running the Workspace.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -350,7 +319,29 @@ gunicorn -b 0.0.0.0:8080 app --reload</code></pre>
 <p>A new Browser tab with the web interface of the Robot Control app will open. Make sure you are on <code>http://</code> if the page does not open.</p>
 </div>
 <div class="paragraph">
-<p>If you have missed one of the Popups there is another way to open them:</p>
+<p><strong>If you have missed the first Popup (the port forwarding), you need to end and restart the process:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on the garbage can icon on the right of the terminal</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kill-terminal.png" alt="kill terminal">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Now restart the Gunicorn server with the task as explained above</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you have missed the second of the Popups (opening the Route), there is another way to open it:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -361,7 +352,7 @@ gunicorn -b 0.0.0.0:8080 app --reload</code></pre>
 <p>Hover over the entry <code>user-port-forward(8080)</code></p>
 </li>
 <li>
-<p>Click in the icon ('Open in new Tab')</p>
+<p>Click in the icon (<code>Open in new Tab</code>)</p>
 </li>
 <li>
 <p>A tab with the Robot Control App will open in your Browser</p>
@@ -376,8 +367,25 @@ gunicorn -b 0.0.0.0:8080 app --reload</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_robot_control_page_overview"><a class="anchor" href="#_robot_control_page_overview"></a>Robot Control Page Overview</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Don&#8217;t click any of the buttons yet, we need to setup things before.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>This webpage has a few buttons that essentially just call RESTful endpoints in your app.  You can use it to start you robot control code.   The website features a <strong>Run</strong> button that you can use to execute your code.</p>
+<p>This webpage has a few buttons that essentially just call REST endpoints in your app.  You will use it to start your robot control code.   The website features a <strong>Run</strong> button that you will use to execute your code.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/robot-control-page.png" alt="robot control page">
+</div>
 </div>
 <div class="paragraph">
 <p>The buttons:</p>
@@ -385,13 +393,13 @@ gunicorn -b 0.0.0.0:8080 app --reload</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Status</strong> - Calls the app to see if the robot is connected</p>
+<p><strong>Check Status</strong> - Calls the app to see if the robot is connected</p>
 </li>
 <li>
 <p><strong>Run</strong> - Calls your <code>startRobot()</code> function in the <code>app.py</code>. This is where you will add your code</p>
 </li>
 <li>
-<p><strong>Reload</strong> - Reloads the Browser tab (should not be necessary)</p>
+<p><strong>Stop</strong> - Stop execution of you app</p>
 </li>
 </ul>
 </div>
@@ -399,7 +407,7 @@ gunicorn -b 0.0.0.0:8080 app --reload</code></pre>
 <div class="sect2">
 <h3 id="_the_robot_api"><a class="anchor" href="#_the_robot_api"></a>The Robot API</h3>
 <div class="paragraph">
-<p>Now that our app is running, let&#8217;s take a monent to explore the Robot REST API.</p>
+<p>Now that our app is running, let&#8217;s take a moment to have a look at the Robot REST API that we will be calling.</p>
 </div>
 <div class="paragraph">
 <p>It is fairly simple:</p>
@@ -484,19 +492,31 @@ gunicorn -b 0.0.0.0:8080 app --reload</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Click in the <strong>Terminal</strong> area at the bottom</p>
+<p>Open a new Terminal with the <strong>+</strong> Icon at the top right of the current Gunicorn Terminal</p>
 </li>
 <li>
-<p>To drive forward 10 units (make sure your Robot is not falling off the table) , call:</p>
+<p>To drive forward 2 units (make sure your Robot is not falling off the table), enter an execute:</p>
 </li>
 </ul>
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort.lan
 
 curl -X POST http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/forward/2 -d user_key=${ROBOT_NAME}</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Some Browers wil ask you wether to allow pasting text. Approve this to proceed.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Awesome, right? You are now an official robot pilot.</p>
@@ -506,13 +526,13 @@ curl -X POST http://hub-controller-live.red-hat-service-interconnect-data-center
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort.lan
 
 curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/camera?user_key=${ROBOT_NAME} | base64 -d &gt; image.jpg</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You will find the image as <code>image.jpg</code> in the root folder and click on it to view.</p>
+<p>You will find the image file as <code>image.jpg</code> in the root folder. Click on it to view.</p>
 </div>
 <div class="paragraph">
 <p>That was neat, but of course you want to give the robot some personality with your code. Let&#8217;s move on to configure the app.</p>
@@ -535,7 +555,7 @@ curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.
 <p><strong>&lt;REPLACE_WITH_ROBOT_NAME&gt;</strong>:</p>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gort</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gort.lan</code></pre>
 </div>
 </div>
 </li>
@@ -560,10 +580,23 @@ curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Note that <strong>Dev Spaces</strong> saves your file directly while you edit it. No need to save manually. And as an added bonus guicorn reloads your python app, so there is also no need to restart you app.
+Note that <strong>Dev Spaces</strong> saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart you app or even reload the Robot control page.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Now to check if everything is setup correctly and your app can reach the robot:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the Robot Control Page click on <strong>Check Status</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You should see a confirmation that your Robot is doing ok. If not have a look at the console output in your Dev Spaves Workspace and recheck <code>config.py</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -572,7 +605,7 @@ Note that <strong>Dev Spaces</strong> saves your file directly while you edit it
 <p>To make things a bit easier some helper functions are already in place, for example to create REST requests for the robot operations and to work with the array response coming from the inferencing service.</p>
 </div>
 <div class="paragraph">
-<p>Next let&#8217;s write some code and drive our robot, but this time from our code.</p>
+<p>Let&#8217;s write some code and drive our robot, but this time from our code:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -580,10 +613,10 @@ Note that <strong>Dev Spaces</strong> saves your file directly while you edit it
 <p>Open the file <code>app.py</code></p>
 </li>
 <li>
-<p>Look for the function <code>start_robot()</code> and the comment <code># Drop your code here</code></p>
+<p>Look for the function <code>startRobot()</code> and the comment <code># Drop your code here</code></p>
 </li>
 <li>
-<p>Add a <code>move_forward()</code> function call with 10 units, like this:</p>
+<p>Add a <code>move_forward()</code> function call with 10 units, so your code looks like this (watch out for Python indentation):</p>
 </li>
 </ul>
 </div>
@@ -605,7 +638,7 @@ print('Done')</code></pre>
 <p>If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness!</p>
 </div>
 <div class="paragraph">
-<p>If it doesn&#8217;t move, have look at the Terminal output in <strong>Dev Spaces</strong> and recheck your <code>confg.py</code> entries.</p>
+<p>If it doesn&#8217;t move, have look at the Terminal output in <strong>Dev Spaces</strong> and recheck your <code>config.py</code> entries.</p>
 </div>
 </div>
 <div class="sect2">
@@ -694,6 +727,8 @@ if coordinates:
         x lower right corner: {coordinates.x_lower_right},
         y lower right corner: {coordinates.y_lower_right},
         object class: {coordinates.object_class} ]''')
+else:
+    print('No objects found')
 print('Done')</code></pre>
 </div>
 </div>
@@ -703,9 +738,32 @@ print('Done')</code></pre>
 <p>Now place some objects in front of the camera and execute your code by pressing the <strong>Run</strong> button</p>
 </li>
 <li>
-<p>Place a fedora in front of the camera, run your code again and see if that makes a difference</p>
+<p>Have a look at the Console output in your Dev Spaces Workspace</p>
+</li>
+<li>
+<p>Place a fedora in front of the camera, run your code again and see if that makes a difference:</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>You should now see an output similar to this :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Object with highest score -&gt; [
+            confidence score: 0.8367316560932,
+            x upper left corner: 296.75372999999996,
+            y upper left corner: 321.65746,
+            x lower right corner: 515.7144099999999,
+            y lower right corner: 477.20844,
+            object class: 0.0 ]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that we have found a Fedora (object class = 0) and a pretty certain of of it (confidence score = 0.8).</p>
+</div>
+<div class="paragraph">
+<p>The robot control page will also display the last image from the camera every 5 seconds. You can use this check the robot and camera alignment.</p>
 </div>
 </div>
 <div class="sect2">
