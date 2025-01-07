@@ -188,7 +188,7 @@ image::copy-token.png[]
 * Run the full notebook (The button with the two play icons in the top menu)
 * Confirm to **Restart the Kernel**
 
-You will see any identified classes with bounding boxes and confidence score. Bummer! As the sample image doesn't have any fedoras you will not see any detections yet. Let's give our more model some more interesting pictures.
+You will see any identified classes with bounding boxes and confidence score at the end of the notebook.
 
 You can test your model with different images in the `sample-images` folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the `sample_images` folder.  Make sure you adjust the image name in `image_path` variable before running the notebook again. You should see some awsesome detections now.
 
@@ -214,7 +214,7 @@ In this case `model-2410151507.onnxmodel-2410151507.onnx` is the new model creat
 * Change the **Path** value to your new model (e.g. models/model-2410151507.onnx)
 * This wil trigger a redeploy and you can now test the new model
 
-TIP: There is another more kube native way to update the model. You can change the yaml of the underying OpenShift ressource. 
+TIP: There is another more kube native way to update the model. You can change the yaml of the underying OpenShift ressource.
 
 ==== Model redeploy by editing Resource yaml
 
@@ -225,10 +225,10 @@ TIP: There is another more kube native way to update the model. You can change t
 * Click on the `fedora-detection-service`
 * Click on **YAML** to edit
 
-Look for the **path** entry 
+Look for the **path** entry
 ----
  path: models/model-latest.onnx
----- 
+----
 and change it to your new model
 
 This opens up possibilities to use GitOPS to configure your MLOps ressources by the way.
