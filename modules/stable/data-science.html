@@ -224,25 +224,27 @@
 </div>
 </li>
 <li>
-<p>Data connections</p>
+<p>Click on <strong>Attach existingconnections</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use a data connection</p>
+<p>Select <code>workbench-bucket</code> connection</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/attach-existing-connection.png" alt="attach existing connection">
+</div>
+</div>
 <div class="ulist">
 <ul>
-<li>
-<p>Use existing data connection: <code>workbench-bucket</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
 <li>
 <p>Click <strong>Create Workbench</strong></p>
 </li>
@@ -296,8 +298,15 @@
 <div class="paragraph">
 <p>Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 <strong>ODF</strong> (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on <strong>OpenShift AI</strong> and serve it to our application.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>In JupyterLab navigate to the directory <code>object-detection-notebooks/model-training</code>.</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
-<p>In JupyterLab navigate to the directory <code>object-detection-notebooks/model-training</code>. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a <code>configuration.yaml</code> file as well as pipeline definition itself. By clicking on the different scripts, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so let&#8217;s open it:</p>
+<p>Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a <code>configuration.yaml</code> file as well as pipeline definition itself. By clicking on the different scripts, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so let&#8217;s open it:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -338,7 +347,17 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>The pipeline can be configured to download and train on specifc image object class (e.g. Fedoras). To configure a class, open the file called <code>configuration.yaml</code>. You will see that an image class is already defined ('Laptop',). Looking for a new Laptop is great but we want to find red hats today.</p>
+<p>The pipeline can be configured to download and train on specifc image object class (e.g. Fedoras).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To configure a class, open the file called <code>configuration.yaml</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You will see that an image class is already defined ('Laptop',). Looking for a new Laptop is great but we want to find red hats today.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -458,15 +477,32 @@ This image class is now mapped to the class number 0.</p>
 </div>
 </li>
 <li>
-<p>Data Connections</p>
+<p>Cluster storage</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use existing data connection</p>
+<p>Create new persistant storage</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>workbench-bucket</code></p>
+<p><code>s3-browser</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Connections</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <strong>Attach existing data connection</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Select <code>workbench-bucket</code></p>
 </li>
 </ul>
 </div>
@@ -505,82 +541,7 @@ This image class is now mapped to the class number 0.</p>
 <p>The browser will show you the contents of your bucket. I should be pretty empty at the moment.</p>
 </div>
 <div class="paragraph">
-<p>With the default settings, the Pipeline will run around 15 minutes.  Let&#8217;s use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>In your project go on the tab <strong>Workbenches</strong></p>
-</li>
-<li>
-<p>Click on <strong>Create workbench</strong> and enter these values</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Name</p>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ovms</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Data Connections</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Use existing data connection</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>workbench-bucket</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Click on <strong>Create Workbench</strong></p>
-</li>
-<li>
-<p>When the Workbench hast started click the <strong>Open</strong> link</p>
-</li>
-<li>
-<p>Login in with your OpenShift credentials</p>
-<div class="ulist">
-<ul>
-<li>
-<p>username: team-1</p>
-</li>
-<li>
-<p>password : secret-password</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Accept the disclaimer</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The browser will show you the contents of your bucket. It should be pretty empty at the moment.</p>
-</div>
-<div class="paragraph">
 <p>Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolov5 model family</a>. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.</p>
-</div>
-<div class="paragraph">
-<p>Once the pipeline has run (Check the run) successfully the final model named <code>latest-version.onnx</code> will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/s3-browser.png" alt="s3 browser">
-</div>
 </div>
 <div class="paragraph">
 <p>Once the pipeline has run (Check the run) successfully the final model named <code>latest-version.onnx</code> will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.</p>
@@ -711,6 +672,11 @@ This image class is now mapped to the class number 0.</p>
 <img src="_images/copy-inference-url.png" alt="copy inference url">
 </div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/copy-inference-url2.png" alt="copy inference url2">
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -755,6 +721,15 @@ token = 'REPLACE_ME'</code></pre>
 <li>
 <p>Run the full notebook (the button with the two play icons in the top menu)</p>
 </li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/run-full-notebook.png" alt="run full notebook">
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Confirm to <strong>Restart the Kernel</strong></p>
 </li>
@@ -778,13 +753,13 @@ token = 'REPLACE_ME'</code></pre>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-When rerunning the pipeline a new onnx model will be created in the S3 bucket <code>/models</code> folder and copied over the <code>model-latest.onnx`</code> file. It will not automatically be deployed to the running model server.
+When rerunning the pipeline, a new onnx model will be created in the S3 bucket <code>/models</code> folder and copied over the <code>model-latest.onnx</code> file. It will not automatically be deployed to the running model server!
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To deploy the new model, we need to find out the new model filename. In the <strong>pipeline run</strong> view, click on the last task (<code>model_upload`</code>) and look a the logs.  You should see an entry similar to this:</p>
+<p>To deploy the new model to the model server, we need to find out the new model filename. In the <strong>pipeline run</strong> view, click on the last task (<code>model_upload</code>) and look a the logs.  You should see an entry similar to this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -796,7 +771,7 @@ model uploaded and available as "models/model-latest.onnx"</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In this case <code>model-2410151507.onnxmodel-2410151507.onnx</code> is the new model created by this pipeline run.</p>
+<p>In this case <code>model-2410151507.onnx</code> is the new model created by this pipeline run.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -818,7 +793,7 @@ model uploaded and available as "models/model-latest.onnx"</pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-There is another more kube native way to update the model. You can change the yaml of the underying OpenShift ressource.
+There is another more kube native way to update the model. You can actually change the yaml of the underlying OpenShift ressource.
 </td>
 </tr>
 </table>
@@ -857,10 +832,10 @@ There is another more kube native way to update the model. You can change the ya
 </div>
 </div>
 <div class="paragraph">
-<p>and change it to your new model</p>
+<p>and change it to your new model name</p>
 </div>
 <div class="paragraph">
-<p>This opens up possibilities to use GitOPS to configure your MLOps ressources by the way.</p>
+<p>This opens up possibilities to use GitOps to configure your MLOps ressources by the way.</p>
 </div>
 <div class="paragraph">
 <p>Finally it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values <code>prediction_url</code> and <code>token</code> in your app in the next chapter.</p>
