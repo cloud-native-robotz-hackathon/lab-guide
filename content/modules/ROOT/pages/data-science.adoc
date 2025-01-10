@@ -44,9 +44,10 @@ fedora-detection
 ----
 fedora-detection
 ----
-** Data connections
-*** Use a data connection
-**** Use existing data connection: `workbench-bucket`
+** Click on **Attach existingconnections**
+*** Select `workbench-bucket` connection
+
+image::attach-existing-connection.png[]
 * Click **Create Workbench**
 
 Wait until the **Status** of the Workbench is changed from "Starting" to "Running"
@@ -72,7 +73,9 @@ The first thing we notice when logging into our workbench is that it's quite emp
 
 Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
-In JupyterLab navigate to the directory `object-detection-notebooks/model-training`. Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a `configuration.yaml` file as well as pipeline definition itself. By clicking on the different scripts, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so let's open it:
+* In JupyterLab navigate to the directory `object-detection-notebooks/model-training`.
+
+Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a `configuration.yaml` file as well as pipeline definition itself. By clicking on the different scripts, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so let's open it:
 
 * Double click on `model-training-cpu.pipeline`
 
@@ -87,7 +90,11 @@ image::open-images.png[]
 * Step 4 : Converting the model format to onnx
 * Step 5 : Uploading it to an ODF S3 bucket
 
-The pipeline can be configured to download and train on specifc image object class (e.g. Fedoras). To configure a class, open the file called `configuration.yaml`. You will see that an image class is already defined ('Laptop',). Looking for a new Laptop is great but we want to find red hats today.
+The pipeline can be configured to download and train on specifc image object class (e.g. Fedoras).
+
+* To configure a class, open the file called `configuration.yaml`.
+
+You will see that an image class is already defined ('Laptop',). Looking for a new Laptop is great but we want to find red hats today.
 
 * Change the `names` array to look like this
 
@@ -139,9 +146,12 @@ s3-browser
 ----
 ** Image Selection
 *** `S3 Browser`
-** Data Connections
-*** Use existing data connection
-**** `workbench-bucket`
+** Cluster storage
+*** Create new persistant storage
+**** `s3-browser`
+** Connections
+*** Click **Attach existing data connection**
+**** Select `workbench-bucket`
 * Click on **Create Workbench**
 * When the Workbench hast started click the **Open** link
 * Login in with your OpenShift credentials
@@ -151,33 +161,8 @@ s3-browser
 
 The browser will show you the contents of your bucket. I should be pretty empty at the moment.
 
-With the default settings, the Pipeline will run around 15 minutes.  Let's use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.
-
-* In your project go on the tab **Workbenches**
-* Click on **Create workbench** and enter these values
-** Name
-+
-[source,bash,role=execute,subs="attributes"]
-----
-ovms
-----
-** Data Connections
-*** Use existing data connection
-**** `workbench-bucket`
-* Click on **Create Workbench**
-* When the Workbench hast started click the **Open** link
-* Login in with your OpenShift credentials
-** username: {user}
-** password : {password}
-* Accept the disclaimer
-
-The browser will show you the contents of your bucket. It should be pretty empty at the moment.
-
 Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.
 
-Once the pipeline has run (Check the run) successfully the final model named `latest-version.onnx` will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
-
-image::s3-browser.png[]
 Once the pipeline has run (Check the run) successfully the final model named `latest-version.onnx` will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
 
 image::s3-browser.png[]
@@ -235,6 +220,8 @@ Wait for the server to start
 
 image::copy-inference-url.png[]
 
+image::copy-inference-url2.png[]
+
 * Copy the token of the endpoint
 
 image::copy-token.png[]
@@ -258,6 +245,9 @@ token = 'REPLACE_ME'
 * Paste the inference endpoint URL and the token into the placeholders
 
 * Run the full notebook (the button with the two play icons in the top menu)
+
+image::run-full-notebook.png[]
+
 * Confirm to **Restart the Kernel**
 
 You will see any identified classes with bounding boxes and confidence score at the end of the notebook.
@@ -268,9 +258,9 @@ You can test your model with different images in the `sample-images` folder. But
 
 Perhaps you would to like to tweak and increase the detection quality of your model? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training), epochs (Number of training iterations) and batch size.
 
-IMPORTANT: When rerunning the pipeline a new onnx model will be created in the S3 bucket `/models` folder and copied over the `model-latest.onnx`` file. It will not automatically be deployed to the running model server.
+IMPORTANT: When rerunning the pipeline, a new onnx model will be created in the S3 bucket `/models` folder and copied over the `model-latest.onnx` file. It will not automatically be deployed to the running model server!
 
-To deploy the new model, we need to find out the new model filename. In the **pipeline run** view, click on the last task (`model_upload``) and look a the logs.  You should see an entry similar to this:
+To deploy the new model to the model server, we need to find out the new model filename. In the **pipeline run** view, click on the last task (`model_upload`) and look a the logs.  You should see an entry similar to this:
 
 ----
 initializing S3 client
@@ -280,13 +270,13 @@ uploading model to models/model-latest.onnx
 model uploaded and available as "models/model-latest.onnx"
 ----
 
-In this case `model-2410151507.onnxmodel-2410151507.onnx` is the new model created by this pipeline run.
+In this case `model-2410151507.onnx` is the new model created by this pipeline run.
 
 * Now in your Openshift AI Project go to **Models** and click on the three dots next to the model `fedora-detection-service`
 * Change the **Path** value to your new model (e.g. models/model-2410151507.onnx)
 * This wil trigger a redeploy and you can now test the new model
 
-TIP: There is another more kube native way to update the model. You can change the yaml of the underying OpenShift ressource.
+TIP: There is another more kube native way to update the model. You can actually change the yaml of the underlying OpenShift ressource.
 
 ==== Model redeploy by editing Resource yaml
 
@@ -301,8 +291,8 @@ Look for the **path** entry
 ----
  path: models/model-latest.onnx
 ----
-and change it to your new model
+and change it to your new model name
 
-This opens up possibilities to use GitOPS to configure your MLOps ressources by the way.
+This opens up possibilities to use GitOps to configure your MLOps ressources by the way.
 
 Finally it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
