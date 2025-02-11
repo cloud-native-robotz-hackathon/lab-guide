@@ -128,10 +128,20 @@
 <div class="ulist">
 <ul>
 <li>
-<p>username: team-1</p>
+<p>username:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">team-1</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>password : secret-password</p>
+<p>password :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">secret-password</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -247,6 +257,13 @@
 </li>
 </ul>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
 <p>Wait until the <strong>Status</strong> of the Workbench is changed from "Starting" to "Running"</p>
 </div>
@@ -254,6 +271,10 @@
 <div class="content">
 <img src="_images/workbench-running.png" alt="workbench running">
 </div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="ulist">
 <ul>
@@ -651,8 +672,19 @@ This image class is now mapped to the class number 0.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
 <p>Wait for the server to start. It may take a bit before the model server is able to answer requests. If you get an error in the following calls, just wait a few seconds and try again.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -735,11 +767,11 @@ token = 'REPLACE_ME'</code></pre>
 <div class="paragraph">
 <p>Perhaps you would to like to tweak and increase the detection quality of your model later on? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training), epochs (Number of training iterations) and batch size.</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 When rerunning the pipeline, a new onnx model will be created in the S3 bucket <code>/models</code> folder and copied over the <code>model-latest.onnx</code> file. It will not automatically be deployed to the running model server!

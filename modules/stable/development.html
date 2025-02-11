@@ -121,10 +121,20 @@
 <div class="ulist">
 <ul>
 <li>
-<p>username: team-1</p>
+<p>username:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">team-1</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>password : secret-password</p>
+<p>password :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">secret-password</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -187,25 +197,21 @@ copy the URL.
 <ul>
 <li>
 <p>Click on <strong>Create and Open</strong></p>
-</li>
-</ul>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/devspaces-create-workspace.png" alt="devspaces create workspace">
 </div>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>"Trust" the repo clicking <strong>Continue</strong></p>
-</li>
-</ul>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/trust.png" alt="trust">
 </div>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Wait for the Workspace to deploy (this may take some time). Once your Workspace is up and running, you should see a view that looks familiar if you have used VSCode before.</p>
@@ -217,13 +223,13 @@ copy the URL.
 <ul>
 <li>
 <p>If you see a Popup asking you to "Do you trust the authors", click check <strong>Always &#8230;&#8203;</strong>  and click <strong>Yes &#8230;&#8203;</strong></p>
-</li>
-</ul>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/vscode-trust.png" alt="vscode trust">
 </div>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Next we will clone the starter code for our robot control app into our Workspace.</p>
@@ -285,44 +291,45 @@ copy the URL.
 </div>
 <div class="sect2">
 <h3 id="_open_the_robot_control_page"><a class="anchor" href="#_open_the_robot_control_page"></a>Open the Robot Control Page</h3>
-<div class="paragraph">
-<p><strong>Important:</strong> Once the Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a <strong>Route</strong> in OpenShift through which you can reach the website of your app running the Workspace.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Once the Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a <strong>Route</strong> in OpenShift through which you can reach the website of your app running the Workspace.
+</td>
+</tr>
+</table>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Click on <strong>Yes</strong></p>
-</li>
-</ul>
-</div>
+<p>Click on <strong>Yes</strong>:</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/devspaces-allow_route.png" alt="devspaces allow route">
 </div>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>Click on <strong>Open in new tab</strong></p>
-</li>
-</ul>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/devspaces-open-new-tab.png" alt="devspaces open new tab">
 </div>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>Click on <strong>Open</strong></p>
-</li>
-</ul>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/devspaces-open-tab.png" alt="devspaces open tab">
 </div>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>A new Browser tab with the web interface of the Robot Control app will open. Make sure you are on <code>http://</code> if the page does not open.</p>
@@ -421,80 +428,48 @@ Don&#8217;t click any of the buttons yet, we need to setup things before.
 <div class="paragraph">
 <p>It is fairly simple:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>POST /forward/&lt;length&gt;</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Drive forward by length</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>POST /backward/&lt;length&gt;</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Drive backwards by length</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>POST /left/&lt;degrees&gt;</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Turn left by degrees</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>POST /right/&lt;degrees&gt;</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Turn right by degrees</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>GET /image</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Returns a base64 image of the current camera image</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>GET /status</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Returns the status of the robot</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>GET /power</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Returns the current power of the robot</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Action</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST /forward/&lt;length&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Drive forward by length</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST /backward/&lt;length&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Drive backwards by length</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST /left/&lt;degrees&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Turn left by degrees</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST /right/&lt;degrees&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Turn right by degrees</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET /image</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns a base64 image of the current camera image</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET /status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the status of the robot</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET /power</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the current power of the robot</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>For testing purposes you can call the Robot API directly from your Workspace Terminal with <code>curl</code>.</p>
 </div>
