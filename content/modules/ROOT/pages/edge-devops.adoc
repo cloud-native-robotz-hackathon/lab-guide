@@ -4,8 +4,7 @@ Testing our solution on OpenShift is fun but what we really want is an autonomou
 
 As you read in the last chapter at the "Feature Freeze" you will have to provide your solution assets in the form of container images.  It is time to move these onto the robot itself.
 
-== ToDo: Architecture overview
-
+image::edge-devops/architecture.png[]
 
 == Build a Container Image of the Object Detection Model
 
