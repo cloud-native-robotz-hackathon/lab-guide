@@ -85,7 +85,7 @@ Currently your code only resides in your Workspace, which is called the "Inner L
 To be able to push you need to set up your git email
 
 * Open a new Terminal by click on the **+** Icon in the bottom right and choosing **New Terminal**
-
++
 image::open-terminal.png[]
 
 * enter
@@ -108,9 +108,18 @@ image::git-push.png[]
 * Enter a comment in the top field
 * At the blue **Commit** button, click on the downwards bracket at the very right and choose **Commit & Push**
 * On the top a prompt dialog will open to enter your Gitea username and password
-** username: {user}
-** password : {password}
-
+** username:
++
+[source,text,role=execute,subs="attributes"]
+----
+{user}
+----
+** password :
++
+[source,text,role=execute,subs="attributes"]
+----
+{password}
+----
 Now you code has been pushed to your repo. You can check in Gitea if you want.
 
 == Next Steps

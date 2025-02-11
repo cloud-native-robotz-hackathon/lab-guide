@@ -8,8 +8,18 @@ As data scientists, we have been given a task to provide a robot the understandi
 Let's login into **OpenShift AI**
 
 * Login into the {openshift_console_url}[OpenShift Console,window=_blank] with:
-** username: {user}
-** password : {password}
+** username:
++
+[source,text,role=execute,subs="attributes"]
+----
+{user}
+----
+** password :
++
+[source,text,role=execute,subs="attributes"]
+----
+{password}
+----
 * Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
 
 image::rhoai-menu.png[]
@@ -50,9 +60,12 @@ fedora-detection
 image::attach-existing-connection.png[]
 * Click **Create Workbench**
 
+[IMPORTANT]
+====
 Wait until the **Status** of the Workbench is changed from "Starting" to "Running"
 
 image::workbench-running.png[]
+====
 
 * Click on the **Open** link, next to the `fedora-detection` Workbench to open the JuypterLab Workbench
 * Login with you OpenShift credentials and allow selected permissions
@@ -212,7 +225,10 @@ models/model-latest.onnx
 ----
 ** Click **Deploy**
 
+[IMPORTANT]
+====
 Wait for the server to start. It may take a bit before the model server is able to answer requests. If you get an error in the following calls, just wait a few seconds and try again.
+====
 
 === Model Testing
 
@@ -252,7 +268,7 @@ That's it. It is finally time to handoff your amazing AI Fedora Detection servic
 
 Perhaps you would to like to tweak and increase the detection quality of your model later on? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training), epochs (Number of training iterations) and batch size.
 
-IMPORTANT: When rerunning the pipeline, a new onnx model will be created in the S3 bucket `/models` folder and copied over the `model-latest.onnx` file. It will not automatically be deployed to the running model server!
+WARNING: When rerunning the pipeline, a new onnx model will be created in the S3 bucket `/models` folder and copied over the `model-latest.onnx` file. It will not automatically be deployed to the running model server!
 
 To deploy the new model to the model server, we need to find out the new model filename. In the **pipeline run** view, click on the last task (`model_upload`) and look a the logs.  You should see an entry similar to this:
 

@@ -34,8 +34,18 @@ When done with the app we will package it in a Container Image as well.
 A matching pipeline has been added to your template app repository. This pipeline is triggered by the creation of a Tag in Gitea. So once you are ready, all you need to do is create a Tag and the Pipeline will build and push the Image to the local OpenShift Registry.
 
 * Login into {gitea_console_url}/{user}/starter-app-python[Gitea] with
-** username: {user}
-** password : {password}
+** username:
++
+[source,text,role=execute,subs="attributes"]
+----
+{user}
+----
+** password :
++
+[source,text,role=execute,subs="attributes"]
+----
+{password}
+----
 * Select the repository `starter-app-python`
 * Click on **Releases**
 +
@@ -56,15 +66,38 @@ Have a look at the Git repo : {gitea_console_url}/{user}/robot-gitops
 * The object detection image needs to be set here:
 ** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml
 *** Click on the pen icon on the top right to edit the file
-*** In the resource yaml look for the field `image` with the value `quay.io/cloud-native-robotz-hackathon/model-container:trained`
-*** Replace the value with `default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}/model-container:latest`
+*** In the resource yaml look for the field `image:` with the value 
++
+[source,text]
+----
+quay.io/cloud-native-robotz-hackathon/model-container:trained
+----
+
+*** Replace the value with 
++
+[source,text,role=execute,subs="attributes"]
+----
+default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}/model-container:latest
+----
 *** Click on the **Commit Changes** Button at the very bottom
 
 * The app image needs to be set here:
 ** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml
 *** Click on the pen icon on the top right to edit the file
-*** In the resource yaml look for the field `image` with the value `quay.io/cloud-native-robotz-hackathon/starter-app-python:master`
-*** Replace the value with `default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}-dev/starter-app-python:v1`
+*** In the resource yaml look for the field `image` with the value
++
+[source,text]
+----
+quay.io/cloud-native-robotz-hackathon/starter-app-python:master
+----
+
+*** Replace the value with 
++
+[source,text,role=execute,subs="attributes"]
+----
+default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}-dev/starter-app-python:v1
+----
+
 *** Click on the **Commit Changes** Button at the very bottom
 
 TIP: In real world projects, you would use a tool such as **Kustomize** to add modification layer without changing the actual deployment.yaml files
