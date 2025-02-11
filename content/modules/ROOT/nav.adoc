@@ -4,5 +4,4 @@
 * xref:integration.adoc[2. Integration]
 * xref:edge-devops.adoc[3. Edge DevOps]
 * xref:final-run.adoc[4. Final Run]
-* xref:appendix.adoc[Appendix]
 
