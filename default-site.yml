@@ -1,7 +1,7 @@
 ---
 site:
   title: Cloud Native Robotz Hackathon
-  url: https://redhat-scholars.github.io/course-template
+  url: https://cloud-native-robotz-hackathon.github.io/
   start_page: modules::index.adoc
 
 content:
@@ -20,7 +20,8 @@ content:
 ui:
   bundle:
     # url: https://github.com/redhat-developer-demos/rhd-tutorial-ui/releases/download/v0.1.10/ui-bundle.zip
-    url: https://github.com/rhpds/showroom_theme_rhdp/releases/download/rhdp-v0.0.3-alpha/ui-bundle.zip
+    #url: https://github.com/rhpds/showroom_theme_rhdp/releases/download/rhdp-v0.0.3-alpha/ui-bundle.zip
+    url: https://github.com/cloud-native-robotz-hackathon/showroom_theme_rhdp/releases/download/robot-v1/ui-bundle-robot-v1.zip
     snapshot: true
   supplemental_files:
     - path: ./content/supplemental-ui
