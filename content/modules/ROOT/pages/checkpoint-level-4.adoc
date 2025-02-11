@@ -1,0 +1,9 @@
+= Checkpoint Level 4
+
+Amazing! if you got to this point you are a serious robot wrangler.
+
+Now to take things up notch. Your robot will start before a barrier as before and then see 2 "garages" out of barriers.  The Fedora will be in one of them, but you will not know in which.
+
+Modify your solution to handle this scenario.  Test your solution an let the facilitators know.
+
+Your robot will face off against another one in this challenging environment.

@@ -140,7 +140,7 @@ It is fairly simple:
 
 [cols="1,2"]
 |===
-| Action | Description 
+| Action | Description
 
 | `POST /forward/<length>`
 | Drive forward by length
@@ -238,7 +238,7 @@ Let's write some code and drive our robot, but this time from our code:
 * Look for the function `startRobot()` and the comment `# Drop your code here`
 * Add a `move_forward()` function call with 10 units, so your code looks like this (watch out for Python indentation):
 
-[source,bash,role=execute,subs="attributes"]
+[source,python,role=execute,subs="attributes"]
 ----
 # Drop your code here
 move_forward(10)

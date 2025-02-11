@@ -76,9 +76,6 @@ Think about these points :
 * How can I handle corner cases
 * Perhaps the model should be tuned increase detection results?
 
-== Feature Freeze
-While you have time to work on your solution, as in real life projects there will be a "Feature Freeze" where everyting needs to be finished.  You will be given the time of the feature freeze.
-
 == Pushing your Code
 Currently your code only resides in your Workspace, which is called the "Inner Loop" in Development terms. To publish and build you will need to push your code to your Git repository.
 

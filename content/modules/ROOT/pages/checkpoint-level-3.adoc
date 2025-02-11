@@ -1,0 +1,15 @@
+= Checkpoint Level 3
+
+Excellent! Your robot can check his surroundings.
+
+Let's put these super powers together an tackle a more challenging mission.
+
+Your robot will be positioned in front of a barrier. It needs to drive around it, indentify the red Fedora behind it. Then it should drive towards ist, stopping roughly 50 cm before.
+
+To make things more exciting, you robot will face off against another team.
+
+Taking into account the previous missions, code a solution for this navigation and detection sequence.
+
+Let the facilitators know when you are ready. As soon as a second team is available these little guys will face off.
+
+The first robot to enter the Fedora perimeter gets 2 points, the second gets 1 point.

@@ -2,7 +2,7 @@
 
 Testing our solution on OpenShift is fun but what we really want is an autonomous robot that can think for itself and find our fedora in the most disconnected of places.
 
-As you read in the last chapter at the "Feature Freeze" you will have to provide your solution assets in the form of container images.  It is time to move these onto the robot itself.
+You will have to provide your solution assets in the form of container images.  It is time to move these onto the robot itself.
 
 image::edge-devops/architecture.png[]
 
@@ -65,14 +65,14 @@ Have a look at the Git repo : {gitea_console_url}/{user}/robot-gitops
 * The object detection image needs to be set here:
 ** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml
 *** Click on the pen icon on the top right to edit the file
-*** In the resource yaml look for the field `image:` with the value 
+*** In the resource yaml look for the field `image:` with the value
 +
 [source,text]
 ----
 quay.io/cloud-native-robotz-hackathon/model-container:trained
 ----
 
-*** Replace the value with 
+*** Replace the value with
 +
 [source,text,role=execute,subs="attributes"]
 ----
@@ -90,7 +90,7 @@ default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}
 quay.io/cloud-native-robotz-hackathon/starter-app-python:master
 ----
 
-*** Replace the value with 
+*** Replace the value with
 +
 [source,text,role=execute,subs="attributes"]
 ----
@@ -101,4 +101,7 @@ default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}
 
 TIP: In real world projects, you would use a tool such as **Kustomize** to add modification layer without changing the actual deployment.yaml files
 
-Once you commit the changes **OpenShift GitOps** will start to work on the deployment. Keep an eye on the ArgoCD Console shown by facilitators.
+Once you commit the changes **OpenShift GitOps** will start to work on the deployment.
+
+Let the facilitators know that you have deployed your edge solution.
+
