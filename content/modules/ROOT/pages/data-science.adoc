@@ -159,11 +159,11 @@ s3-browser
 ** password : {password}
 * Accept the disclaimer
 
-The browser will show you the contents of your bucket. I should be pretty empty at the moment.
+The browser will show you the contents of your bucket. I should be pretty empty at the moment, especially no `*.onnx` model files.
 
 Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.
 
-Once the pipeline has run (Check the run) successfully the final model named `latest-version.onnx` will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
+Once the pipeline has run (Check the run) successfully the final model named `latest-version.onnx` will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder `models`` with you models.
 
 image::s3-browser.png[]
 
@@ -175,7 +175,7 @@ You now have a trained model for object recognition. To use the model we will de
 First we need to configue a model server:
 
 * Click on **Data Science Projects** in the main menu on the left and make sure you have selected your `{user}-ai` again
-* Under the section **Serve models** click on **Add model server**
+* Under the section **Models** click on **Add model server**
 * Model server name :
 +
 [source,bash,role=execute,subs="attributes"]
@@ -212,7 +212,7 @@ models/model-latest.onnx
 ----
 ** Click **Deploy**
 
-Wait for the server to start
+Wait for the server to start. It may take a bit before the model server is able to answer requests. If you get an error in the following calls, just wait a few seconds and try again.
 
 === Model Testing
 
@@ -235,14 +235,6 @@ prediction_url = 'REPLACE_ME'
 token = 'REPLACE_ME'
 ----
 * Paste the inference endpoint URL and the token into the placeholders
-* Look for the variables `prediction_url` and `token`
-+
-[source,python]
-----
-prediction_url = 'REPLACE_ME'
-token = 'REPLACE_ME'
-----
-* Paste the inference endpoint URL and the token into the placeholders
 
 * Run the full notebook (the button with the two play icons in the top menu)
 
@@ -252,11 +244,13 @@ image::run-full-notebook.png[]
 
 You will see any identified classes with bounding boxes and confidence score at the end of the notebook.
 
-You can test your model with different images in the `sample-images` folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the `sample_images` folder.  Make sure you adjust the image name in `image_path` variable before running the notebook again. You should see some awsesome detections now.
+You can test your model with different images in the `sample-images` folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the `sample_images` folder.  Make sure you adjust the image name in `image_path` variable before running the notebook again. You should see some awesome detections now.
 
-==== Model Redeploy through GUI
+That's it. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
 
-Perhaps you would to like to tweak and increase the detection quality of your model? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training), epochs (Number of training iterations) and batch size.
+=== Optional : Retrain and Redeploy Model
+
+Perhaps you would to like to tweak and increase the detection quality of your model later on? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training), epochs (Number of training iterations) and batch size.
 
 IMPORTANT: When rerunning the pipeline, a new onnx model will be created in the S3 bucket `/models` folder and copied over the `model-latest.onnx` file. It will not automatically be deployed to the running model server!
 
@@ -295,4 +289,4 @@ and change it to your new model name
 
 This opens up possibilities to use GitOps to configure your MLOps ressources by the way.
 
-Finally it is time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
+

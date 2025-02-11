@@ -107,9 +107,11 @@ image::git-push.png[]
 * Right Click and select **Stage Changes**
 * Enter a comment in the top field
 * At the blue **Commit** button, click on the downwards bracket at the very right and choose **Commit & Push**
-* When prompted, enter you Gitea username and password
+* On the top a prompt dialog will open to enter your Gitea username and password
 ** username: {user}
 ** password : {password}
+
+Now you code has been pushed to your repo. You can check in Gitea if you want.
 
 == Next Steps
 

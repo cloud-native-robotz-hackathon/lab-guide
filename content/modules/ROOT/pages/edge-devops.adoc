@@ -29,7 +29,9 @@ image::edge-devops/start-pipeline-2.png[]
 
 == Build a Container Image of the Application
 
-When done with the app we will package it in a Container Image as well. A matching pipeline has been added to your template app repository. This pipeline is triggered by the creation of a Tag in Gitea. So once you are ready, all you need to do is create a Tag and the Pipeline will build and push the Image to the local OpenShift Registry.
+When done with the app we will package it in a Container Image as well.
+
+A matching pipeline has been added to your template app repository. This pipeline is triggered by the creation of a Tag in Gitea. So once you are ready, all you need to do is create a Tag and the Pipeline will build and push the Image to the local OpenShift Registry.
 
 * Login into {gitea_console_url}/{user}/starter-app-python[Gitea] with
 ** username: {user}
@@ -40,7 +42,7 @@ When done with the app we will package it in a Container Image as well. A matchi
 image::gitea-release.png[]
 * Click on **New Release**
 * Enter the **Tag name**  `v1`
-* Click on the butto **Create Tag Only**
+* Click on the button **Create Tag Only**
 
 Now you can go back to the OpenShift Console and click on **Pipelines** in the menu on the left. Make sure you are in the **Project** `{user}-dev`. You should see you Pipeline running.
 
