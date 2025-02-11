@@ -21,7 +21,7 @@ Let's login into **OpenShift AI**
 {password}
 ----
 * Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
-
++
 image::rhoai-menu.png[]
 
 * Click on **Login with OpenShift**
@@ -56,7 +56,7 @@ fedora-detection
 ----
 ** Click on **Attach existingconnections**
 *** Select `workbench-bucket` connection
-
++
 image::attach-existing-connection.png[]
 * Click **Create Workbench**
 
@@ -95,7 +95,7 @@ Notice that we now have a couple of python scripts containing code to execute th
 Have a look at the pipeline steps:
 
 * Step 1 : Downloading a set of sample images with labels and coordinates for our fedora class from the https://storage.googleapis.com/openimages/web/index.html[OpenImages website,window=_blank].
-
++
 image::open-images.png[]
 
 * Step 2 : Preparing the class labels and training sets
@@ -201,7 +201,7 @@ ovms
 ** Service account name : `default-name`
 * Keep the rest of the settings as is
 * Click **Add**
-
++
 image::serving-runtime.png[]
 
 === Deploy Model
@@ -233,13 +233,13 @@ Wait for the server to start. It may take a bit before the model server is able 
 === Model Testing
 
 * Copy the inference endpoint URL that is published through an OpenShift Route
-
++
 image::copy-inference-url.png[]
-
++
 image::copy-inference-url2.png[]
 
 * Copy the token of the endpoint
-
++
 image::copy-token.png[]
 
 * Back in your JupyterLab Workbench in the `object-detection-notebooks` directory, open the `online-scoring.ipynb` notebook
@@ -253,7 +253,7 @@ token = 'REPLACE_ME'
 * Paste the inference endpoint URL and the token into the placeholders
 
 * Run the full notebook (the button with the two play icons in the top menu)
-
++
 image::run-full-notebook.png[]
 
 * Confirm to **Restart the Kernel**
