@@ -163,7 +163,13 @@ image::devspaces-open-tab.png[]
 
 A new Browser tab with the web interface of the Robot Control app will open. Make sure you are on `http://` if the page does not open.
 
-**If you have missed the first Popup (the port forwarding), you need to end and restart the process:**
+=== If you missed the Popups
+
+.Click here to restart the Control Page
+[%collapsible]
+====
+
+**If you have missed any of the Popups, you need to end and restart the process:**
 
 * Click on the garbage can icon on the right of the terminal
 
@@ -171,14 +177,7 @@ image::kill-terminal.png[]
 
 * Now restart the Gunicorn server with the task as explained above
 
-If you have missed the second of the Popups (opening the Route), there is another way to open it:
-
-* In the left pane at the bottom expand the **ENDPOINTS** section
-* Hover over the entry `user-port-forward(8080)`
-* Click in the icon (`Open in new Tab`)
-* A tab with the Robot Control App will open in your Browser
-
-image::open-endpoints.png[]
+====
 
 === Robot Control Page Overview
 
