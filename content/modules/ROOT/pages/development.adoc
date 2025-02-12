@@ -71,21 +71,83 @@ You will now see the starter code on the left side.
 
 This is a Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.
 
+=== The Robot API
+
+Before starting with the app, let's take a moment to have a look at the Robot REST API that we will be calling.
+
+It is fairly simple:
+
+[cols="1,2"]
+|===
+| Action | Description
+
+| `POST /forward/<length>`
+| Drive forward by length
+
+| `POST /backward/<length>`
+| Drive backwards by length
+
+| `POST /left/<degrees>`
+| Turn left by degrees
+
+| `POST /right/<degrees>`
+| Turn right by degrees
+
+| `GET /image`
+| Returns a base64 image of the current camera image
+
+| `GET /status`
+| Returns the status of the robot
+
+| `GET /power`
+| Returns the current power of the robot
+|===
+
+For testing purposes you can call the Robot API directly from your Workspace Terminal with `curl`.
+
+* Open a new Terminal by clicking on the "Hamburger" menu (top left), then **Terminal** > **New Terminal**
+* To drive forward 2 units (make sure your Robot is not falling off the table), enter and execute:
+
+[source,bash,role=execute]
+----
+include::partial$export-{user}.adoc[]
+
+curl -X POST http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/forward/2 -d user_key=${ROBOT_NAME}
+
+----
+
+TIP: Some Browers wil ask you wether to allow pasting text. Approve this to proceed.
+
+Awesome, right? You are now an official robot pilot.
+
+To retrieve a camera image and save it as a file:
+
+[source,bash,role=execute]
+----
+include::partial$export-{user}.adoc[]
+
+curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/camera?user_key=${ROBOT_NAME} | base64 -d > image.jpg
+----
+
+You will find the image file as `image.jpg` in the root folder. Click on it to view.
+
+That was neat, but of course you want to give the robot some personality with your code. Let's move on to configure the app.
+
 === Start the App
 
 To start the app you can use a task that is defined in the **DevFile** and runs all the pip and Python commands under the hood.
 
 === Starting the App through the Workspace Task
 
-* In the top left, click on the "hamburger" menu > **Terminal** > **Run Task ...**
+* In the top left, click on the "Hamburger" menu > **Terminal** > **Run Task ...**
 * In the selection menu at the top, click on **devfile**
 * Then click on **devfile: Run the application**
 
-This will install the python dependencies and start the server of your app.
+This will install the Python dependencies and start the server of your app.
 
 === Open the Robot Control Page
 
-TIP: Once the Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a **Route** in OpenShift through which you can reach the website of your app running the Workspace.
+TIP: Once the Python Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a **Route** in OpenShift through which you can reach the website of your app running the Workspace.
 
 * Click on **Yes**:
 +
@@ -131,68 +193,6 @@ The buttons:
 * **Check Status** - Calls the app to see if the robot is connected
 * **Run** - Calls your `startRobot()` function in the `app.py`. This is where you will add your code
 * **Stop** - Stop execution of you app
-
-=== The Robot API
-
-Now that our app is running, let's take a moment to have a look at the Robot REST API that we will be calling.
-
-It is fairly simple:
-
-[cols="1,2"]
-|===
-| Action | Description
-
-| `POST /forward/<length>`
-| Drive forward by length
-
-| `POST /backward/<length>`
-| Drive backwards by length
-
-| `POST /left/<degrees>`
-| Turn left by degrees
-
-| `POST /right/<degrees>`
-| Turn right by degrees
-
-| `GET /image`
-| Returns a base64 image of the current camera image
-
-| `GET /status`
-| Returns the status of the robot
-
-| `GET /power`
-| Returns the current power of the robot
-|===
-
-For testing purposes you can call the Robot API directly from your Workspace Terminal with `curl`.
-
-* Open a new Terminal with the **+** Icon at the top right of the current Gunicorn Terminal
-* To drive forward 2 units (make sure your Robot is not falling off the table), enter an execute:
-
-[source,bash,role=execute]
-----
-include::partial$export-{user}.adoc[]
-
-curl -X POST http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/forward/2 -d user_key=${ROBOT_NAME}
-
-----
-
-TIP: Some Browers wil ask you wether to allow pasting text. Approve this to proceed.
-
-Awesome, right? You are now an official robot pilot.
-
-To retrieve a camera image and save it as a file:
-
-[source,bash,role=execute]
-----
-include::partial$export-{user}.adoc[]
-
-curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/camera?user_key=${ROBOT_NAME} | base64 -d > image.jpg
-----
-
-You will find the image file as `image.jpg` in the root folder. Click on it to view.
-
-That was neat, but of course you want to give the robot some personality with your code. Let's move on to configure the app.
 
 === Connecting the App to Endpoints
 
