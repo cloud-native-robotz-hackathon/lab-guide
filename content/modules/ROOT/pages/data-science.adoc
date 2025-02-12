@@ -232,7 +232,7 @@ Wait for the server to start. It may take a bit before the model server is able 
 
 === Model Testing
 
-* Copy the inference endpoint URL that is published through an OpenShift Route
+* Copy the inference endpoint URL that is published through an OpenShift Route (and save it somewhere)
 +
 image::copy-inference-url.png[]
 +
@@ -250,7 +250,7 @@ image::copy-token.png[]
 prediction_url = 'REPLACE_ME'
 token = 'REPLACE_ME'
 ----
-* Paste the inference endpoint URL and the token into the placeholders
+* Paste the inference endpoint URL and the token you copied before into the placeholders
 
 * Run the full notebook (the button with the two play icons in the top menu)
 +
