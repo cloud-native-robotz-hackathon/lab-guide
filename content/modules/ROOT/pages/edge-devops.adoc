@@ -53,7 +53,16 @@ image::gitea-release.png[]
 * Enter the **Tag name**  `v1`
 * Click on the button **Create Tag Only**
 
-Now you can go back to the OpenShift Console and click on **Pipelines** in the menu on the left. Make sure you are in the **Project** `{user}-dev`. You should see you Pipeline running.
+Now please open {openshift_console_url}/pipelines/ns/{user}-dev/pipeline-runs["OpenShift Console",window=_blank].
+You should see you Pipeline running.
+
+.If not please, follow:
+[%collapsible]
+====
+* Make sure you are in the **Project** `{user}-dev`
+* Click in the Menu in the left: **Pipelines** -> **Pipelines**
+** And the Tab **PipelineRuns**
+====
 
 == Deploy you Images to Robot with GitOps
 Now that we have the images we can deploy them to the robot.  Since the robots are running Microshift (a lightweight version of OpenShift) we can use consistent tooling to automate our Deployment. We will use **OpenShift GitOps** based on ArgoCD for this.
