@@ -76,7 +76,7 @@ image::attach-existing-connection.png[]
 
 [IMPORTANT]
 ====
-Wait until the **Status** of the Workbench is changed from "Starting" to "Running"
+Wait until the **Status** of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.
 
 image::workbench-running.png[]
 ====
