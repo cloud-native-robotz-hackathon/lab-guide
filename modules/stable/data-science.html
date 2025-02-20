@@ -269,9 +269,6 @@
 </li>
 <li>
 <p>Click on <strong>Create Workbench</strong></p>
-</li>
-</ul>
-</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -291,10 +288,9 @@
 </tr>
 </table>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
-<p>Click on the <strong>Open</strong> link, next to the <code>fedora-detection</code> Workbench to open the JuypterLab Workbench</p>
+<p>Click on the Open link, next to the Stop link in the fedora-detection Workbench line to open the JuypterLab Workbench</p>
 </li>
 <li>
 <p>Login with you OpenShift credentials and allow selected permissions</p>
@@ -403,7 +399,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Save the file by pressing <strong>ctrl+s</strong></p>
+<p>Save the file by pressing <strong>ctrl+s</strong> on Linux/Windows or <strong>Command+s</strong> on Mac</p>
 </li>
 </ul>
 </div>
@@ -414,7 +410,7 @@ This image class is now mapped to the class number 0.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Now back in the <code>model-training-pipeline</code>, on the top menu on the left click on the play icon</p>
+<p>Now back in the <code>model-training-cpu.pipeline</code>, on the top menu on the left click on the play icon</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/start-pipeline.png" alt="start pipeline">
@@ -423,6 +419,9 @@ This image class is now mapped to the class number 0.</p>
 </li>
 <li>
 <p>Keep the default settings and click on <strong>OK</strong></p>
+</li>
+<li>
+<p>Click on <strong>OK</strong> at the <strong>Job submission to Data Science Pipelines succeeded</strong> dialog</p>
 </li>
 </ul>
 </div>
@@ -441,10 +440,10 @@ This image class is now mapped to the class number 0.</p>
 <p>Select <strong>Pipelines</strong> tab</p>
 </li>
 <li>
-<p>Expand the <strong>model-training-cpu</strong> Pipeline</p>
+<p>Expand the <strong>model-training-cpu</strong> Pipeline by clicking on the <strong>&gt;</strong></p>
 </li>
 <li>
-<p>Click on the three dots at the end of line</p>
+<p>Click on the three dots at the end of the bottom line</p>
 </li>
 <li>
 <p>Click on <strong>View runs</strong></p>
@@ -488,7 +487,7 @@ This image class is now mapped to the class number 0.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Name</p>
+<p><strong>Name:</strong></p>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">s3-browser</code></pre>
@@ -496,42 +495,55 @@ This image class is now mapped to the class number 0.</p>
 </div>
 </li>
 <li>
-<p>Image Selection</p>
+<p><strong>Notebook image</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>S3 Browser</code></p>
+<p>Image Selection: <code>S3 Browser</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Cluster storage</p>
+<p><strong>Cluster storage</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Create new persistant storage</p>
+<p>Create new persistent storage:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>s3-browser</code></p>
-</li>
-</ul>
+<p>Name :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">s3-browser</code></pre>
+</div>
 </div>
 </li>
 </ul>
 </div>
 </li>
+</ul>
+</div>
+</li>
 <li>
-<p>Connections</p>
+<p><strong>Connections</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Click <strong>Attach existing data connection</strong></p>
+<p>Click on <strong>Attach existing connections</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Select <code>workbench-bucket</code></p>
+<p>Select <code>workbench-bucket</code> connection</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/attach-existing-connection.png" alt="attach existing connection">
+</div>
+</div>
+</li>
+<li>
+<p>Click on <strong>Attach</strong></p>
 </li>
 </ul>
 </div>
@@ -544,22 +556,34 @@ This image class is now mapped to the class number 0.</p>
 </li>
 <li>
 <p>Click on <strong>Create Workbench</strong></p>
-</li>
-<li>
-<p>When the Workbench hast started click the <strong>Open</strong> link</p>
-</li>
-<li>
-<p>Login in with your OpenShift credentials</p>
-<div class="ulist">
-<ul>
-<li>
-<p>username: team-1</p>
-</li>
-<li>
-<p>password : secret-password</p>
-</li>
-</ul>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Wait until the <strong>Status</strong> of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/workbench-running-s3.png" alt="workbench running s3">
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click on the Open link, next to the Stop link in the fedora-detection Workbench line to open the JuypterLab Workbench</p>
+</li>
+<li>
+<p>Login with you OpenShift credentials and allow selected permissions</p>
+</li>
+<li>
+<p>Allow selected permissions</p>
 </li>
 <li>
 <p>Accept the disclaimer</p>
@@ -573,12 +597,22 @@ This image class is now mapped to the class number 0.</p>
 <p>Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolov5 model family</a>. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.</p>
 </div>
 <div class="paragraph">
+<p>Add to "Once the pipeline has run (Check the run) successfully the final model named latest-version.onnx will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models." → "Click on models"</p>
+</div>
+<div class="paragraph">
 <p>Once the pipeline has run (Check the run) successfully the final model named <code>latest-version.onnx</code> will be saved in your S3 bucket. Have look in your S3 Browser. You should see a new folder <code>models</code> containing your model.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <code>models</code> and you see</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/s3-browser.png" alt="s3 browser">
 </div>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -654,7 +688,7 @@ This image class is now mapped to the class number 0.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Model name:</p>
+<p>Model deployment name:</p>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">fedora-detection-service</code></pre>
