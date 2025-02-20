@@ -42,16 +42,20 @@ As data scientists, we are in need of an interactive developement environment(ID
 
 * Click on **Create Workbench**
 * Enter these fields :
-** Name :
+** **Name:**
 +
 [source,bash,role=execute]
 ----
 fedora-detection
 ----
 
-** Image selection: `Object Detection`
-** Deployment size: 'Small'
-** Cluster storage
+** **Notebook image**
+*** Image selection: `Object Detection`
+
+** **Deployment size**
+*** Container size: 'Small'
+
+** **Cluster storage**
 *** Create new persistent storage:
 **** Name :
 +
@@ -59,8 +63,10 @@ fedora-detection
 ----
 fedora-detection
 ----
-** Click on **Attach existingconnections**
-*** Select `workbench-bucket` connection
+
+** **Connections**
+*** Click on **Attach existingconnections**
+**** Select `workbench-bucket` connection
 +
 image::attach-existing-connection.png[]
 * Click **Create Workbench**
