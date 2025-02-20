@@ -76,7 +76,7 @@ quay.io/cloud-native-robotz-hackathon/model-container:trained
 +
 [source,text,role=execute,subs="attributes"]
 ----
-default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}/model-container:latest
+default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}-ai/model-container:latest
 ----
 *** Click on the **Commit Changes** Button at the very bottom
 
