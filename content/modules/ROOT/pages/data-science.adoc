@@ -65,11 +65,14 @@ fedora-detection
 ----
 
 ** **Connections**
-*** Click on **Attach existingconnections**
+*** Click on **Attach existing connections**
 **** Select `workbench-bucket` connection
 +
 image::attach-existing-connection.png[]
-* Click **Create Workbench**
+**** Click on **Attach**
+
+* Click on **Create Workbench**
+
 
 [IMPORTANT]
 ====
