@@ -72,8 +72,7 @@ image::attach-existing-connection.png[]
 **** Click on **Attach**
 
 * Click on **Create Workbench**
-
-
++
 [IMPORTANT]
 ====
 Wait until the **Status** of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.
@@ -81,7 +80,7 @@ Wait until the **Status** of the Workbench is changed from "Starting" to "Runnin
 image::workbench-running.png[]
 ====
 
-* Click on the **Open** link, next to the `fedora-detection` Workbench to open the JuypterLab Workbench
+* Click on the Open link, next to the Stop link in the fedora-detection Workbench line to open the JuypterLab Workbench
 * Login with you OpenShift credentials and allow selected permissions
 
 The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced data scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:
@@ -129,24 +128,26 @@ You will see that an image class is already defined ('Laptop',). Looking for a n
 ----
 names: ['Fedora',]
 ----
-* Save the file by pressing **ctrl+s**
+* Save the file by pressing **ctrl+s** on Linux/Windows or **Command+s** on Mac
 
 This image class is now mapped to the class number 0.
 This image class is now mapped to the class number 0.
 
-* Now back in the `model-training-pipeline`, on the top menu on the left click on the play icon
+* Now back in the `model-training-cpu.pipeline`, on the top menu on the left click on the play icon
 +
 image::start-pipeline.png[]
 
 * Keep the default settings and click on **OK**
+
+* Click on **OK** at the *Job submission to Data Science Pipelines succeeded* dialog
 
 This will submit the pipeline to OpenShift to run the training
 
 * Switch to the *OpenShift AI* tab in your browser
 * Select your Data Science Project {user}-ai
 * Select **Pipelines** tab
-* Expand the **model-training-cpu** Pipeline
-* Click on the three dots at the end of line
+* Expand the **model-training-cpu** Pipeline by clicking on the **>**
+* Click on the three dots at the end of the bottom line
 * Click on **View runs**
 +
 image::view-runs.png[]
@@ -165,33 +166,56 @@ With the default settings, the Pipeline will run around 15 minutes.  Let's use t
 
 * In your project go on the tab **Workbenches**
 * Click on **Create workbench** and enter these values
-** Name
+** **Name:**
 +
 [source,bash,role=execute,subs="attributes"]
 ----
 s3-browser
 ----
-** Image Selection
-*** `S3 Browser`
-** Cluster storage
-*** Create new persistant storage
-**** `s3-browser`
-** Connections
-*** Click **Attach existing data connection**
-**** Select `workbench-bucket`
+** **Notebook image**
+*** Image Selection: `S3 Browser`
+
+** **Cluster storage**
+*** Create new persistent storage:
+**** Name :
++
+[source,bash,role=execute]
+----
+s3-browser
+----
+
+
+** **Connections**
+*** Click on **Attach existing connections**
+**** Select `workbench-bucket` connection
++
+image::attach-existing-connection.png[]
+**** Click on **Attach**
+
 * Click on **Create Workbench**
-* When the Workbench hast started click the **Open** link
-* Login in with your OpenShift credentials
-** username: {user}
-** password : {password}
++
+[IMPORTANT]
+====
+Wait until the **Status** of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.
+
+image::workbench-running-s3.png[]
+====
+
+* Click on the Open link, next to the Stop link in the fedora-detection Workbench line to open the JuypterLab Workbench
+* Login with you OpenShift credentials and allow selected permissions
+* Allow selected permissions
 * Accept the disclaimer
 
 The browser will show you the contents of your bucket.  Except for a folder called `backup` it should be pretty empty at the moment.
 
 Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.
 
-Once the pipeline has run (Check the run) successfully the final model named `latest-version.onnx` will be saved in your S3 bucket. Have look in your S3 Browser. You should see a new folder `models` containing your model.
+Add to "Once the pipeline has run (Check the run) successfully the final model named latest-version.onnx will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models." → "Click on models"
 
+Once the pipeline has run (Check the run) successfully the final model named `latest-version.onnx` will be saved in your S3 bucket. Have look in your S3 Browser. You should see a new folder `models` containing your model. 
+
+* Click on `models` and you see
++
 image::s3-browser.png[]
 
 == Model Serving
@@ -223,7 +247,7 @@ image::serving-runtime.png[]
 * Click **Go to Models** next to your just created model server
 * Click **Deploy model**
 * In the form enter
-** Model name:
+** Model deployment name:
 +
 [source,bash,role=execute,subs="attributes"]
 ----
