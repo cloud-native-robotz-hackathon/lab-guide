@@ -20,6 +20,11 @@ Let's login into **OpenShift AI**
 ----
 {password}
 ----
+
+* Click *Skip tour*
++
+image::skip-tour.png[]
+
 * Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
 +
 image::rhoai-menu.png[]
