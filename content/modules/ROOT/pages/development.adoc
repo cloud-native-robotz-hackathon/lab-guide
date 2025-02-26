@@ -298,10 +298,6 @@ Imagine something is blocking your robots path! Your mission is now to drive tow
 
 That means you will need to create loop of driving and checking the distance.  You can create this more prudent or more risky. You will not know how close to the barrier your robot will start.  This is all about driving forward. No need for turns.
 
-=== Stopping works?
-
-Then move on and try to navigate the robot around the obstacle.
-
 == Robo Vision
 
 Our robot is still a bit blind so let's work with the camera and the image detection model now.
