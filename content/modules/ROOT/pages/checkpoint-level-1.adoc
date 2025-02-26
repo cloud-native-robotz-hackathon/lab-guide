@@ -1,8 +1,14 @@
-= Checkpoint Level 1
+= Challenge Level 1
 
-Once your app and model is deployed onto the robot and you have signalled the facilitatators, they will temporally disconnect your robot from the network.
+Once your app and model is deployed onto the robot and you have signaled the facilitatators, they will temporally disconnect your robot from the network.
 
 Your robot will now run completely antonomous to solve it's task of finding the red Fedora.
+
+The playing field where the fedora and robot will be placed is defined inside these boundaries:
+
+image::challenge1.png[]
+
+The time it takes your robot to navigate to the fedora will be taken by the facilitators and count toward your final points.
 
 Once you little mechanical friend has completed his mission, you may continue to the next chapter.
 

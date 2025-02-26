@@ -302,6 +302,10 @@ That's it. It is finally time to handoff your amazing AI Fedora Detection servic
 
 === Optional : Retrain and Redeploy Model
 
+.Click here for instructions to retrain the model
+[%collapsible]
+====
+
 Perhaps you would to like to tweak and increase the detection quality of your model later on? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training), epochs (Number of training iterations) and batch size.
 
 WARNING: When rerunning the pipeline, a new onnx model will be created in the S3 bucket `/models` folder and copied over the `model-latest.onnx` file. It will not automatically be deployed to the running model server!
@@ -341,4 +345,13 @@ and change it to your new model name
 
 This opens up possibilities to use GitOps to configure your MLOps ressources by the way.
 
+====
 
+=== Expected outcome of this chapter
+
+After this chapter you should know:
+
+* how to train and test an AI model in OpenShift AI
+* how to make your model available for inferencing using the model server
+
+If anything is unclear about these takeaways, please talk to your friendly facilitators.
