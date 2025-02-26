@@ -112,5 +112,4 @@ TIP: In real world projects, you would use a tool such as **Kustomize** to add m
 
 Once you commit the changes **OpenShift GitOps** will start to work on the deployment.
 
-Let the facilitators know that you have deployed your edge solution.
-
+To check the status of the rollout, please check the GitOps Panel / ArgoCD WebUI. It will be displayed on the wall or television.
