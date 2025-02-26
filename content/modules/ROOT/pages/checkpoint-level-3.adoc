@@ -1,4 +1,4 @@
-= Checkpoint Level 3
+= Challenge Level 2
 
 Now let's put the super powers of your robot together and tackle a more challenging mission.
 
