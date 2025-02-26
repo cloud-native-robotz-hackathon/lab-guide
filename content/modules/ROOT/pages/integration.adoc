@@ -1,4 +1,4 @@
-= Integration
+= Develop Control Application
 
 == The Challenge
 
@@ -119,6 +119,15 @@ image::git-push.png[]
 ----
 Now you code has been pushed to your repo. You can check in Gitea if you want.
 
-== Next Steps
+=== Expected outcome of this chapter
 
-Your deliverable will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.
+After this chapter:
+
+* You have created & tested a robot control app to steer the robot to a fedora on the ground
+* You have pushed the application code to your Git repo
+
+If anything is unclear about these points, please talk to your friendly facilitators.
+
+=== Next Steps
+
+Your deliverable for the final test will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.

@@ -1,8 +1,8 @@
-= Edge DevOps
+= Deploy Control App to the Robot
 
-Testing our solution on OpenShift is fun but what we really want is an autonomous robot that can think for itself and find our fedora in the most disconnected of places.
+Testing our solution on OpenShift DevSpaces is fun, but what we really want is an **autonomous robot** that can think for itself and find our fedora in the most disconnected of places. This means the controll app and the object detection service have to run disconnected on the robot
 
-You will have to provide your solution assets in the form of container images.  It is time to move these onto the robot itself.
+You will have to provide your solution assets in the form of container images. It is time to move these onto the robot itself.
 
 image::edge-devops/architecture.png[]
 
@@ -64,7 +64,7 @@ You should see you Pipeline running.
 ** And the Tab **PipelineRuns**
 ====
 
-== Deploy you Images to Robot with GitOps
+== Deploy you Images to the Robot with GitOps
 Now that we have the images we can deploy them to the robot.  Since the robots are running Microshift (a lightweight version of OpenShift) we can use consistent tooling to automate our Deployment. We will use **OpenShift GitOps** based on ArgoCD for this.
 
 A **OpenShift GitOps** project has already been setup that listens to changes of a configuration repository. The microshift of your robot as been added as manged cluster so any change in the repo will be rolled out diretcly to your robot. All you need to do is update the configuration code in Gitea.
@@ -113,4 +113,10 @@ TIP: In real world projects, you would use a tool such as **Kustomize** to add m
 Once you commit the changes **OpenShift GitOps** will start to work on the deployment.
 
 Let the facilitators know that you have deployed your edge solution.
+
+=== Expected outcome of this chapter
+
+We understand the steps taken in this chapter are pretty involved. Feel free to discuss what happened with the facilitators.
+
+But the outcome is clear: The control application and the image detection model are running as containers locally on your robot, enabling autonomous robot operations. 
 
