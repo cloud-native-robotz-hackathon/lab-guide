@@ -3,8 +3,8 @@
 * xref:development.adoc[1. Control your Robot]
 * xref:integration.adoc[2. Develop Control Application]
 * xref:edge-devops.adoc[3. Deploy Control App on Robot]
-* xref:checkpoint-level-1.adoc[4. Checkpoint Level 1]
+* xref:checkpoint-level-1.adoc[4. Challenge Level 1]
 # * xref:checkpoint-level-2.adoc[5. Checkpoint Level 2]
-* xref:checkpoint-level-3.adoc[5. Checkpoint Level 3]
+* xref:checkpoint-level-3.adoc[5. Challenge Level 2]
 # * xref:checkpoint-level-4.adoc[5. Checkpoint Level 4]
 
