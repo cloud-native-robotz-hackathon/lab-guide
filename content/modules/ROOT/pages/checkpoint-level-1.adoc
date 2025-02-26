@@ -1,8 +1,8 @@
 = Challenge Level 1
 
-Once your app and model is deployed onto the robot and you have signaled the facilitatators, they will temporally disconnect your robot from the network.
+Once your app and model is deployed onto the robot and you have signaled the facilitators, they will temporarily disconnect your robot from the network.
 
-Your robot will now run completely antonomous to solve it's task of finding the red Fedora.
+**Your mission: Your robot must autonomously find the red fedora and drive towards it. The mission will count as accomplished when the robot is 20-30 cm away from the fedora.**
 
 The playing field where the fedora and robot will be placed is defined inside these boundaries:
 
