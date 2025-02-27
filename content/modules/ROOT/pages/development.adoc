@@ -230,7 +230,7 @@ Now to check if everything is setup correctly and your app can reach the robot:
 You should see a confirmation that your Robot is doing ok. If not have a look at the console output in your Dev Spaves Workspace and recheck `config.py`.
 
 
-== First Code
+== First Code: Robot Movement
 
 To make things a bit easier some helper functions are already in place, for example to create REST requests for the robot operations and to work with the array response coming from the inferencing service.
 
@@ -267,8 +267,6 @@ turn_left(90)
 turn_right(180)
 turn_left(90)
 move_backward(10)
-dist = distance()
-print ('Got distance -> ', dist)
 print('Done')
 ----
 
@@ -290,15 +288,7 @@ print('Done')
 
 Run the code with the run Button as usual.  Hold your hand in fron of the sensor and see how tha value changes.  Pretty cool. No more bumping into stuff.
 
-== Coding Challenge
-
-To become more familiar with the robot controls (and have some more fun), here is a task for you:
-
-Imagine something is blocking your robots path! Your mission is now to drive towards a barrier as fast as possible but of course not crashing into it.
-
-That means you will need to create loop of driving and checking the distance.  You can create this more prudent or more risky. You will not know how close to the barrier your robot will start.  This is all about driving forward. No need for turns.
-
-== Robo Vision
+== Robot Vision
 
 Our robot is still a bit blind so let's work with the camera and the image detection model now.
 
@@ -356,6 +346,23 @@ Object with highest score -> [
 Note that we have found a Fedora (object class = 0) and a pretty certain of of it (confidence score = 0.8).
 
 The robot control page will also display the last image from the camera every 5 seconds. You can use this to check the robot and camera alignment.
+
+== Coding Challenge
+
+To become more familiar with the robot controls (and have some more fun), here are two challenges for you. Use your new robot skills and change the application to win the challenges:
+
+**First Challenge**
+
+Create code to simply guide your robot around the barrier. Just use the movement commands, approximate the distances and try to get your robot around the obstacle as good as possible.
+
+**Second Challenge**
+
+Imagine something is blocking your robots path! Your mission is now to drive straight towards a barrier as fast as possible but of course not crashing into it.
+
+That means you will need to create loop of driving and checking the distance.  You can create this more prudent or more risky. Try different distances by moving the robot nearer or farther away from the barrier.
+
+This is all about driving forward. No need for turns.
+
 
 == Expected outcome of this chapter
 

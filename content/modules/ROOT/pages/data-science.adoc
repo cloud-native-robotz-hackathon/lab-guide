@@ -80,6 +80,8 @@ Wait until the **Status** of the Workbench is changed from "Starting" to "Runnin
 image::workbench-running.png[]
 ====
 
+== Create your Model in JupyterLab
+
 * Click on the Open link, next to the Stop link in the fedora-detection Workbench line to open the JuypterLab Workbench
 * Login with you OpenShift credentials and allow selected permissions
 
@@ -98,6 +100,8 @@ The first thing we notice when logging into our workbench is that it's quite emp
 * On the left side in the menu click on the **Folder** icon.
 
 Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
+
+=== Model Training
 
 * In JupyterLab navigate to the directory `object-detection-notebooks/model-training`.
 
@@ -164,6 +168,8 @@ image::running-pipeline.png[]
 
 With the default settings, the Pipeline will run around 15 minutes.  Let's use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.
 
+=== Deploy S3 Browser
+
 * In your project go on the tab **Workbenches**
 * Click on **Create workbench** and enter these values
 ** **Name:**
@@ -221,7 +227,7 @@ You now have a trained model for object recognition. To use the model we will de
 
 === Model Runtime
 
-First we need to configue a model server:
+First we need to configure a model server:
 
 * Click on **Data Science Projects** in the main menu on the left and make sure you have selected your `{user}-ai` again
 * Under the section **Models** click on **Add model server**
@@ -266,7 +272,7 @@ models/model-latest.onnx
 Wait for the server to start. It may take a bit before the model server is able to answer requests. If you get an error in the following calls, just wait a few seconds and try again.
 ====
 
-=== Model Testing
+== Model Testing
 
 * Copy the inference endpoint URL that is published through an OpenShift Route (and save it somewhere)
 +
@@ -347,7 +353,7 @@ This opens up possibilities to use GitOps to configure your MLOps ressources by 
 
 ====
 
-=== Expected outcome of this chapter
+== Expected outcome of this chapter
 
 After this chapter you should know:
 

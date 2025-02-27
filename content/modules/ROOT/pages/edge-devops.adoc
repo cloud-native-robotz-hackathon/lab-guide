@@ -114,7 +114,7 @@ Once you commit the changes **OpenShift GitOps** will start to work on the deplo
 
 Let the facilitators know that you have deployed your edge solution.
 
-=== Expected outcome of this chapter
+== Expected outcome of this chapter
 
 We understand the steps taken in this chapter are pretty involved. Feel free to discuss what happened with the facilitators.
 

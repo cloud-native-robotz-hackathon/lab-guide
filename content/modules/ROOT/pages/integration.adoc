@@ -119,7 +119,7 @@ image::git-push.png[]
 ----
 Now you code has been pushed to your repo. You can check in Gitea if you want.
 
-=== Expected outcome of this chapter
+== Expected outcome of this chapter
 
 After this chapter:
 
@@ -128,6 +128,6 @@ After this chapter:
 
 If anything is unclear about these points, please talk to your friendly facilitators.
 
-=== Next Steps
+== Next Steps
 
 Your deliverable for the final test will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.
