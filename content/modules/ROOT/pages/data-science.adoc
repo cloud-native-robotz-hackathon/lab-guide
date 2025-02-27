@@ -306,7 +306,7 @@ You can test your model with different images in the `sample-images` folder. But
 
 That's it. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
 
-=== Optional : Retrain and Redeploy Model
+== Optional : Retrain and Redeploy Model
 
 .Click here for instructions to retrain the model
 [%collapsible]
