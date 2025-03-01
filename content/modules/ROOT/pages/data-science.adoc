@@ -1,7 +1,7 @@
 
 = Data Science
 
-As data scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an already existing object dection model from the YOLO-family (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries
+As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an already existing object dection model from the YOLO-family (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries
 
 == Instantiate Workbench
 
@@ -38,7 +38,7 @@ This is the main Console where all Data Science related projects and assets are 
 - A project has already been prepared for you to work in
 - Click on the project `{user}-ai`
 
-As data scientists, we are in need of an interactive developement environment(IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let's create a new JupyterLab Workbench in our data science project and get started:
+As Data Scientists, we are in need of an interactive developement environment(IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let's create a new JupyterLab Workbench in our Data Science project and get started:
 
 * Click on **Create Workbench**
 * Enter these fields :
@@ -85,7 +85,7 @@ image::workbench-running.png[]
 * Click on the Open link, next to the Stop link in the fedora-detection Workbench line to open the JuypterLab Workbench
 * Login with you OpenShift credentials and allow selected permissions
 
-The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced data scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:
+The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced Data Scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:
 
 * In the menu on the left, click on the **Git** icon
 * Click on **Clone a Repository**
@@ -216,7 +216,7 @@ The browser will show you the contents of your bucket.  Except for a folder call
 
 Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.
 
-Once the pipeline has run (Check the run) successfully the final model named latest-version.onnx will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models. 
+Once the pipeline has run (Check the run) successfully the final model named latest-version.onnx will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
 
 * Click on `models` and you see
 +
@@ -303,6 +303,11 @@ image::run-full-notebook.png[]
 You will see any identified classes with bounding boxes and confidence score at the end of the notebook.
 
 You can test your model with different images in the `sample-images` folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the `sample_images` folder.  Make sure you adjust the image name in `image_path` variable before running the notebook again. You should see some awesome detections now.
+
+[TIP]
+====
+If you see multiple bounding boxes over your fedoras, that means you may need to filter out object detections with a lower score. By default the code filters out anything with a lower confidence score that 0.3. Search for the code `+conf_thres=0.3+`. Increase the threshold here by changing the value and rerun your Notebook.
+====
 
 That's it. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
 
