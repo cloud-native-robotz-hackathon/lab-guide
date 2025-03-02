@@ -63,6 +63,15 @@ while thread_event.is_set():
 print('Done')
 ----
 
+What does this code do, you ask?
+
+Well first of all it keeps on looping until someone presses the **Stop** button. It takes a picture from the camera, finds the Fedora object with higest confidence score.
+
+Then it looks for the center of the bounding box. Depending on the position of the center point in the camera image, the code decides if the robot needs to turn left or right to align it with the fedora.
+
+Then it just keeps on driving until the bounding box has a certain size, which means that you are close enough to the Fedora.
+
+
 Now place a Fedora somewhere near your robot and see if it can find it.
 
 == Dev & AI Collaboration
