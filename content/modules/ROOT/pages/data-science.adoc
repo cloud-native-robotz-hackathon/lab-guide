@@ -135,7 +135,6 @@ names: ['Fedora',]
 * Save the file by pressing **ctrl+s** on Linux/Windows or **Command+s** on Mac
 
 This image class is now mapped to the class number 0.
-This image class is now mapped to the class number 0.
 
 * Now back in the `model-training-cpu.pipeline`, on the top menu on the left click on the play icon
 +
