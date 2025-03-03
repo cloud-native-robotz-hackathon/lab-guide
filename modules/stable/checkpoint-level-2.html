@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Checkpoint Level 2 :: Cloud Native Robotz Hackathon</title>
+    <title>Challenge Level 2 :: Cloud Native Robotz Hackathon</title>
     <link rel="canonical" href="https://cloud-native-robotz-hackathon.github.io/modules/stable/checkpoint-level-2.html">
+    <link rel="prev" href="enhance-app.html">
+    <link rel="next" href="checkpoint-level-3.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -47,13 +49,16 @@
     <a class="nav-link" href="edge-devops.html">3. Deploy Control App on Robot</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="enhance-app.html">4. Enhance the Control App</a>
+    <a class="nav-link" href="checkpoint-level-1.html">4. Challenge Level 1</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-1.html">5. Challenge Level 1</a>
+    <a class="nav-link" href="enhance-app.html">5. Enhance the Control App</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="checkpoint-level-2.html">6. Challenge Level 2</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-3.html">6. Challenge Level 2</a>
+    <a class="nav-link" href="checkpoint-level-3.html">6. Challenge Level 3</a>
   </li>
 </ul>
   </li>
@@ -86,52 +91,38 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Lab guide</a></li>
-    <li><a href="checkpoint-level-2.html">Checkpoint Level 2</a></li>
+    <li><a href="checkpoint-level-2.html">6. Challenge Level 2</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/cloud-native-robotz-hackathon/lab-guide/edit/main/content/modules/ROOT/pages/checkpoint-level-2.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Checkpoint Level 2</h1>
+<h1 class="page">Challenge Level 2</h1>
 <div class="paragraph">
-<p>Great job! Your robot has gained some serious vision skills.  But driving around the world can be dangerous for the little guy. With just a camera it&#8217;s hard to know how close you are to a wall for example.</p>
+<p>Now let&#8217;s put the super powers of your robot together and tackle a more challenging mission.</p>
 </div>
 <div class="paragraph">
-<p>Your robot with an additonal super power.  A ultrasonic distance sensor tells him how far he is from the next barrier.</p>
+<p><strong>Your mission: Your robot will be positioned in front of a barrier. It needs to drive around it, indentify the red fedora behind it and drive towards it, stopping roughly 20 cm before.</strong></p>
 </div>
 <div class="paragraph">
-<p>The facilitators will reinstate access to your robot, so you have full access again.</p>
+<p>The playing field will look like in the first challenge with a barrier added:</p>
 </div>
-<div class="paragraph">
-<p>To test the distance sensor you can replace your code with this one. You may want to save your previous code somewhere.</p>
-</div>
-<div class="listingblock execute">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
-dist = distance()
-print ('Got distance -> ', dist)
-print('Done')</code></pre>
+<img src="_images/challenge2.png" alt="challenge2">
 </div>
 </div>
 <div class="paragraph">
-<p>Run the code with the run Button as usual.  Hold your hand in fron of the sensor and see how tha value changes.  Pretty cool. No more bumping into stuff.</p>
+<p>Taking into account the code from you previous missions, develop a solution for this navigation and detection sequence.</p>
 </div>
 <div class="paragraph">
-<p>Your next mission is now to drive towards a barrier as fast as possible but of course not crashing into it.</p>
+<p>Let the facilitators know when you are ready for a run to take the time it takes your robot to arrive at the fedora.</p>
 </div>
-<div class="paragraph">
-<p>That means you will need to create loop of driving and checking the distance.  You can create this more prudent or more risky.</p>
-</div>
-<div class="paragraph">
-<p>You will not know how close to the barrier your robot will start.  This is all about driving forward. No need for turns.</p>
-</div>
-<div class="paragraph">
-<p>Once your solution is ready let the facilitator know and they will put your robot to the test.</p>
-</div>
-<div class="paragraph">
-<p>When accomplished, continue on to the next level.</p>
-</div>
+<nav class="pagination">
+  <span class="prev"><a href="enhance-app.html" class="query-params-link">5. Enhance the Control App</a></span>
+  <span class="next"><a href="checkpoint-level-3.html" class="query-params-link">6. Challenge Level 3</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
