@@ -347,6 +347,17 @@ Note that we have found a Fedora (object class = 0) and a pretty certain of of i
 
 The robot control page will also display the last image from the camera every 5 seconds. You can use this to check the robot and camera alignment.
 
+== Set Up Your Development Editor
+
+To enhance your development experience, we provide two reference images with our example code:
+
+- `static/current_view_box.jpg`
+- `static/current_view.jpg`
+
+Here’s an example of how to optimize your workflow:
+
+video::devspaces-devenv.mp4[width=640]
+
 == Coding Challenges
 
 To become more familiar with the robot controls (and have some more fun), here are two challenges for you. Use your new robot skills and change the application to handle an obstacle win the challenges:
