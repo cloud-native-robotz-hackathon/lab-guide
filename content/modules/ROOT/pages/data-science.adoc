@@ -118,6 +118,8 @@ Have a look at the pipeline steps:
 +
 image::open-images.png[]
 
+TIP: If you want to see the collection the model training is pulling images from, go to above website, click "Explore", set the **Type** to **Detection** and the **Class** to **Fedora**.
+
 * Step 2 : Preparing the class labels and training sets
 * Step 3 : Running the actual training on a Yolo 5 Model
 * Step 4 : Converting the model format to onnx
