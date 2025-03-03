@@ -120,7 +120,11 @@ image::git-push.png[]
 * Right Click and select **Stage Changes**
 * Enter a comment in the top field
 * At the blue **Commit** button, click on the downwards bracket at the very right and choose **Commit & Push**
++
+image::git-commit-and-push.png[width=420]
 * On the top a prompt dialog will open to enter your Gitea username and password
++
+image::git-push-username.png[]
 ** username:
 +
 [source,text,role=execute,subs="attributes"]
