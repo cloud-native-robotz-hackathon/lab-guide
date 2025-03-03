@@ -85,6 +85,13 @@ Think about these points :
 * How can I handle corner cases
 * Perhaps the model should be tuned increase detection results?
 
+[IMPORTANT]
+====
+**Do not go beyond this point until your code is fully prepared for Challenge Level 1**
+
+image::challenge1.png[]
+====
+
 == Pushing your Code
 Currently your code only resides in your Workspace, which is called the "Inner Loop" in Development terms. To publish and build you will need to push your code to your Git repository.
 

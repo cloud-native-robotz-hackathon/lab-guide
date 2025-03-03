@@ -1,13 +1,8 @@
-= Challenge Level 2
+= Checkpoint Level 3
 
-Now let's put the super powers of your robot together and tackle a more challenging mission.
+Now, the real hackathon begins!
 
-**Your mission: Your robot will be positioned in front of a barrier. It needs to drive around it, indentify the red fedora behind it and drive towards it, stopping roughly 20 cm before.**
+1. Go back and train the model with a ball.
+2. Adjust your robot application to drive toward the ball.
 
-The playing field will look like in the first challenge with a barrier added:
-
-image::challenge2.png[]
-
-Taking into account the code from you previous missions, develop a solution for this navigation and detection sequence.
-
-Let the facilitators know when you are ready for a run to take the time it takes your robot to arrive at the fedora. 
+Let facilitators know if you’d like any further refinements! 🚀
