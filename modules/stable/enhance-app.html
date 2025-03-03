@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Enhance the Control App :: Cloud Native Robotz Hackathon</title>
+    <link rel="canonical" href="https://cloud-native-robotz-hackathon.github.io/modules/stable/enhance-app.html">
+    <link rel="prev" href="edge-devops.html">
+    <link rel="next" href="checkpoint-level-1.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <img src="../../_/img/robot.png" />
+      <h1>&nbsp;&nbsp;Cloud Native Robotz Hackathon</h1>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" target="_blank" href="https://github.com/cloud-native-robotz-hackathon/infrastructure/issues/new">Feedback</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="modules" data-version="stable">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">Lab guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="data-science.html">0. Data Science</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="development.html">1. Control your Robot</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="integration.html">2. Develop Control Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="edge-devops.html">3. Deploy Control App on Robot</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="enhance-app.html">4. Enhance the Control App</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="checkpoint-level-1.html">5. Challenge Level 1</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="checkpoint-level-3.html">6. Challenge Level 2</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Lab guide</span>
+    <span class="version">stable</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Lab guide</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">stable</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Lab guide</a></li>
+    <li><a href="enhance-app.html">4. Enhance the Control App</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/cloud-native-robotz-hackathon/lab-guide/edit/main/content/modules/ROOT/pages/enhance-app.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Enhance the Control App</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>That was pretty neat. With just a few lines of MVP code your robot should have picked up on some Fedoras in the vincinity.  But we are of course striving for more.</p>
+</div>
+<div class="paragraph">
+<p>We will enhance the brains &#8230;&#8203; I mean the code of your robot:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the distance sensor to navigate around obstacles</p>
+</li>
+<li>
+<p>Put the complex functions to check for the hat and drive around obstacles in the functions <code>search_for_hat()</code> and <code>bypass_obstacle()</code></p>
+</li>
+<li>
+<p>Create parameters in your script to easily test, optimize and tune different values in your code</p>
+</li>
+<li>
+<p>Render the bounding boxes to an Image file, so that you see what the robot sees</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_the_new_functions"><a class="anchor" href="#_add_the_new_functions"></a>Add the new functions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Right before the function <code>def take_picture(image_file_name):</code> add these functions (as usual check you identation)</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def search_for_hat():
+    # Define switch for identifying found and intercepted hats across functions
+    global hat_found_and_intercepted
+
+    print('\n### Search For Hat Mode - START ###')
+
+    # Circle, capture images, apply model and drive towards an identified object
+    turn_counter = 0
+    while thread_event.is_set():
+        print('\n')
+
+        # Take picture and find the object with the highest probabilty of being a hat
+        objects = take_picture_and_detect_objects()
+        coordinates = find_highest_score(objects)
+
+        # Output distance from sensor
+        print ('Got distance -> ', distance())
+
+        # Check if there is an obstacle ahead
+        if distance_int() <= min_distance_to_obstacle:
+            print('### Search For Hat Mode - END: Obstacle detected! ###')
+            return
+
+        # Align to and drive towards identified object
+        if coordinates and coordinates.confidence_score > confidence_threshold:
+            print(f'''Object with highest score -> [
+                confidence score: {coordinates.confidence_score},
+                x upper left corner: {coordinates.x_upper_left},
+                y upper left corner: {coordinates.y_upper_left},
+                x lower right corner: {coordinates.x_lower_right},
+                y lower right corner: {coordinates.y_lower_right},
+                object class: {coordinates.object_class} ]''')
+
+            # Align so that the most likely hat identified is in the center (within 20 pixels)
+            center_x = (coordinates.x_upper_left + coordinates.x_lower_right) / 2
+            print(f'center_x: {center_x}')
+
+            # Center of hat needs to be within 20 pixels
+            if abs(image_resolution_x/2-center_x) >= 20:
+                if center_x < 320:
+                    turn_left(10)
+                else:
+                    turn_right(10)
+
+            # Determine size of the object in the image (not the real size!)
+            delta = coordinates.x_lower_right - coordinates.x_upper_left
+            print(f'delta: {delta}')
+
+            # Move forward, if size of identified object in image is not big enough
+            # (i.e. if it's not close enough)
+            if delta < delta_threshold:
+                move_forward(10)
+            else:
+                hat_found_and_intercepted = True
+                print('### Search For Hat Mode - END: OJECT FOUND ! ###')
+                return
+
+        else:
+            # Circle in case no hat could be identied
+            if turn_counter <= 360:
+                turn_right(10)
+                turn_counter = turn_counter + 10
+            else:
+                # After a full circle, move forward and circle again to find the hat
+                move_forward(40)
+                turn_counter = 0
+
+    print('### Search For Hat Mode - END ###')
+
+# Check for an obstacle directly in front and bypass it, if existing
+def bypass_obstacle():
+    # Determine if an obstacle is in sight
+    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
+
+    # Only continue if an obstacle is ahead
+    if not obstacle_in_sight:
+        return
+
+    # For debugging only
+    take_picture('static/current_view.jpg')
+
+    # Determine distance to obstacle
+    distance_to_object = distance_int()
+
+    print('### Bypass Obstacle Mode - START ###')
+
+    # Turn left
+    turn_left(angle_delta)
+
+    # Determine if there is another obstacle is in sight
+    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
+    print ('Got distance -> ', distance())
+
+    # If no other obstacle is in the bypass direction, move a bit forward
+    # and then go back again on course
+    if not obstacle_in_sight:
+        move_forward(20)
+        turn_right(angle_delta)
+
+    # Determine if original obsctacle is still in sight (after having turned back in original direction)
+    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
+    print ('Got distance -> ', distance())
+
+    # If original obstacle is not in sight anymore, move forward to bypass it
+    if not obstacle_in_sight:
+        # Move forward using the original distance to the obstacle and a buffer
+        move_forward(math.ceil(distance_to_object / 10) + 40)
+
+    print('### Bypass Obstacle Mode - END: SUCCESS! ###')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Look for the line <code>@application.route('/')</code> and right above add these parameters</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Define parameters for hat search and obstacle bypass algos
+min_distance_to_obstacle = 300 # mm; distance at which the obstacle bypass mode is activated
+angle_delta = 90 # deg; angle used for sidestepping obstacle
+image_resolution_x = 640 # pixels; resolution of camera used in robot
+confidence_threshold = 0.6 # e.g. 0.6 = 60%; confidence at which an object identified as hat is intercepted
+delta_threshold = 280 # pixels; delta for standard fedora (defines minimum desired pixel size of fedora in image)
+hat_found_and_intercepted = False # boolean; switch for a found and intercepted hat</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can call these functions from inside the <code>startRobot()</code> function like so</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">    # Drop your code here
+    # Initialize switch for identifying found and intercepted hats across functions
+    global hat_found_and_intercepted
+    hat_found_and_intercepted = False
+
+    # Main loop running until one hat is properly identified and intercepted (or the app ist stopped)
+    while thread_event.is_set() and not hat_found_and_intercepted:
+        # Check for an obstacle directly in front and bypass it, if existing
+        bypass_obstacle()
+
+        # Search for the hat and intercrept it
+        search_for_hat()
+
+    print('Done')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Give this new code a try.  How is the Fedora prediction? How does the robot handle a barrier?</p>
+</div>
+<div class="paragraph">
+<p>Try to change some of the value parameters and see if you can tune the performance of your robot.</p>
+</div>
+<div class="paragraph">
+<p>This will give you good start to tackle the next challenges</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="edge-devops.html" class="query-params-link">3. Deploy Control App on Robot</a></span>
+  <span class="next"><a href="checkpoint-level-1.html" class="query-params-link">5. Challenge Level 1</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

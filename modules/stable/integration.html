@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Integration :: Cloud Native Robotz Hackathon</title>
+    <title>Develop Control Application :: Cloud Native Robotz Hackathon</title>
     <link rel="canonical" href="https://cloud-native-robotz-hackathon.github.io/modules/stable/integration.html">
     <link rel="prev" href="development.html">
     <link rel="next" href="edge-devops.html">
@@ -40,25 +40,22 @@
     <a class="nav-link" href="data-science.html">0. Data Science</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development.html">1. Development</a>
+    <a class="nav-link" href="development.html">1. Control your Robot</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="integration.html">2. Integration</a>
+    <a class="nav-link" href="integration.html">2. Develop Control Application</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="edge-devops.html">3. Edge DevOps</a>
+    <a class="nav-link" href="edge-devops.html">3. Deploy Control App on Robot</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-1.html">4. Checkpoint Level 1</a>
+    <a class="nav-link" href="enhance-app.html">4. Enhance the Control App</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-2.html">5. Checkpoint Level 2</a>
+    <a class="nav-link" href="checkpoint-level-1.html">5. Challenge Level 1</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-3.html">5. Checkpoint Level 3</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-4.html">5. Checkpoint Level 4</a>
+    <a class="nav-link" href="checkpoint-level-3.html">6. Challenge Level 2</a>
   </li>
 </ul>
   </li>
@@ -91,14 +88,14 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Lab guide</a></li>
-    <li><a href="integration.html">2. Integration</a></li>
+    <li><a href="integration.html">2. Develop Control Application</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/cloud-native-robotz-hackathon/lab-guide/edit/main/content/modules/ROOT/pages/integration.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Integration</h1>
+<h1 class="page">Develop Control Application</h1>
 <div class="sect1">
 <h2 id="_the_challenge"><a class="anchor" href="#_the_challenge"></a>The Challenge</h2>
 <div class="sectionbody">
@@ -190,6 +187,18 @@ while thread_event.is_set():
 
 print('Done')</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>What does this code do, you ask?</p>
+</div>
+<div class="paragraph">
+<p>Well first of all it keeps on looping until someone presses the <strong>Stop</strong> button. It takes a picture from the camera, finds the Fedora object with higest confidence score.</p>
+</div>
+<div class="paragraph">
+<p>Then it looks for the center of the bounding box. Depending on the position of the center point in the camera image, the code decides if the robot needs to turn left or right to align it with the fedora.</p>
+</div>
+<div class="paragraph">
+<p>Then it just keeps on driving until the bounding box has a certain size, which means that you are close enough to the Fedora.</p>
 </div>
 <div class="paragraph">
 <p>Now place a Fedora somewhere near your robot and see if it can find it.</p>
@@ -315,16 +324,37 @@ git config --global user.name "pilot"</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_expected_outcome_of_this_chapter"><a class="anchor" href="#_expected_outcome_of_this_chapter"></a>Expected outcome of this chapter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After this chapter:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created &amp; tested a robot control app to steer the robot to a fedora on the ground</p>
+</li>
+<li>
+<p>You have pushed the application code to your Git repo</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If anything is unclear about these points, please talk to your friendly facilitators.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Your deliverable will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.</p>
+<p>Your deliverable for the final test will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="development.html" class="query-params-link">1. Development</a></span>
-  <span class="next"><a href="edge-devops.html" class="query-params-link">3. Edge DevOps</a></span>
+  <span class="prev"><a href="development.html" class="query-params-link">1. Control your Robot</a></span>
+  <span class="next"><a href="edge-devops.html" class="query-params-link">3. Deploy Control App on Robot</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

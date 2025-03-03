@@ -40,25 +40,22 @@
     <a class="nav-link" href="data-science.html">0. Data Science</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development.html">1. Development</a>
+    <a class="nav-link" href="development.html">1. Control your Robot</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="integration.html">2. Integration</a>
+    <a class="nav-link" href="integration.html">2. Develop Control Application</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="edge-devops.html">3. Edge DevOps</a>
+    <a class="nav-link" href="edge-devops.html">3. Deploy Control App on Robot</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-1.html">4. Checkpoint Level 1</a>
+    <a class="nav-link" href="enhance-app.html">4. Enhance the Control App</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-2.html">5. Checkpoint Level 2</a>
+    <a class="nav-link" href="checkpoint-level-1.html">5. Challenge Level 1</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-3.html">5. Checkpoint Level 3</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-4.html">5. Checkpoint Level 4</a>
+    <a class="nav-link" href="checkpoint-level-3.html">6. Challenge Level 2</a>
   </li>
 </ul>
   </li>
@@ -102,7 +99,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>As data scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an already existing object dection model from the YOLO-family (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use <strong>OpenShift AI</strong>, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries</p>
+<p>As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an already existing object dection model from the YOLO-family (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use <strong>OpenShift AI</strong>, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries</p>
 </div>
 </div>
 </div>
@@ -178,7 +175,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>As data scientists, we are in need of an interactive developement environment(IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let&#8217;s create a new JupyterLab Workbench in our data science project and get started:</p>
+<p>As Data Scientists, we are in need of an interactive developement environment(IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let&#8217;s create a new JupyterLab Workbench in our Data Science project and get started:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -289,6 +286,15 @@
 </table>
 </div>
 </li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_your_model_in_jupyterlab"><a class="anchor" href="#_create_your_model_in_jupyterlab"></a>Create your Model in JupyterLab</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
 <li>
 <p>Click on the Open link, next to the Stop link in the fedora-detection Workbench line to open the JuypterLab Workbench</p>
 </li>
@@ -298,7 +304,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>The first thing we notice when logging into our workbench is that it&#8217;s quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don&#8217;t worry, we are experienced data scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:</p>
+<p>The first thing we notice when logging into our workbench is that it&#8217;s quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don&#8217;t worry, we are experienced Data Scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -327,6 +333,8 @@
 <div class="paragraph">
 <p>Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 <strong>ODF</strong> (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on <strong>OpenShift AI</strong> and serve it to our application.</p>
 </div>
+<div class="sect2">
+<h3 id="_model_training"><a class="anchor" href="#_model_training"></a>Model Training</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -477,6 +485,9 @@ This image class is now mapped to the class number 0.</p>
 <div class="paragraph">
 <p>With the default settings, the Pipeline will run around 15 minutes.  Let&#8217;s use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_deploy_s3_browser"><a class="anchor" href="#_deploy_s3_browser"></a>Deploy S3 Browser</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -613,6 +624,7 @@ This image class is now mapped to the class number 0.</p>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="_model_serving"><a class="anchor" href="#_model_serving"></a>Model Serving</h2>
 <div class="sectionbody">
@@ -622,7 +634,7 @@ This image class is now mapped to the class number 0.</p>
 <div class="sect2">
 <h3 id="_model_runtime"><a class="anchor" href="#_model_runtime"></a>Model Runtime</h3>
 <div class="paragraph">
-<p>First we need to configue a model server:</p>
+<p>First we need to configure a model server:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -729,8 +741,11 @@ This image class is now mapped to the class number 0.</p>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_model_testing"><a class="anchor" href="#_model_testing"></a>Model Testing</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_testing"><a class="anchor" href="#_model_testing"></a>Model Testing</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -788,12 +803,31 @@ token = 'REPLACE_ME'</code></pre>
 <div class="paragraph">
 <p>You can test your model with different images in the <code>sample-images</code> folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the <code>sample_images</code> folder.  Make sure you adjust the image name in <code>image_path</code> variable before running the notebook again. You should see some awesome detections now.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you see multiple bounding boxes over your fedoras, that means you may need to filter out object detections with a lower score. By default the code filters out anything with a lower confidence score that 0.3. Search for the code <code>conf_thres=0.3</code>. Increase the threshold here by changing the value and rerun your Notebook.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>That&#8217;s it. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values <code>prediction_url</code> and <code>token</code> in your app in the next chapter.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_optional_retrain_and_redeploy_model"><a class="anchor" href="#_optional_retrain_and_redeploy_model"></a>Optional : Retrain and Redeploy Model</h3>
+</div>
+<div class="sect1">
+<h2 id="_optional_retrain_and_redeploy_model"><a class="anchor" href="#_optional_retrain_and_redeploy_model"></a>Optional : Retrain and Redeploy Model</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Click here for instructions to retrain the model</summary>
+<div class="content">
 <div class="paragraph">
 <p>Perhaps you would to like to tweak and increase the detection quality of your model later on? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training), epochs (Number of training iterations) and batch size.</p>
 </div>
@@ -849,8 +883,9 @@ There is another more kube native way to update the model. You can actually chan
 </tr>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_model_redeploy_by_editing_resource_yaml"><a class="anchor" href="#_model_redeploy_by_editing_resource_yaml"></a>Model redeploy by editing Resource yaml</h4>
+<div class="paragraph">
+<p>==== Model redeploy by editing Resource yaml</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -888,12 +923,33 @@ There is another more kube native way to update the model. You can actually chan
 <p>This opens up possibilities to use GitOps to configure your MLOps ressources by the way.</p>
 </div>
 </div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expected_outcome_of_this_chapter"><a class="anchor" href="#_expected_outcome_of_this_chapter"></a>Expected outcome of this chapter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After this chapter you should know:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>how to train and test an AI model in OpenShift AI</p>
+</li>
+<li>
+<p>how to make your model available for inferencing using the model server</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If anything is unclear about these takeaways, please talk to your friendly facilitators.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="index.html" class="query-params-link">Lab guide</a></span>
-  <span class="next"><a href="development.html" class="query-params-link">1. Development</a></span>
+  <span class="next"><a href="development.html" class="query-params-link">1. Control your Robot</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
