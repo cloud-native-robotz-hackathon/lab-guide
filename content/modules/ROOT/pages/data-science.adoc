@@ -210,7 +210,7 @@ image::workbench-running-s3.png[]
 ====
 
 * Click on the Open link, next to the Stop link in the fedora-detection Workbench line to open the JuypterLab Workbench
-* Login with you OpenShift credentials and allow selected permissions
+* Login with your OpenShift credentials and allow selected permissions
 * Allow selected permissions
 * Accept the disclaimer
 
