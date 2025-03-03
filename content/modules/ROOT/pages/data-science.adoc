@@ -97,6 +97,9 @@ The first thing we notice when logging into our workbench is that it's quite emp
 ----
 
 * Click on **Clone**
++
+image::workbench-clone.png[width=420]
+
 * On the left side in the menu click on the **Folder** icon.
 
 Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
