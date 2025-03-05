@@ -96,8 +96,10 @@ You should by now have tested both functions, it's time to combine both to enabl
 
 You have worked enough with the code to tackle this without a lot of instructions. Go on and try it out!
 
+== Exercise
 
+**Your mission: Your robot will be positioned in front of a barrier. It needs to drive around it, indentify the red fedora behind it and drive towards it, stopping before.**
 
+The playing field will look like in the first challenge with a barrier added:
 
-
-
+image::challenge2.png[]
