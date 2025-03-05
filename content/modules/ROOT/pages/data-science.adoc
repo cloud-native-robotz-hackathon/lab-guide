@@ -106,10 +106,16 @@ Next, we will train our model on the basis of a https://docs.ultralytics.com/mod
 
 === Model Training
 
-OBS! When training the model the confidence score and accuracy will be a limiting factor going forward. In order to stay within hardware restrictions such as no GPUs in the data center and the physical robot, a compromise has been made in terms of the size of the base model as well as training epochs, batch size, number of images to train upon and how much time will be left on the hackathon for other tasks. Of course, these variables may be changed by you attendees, however, the changes such as increased epoch and increased sample count might yield little to no improvement while taking longer time to train. 
+[NOTE]
+====
+When training the model the confidence score and accuracy will be a limiting factor going forward. In order to stay within hardware restrictions such as no GPUs in the data center and the physical robot, a compromise has been made in terms of the size of the base model as well as training epochs, batch size, number of images to train upon and how much time will be left on the hackathon for other tasks. Of course, these variables may be changed by you attendees, however, the changes such as increased epoch and increased sample count might yield little to no improvement while taking longer time to train. 
+
 This is a limiting factor edge cases face, finding the balance between accuracy and sizing requirements for the model to run. 
+
 Therefore, have some realistic expectations on the model and dont get hooked up on fine tuning it. 
+
 If we accept this, lets go ahead and train the model! 
+====
 
 * In JupyterLab navigate to the directory `object-detection-notebooks/model-training`.
 
