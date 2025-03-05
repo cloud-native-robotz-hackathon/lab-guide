@@ -1,0 +1,42 @@
+= Appendix
+
+== Retrain and Redeploy Model
+
+Perhaps you would to like to tweak and increase the detection quality of your model later on? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training), epochs (Number of training iterations) and batch size.
+
+WARNING: When rerunning the pipeline, a new onnx model will be created in the S3 bucket `/models` folder and copied over the `model-latest.onnx` file. It will not automatically be deployed to the running model server!
+
+To deploy the new model to the model server, we need to find out the new model filename. In the **pipeline run** view, click on the last task (`model_upload`) and look a the logs.  You should see an entry similar to this:
+
+----
+initializing S3 client
+uploading model to models/model-2410151507.onnx
+model uploaded and available as "models/model-2410151507.onnx"
+uploading model to models/model-latest.onnx
+model uploaded and available as "models/model-latest.onnx"
+----
+
+In this case `model-2410151507.onnx` is the new model created by this pipeline run.
+
+* Now in your Openshift AI Project go to **Models** and click on the three dots next to the model `fedora-detection-service`
+* Change the **Path** value to your new model (e.g. models/model-2410151507.onnx)
+* This wil trigger a redeploy and you can now test the new model
+
+TIP: There is another more kube native way to update the model. You can actually change the yaml of the underlying OpenShift ressource.
+
+== Model redeploy by editing Resource yaml
+
+* Go to the **OpenShift Console** select your project
+* In the menu on the left click on **Home** > **Search**
+* Now in the **resources** field enter `InferenceService`
+* Check **InferenceService** in the dropdown
+* Click on the `fedora-detection-service`
+* Click on **YAML** to edit
+
+Look for the **path** entry
+----
+ path: models/model-latest.onnx
+----
+and change it to your new model name
+
+This opens up possibilities to use GitOps to configure your MLOps ressources by the way.
