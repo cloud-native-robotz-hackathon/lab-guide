@@ -1,7 +1,7 @@
 
 = Data Science
 
-As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an already existing object dection model from the YOLO-family (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries
+As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an object dection model from the YOLO-family (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries
 
 == Instantiate Workbench
 
@@ -105,6 +105,11 @@ image::workbench-clone.png[width=420]
 Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
 === Model Training
+
+OBS! When training the model the confidence score and accuracy will be a limiting factor going forward. In order to stay within hardware restrictions such as no GPUs in the data center and the physical robot, a compromise has been made in terms of the size of the base model as well as training epochs, batch size, number of images to train upon and how much time will be left on the hackathon for other tasks. Of course, these variables may be changed by you attendees, however, the changes such as increased epoch and increased sample count might yield little to no improvement while taking longer time to train. 
+This is a limiting factor edge cases face, finding the balance between accuracy and sizing requirements for the model to run. 
+Therefore, have some realistic expectations on the model and dont get hooked up on fine tuning it. 
+If we accept this, lets go ahead and train the model! 
 
 * In JupyterLab navigate to the directory `object-detection-notebooks/model-training`.
 
@@ -218,7 +223,7 @@ image::workbench-running-s3.png[]
 
 The browser will show you the contents of your bucket.  Except for a folder called `backup` it should be pretty empty at the moment.
 
-Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version.
+Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version, and while the pipeline is at the model training step, you can see the loss functions in the logs. 
 
 Once the pipeline has run (Check the run) successfully the final model named latest-version.onnx will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
 
@@ -278,6 +283,8 @@ Wait for the server to start. It may take a bit before the model server is able 
 
 == Model Testing
 
+Now it's time to finally test the model. If you remember previously, our model training was limited by several factors and there when testing the model out, the confidence score will vary between 0.3-0.9 depending on different factors such as distance, lighting and other. 
+
 * Copy the inference endpoint URL that is published through an OpenShift Route (and save it somewhere)
 +
 image::copy-inference-url.png[]
@@ -306,7 +313,7 @@ image::run-full-notebook.png[]
 
 You will see any identified classes with bounding boxes and confidence score at the end of the notebook.
 
-You can test your model with different images in the `sample-images` folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the `sample_images` folder.  Make sure you adjust the image name in `image_path` variable before running the notebook again. You should see some awesome detections now.
+You can test your model with different images in the `sample-images` folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the `sample_images` folder. OBS! Make sure you adjust the image name in `image_path` variable before running the notebook again AND that the format of the images you take have a kvadratic resolution. This can be adjusted in most smartphones today. If you dont use a kvadratic resolution, the printed bounding boxes may be painted in the wrong areas of the pcitures. 
 
 [TIP]
 ====
