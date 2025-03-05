@@ -58,7 +58,10 @@
     <a class="nav-link" href="checkpoint-level-2.html">6. Challenge Level 2</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-3.html">6. Challenge Level 3</a>
+    <a class="nav-link" href="checkpoint-level-3.html">7. Challenge Level 3</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#appendix.adoc">Appendix</a>
   </li>
 </ul>
   </li>
@@ -843,110 +846,6 @@ token = 'REPLACE_ME'</code></pre>
 <div class="paragraph">
 <p>That&#8217;s it. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values <code>prediction_url</code> and <code>token</code> in your app in the next chapter.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_optional_retrain_and_redeploy_model"><a class="anchor" href="#_optional_retrain_and_redeploy_model"></a>Optional : Retrain and Redeploy Model</h2>
-<div class="sectionbody">
-<details>
-<summary class="title">Click here for instructions to retrain the model</summary>
-<div class="content">
-<div class="paragraph">
-<p>Perhaps you would to like to tweak and increase the detection quality of your model later on? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training), epochs (Number of training iterations) and batch size.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-When rerunning the pipeline, a new onnx model will be created in the S3 bucket <code>/models</code> folder and copied over the <code>model-latest.onnx</code> file. It will not automatically be deployed to the running model server!
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To deploy the new model to the model server, we need to find out the new model filename. In the <strong>pipeline run</strong> view, click on the last task (<code>model_upload</code>) and look a the logs.  You should see an entry similar to this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>initializing S3 client
-uploading model to models/model-2410151507.onnx
-model uploaded and available as "models/model-2410151507.onnx"
-uploading model to models/model-latest.onnx
-model uploaded and available as "models/model-latest.onnx"</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In this case <code>model-2410151507.onnx</code> is the new model created by this pipeline run.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Now in your Openshift AI Project go to <strong>Models</strong> and click on the three dots next to the model <code>fedora-detection-service</code></p>
-</li>
-<li>
-<p>Change the <strong>Path</strong> value to your new model (e.g. models/model-2410151507.onnx)</p>
-</li>
-<li>
-<p>This wil trigger a redeploy and you can now test the new model</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-There is another more kube native way to update the model. You can actually change the yaml of the underlying OpenShift ressource.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>==== Model redeploy by editing Resource yaml</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Go to the <strong>OpenShift Console</strong> select your project</p>
-</li>
-<li>
-<p>In the menu on the left click on <strong>Home</strong> &gt; <strong>Search</strong></p>
-</li>
-<li>
-<p>Now in the <strong>resources</strong> field enter <code>InferenceService</code></p>
-</li>
-<li>
-<p>Check <strong>InferenceService</strong> in the dropdown</p>
-</li>
-<li>
-<p>Click on the <code>fedora-detection-service</code></p>
-</li>
-<li>
-<p>Click on <strong>YAML</strong> to edit</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Look for the <strong>path</strong> entry</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre> path: models/model-latest.onnx</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>and change it to your new model name</p>
-</div>
-<div class="paragraph">
-<p>This opens up possibilities to use GitOps to configure your MLOps ressources by the way.</p>
-</div>
-</div>
-</details>
 </div>
 </div>
 <div class="sect1">
