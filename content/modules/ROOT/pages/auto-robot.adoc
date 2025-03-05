@@ -1,6 +1,8 @@
-= Deploy Control App to the Robot
+= Deploy Control App to the Robot & Compete!
 
-Testing our solution on OpenShift DevSpaces is fun, but what we really want is an **autonomous robot** that can think for itself and find our fedora in the most disconnected of places. This means the controll app and the object detection service have to run disconnected on the robot
+After your control application performs well enough, it's time to move on to the final stage of the hackathon: Have the robot run autonomously and measure the time it takes to accomplish the mission laid out in challenge 2! 
+
+Testing our solution from OpenShift DevSpaces is fun, but what we really want is an **autonomous robot** that can think for itself and find our fedora in the most disconnected of places. This means the controll app and the object detection service have to run disconnected on the robot
 
 You will have to provide your solution assets in the form of container images. It is time to move these onto the robot itself.
 

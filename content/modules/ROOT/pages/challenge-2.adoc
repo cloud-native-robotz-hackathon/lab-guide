@@ -8,6 +8,6 @@ The playing field will look like in the first challenge with a barrier added:
 
 image::challenge2.png[]
 
-Taking into account the code from you previous missions, develop a solution for this navigation and detection sequence.
+Taking into account the code from you previous chapter, optimize the solution for this navigation and detection sequence.
 
 Let the facilitators know when you are ready for a run to take the time it takes your robot to arrive at the fedora. 

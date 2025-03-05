@@ -1,89 +1,17 @@
-= Enhance the Control App
+= Improve the Control App Part 2
 
-That was pretty neat. With just a few lines of MVP code your robot should have picked up on some Fedoras in the vincinity.  But we are of course striving for more.
+Here is the second code drop for you. We now add a second function which will navigate the robot around an obstacle.
 
-We will enhance the brains ... I mean the code of your robot:
+* It use the distance sensor to navigate around obstacles
+* Puts the code to drive around obstacles in the function `+bypass_obstacle()+`
+* Creates some more parameters to test, optimize and tune different values in your code
 
-* Use the distance sensor to navigate around obstacles
-* Put the complex functions to check for the hat and drive around obstacles in the functions `+search_for_hat()+` and `+bypass_obstacle()+`
-* Create parameters in your script to easily test, optimize and tune different values in your code
-* Render the bounding boxes to an Image file, so that you see what the robot sees
+== Add the new "bypass_obstacle()" function
 
-== Add the new functions
-
-Right before the function `+def take_picture(image_file_name):+` add these functions (as usual check you identation)
+Below the new function `+def search_for_hat:+` add this function (as usual check you identation)
 
 [source,python,role=execute,subs="attributes"]
 ----
-def search_for_hat():
-    # Define switch for identifying found and intercepted hats across functions
-    global hat_found_and_intercepted
-
-    print('\n### Search For Hat Mode - START ###')
-
-    # Circle, capture images, apply model and drive towards an identified object
-    turn_counter = 0
-    while thread_event.is_set():
-        print('\n')
-
-        # Take picture and find the object with the highest probabilty of being a hat
-        objects = take_picture_and_detect_objects()
-        coordinates = find_highest_score(objects)
-
-        # Output distance from sensor
-        print ('Got distance -> ', distance())
-
-        # Check if there is an obstacle ahead
-        if distance_int() <= min_distance_to_obstacle:
-            print('### Search For Hat Mode - END: Obstacle detected! ###')
-            return
-
-        # Align to and drive towards identified object
-        if coordinates and coordinates.confidence_score > confidence_threshold:
-            print(f'''Object with highest score -> [
-                confidence score: {coordinates.confidence_score},
-                x upper left corner: {coordinates.x_upper_left},
-                y upper left corner: {coordinates.y_upper_left},
-                x lower right corner: {coordinates.x_lower_right},
-                y lower right corner: {coordinates.y_lower_right},
-                object class: {coordinates.object_class} ]''')
-
-            # Align so that the most likely hat identified is in the center (within 20 pixels)
-            center_x = (coordinates.x_upper_left + coordinates.x_lower_right) / 2
-            print(f'center_x: {center_x}')
-
-            # Center of hat needs to be within 20 pixels
-            if abs(image_resolution_x/2-center_x) >= 20:
-                if center_x < 320:
-                    turn_left(10)
-                else:
-                    turn_right(10)
-
-            # Determine size of the object in the image (not the real size!)
-            delta = coordinates.x_lower_right - coordinates.x_upper_left
-            print(f'delta: {delta}')
-
-            # Move forward, if size of identified object in image is not big enough
-            # (i.e. if it's not close enough)
-            if delta < delta_threshold:
-                move_forward(10)
-            else:
-                hat_found_and_intercepted = True
-                print('### Search For Hat Mode - END: OJECT FOUND ! ###')
-                return
-
-        else:
-            # Circle in case no hat could be identied
-            if turn_counter <= 360:
-                turn_right(10)
-                turn_counter = turn_counter + 10
-            else:
-                # After a full circle, move forward and circle again to find the hat
-                move_forward(40)
-                turn_counter = 0
-
-    print('### Search For Hat Mode - END ###')
-
 # Check for an obstacle directly in front and bypass it, if existing
 def bypass_obstacle():
     # Determine if an obstacle is in sight
@@ -126,22 +54,16 @@ def bypass_obstacle():
     print('### Bypass Obstacle Mode - END: SUCCESS! ###')
 ----
 
-Look for the line `+@application.route('/')+` and right above add these parameters
+Look for the line `+@application.route('/')+` and right above add these parameters for the new function:
 
 [source,python,role=execute,subs="attributes"]
 ----
 # Define parameters for hat search and obstacle bypass algos
 min_distance_to_obstacle = 300 # mm; distance at which the obstacle bypass mode is activated
 angle_delta = 90 # deg; angle used for sidestepping obstacle
-image_resolution_x = 640 # pixels; resolution of camera used in robot
-confidence_threshold = 0.6 # e.g. 0.6 = 60%; confidence at which an object identified as hat is intercepted
-delta_threshold = 280 # pixels; delta for standard fedora (defines minimum desired pixel size of fedora in image)
-hat_found_and_intercepted = False # boolean; switch for a found and intercepted hat
 ----
 
-
-Now you can call these functions from inside the `+startRobot()+` function like so
-
+Now first test the new obstacle avoidance code by commenting out the function `+search_for_hat())+` from the `+startRobot()+` function and adding the `+bypass_obstacle()+` function like so:
 
 [source,python,role=execute,subs="attributes"]
 ----
@@ -156,16 +78,23 @@ Now you can call these functions from inside the `+startRobot()+` function like 
         bypass_obstacle()
 
         # Search for the hat and intercrept it
-        search_for_hat()
+        #search_for_hat()
 
     print('Done')
 ----
 
-Give this new code a try.  How is the Fedora prediction? How does the robot handle a barrier?
+Give the code a try. Place a barrier in front of the robot and test the object avoidance code.
 
 Try to change some of the value parameters and see if you can tune the performance of your robot.
 
-This will give you good start to tackle the next challenges
+== Putting it together
+
+You should by now have tested both functions, it's time to combine both to enable the robot to do challenge two as shown in the next chapter. The robot has to:
+
+* navigate around a barrier
+* find the hat and drive towards it
+
+You have worked enough with the code to tackle this without a lot of instructions. Go on and try it out!
 
 
 

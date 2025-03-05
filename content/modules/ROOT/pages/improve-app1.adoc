@@ -1,17 +1,18 @@
-= Enhance the Control App
+= Improve the Control App
 
 That was pretty neat. With just a few lines of MVP code your robot should have picked up on some Fedoras in the vincinity.  But we are of course striving for more.
 
 We will enhance the brains ... I mean the code of your robot:
 
-* Use the distance sensor to navigate around obstacles
-* Put the complex functions to check for the hat and drive around obstacles in the functions `+search_for_hat()+` and `+bypass_obstacle()+`
-* Create parameters in your script to easily test, optimize and tune different values in your code
-* Render the bounding boxes to an Image file, so that you see what the robot sees
+We have some improved and more complex code for you do work on. This first part is for finding the hat.  
 
-== Add the new functions
+* It puts the more complex function to find the hat and drive towards it in the function `+search_for_hat()+`
+* It uses parameters to easily test, optimize and tune different values in your code
+* It renders the bounding boxes to an Image file, so that you see what the robot sees
 
-Right before the function `+def take_picture(image_file_name):+` add these functions (as usual check you identation)
+== Add the new "search_for_hat()" function
+
+Right before the function `+def take_picture(image_file_name):+` add this code (as usual check you identation)
 
 [source,python,role=execute,subs="attributes"]
 ----
@@ -83,56 +84,12 @@ def search_for_hat():
                 turn_counter = 0
 
     print('### Search For Hat Mode - END ###')
-
-# Check for an obstacle directly in front and bypass it, if existing
-def bypass_obstacle():
-    # Determine if an obstacle is in sight
-    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
-
-    # Only continue if an obstacle is ahead
-    if not obstacle_in_sight:
-        return
-
-    # For debugging only
-    take_picture('static/current_view.jpg')
-
-    # Determine distance to obstacle
-    distance_to_object = distance_int()
-
-    print('### Bypass Obstacle Mode - START ###')
-
-    # Turn left
-    turn_left(angle_delta)
-
-    # Determine if there is another obstacle is in sight
-    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
-    print ('Got distance -> ', distance())
-
-    # If no other obstacle is in the bypass direction, move a bit forward
-    # and then go back again on course
-    if not obstacle_in_sight:
-        move_forward(20)
-        turn_right(angle_delta)
-
-    # Determine if original obsctacle is still in sight (after having turned back in original direction)
-    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
-    print ('Got distance -> ', distance())
-
-    # If original obstacle is not in sight anymore, move forward to bypass it
-    if not obstacle_in_sight:
-        # Move forward using the original distance to the obstacle and a buffer
-        move_forward(math.ceil(distance_to_object / 10) + 40)
-
-    print('### Bypass Obstacle Mode - END: SUCCESS! ###')
 ----
 
 Look for the line `+@application.route('/')+` and right above add these parameters
 
 [source,python,role=execute,subs="attributes"]
 ----
-# Define parameters for hat search and obstacle bypass algos
-min_distance_to_obstacle = 300 # mm; distance at which the obstacle bypass mode is activated
-angle_delta = 90 # deg; angle used for sidestepping obstacle
 image_resolution_x = 640 # pixels; resolution of camera used in robot
 confidence_threshold = 0.6 # e.g. 0.6 = 60%; confidence at which an object identified as hat is intercepted
 delta_threshold = 280 # pixels; delta for standard fedora (defines minimum desired pixel size of fedora in image)
@@ -152,20 +109,16 @@ Now you can call these functions from inside the `+startRobot()+` function like 
 
     # Main loop running until one hat is properly identified and intercepted (or the app ist stopped)
     while thread_event.is_set() and not hat_found_and_intercepted:
-        # Check for an obstacle directly in front and bypass it, if existing
-        bypass_obstacle()
-
+        
         # Search for the hat and intercrept it
         search_for_hat()
 
     print('Done')
 ----
 
-Give this new code a try.  How is the Fedora prediction? How does the robot handle a barrier?
+Give this new code a try.  How is the Fedora prediction? How good does the robot find and navigate to the fedora?
 
 Try to change some of the value parameters and see if you can tune the performance of your robot.
-
-This will give you good start to tackle the next challenges
 
 
 
