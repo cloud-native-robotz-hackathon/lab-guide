@@ -1,10 +1,12 @@
 = Develop Control Application
 
-== The Challenge
+In the last chapter you have learned about controling the robot and using development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, here is a first simplified version of it. Let's call it an MVP (minimal viable product). 
 
-The task that you are working on will be to enable your robot to identify a fedora on the floor. Your robot should drive towards the fedora and stop shortly before it.
+Review and test the code but don't spend too much time with it.
 
-The basic flow for your app will be:
+== MVP Code
+
+The basic code requirements are:
 
 * retrieving an image
 * sending it to the object detection service
@@ -12,13 +14,9 @@ The basic flow for your app will be:
 ** detected class
 ** confidence score
 ** coordinates of the bounding boxes in your camera image
-* working with the result to determine where the robot should move to next
+* use the result to determine how the robot should move
 
-== MVP (Minimal Viable Product)
-
-To speed things up we will give you a solution as an MVP.
-
-Change your code to this :
+Change the code in your dev environment to this :
 
 [source,python,role=execute]
 ----
@@ -36,16 +34,20 @@ while thread_event.is_set():
             x lower right corner: {coordinates.x_lower_right},
             y lower right corner: {coordinates.y_lower_right},
             object class: {coordinates.object_class} ]''')
-
+        
+        # Find the middle coordinate of the object, image size is 640x480
         move_x = (coordinates.x_upper_left + coordinates.x_lower_right) / 2
         print(f'move_x: {move_x}')
+        # should the robot move left or right to center the object
         if move_x < 320:
             turn_left(10)
         else:
             turn_right(10)
-
+        
+        # calculate the size of the object as it will grow when driving towards it
         delta = coordinates.x_lower_right - coordinates.x_upper_left
         print(f'delta: {delta}')
+        # stop if delta (size) is above a certain value
         if delta < 350:
             move_forward(10)
         else:
@@ -53,6 +55,7 @@ while thread_event.is_set():
             return
 
     else:
+        # no object detected, turn the robot and try again
         if turn_counter < 360:
             turn_left(10)
             turn_counter = turn_counter + 10
@@ -63,7 +66,7 @@ while thread_event.is_set():
 print('Done')
 ----
 
-What does this code do, you ask?
+== What does this code do, you ask?
 
 Well first of all it keeps on looping until someone presses the **Stop** button. It takes a picture from the camera, finds the Fedora object with higest confidence score.
 
@@ -71,29 +74,11 @@ Then it looks for the center of the bounding box. Depending on the position of t
 
 Then it just keeps on driving until the bounding box has a certain size, which means that you are close enough to the Fedora.
 
-
 Now place a Fedora somewhere near your robot and see if it can find it.
 
-== Dev & AI Collaboration
-Have look at this code. Perhaps there is something you can optimize?
-
-Think about these points :
-
-* How can I align the robot towards the fedora with the coordinate information
-* How do I know when to stop the robot
-* How can I optimize the "think" and "react" phases
-* How can I handle corner cases
-* Perhaps the model should be tuned increase detection results?
-
-[IMPORTANT]
-====
-**Do not go beyond this point until your code is fully prepared for Challenge Level 1**
-
-image::challenge1.png[]
-====
-
 == Pushing your Code
-Currently your code only resides in your Workspace, which is called the "Inner Loop" in Development terms. To publish and build you will need to push your code to your Git repository.
+
+Currently your code only resides in your Workspace, which is called the "Inner Loop" in Development terms. To publish and build later you will need to push your code to your Git repository. So let's already practice this.
 
 To be able to push you need to set up your git email
 
@@ -143,11 +128,11 @@ Now you code has been pushed to your repo. You can check in Gitea if you want.
 
 After this chapter:
 
-* You have created & tested a robot control app to steer the robot to a fedora on the ground
+* You have created & tested a MVP robot control app to steer the robot to a fedora on the floor
 * You have pushed the application code to your Git repo
 
 If anything is unclear about these points, please talk to your friendly facilitators.
 
 == Next Steps
 
-Your deliverable for the final test will be Container Images for the app as well as the object detection services.  The next chapter explains how to build these. Make sure you test the CI/CD build in time.
+Now move on to the next chapter where you'll create a more involved application and prove your data science and app dev skills as a team!
