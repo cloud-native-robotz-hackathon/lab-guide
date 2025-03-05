@@ -6,7 +6,7 @@
     <title>Data Science :: Cloud Native Robotz Hackathon</title>
     <link rel="canonical" href="https://cloud-native-robotz-hackathon.github.io/modules/stable/data-science.html">
     <link rel="prev" href="index.html">
-    <link rel="next" href="development.html">
+    <link rel="next" href="control-robot.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -40,25 +40,22 @@
     <a class="nav-link" href="data-science.html">0. Data Science</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development.html">1. Control your Robot</a>
+    <a class="nav-link" href="control-robot.html">1. Control your Robot</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="integration.html">2. Develop Control Application</a>
+    <a class="nav-link" href="develop-controlapp.html">2. Develop Control Application</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="edge-devops.html">3. Deploy Control App on Robot</a>
+    <a class="nav-link" href="improve-app1.html">3. Improve Control App Part 1</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-1.html">4. Challenge Level 1</a>
+    <a class="nav-link" href="improve-app2.html">4. Improve Control App Part 2</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="enhance-app.html">5. Enhance the Control App</a>
+    <a class="nav-link" href="auto-robot.html">5. The Autonomous Robot: Compete!</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-2.html">6. Challenge Level 2</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="checkpoint-level-3.html">7. Challenge Level 3</a>
+    <a class="nav-link" href="challenge-2.html">6. Final Challenge</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="appendix.html">Appendix</a>
@@ -346,11 +343,28 @@
 </div>
 <div class="sect2">
 <h3 id="_model_training"><a class="anchor" href="#_model_training"></a>Model Training</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>OBS! When training the model the confidence score and accuracy will be a limiting factor going forward. In order to stay within hardware restrictions such as no GPUs in the data center and the physical robot, a compromise has been made in terms of the size of the base model as well as training epochs, batch size, number of images to train upon and how much time will be left on the hackathon for other tasks. Of course, these variables may be changed by you attendees, however, the changes such as increased epoch and increased sample count might yield little to no improvement while taking longer time to train.
-This is a limiting factor edge cases face, finding the balance between accuracy and sizing requirements for the model to run.
-Therefore, have some realistic expectations on the model and dont get hooked up on fine tuning it.
-If we accept this, lets go ahead and train the model!</p>
+<p>When training the model the confidence score and accuracy will be a limiting factor going forward. In order to stay within hardware restrictions such as no GPUs in the data center and the physical robot, a compromise has been made in terms of the size of the base model as well as training epochs, batch size, number of images to train upon and how much time will be left on the hackathon for other tasks. Of course, these variables may be changed by you attendees, however, the changes such as increased epoch and increased sample count might yield little to no improvement while taking longer time to train.</p>
+</div>
+<div class="paragraph">
+<p>This is a limiting factor edge cases face, finding the balance between accuracy and sizing requirements for the model to run.</p>
+</div>
+<div class="paragraph">
+<p>Therefore, have some realistic expectations on the model and dont get hooked up on fine tuning it.</p>
+</div>
+<div class="paragraph">
+<p>If we accept this, lets go ahead and train the model!</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="ulist">
 <ul>
@@ -891,7 +905,7 @@ token = 'REPLACE_ME'</code></pre>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="index.html" class="query-params-link">Lab guide</a></span>
-  <span class="next"><a href="development.html" class="query-params-link">1. Control your Robot</a></span>
+  <span class="next"><a href="control-robot.html" class="query-params-link">1. Control your Robot</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

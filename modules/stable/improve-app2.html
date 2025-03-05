@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Improve the Control App Part 2 :: Cloud Native Robotz Hackathon</title>
+    <link rel="canonical" href="https://cloud-native-robotz-hackathon.github.io/modules/stable/improve-app2.html">
+    <link rel="prev" href="improve-app1.html">
+    <link rel="next" href="auto-robot.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <img src="../../_/img/robot.png" />
+      <h1>&nbsp;&nbsp;Cloud Native Robotz Hackathon</h1>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" target="_blank" href="https://github.com/cloud-native-robotz-hackathon/infrastructure/issues/new">Feedback</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="modules" data-version="stable">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">Lab guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="data-science.html">0. Data Science</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="control-robot.html">1. Control your Robot</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="develop-controlapp.html">2. Develop Control Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="improve-app1.html">3. Improve Control App Part 1</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="improve-app2.html">4. Improve Control App Part 2</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="auto-robot.html">5. The Autonomous Robot: Compete!</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="challenge-2.html">6. Final Challenge</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Lab guide</span>
+    <span class="version">stable</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Lab guide</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">stable</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Lab guide</a></li>
+    <li><a href="improve-app2.html">4. Improve Control App Part 2</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/cloud-native-robotz-hackathon/lab-guide/edit/main/content/modules/ROOT/pages/improve-app2.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Improve the Control App Part 2</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here is the second code drop for you. We now add a second function which will navigate the robot around an obstacle.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It use the distance sensor to navigate around obstacles</p>
+</li>
+<li>
+<p>Puts the code to drive around obstacles in the function <code>bypass_obstacle()</code></p>
+</li>
+<li>
+<p>Creates some more parameters to test, optimize and tune different values in your code</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_the_new_bypass_obstacle_function"><a class="anchor" href="#_add_the_new_bypass_obstacle_function"></a>Add the new "bypass_obstacle()" function</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below the new function <code>def search_for_hat:</code> add this function (as usual check you identation)</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Check for an obstacle directly in front and bypass it, if existing
+def bypass_obstacle():
+    # Determine if an obstacle is in sight
+    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
+
+    # Only continue if an obstacle is ahead
+    if not obstacle_in_sight:
+        return
+
+    # For debugging only
+    take_picture('static/current_view.jpg')
+
+    # Determine distance to obstacle
+    distance_to_object = distance_int()
+
+    print('### Bypass Obstacle Mode - START ###')
+
+    # Turn left
+    turn_left(angle_delta)
+
+    # Determine if there is another obstacle is in sight
+    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
+    print ('Got distance -> ', distance())
+
+    # If no other obstacle is in the bypass direction, move a bit forward
+    # and then go back again on course
+    if not obstacle_in_sight:
+        move_forward(20)
+        turn_right(angle_delta)
+
+    # Determine if original obsctacle is still in sight (after having turned back in original direction)
+    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
+    print ('Got distance -> ', distance())
+
+    # If original obstacle is not in sight anymore, move forward to bypass it
+    if not obstacle_in_sight:
+        # Move forward using the original distance to the obstacle and a buffer
+        move_forward(math.ceil(distance_to_object / 10) + 40)
+
+    print('### Bypass Obstacle Mode - END: SUCCESS! ###')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Look for the line <code>@application.route('/')</code> and right above add these parameters for the new function:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Define parameters for hat search and obstacle bypass algos
+min_distance_to_obstacle = 300 # mm; distance at which the obstacle bypass mode is activated
+angle_delta = 90 # deg; angle used for sidestepping obstacle</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now first test the new obstacle avoidance code by commenting out the function <code>search_for_hat())</code> from the <code>startRobot()</code> function and adding the <code>bypass_obstacle()</code> function like so:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">    # Drop your code here
+    # Initialize switch for identifying found and intercepted hats across functions
+    global hat_found_and_intercepted
+    hat_found_and_intercepted = False
+
+    # Main loop running until one hat is properly identified and intercepted (or the app ist stopped)
+    while thread_event.is_set() and not hat_found_and_intercepted:
+        # Check for an obstacle directly in front and bypass it, if existing
+        bypass_obstacle()
+
+        # Search for the hat and intercrept it
+        #search_for_hat()
+
+    print('Done')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Give the code a try. Place a barrier in front of the robot and test the object avoidance code.</p>
+</div>
+<div class="paragraph">
+<p>Try to change some of the value parameters and see if you can tune the performance of your robot.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_putting_it_together"><a class="anchor" href="#_putting_it_together"></a>Putting it together</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You should by now have tested both functions, it&#8217;s time to combine both to enable the robot to do challenge two as shown in the next chapter. The robot has to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>navigate around a barrier</p>
+</li>
+<li>
+<p>find the hat and drive towards it</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You have worked enough with the code to tackle this without a lot of instructions. Go on and try it out!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exercise"><a class="anchor" href="#_exercise"></a>Exercise</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Your mission: Your robot will be positioned in front of a barrier. It needs to drive around it, indentify the red fedora behind it and drive towards it, stopping before.</strong></p>
+</div>
+<div class="paragraph">
+<p>The playing field will look like in the first challenge with a barrier added:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/challenge2.png" alt="challenge2">
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="improve-app1.html" class="query-params-link">3. Improve Control App Part 1</a></span>
+  <span class="next"><a href="auto-robot.html" class="query-params-link">5. The Autonomous Robot: Compete!</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

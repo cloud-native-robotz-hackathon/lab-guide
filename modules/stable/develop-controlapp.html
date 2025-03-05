@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Develop Control Application :: Cloud Native Robotz Hackathon</title>
+    <link rel="canonical" href="https://cloud-native-robotz-hackathon.github.io/modules/stable/develop-controlapp.html">
+    <link rel="prev" href="control-robot.html">
+    <link rel="next" href="improve-app1.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <img src="../../_/img/robot.png" />
+      <h1>&nbsp;&nbsp;Cloud Native Robotz Hackathon</h1>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" target="_blank" href="https://github.com/cloud-native-robotz-hackathon/infrastructure/issues/new">Feedback</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="modules" data-version="stable">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">Lab guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="data-science.html">0. Data Science</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="control-robot.html">1. Control your Robot</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="develop-controlapp.html">2. Develop Control Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="improve-app1.html">3. Improve Control App Part 1</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="improve-app2.html">4. Improve Control App Part 2</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="auto-robot.html">5. The Autonomous Robot: Compete!</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="challenge-2.html">6. Final Challenge</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Lab guide</span>
+    <span class="version">stable</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Lab guide</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">stable</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Lab guide</a></li>
+    <li><a href="develop-controlapp.html">2. Develop Control Application</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/cloud-native-robotz-hackathon/lab-guide/edit/main/content/modules/ROOT/pages/develop-controlapp.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Develop Control Application</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the last chapter you have learned about controling the robot and using development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, here is a first simplified version of it. Let&#8217;s call it an MVP (minimal viable product).</p>
+</div>
+<div class="paragraph">
+<p>Review and test the code but don&#8217;t spend too much time with it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mvp_code"><a class="anchor" href="#_mvp_code"></a>MVP Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The basic code requirements are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>retrieving an image</p>
+</li>
+<li>
+<p>sending it to the object detection service</p>
+</li>
+<li>
+<p>analyzing the results</p>
+<div class="ulist">
+<ul>
+<li>
+<p>detected class</p>
+</li>
+<li>
+<p>confidence score</p>
+</li>
+<li>
+<p>coordinates of the bounding boxes in your camera image</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>use the result to determine how the robot should move</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Change the code in your dev environment to this :</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
+turn_counter = 0
+while thread_event.is_set():
+    objects = take_picture_and_detect_objects()
+    coordinates = find_highest_score(objects)
+
+    if coordinates and coordinates.confidence_score &gt; 0.5:
+        print(f'''Object with highest score -&gt; [
+            confidence score: {coordinates.confidence_score},
+            x upper left corner: {coordinates.x_upper_left},
+            y upper left corner: {coordinates.y_upper_left},
+            x lower right corner: {coordinates.x_lower_right},
+            y lower right corner: {coordinates.y_lower_right},
+            object class: {coordinates.object_class} ]''')
+
+        # Find the middle coordinate of the object, image size is 640x480
+        move_x = (coordinates.x_upper_left + coordinates.x_lower_right) / 2
+        print(f'move_x: {move_x}')
+        # should the robot move left or right to center the object
+        if move_x &lt; 320:
+            turn_left(10)
+        else:
+            turn_right(10)
+
+        # calculate the size of the object as it will grow when driving towards it
+        delta = coordinates.x_lower_right - coordinates.x_upper_left
+        print(f'delta: {delta}')
+        # stop if delta (size) is above a certain value
+        if delta &lt; 350:
+            move_forward(10)
+        else:
+            print('Done - arrived at the object')
+            return
+
+    else:
+        # no object detected, turn the robot and try again
+        if turn_counter &lt; 360:
+            turn_left(10)
+            turn_counter = turn_counter + 10
+        else:
+            print('Done - no object found')
+            return
+
+print('Done')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_does_this_code_do_you_ask"><a class="anchor" href="#_what_does_this_code_do_you_ask"></a>What does this code do, you ask?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Well first of all it keeps on looping until someone presses the <strong>Stop</strong> button. It takes a picture from the camera, finds the Fedora object with higest confidence score.</p>
+</div>
+<div class="paragraph">
+<p>Then it looks for the center of the bounding box. Depending on the position of the center point in the camera image, the code decides if the robot needs to turn left or right to align it with the fedora.</p>
+</div>
+<div class="paragraph">
+<p>Then it just keeps on driving until the bounding box has a certain size, which means that you are close enough to the Fedora.</p>
+</div>
+<div class="paragraph">
+<p>Now place a Fedora somewhere near your robot and see if it can find it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pushing_your_code"><a class="anchor" href="#_pushing_your_code"></a>Pushing your Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Currently your code only resides in your Workspace, which is called the "Inner Loop" in Development terms. To publish and build later you will need to push your code to your Git repository. So let&#8217;s already practice this.</p>
+</div>
+<div class="paragraph">
+<p>To be able to push you need to set up your git email</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open a new Terminal by click on the <strong>+</strong> Icon in the bottom right and choosing <strong>New Terminal</strong></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/open-terminal.png" alt="open terminal">
+</div>
+</div>
+</li>
+<li>
+<p>enter</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git config --global user.email "pilot@robot.to"
+git config --global user.name "pilot"</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To push your code:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the Dev Spaces menu on the left click on the Git icon</p>
+</li>
+<li>
+<p>Your modified files will be shown</p>
+</li>
+<li>
+<p>Select the relevant files (<code>app.py</code> and <code>config.py</code>)</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/git-push.png" alt="git push">
+</div>
+</div>
+</li>
+<li>
+<p>Right Click and select <strong>Stage Changes</strong></p>
+</li>
+<li>
+<p>Enter a comment in the top field</p>
+</li>
+<li>
+<p>At the blue <strong>Commit</strong> button, click on the downwards bracket at the very right and choose <strong>Commit &amp; Push</strong></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/git-commit-and-push.png" alt="git commit and push" width="420">
+</div>
+</div>
+</li>
+<li>
+<p>On the top a prompt dialog will open to enter your Gitea username and password</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/git-push-username.png" alt="git push username">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>username:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">team-1</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>password :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">secret-password</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you code has been pushed to your repo. You can check in Gitea if you want.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expected_outcome_of_this_chapter"><a class="anchor" href="#_expected_outcome_of_this_chapter"></a>Expected outcome of this chapter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After this chapter:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created &amp; tested a MVP robot control app to steer the robot to a fedora on the floor</p>
+</li>
+<li>
+<p>You have pushed the application code to your Git repo</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If anything is unclear about these points, please talk to your friendly facilitators.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now move on to the next chapter where you&#8217;ll create a more involved application and prove your data science and app dev skills as a team!</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="control-robot.html" class="query-params-link">1. Control your Robot</a></span>
+  <span class="next"><a href="improve-app1.html" class="query-params-link">3. Improve Control App Part 1</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
