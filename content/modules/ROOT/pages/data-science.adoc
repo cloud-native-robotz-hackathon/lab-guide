@@ -1,7 +1,7 @@
 
 = Data Science
 
-As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an object dection model from the YOLO-family (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries
+As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an object dection model from the https://docs.ultralytics.com/models/yolov5/[YOLO-family,window=_blank] (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries
 
 == Instantiate Workbench
 
@@ -102,7 +102,7 @@ image::workbench-clone.png[width=420]
 
 * On the left side in the menu click on the **Folder** icon.
 
-Next, we will train our model on the basis of a Yolo5 Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
+Next, we will train our model on the basis of a https://docs.ultralytics.com/models/yolov5/[Yolo5,window=_blank] Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
 === Model Training
 
@@ -126,7 +126,7 @@ image::open-images.png[]
 TIP: If you want to see the collection the model training is pulling images from, go to above website, click "Explore", set the **Type** to **Detection** and the **Class** to **Fedora**.
 
 * Step 2 : Preparing the class labels and training sets
-* Step 3 : Running the actual training on a Yolo 5 Model
+* Step 3 : Running the actual training on a https://docs.ultralytics.com/models/yolov5/[Yolo 5,window=_blank] Model
 * Step 4 : Converting the model format to onnx
 * Step 5 : Uploading it to an ODF S3 bucket
 
@@ -177,8 +177,11 @@ image::running-pipeline.png[]
 
 With the default settings, the Pipeline will run around 15 minutes.  Let's use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.
 
-=== Deploy S3 Browser
+== Deploy S3 Browser
 
+* In the left menu click on **Data Science Projects** to see all available Data Science Projects
+* A project has already been prepared for you to work in
+* Click on the project `{user}-ai`
 * In your project go on the tab **Workbenches**
 * Click on **Create workbench** and enter these values
 ** **Name:**
@@ -223,7 +226,7 @@ image::workbench-running-s3.png[]
 
 The browser will show you the contents of your bucket.  Except for a folder called `backup` it should be pretty empty at the moment.
 
-Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the Yolov5 and compute requirements. In the pipeline start form you could actually change the model version, and while the pipeline is at the model training step, you can see the loss functions in the logs. 
+Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the https://docs.ultralytics.com/models/yolov5/[Yolov5,window=_blank] and compute requirements. In the pipeline start form you could actually change the model version, and while the pipeline is at the model training step, you can see the loss functions in the logs. 
 
 Once the pipeline has run (Check the run) successfully the final model named latest-version.onnx will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
 
