@@ -172,8 +172,11 @@ image::running-pipeline.png[]
 
 With the default settings, the Pipeline will run around 15 minutes.  Let's use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.
 
-=== Deploy S3 Browser
+== Deploy S3 Browser
 
+* In the left menu click on **Data Science Projects** to see all available Data Science Projects
+* A project has already been prepared for you to work in
+* Click on the project `{user}-ai`
 * In your project go on the tab **Workbenches**
 * Click on **Create workbench** and enter these values
 ** **Name:**
