@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Robot Names :: Cloud Native Robotz Hackathon</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/course-template/modules/stable/appendix.html">
-    <link rel="prev" href="final-run.html">
+    <title>Appendix :: Cloud Native Robotz Hackathon</title>
+    <link rel="canonical" href="https://cloud-native-robotz-hackathon.github.io/modules/stable/appendix.html">
+    <link rel="prev" href="checkpoint-level-3.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -15,30 +15,12 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://demo.redhat.com" target="_blank">
-        <img src="../../_/img/rhdp-logo.svg" height="35px" alt="Red Hat Demo Platform">
-      </a>
-      <a class="navbar-item" href="https://redhat-scholars.github.io/course-template">Cloud Native Robotz Hackathon</a>
-      <button class="navbar-burger" data-target="topbar-nav">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <img src="../../_/img/robot.png" />
+      <h1>&nbsp;&nbsp;Cloud Native Robotz Hackathon</h1>
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">Help</a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" target="_blank" href="https://redhat.service-now.com/help?id=sc_cat_item&sys_id=00c0316a1bf39450e43942a7bc4bcbd1">Open Support Case</a>
-            <a class="navbar-item" target="_blank" href="https://rhdp.statuspage.io/">Status Page</a>
-            <a class="navbar-item" target="_blank" href="https://demo.redhat.com/support">Solution Support: Service Level</a>
-            <a class="navbar-item" target="_blank" href="https://content.redhat.com/us/en/product/cross-portfolio-initiatives/rhdp.html">Learn more</a>
-            <a class="navbar-item" target="_blank" href="https://videos.learning.redhat.com/channel/RHPDS%2B-%2BRed%2BHat%2BProduct%2Band%2BPortfolio%2BDemo%2BSystem/277722533">How to videos</a>
-          </div>
-        </div>
-        <a class="navbar-item" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfwGW7ql2lDfaLDpg4Bgj_puFEVsM0El6-Nz8fyH48RnGLDrA/viewform">Feedback</a>
-        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <a class="navbar-item" target="_blank" href="https://github.com/cloud-native-robotz-hackathon/infrastructure/issues/new">Feedback</a>
       </div>
     </div>
   </nav>
@@ -57,16 +39,25 @@
     <a class="nav-link" href="data-science.html">0. Data Science</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development.html">1. Development</a>
+    <a class="nav-link" href="development.html">1. Control your Robot</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="integration.html">2. Integration</a>
+    <a class="nav-link" href="integration.html">2. Develop Control Application</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="edge-devops.html">3. Edge DevOps</a>
+    <a class="nav-link" href="edge-devops.html">3. Deploy Control App on Robot</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="final-run.html">4. Final Run</a>
+    <a class="nav-link" href="checkpoint-level-1.html">4. Challenge Level 1</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="enhance-app.html">5. Enhance the Control App</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="checkpoint-level-2.html">6. Challenge Level 2</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="checkpoint-level-3.html">7. Challenge Level 3</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="appendix.html">Appendix</a>
@@ -109,57 +100,110 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Robot Names</h1>
+<h1 class="page">Appendix</h1>
 <div class="sect1">
-<h2 id="_c3po"><a class="anchor" href="#_c3po"></a>c3po</h2>
+<h2 id="_retrain_and_redeploy_model"><a class="anchor" href="#_retrain_and_redeploy_model"></a>Retrain and Redeploy Model</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>C-3PO is a droid programmed for etiquette and protocol, built by the heroic Jedi Anakin Skywalker, and a constant companion to astromech R2-D2. Over the years, he was involved in some of the galaxy&#8217;s most defining moments and thrilling battles&#8201;&#8212;&#8201;and is fluent in more than seven million forms of communication.</p>
+<p>Perhaps you would to like to tweak and increase the detection quality of your model later on? You can rerun the Pipeline and increase the Sample Size (Number of Images used for training), epochs (Number of training iterations) and batch size.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+When rerunning the pipeline, a new onnx model will be created in the S3 bucket <code>/models</code> folder and copied over the <code>model-latest.onnx</code> file. It will not automatically be deployed to the running model server!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To deploy the new model to the model server, we need to find out the new model filename. In the <strong>pipeline run</strong> view, click on the last task (<code>model_upload</code>) and look a the logs.  You should see an entry similar to this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>initializing S3 client
+uploading model to models/model-2410151507.onnx
+model uploaded and available as "models/model-2410151507.onnx"
+uploading model to models/model-latest.onnx
+model uploaded and available as "models/model-latest.onnx"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case <code>model-2410151507.onnx</code> is the new model created by this pipeline run.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Now in your Openshift AI Project go to <strong>Models</strong> and click on the three dots next to the model <code>fedora-detection-service</code></p>
+</li>
+<li>
+<p>Change the <strong>Path</strong> value to your new model (e.g. models/model-2410151507.onnx)</p>
+</li>
+<li>
+<p>This wil trigger a redeploy and you can now test the new model</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+There is another more kube native way to update the model. You can actually change the yaml of the underlying OpenShift ressource.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gort"><a class="anchor" href="#_gort"></a>gort</h2>
+<h2 id="_model_redeploy_by_editing_resource_yaml"><a class="anchor" href="#_model_redeploy_by_editing_resource_yaml"></a>Model redeploy by editing Resource yaml</h2>
 <div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Go to the <strong>OpenShift Console</strong> select your project</p>
+</li>
+<li>
+<p>In the menu on the left click on <strong>Home</strong> &gt; <strong>Search</strong></p>
+</li>
+<li>
+<p>Now in the <strong>resources</strong> field enter <code>InferenceService</code></p>
+</li>
+<li>
+<p>Check <strong>InferenceService</strong> in the dropdown</p>
+</li>
+<li>
+<p>Click on the <code>fedora-detection-service</code></p>
+</li>
+<li>
+<p>Click on <strong>YAML</strong> to edit</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
-<p>Gort is a fictional humanoid robot that appeared first in the 1951 20th Century Fox American science fiction film The Day the Earth Stood Still and later in its 2008 remake.</p>
+<p>Look for the <strong>path</strong> entry</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> path: models/model-latest.onnx</pre>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_marc13"><a class="anchor" href="#_marc13"></a>marc13</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The M.A.R.K 13 is the main antagonist of the 1990 British science fiction horror film Hardware. It is a homicidal robot built by the government to commit genocide.</p>
+<p>and change it to your new model name</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_marvin"><a class="anchor" href="#_marvin"></a>marvin</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Marvin the Paranoid Android is a fictional character in The Hitchhiker&#8217;s Guide to the Galaxy series by Douglas Adams. Marvin is the ship&#8217;s robot aboard the starship Heart of Gold.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_r2d2"><a class="anchor" href="#_r2d2"></a>r2d2</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>R2-D2 was an R2-series astromech droid manufactured by Industrial Automaton with masculine programming. A smart, spunky droid who would serve a multitude of masters over his lifetime, R2-D2 was never given a full memory wipe nor did he ever receive new programming, with these factors resulting in an adventurous and independent attitude. Often finding himself in pivotal moments in galactic history, his bravery and ingenuity saved the galaxy on numerous occasions.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_t1000"><a class="anchor" href="#_t1000"></a>t1000</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In the Terminator franchise, the T-1000 is a Terminator, a line of android assassins created by the artificial intelligence Skynet. In the future, Skynet is engaged in a war against humans, who are led by John Connor. In Terminator 2, the T-1000 is sent back in time to kill young John. The T-1000 is made up of a liquid metal, known in the film as mimetic polyalloy, which allows it to shapeshift into other people or objects that come into contact with it.</p>
+<p>This opens up possibilities to use GitOps to configure your MLOps ressources by the way.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="final-run.html" class="query-params-link">4. Final Run</a></span>
+  <span class="prev"><a href="checkpoint-level-3.html" class="query-params-link">7. Challenge Level 3</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
