@@ -358,19 +358,19 @@ Here’s an example of how to optimize your workflow:
 
 video::devspaces-devenv.mp4[width=640]
 
-== Coding Challenges
+== Coding Exercises
 
-To become more familiar with the robot controls (and have some more fun), here are two challenges for you. Use your new robot skills and change the application to handle an obstacle win the challenges:
+To become more familiar with the robot controls (and have some more fun), here are two exercises for you. Use your new robot skills and change the application to handle an obstacle placed in the robot's path:
 
-**First Challenge**
+**First Exercise**
 
 Create code to simply guide your robot around a barrier. Just use the movement commands, approximate the distances and try to get your robot around the obstacle as good as possible.
 
-**Second Challenge**
+**Second Exercise**
 
 Of course hardcoding distances into you code will not work for changing environments.  Imagine something is blocking your robots path at an unknown distance! Your mission is now to drive straight towards a barrier as fast as possible but stopping right before it (and yes, not crashing into it).
 
-That means you will need to create loop of driving and checking the distance. Use the condition `+thread_event.is_set()+` in your while loop, so that you the execution can be stopped from the **Stop** button command.
+That means you will need to create a loop of driving and checking the distance. Use the condition `+thread_event.is_set()+` in your while loop, so that you the execution can be stopped from the **Stop** button command.
 
 [source,python,role=execute,subs="attributes"]
 ----
