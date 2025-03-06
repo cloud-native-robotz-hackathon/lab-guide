@@ -211,7 +211,10 @@
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">image_resolution_x = 640 # pixels; resolution of camera used in robot
 confidence_threshold = 0.6 # e.g. 0.6 = 60%; confidence at which an object identified as hat is intercepted
 delta_threshold = 280 # pixels; delta for standard fedora (defines minimum desired pixel size of fedora in image)
-hat_found_and_intercepted = False # boolean; switch for a found and intercepted hat</code></pre>
+hat_found_and_intercepted = False # boolean; switch for a found and intercepted hat
+# Define parameters for hat search and obstacle bypass algos
+min_distance_to_obstacle = 300 # mm; distance at which the obstacle bypass mode is activated
+angle_delta = 90 # deg; angle used for sidestepping obstacle</code></pre>
 </div>
 </div>
 <div class="paragraph">

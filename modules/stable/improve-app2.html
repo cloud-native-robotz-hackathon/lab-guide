@@ -170,16 +170,6 @@ def bypass_obstacle():
 </div>
 </div>
 <div class="paragraph">
-<p>Look for the line <code>@application.route('/')</code> and right above add these parameters for the new function:</p>
-</div>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Define parameters for hat search and obstacle bypass algos
-min_distance_to_obstacle = 300 # mm; distance at which the obstacle bypass mode is activated
-angle_delta = 90 # deg; angle used for sidestepping obstacle</code></pre>
-</div>
-</div>
-<div class="paragraph">
 <p>Now first test the new obstacle avoidance code by commenting out the function <code>search_for_hat())</code> from the <code>startRobot()</code> function and adding the <code>bypass_obstacle()</code> function like so:</p>
 </div>
 <div class="listingblock execute">
