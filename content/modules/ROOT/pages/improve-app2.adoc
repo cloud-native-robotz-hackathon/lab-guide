@@ -54,15 +54,6 @@ def bypass_obstacle():
     print('### Bypass Obstacle Mode - END: SUCCESS! ###')
 ----
 
-Look for the line `+@application.route('/')+` and right above add these parameters for the new function:
-
-[source,python,role=execute,subs="attributes"]
-----
-# Define parameters for hat search and obstacle bypass algos
-min_distance_to_obstacle = 300 # mm; distance at which the obstacle bypass mode is activated
-angle_delta = 90 # deg; angle used for sidestepping obstacle
-----
-
 Now first test the new obstacle avoidance code by commenting out the function `+search_for_hat())+` from the `+startRobot()+` function and adding the `+bypass_obstacle()+` function like so:
 
 [source,python,role=execute,subs="attributes"]
