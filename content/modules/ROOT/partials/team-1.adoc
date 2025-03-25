@@ -1,1 +1,1 @@
-gort.lan
+gort
