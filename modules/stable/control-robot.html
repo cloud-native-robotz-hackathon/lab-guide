@@ -324,9 +324,9 @@ copy the URL.
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort.lan
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort
 
-curl -X POST http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/forward/2 -d user_key=${ROBOT_NAME}</code></pre>
+curl -X POST http://api.hub-controller.svc.cluster.local/robot/forward/2 -d user_key=${ROBOT_NAME}</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -349,9 +349,9 @@ Some Browers will ask you wether to allow pasting text. Approve this to proceed.
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort.lan
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort
 
-curl -v http://hub-controller-live.red-hat-service-interconnect-data-center.svc.cluster.local:8080/robot/camera?user_key=${ROBOT_NAME} | base64 -d &gt; image.jpg</code></pre>
+curl -v http://api.hub-controller.svc.cluster.local/robot/camera?user_key=${ROBOT_NAME} | base64 -d &gt; image.jpg</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -518,7 +518,7 @@ Don&#8217;t click any of the buttons yet, we need to setup things before.
 <p><strong>&lt;REPLACE_WITH_ROBOT_NAME&gt;</strong>:</p>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gort.lan</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gort</code></pre>
 </div>
 </div>
 </li>
