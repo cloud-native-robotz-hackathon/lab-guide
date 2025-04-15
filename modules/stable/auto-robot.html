@@ -347,14 +347,51 @@ In real world projects, you would use a tool such as <strong>Kustomize</strong> 
 <div class="paragraph">
 <p>Once you commit the changes <strong>OpenShift GitOps</strong> will start to work on the deployment.</p>
 </div>
+<div class="sect2">
+<h3 id="_check_openshift_gitops_argocd_rollout"><a class="anchor" href="#_check_openshift_gitops_argocd_rollout"></a>Check OpenShift GitOps / ArgoCD rollout</h3>
 <div class="paragraph">
-<p>To check the status of the rollout, please check the GitOps Panel / ArgoCD WebUI. It will be displayed on the wall or television.</p>
+<p>Login into OpenShift GitOps / ArgoCD:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open: <a href="https://openshift-gitops-server-openshift-gitops.apps.example.com" class="bare">https://openshift-gitops-server-openshift-gitops.apps.example.com</a></p>
+</li>
+<li>
+<p>Click <strong>"LOG IN VIA OPENSHIFT"</strong></p>
+</li>
+<li>
+<p>Username:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">team-1</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Password :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">secret-password</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Click <strong>Allow selected permissions</strong></p>
+</li>
+<li>
+<p>Now you can follow the rollout:</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/argocd-overview.png" alt="argocd overview">
+</div>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>We understand the steps taken in this chapter are pretty involved. Feel free to discuss what happened with the facilitators.</p>
+<p><strong>But the outcome is clear</strong>: The control application and the image detection model are running as containers locally on your robot, enabling autonomous robot operations.</p>
 </div>
-<div class="paragraph">
-<p>But the outcome is clear: The control application and the image detection model are running as containers locally on your robot, enabling autonomous robot operations.</p>
 </div>
 </div>
 </div>
