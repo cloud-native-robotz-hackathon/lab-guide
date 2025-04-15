@@ -114,9 +114,27 @@ TIP: In real world projects, you would use a tool such as **Kustomize** to add m
 
 Once you commit the changes **OpenShift GitOps** will start to work on the deployment.
 
-To check the status of the rollout, please check the GitOps Panel / ArgoCD WebUI. It will be displayed on the wall or television.
+=== Check OpenShift GitOps / ArgoCD rollout
 
-We understand the steps taken in this chapter are pretty involved. Feel free to discuss what happened with the facilitators.
+Login into OpenShift GitOps / ArgoCD: 
 
-But the outcome is clear: The control application and the image detection model are running as containers locally on your robot, enabling autonomous robot operations. 
+* Open: https://openshift-gitops-server-openshift-gitops.{openshift_cluster_ingress_domain}
+* Click **"LOG IN VIA OPENSHIFT"**
+* Username:
++
+[source,text,role=execute,subs="attributes"]
+----
+{user}
+----
+* Password :
++
+[source,text,role=execute,subs="attributes"]
+----
+{password}
+----
+* Click **Allow selected permissions**
+* Now you can follow the rollout:
++
+image::argocd-overview.png[]
 
+**But the outcome is clear**: The control application and the image detection model are running as containers locally on your robot, enabling autonomous robot operations. 
