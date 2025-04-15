@@ -266,7 +266,6 @@ image::serving-runtime.png[]
 
 === Deploy Model
 
-* Click **Go to Models** next to your just created model server
 * Click **Deploy model**
 * In the form enter
 ** Model deployment name:
