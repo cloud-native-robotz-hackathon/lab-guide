@@ -166,7 +166,6 @@ This will submit the pipeline to OpenShift to run the training
 * Select your Data Science Project {user}-ai
 * Select **Pipelines** tab
 * Expand the **model-training-cpu** Pipeline by clicking on the **>**
-* Click on the three dots at the end of the bottom line
 * Click on **View runs**
 +
 image::view-runs.png[]
