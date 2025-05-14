@@ -1,8 +1,8 @@
 = Optional : Check Your Surroundings
 
-Congratulations if you have made it this far. our have deployed your solution all the way to the edge on the robot.
+Congratulations if you have made it this far, you have deployed your solution all the way to the edge on the robot.
 
-But right now we have only used the camera of the robot to check for hats, but in a more complex and dangerous environment we don't want our little guy bumping into things. We want to detect obstacles and avoid them.
+But right now we have mainly used the camera of the robot to check for hats, but in a more complex and dangerous environment we don't want our little guy bumping into things. We want to detect obstacles and avoid them.
 
 Head back to your Dev Spaces Tab and here is a new code drop for you. We now add a second function which will navigate the robot around an obstacle.
 
