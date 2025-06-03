@@ -362,12 +362,15 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Have a look at the pipeline steps:</p>
+<p>This will show you a view of our Data Science Pipeline. This pipeline runs several steps / Python scripts in sequence to train our model. Again you don&#8217;t have chnage anything here but feel to have a look at the thse steps by clicking on them.</p>
+</div>
+<div class="paragraph">
+<p>Here is a quick explanation what each step of the Pipeline does:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Step 1 : Downloading a set of sample images with labels and coordinates for our fedora class from the <a href="https://storage.googleapis.com/openimages/web/index.html" target="_blank" rel="noopener">OpenImages website</a>.</p>
+<p>Step 1 : Downloads a set of sample images with labels and coordinates for our fedora class from the <a href="https://storage.googleapis.com/openimages/web/index.html" target="_blank" rel="noopener">OpenImages website</a>.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/open-images.png" alt="open images">
@@ -391,21 +394,21 @@ If you want to see the collection the model training is pulling images from, go 
 <div class="ulist">
 <ul>
 <li>
-<p>Step 2 : Preparing the class labels and training sets</p>
+<p>Step 2 : Prepares the class labels and training sets</p>
 </li>
 <li>
-<p>Step 3 : Running the actual training on a <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolo 5</a> Model</p>
+<p>Step 3 : Runs the actual training on a <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolo 5</a> Model</p>
 </li>
 <li>
-<p>Step 4 : Converting the model format to onnx</p>
+<p>Step 4 : Converts the model format to onnx</p>
 </li>
 <li>
-<p>Step 5 : Uploading it to an ODF S3 bucket</p>
+<p>Step 5 : Uploads it to an ODF S3 bucket</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The pipeline can be configured to download and train on specifc image object class (e.g. Fedoras).</p>
+<p>The pipeline can be configured to download and train on a specifc image object class such as  Fedoras, which is want we want.</p>
 </div>
 <div class="ulist">
 <ul>
