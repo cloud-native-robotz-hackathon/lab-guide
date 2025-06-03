@@ -1,6 +1,10 @@
 = Improve the Control App Part 2
 
-Here is the second code drop for you. We now add a second function which will navigate the robot around an obstacle.
+Congratulations if you have made it this far.
+
+Right now we have mainly used the camera of the robot to check for hats, but in a more complex and dangerous environment we don't want our little guy bumping into things. We want to detect obstacles and avoid them.
+
+Head back to your DevSpaces Tab and here is a new code drop for you. We now add a second function which will navigate the robot around an obstacle.
 
 * It use the distance sensor to navigate around obstacles
 * Puts the code to drive around obstacles in the function `+bypass_obstacle()+`
@@ -80,7 +84,7 @@ Try to change some of the value parameters and see if you can tune the performan
 
 == Putting it together
 
-You should by now have tested both functions, it's time to combine both to enable the robot to do challenge two as shown in the next chapter. The robot has to:
+You should by now have tested both functions, it's time to combine both functions into one main loop that continuously checks for obstacles and hats. The robot has to:
 
 * navigate around a barrier
 * find the hat and drive towards it
@@ -89,8 +93,8 @@ You have worked enough with the code to tackle this without a lot of instruction
 
 == Exercise
 
-**Your mission: Your robot will be positioned in front of a barrier. It needs to drive around it, indentify the red fedora behind it and drive towards it, stopping before.**
+**Your mission: Your robot should be positioned in front of a barrier. It needs to drive around it, indentify the red fedora behind it and drive towards it, stopping before.**
 
-The playing field will look like in the first challenge with a barrier added:
+The playing field should look like in the first challenge with a barrier added:
 
 image::challenge2.png[]
