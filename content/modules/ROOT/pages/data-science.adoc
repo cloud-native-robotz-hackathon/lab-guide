@@ -114,20 +114,22 @@ Notice that we now have a couple of python scripts containing code to execute th
 
 * Double click on `model-training-cpu.pipeline`
 
-Have a look at the pipeline steps:
+This will show you a view of our Data Science Pipeline. This pipeline runs several steps / Python scripts in sequence to train our model. Again you don't have chnage anything here but feel to have a look at the thse steps by clicking on them.
 
-* Step 1 : Downloading a set of sample images with labels and coordinates for our fedora class from the https://storage.googleapis.com/openimages/web/index.html[OpenImages website,window=_blank].
+Here is a quick explanation what each step of the Pipeline does:
+
+* Step 1 : Downloads a set of sample images with labels and coordinates for our fedora class from the https://storage.googleapis.com/openimages/web/index.html[OpenImages website,window=_blank].
 +
 image::open-images.png[]
 
 TIP: If you want to see the collection the model training is pulling images from, go to above website, click "Explore", set the **Type** to **Detection** and the **Class** to **Fedora**.
 
-* Step 2 : Preparing the class labels and training sets
-* Step 3 : Running the actual training on a https://docs.ultralytics.com/models/yolov5/[Yolo 5,window=_blank] Model
-* Step 4 : Converting the model format to onnx
-* Step 5 : Uploading it to an ODF S3 bucket
+* Step 2 : Prepares the class labels and training sets
+* Step 3 : Runs the actual training on a https://docs.ultralytics.com/models/yolov5/[Yolo 5,window=_blank] Model
+* Step 4 : Converts the model format to onnx
+* Step 5 : Uploads it to an ODF S3 bucket
 
-The pipeline can be configured to download and train on specifc image object class (e.g. Fedoras).
+The pipeline can be configured to download and train on a specifc image object class such as  Fedoras, which is want we want.
 
 * To configure a class, open the file called `configuration.yaml`.
 
