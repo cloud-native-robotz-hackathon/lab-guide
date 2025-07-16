@@ -25,7 +25,7 @@ To develop our flashy AI enhanced app, we will use **OpenShift Dev Spaces**, a w
 
 Next we are going to start a new Workspace where all the editing is done and we will initialize it with a https://devfile.io/[DevFile].
 
-TIP: A  **DevFile** is a definition for environment, tooling, settings and runtimes for our development Workspace. No more endless installations and configurations. We will be  ready to hack right away. Since a matching **DevFile** is already checked into out Git repo, we can use it directly to initialize a workspace.
+TIP: A  **DevFile** is a definition for environment, tooling, settings and runtimes for our development Workspace. No more endless installations and configurations. We will be  ready to hack right away. Since a matching **DevFile** is already checked into our Git repo, we can use it directly to initialize a workspace.
 
 * Select **Create Workspace** in the left menu
 * Enter **Git Repo URL** :
@@ -119,7 +119,7 @@ curl -X POST http://api.hub-controller.svc.cluster.local/robot/forward/2 -d user
 
 ----
 
-TIP: Some Browers will ask you wether to allow pasting text. Approve this to proceed.
+TIP: Some Browsers will ask you wether to allow pasting text. Approve this to proceed.
 
 Awesome, right? You are now an official robot pilot.
 
@@ -253,9 +253,11 @@ If all goes well your robot should move forward. Congratulations, your robot has
 
 If it doesn't move, have look at the Terminal output in **Dev Spaces** and recheck your `config.py` entries.
 
+TIP: Sometimes the auto-reload of the app doesn't work and the app stops, you'll see this in the terminal window. If this happens, just follow the steps above under **If you missed the Popups** and the app will restart.
+
 === Some more movement
 
-Now let the robot drive forward, look left and right and then retreat again. And for the fun of it, let it get the distance and print it out.
+Now let the robot drive forward, look left and right and then retreat again.
 
 Edit the the function `startRobot()` again so it looks like this:
 
@@ -286,7 +288,7 @@ print ('Got distance -> ', dist)
 print('Done')
 ----
 
-Run the code with the **Run** button as usual.  Hold your hand in front of the sensor and see how tha value changes.  Pretty cool. No more bumping into stuff.
+Run the code with the **Run** button as usual.  Hold your hand in front of the sensor and see how the value changes.  Pretty cool. No more bumping into stuff.
 
 == Robot Vision
 
@@ -349,12 +351,12 @@ The robot control page will also display the last image from the camera every 5 
 
 == Set Up Your Robot Development Editor
 
-To enhance your development experience and see what the robot sees in the IDE, we provide two reference images with our example code that can be constantly replaced :
+To enhance your development experience and see what the robot sees in the IDE, we provide two images with our example code that are constantly replaced when acquiring a new image:
 
 * `static/current_view_box.jpg` - current camera image with detection bounding boxes
 * `static/current_view.jpg` - current camera image
 
-Here’s an example of how to arrange the IDE optimize your dev workflow:
+Here’s an example of how to arrange the IDE to optimize your dev workflow:
 
 video::devspaces-devenv.mp4[width=640]
 
@@ -370,7 +372,7 @@ Create code to simply guide your robot around a barrier. Just use the movement c
 
 Of course hardcoding distances into you code will not work for changing environments.  Imagine something is blocking your robots path at an unknown distance! Your mission is now to drive straight towards a barrier as fast as possible but stopping right before it (and yes, not crashing into it).
 
-That means you will need to create a loop of driving and checking the distance. Use the condition `+thread_event.is_set()+` in your while loop, so that you the execution can be stopped from the **Stop** button command.
+That means you will need to create a loop of driving and checking the distance. Use the condition `+thread_event.is_set()+` in your while loop, so that the execution can be stopped from the **Stop** button command.
 
 [source,python,role=execute,subs="attributes"]
 ----

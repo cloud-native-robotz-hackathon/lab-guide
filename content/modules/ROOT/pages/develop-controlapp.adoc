@@ -1,6 +1,6 @@
 = Develop Control Application
 
-In the last chapter you have learned about controling the robot and using development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, here is a first simplified version of it. Let's call it an MVP (minimal viable product). 
+In the last chapter you have learned about controling the robot and using the development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, here is a first simplified version of it. Let's call it an MVP (minimal viable product). 
 
 Review and test the code but don't spend too much time with it.
 
