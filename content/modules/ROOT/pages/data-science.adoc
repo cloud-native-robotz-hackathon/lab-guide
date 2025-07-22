@@ -23,11 +23,12 @@ Let's login into **OpenShift AI**
 
 * Click *Skip tour*
 +
-image::skip-tour.png[]
+image::skip-tour.png[width=420,align=left]
 
 * Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
 +
-image::rhoai-menu.png[]
+[.text-left]
+image::rhoai-menu.png[width=350]
 
 * Click on **Login with OpenShift**
 * Login with the same credentials as before
