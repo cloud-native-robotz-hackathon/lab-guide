@@ -26,7 +26,7 @@ image::edge-devops/start-pipeline.png[]
 
 - Click on Start to start the pipeline
 +
-image::edge-devops/start-pipeline-2.png[]
+image::edge-devops/start-pipeline-2.png[width=700px]
 
 == Build a Container Image of the Application
 
@@ -34,7 +34,7 @@ When done with the app we will package it in a Container Image as well.
 
 A matching pipeline has been added to your template app repository. This pipeline is triggered by the creation of a Tag in Gitea. So once you are ready, all you need to do is create a Tag and the Pipeline will build and push the Image to the local OpenShift Registry.
 
-* Login into {gitea_console_url}/{user}/starter-app-python[Gitea] with
+* Login into {gitea_console_url}/{user}/starter-app-python[Gitea, window=_blank] with
 ** username:
 +
 [source,text,role=execute,subs="attributes"]
@@ -52,7 +52,12 @@ A matching pipeline has been added to your template app repository. This pipelin
 +
 image::gitea-release.png[]
 * Click on **New Release**
-* Enter the **Tag name**  `v1`
+* Enter the **Tag name**:
++
+[source,text,role=execute,subs="attributes"]
+----
+v1
+----
 * Click on the button **Create Tag Only**
 
 Now please open {openshift_console_url}/pipelines/ns/{user}-dev/pipeline-runs["OpenShift Console",window=_blank].
@@ -71,10 +76,10 @@ Now that we have the images we can deploy them to the robot.  Since the robots a
 
 A **OpenShift GitOps** project has already been setup that listens to changes of a configuration repository. The microshift of your robot as been added as manged cluster so any change in the repo will be rolled out diretcly to your robot. All you need to do is update the configuration code in Gitea.
 
-Have a look at the Git repo : {gitea_console_url}/{user}/robot-gitops
+Have a look at the Git repo : {gitea_console_url}/{user}/robot-gitops[robot-gitops, window=_blank]
 
 * The object detection image needs to be set here:
-** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml
+** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml[robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml, window=_blank]
 *** Click on the pen icon on the top right to edit the file
 *** In the resource yaml look for the field `image:` with the value
 +
@@ -92,7 +97,7 @@ default-route-openshift-image-registry.{openshift_cluster_ingress_domain}/{user}
 *** Click on the **Commit Changes** Button at the very bottom
 
 * The app image needs to be set here:
-** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml
+** {gitea_console_url}/{user}/robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml[robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml, window=_blank]
 *** Click on the pen icon on the top right to edit the file
 *** In the resource yaml look for the field `image` with the value
 +
@@ -118,8 +123,10 @@ Once you commit the changes **OpenShift GitOps** will start to work on the deplo
 
 Login into OpenShift GitOps / ArgoCD: 
 
-* Open: https://openshift-gitops-server-openshift-gitops.{openshift_cluster_ingress_domain}
+* Open: https://openshift-gitops-server-openshift-gitops.{openshift_cluster_ingress_domain}[OpenShift GitOps/ArgoCD, window=_blank]
 * Click **"LOG IN VIA OPENSHIFT"**
++
+image::argocd-login.png[width=450px]
 * Username:
 +
 [source,text,role=execute,subs="attributes"]

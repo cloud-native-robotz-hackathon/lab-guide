@@ -23,11 +23,12 @@ Let's login into **OpenShift AI**
 
 * Click *Skip tour*
 +
-image::skip-tour.png[]
+image::skip-tour.png[width=420,align=left]
 
 * Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
 +
-image::rhoai-menu.png[]
+[.text-left]
+image::rhoai-menu.png[width=350]
 
 * Click on **Login with OpenShift**
 * Login with the same credentials as before
@@ -73,7 +74,7 @@ image::workbench-running.png[]
 
 == Create your Model in JupyterLab
 
-* Click on the Open link, next to the Stop link in the fedora-detection Workbench line to open the JuypterLab Workbench
+* Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench
 * Login with you OpenShift credentials and allow selected permissions
 
 The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced Data Scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:
@@ -114,7 +115,7 @@ Notice that we now have a couple of python scripts containing code to execute th
 
 * Double click on `model-training-cpu.pipeline`
 
-This will show you a view of our Data Science Pipeline. This pipeline runs several steps / Python scripts in sequence to train our model. Again you don't have chnage anything here but feel to have a look at the thse steps by clicking on them.
+This will show you a view of our Data Science Pipeline. This pipeline runs several steps / Python scripts in sequence to train our model. Again you don't have to change anything here but feel free to have a look at the steps by clicking on them.
 
 Here is a quick explanation what each step of the Pipeline does:
 
@@ -167,8 +168,6 @@ image::view-runs.png[]
 +
 image::view-runs2.png[]
 
-* Click on the currently running pipeline
-
 This will show the running steps of the pipeline
 
 image::running-pipeline.png[]
@@ -207,9 +206,8 @@ Wait until the **Status** of the Workbench is changed from "Starting" to "Runnin
 image::workbench-running-s3.png[]
 ====
 
-* Click on the Open link, next to the Stop link in the fedora-detection Workbench line to open the JuypterLab Workbench
+* Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench
 * Login with your OpenShift credentials and allow selected permissions
-* Allow selected permissions
 * Accept the disclaimer
 
 The browser will show you the contents of your bucket.  Except for a folder called `backup` it contains some backup models.
@@ -230,7 +228,7 @@ You now have a trained model for object recognition. To use the model we will de
 First we need to configure a model server:
 
 * Click on **Data Science Projects** in the main menu on the left and make sure you have selected your `{user}-ai` again
-* Under the section **Models** click on **Add model server**
+* Select the tab **Models** and click on **Add model server**
 * Model server name :
 +
 [source,bash,role=execute,subs="attributes"]
@@ -248,7 +246,7 @@ image::serving-runtime.png[]
 
 === Deploy Model
 
-* Click **Go to Models** next to your just created model server
+* Under **Models and model servers** you'll see your new model server
 * Click **Deploy model**
 * In the form enter
 ** Model deployment name:
@@ -274,7 +272,7 @@ Wait for the server to start. It may take a bit before the model server is able 
 
 == Model Testing
 
-Now it's time to finally test the model. If you remember previously, our model training was limited by several factors and there when testing the model out, the confidence score will vary between 0.3-0.9 depending on different factors such as distance, lighting and other.
+Now it's time to finally test the model. And since we are Data Scientists here, we'll run the first tests to see how the model is performing in our JupyterLab Workbench.
 
 * Copy the inference endpoint URL that is published through an OpenShift Route (and save it somewhere)
 +
@@ -304,7 +302,7 @@ image::run-full-notebook.png[]
 
 You will see any identified classes with bounding boxes and confidence score at the end of the notebook.
 
-You can test your model with different images in the `sample-images` folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the `sample_images` folder. OBS! Make sure you adjust the image name in `image_path` variable before running the notebook again AND that the format of the images you take have a kvadratic resolution. This can be adjusted in most smartphones today. If you dont use a kvadratic resolution, the printed bounding boxes may be painted in the wrong areas of the pcitures.
+You can test your model with different images in the `sample-images` folder. But even better you can upload your own images. Take some pictures with your laptop or smartphone of a fedora on the floor and upload them into the `sample_images` folder. Make sure you adjust the image name in `image_path` variable before running the notebook again AND that the format of the images you take is set to square resolution. This can be adjusted in most smartphones today. If you dont use square resolution, the printed bounding boxes may be drawn in the wrong areas of the pictures.
 
 [TIP]
 ====
