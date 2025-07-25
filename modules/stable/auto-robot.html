@@ -152,7 +152,7 @@
 <p>Click on Start to start the pipeline</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/edge-devops/start-pipeline-2.png" alt="start pipeline 2">
+<img src="_images/edge-devops/start-pipeline-2.png" alt="start pipeline 2" width="700px">
 </div>
 </div>
 </li>
@@ -172,7 +172,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Login into <a href="https://gitea.apps.example.com/team-1/starter-app-python">Gitea</a> with</p>
+<p>Login into <a href="https://gitea.apps.example.com/team-1/starter-app-python" target="_blank" rel="noopener">Gitea</a> with</p>
 <div class="ulist">
 <ul>
 <li>
@@ -209,7 +209,12 @@
 <p>Click on <strong>New Release</strong></p>
 </li>
 <li>
-<p>Enter the <strong>Tag name</strong>  <code>v1</code></p>
+<p>Enter the <strong>Tag name</strong>:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">v1</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p>Click on the button <strong>Create Tag Only</strong></p>
@@ -254,7 +259,7 @@ You should see you Pipeline running.</p>
 <p>A <strong>OpenShift GitOps</strong> project has already been setup that listens to changes of a configuration repository. The microshift of your robot as been added as manged cluster so any change in the repo will be rolled out diretcly to your robot. All you need to do is update the configuration code in Gitea.</p>
 </div>
 <div class="paragraph">
-<p>Have a look at the Git repo : <a href="https://gitea.apps.example.com/team-1/robot-gitops" class="bare">https://gitea.apps.example.com/team-1/robot-gitops</a></p>
+<p>Have a look at the Git repo : <a href="https://gitea.apps.example.com/team-1/robot-gitops" target="_blank" rel="noopener">robot-gitops</a></p>
 </div>
 <div class="ulist">
 <ul>
@@ -263,7 +268,7 @@ You should see you Pipeline running.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://gitea.apps.example.com/team-1/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml" class="bare">https://gitea.apps.example.com/team-1/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml</a></p>
+<p><a href="https://gitea.apps.example.com/team-1/robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml" target="_blank" rel="noopener">robot-gitops/src/branch/main/base/namespace/triton/deployment.yaml</a></p>
 <div class="ulist">
 <ul>
 <li>
@@ -299,7 +304,7 @@ You should see you Pipeline running.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://gitea.apps.example.com/team-1/robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml" class="bare">https://gitea.apps.example.com/team-1/robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml</a></p>
+<p><a href="https://gitea.apps.example.com/team-1/robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml" target="_blank" rel="noopener">robot-gitops/src/branch/main/base/namespace/robot-app/deployment.yaml</a></p>
 <div class="ulist">
 <ul>
 <li>
@@ -355,10 +360,15 @@ In real world projects, you would use a tool such as <strong>Kustomize</strong> 
 <div class="ulist">
 <ul>
 <li>
-<p>Open: <a href="https://openshift-gitops-server-openshift-gitops.apps.example.com" class="bare">https://openshift-gitops-server-openshift-gitops.apps.example.com</a></p>
+<p>Open: <a href="https://openshift-gitops-server-openshift-gitops.apps.example.com" target="_blank" rel="noopener">OpenShift GitOps/ArgoCD</a></p>
 </li>
 <li>
 <p>Click <strong>"LOG IN VIA OPENSHIFT"</strong></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/argocd-login.png" alt="argocd login" width="450px">
+</div>
+</div>
 </li>
 <li>
 <p>Username:</p>

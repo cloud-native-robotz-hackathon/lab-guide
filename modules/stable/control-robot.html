@@ -151,7 +151,7 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A  <strong>DevFile</strong> is a definition for environment, tooling, settings and runtimes for our development Workspace. No more endless installations and configurations. We will be  ready to hack right away. Since a matching <strong>DevFile</strong> is already checked into out Git repo, we can use it directly to initialize a workspace.
+A  <strong>DevFile</strong> is a definition for environment, tooling, settings and runtimes for our development Workspace. No more endless installations and configurations. We will be  ready to hack right away. Since a matching <strong>DevFile</strong> is already checked into our Git repo, we can use it directly to initialize a workspace.
 </td>
 </tr>
 </table>
@@ -336,7 +336,7 @@ curl -X POST http://api.hub-controller.svc.cluster.local/robot/forward/2 -d user
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Some Browers will ask you wether to allow pasting text. Approve this to proceed.
+Some Browsers will ask you wether to allow pasting text. Approve this to proceed.
 </td>
 </tr>
 </table>
@@ -606,10 +606,22 @@ print('Done')</code></pre>
 <div class="paragraph">
 <p>If it doesn&#8217;t move, have look at the Terminal output in <strong>Dev Spaces</strong> and recheck your <code>config.py</code> entries.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Sometimes the auto-reload of the app doesn&#8217;t work and the app stops, you&#8217;ll see this in the terminal window. If this happens, just follow the steps above under <strong>If you missed the Popups</strong> and the app will restart.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="_some_more_movement"><a class="anchor" href="#_some_more_movement"></a>Some more movement</h3>
 <div class="paragraph">
-<p>Now let the robot drive forward, look left and right and then retreat again. And for the fun of it, let it get the distance and print it out.</p>
+<p>Now let the robot drive forward, look left and right and then retreat again.</p>
 </div>
 <div class="paragraph">
 <p>Edit the the function <code>startRobot()</code> again so it looks like this:</p>
@@ -646,7 +658,7 @@ print('Done')</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Run the code with the <strong>Run</strong> button as usual.  Hold your hand in front of the sensor and see how tha value changes.  Pretty cool. No more bumping into stuff.</p>
+<p>Run the code with the <strong>Run</strong> button as usual.  Hold your hand in front of the sensor and see how the value changes.  Pretty cool. No more bumping into stuff.</p>
 </div>
 </div>
 </div>
@@ -756,7 +768,7 @@ print('Done')</code></pre>
 <h2 id="_set_up_your_robot_development_editor"><a class="anchor" href="#_set_up_your_robot_development_editor"></a>Set Up Your Robot Development Editor</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To enhance your development experience and see what the robot sees in the IDE, we provide two reference images with our example code that can be constantly replaced :</p>
+<p>To enhance your development experience and see what the robot sees in the IDE, we provide two images with our example code that are constantly replaced when acquiring a new image:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -769,7 +781,7 @@ print('Done')</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>Here’s an example of how to arrange the IDE optimize your dev workflow:</p>
+<p>Here’s an example of how to arrange the IDE to optimize your dev workflow:</p>
 </div>
 <div class="videoblock">
 <div class="content">
@@ -799,7 +811,7 @@ Your browser does not support the video tag.
 <p>Of course hardcoding distances into you code will not work for changing environments.  Imagine something is blocking your robots path at an unknown distance! Your mission is now to drive straight towards a barrier as fast as possible but stopping right before it (and yes, not crashing into it).</p>
 </div>
 <div class="paragraph">
-<p>That means you will need to create a loop of driving and checking the distance. Use the condition <code>thread_event.is_set()</code> in your while loop, so that you the execution can be stopped from the <strong>Stop</strong> button command.</p>
+<p>That means you will need to create a loop of driving and checking the distance. Use the condition <code>thread_event.is_set()</code> in your while loop, so that the execution can be stopped from the <strong>Stop</strong> button command.</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
