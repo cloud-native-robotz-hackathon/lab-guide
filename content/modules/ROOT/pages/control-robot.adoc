@@ -188,7 +188,7 @@ WARNING: Don't click any of the buttons yet, we need to setup things before.
 
 This webpage has a few buttons that essentially just call REST endpoints in your app.  You will use it to start your robot control code.   The website features a **Run** button that you will use to execute your code.
 
-image::robot-control-page.png[]
+image::robot-control-page2.png[]
 
 The buttons:
 
@@ -225,10 +225,12 @@ TIP: Note that **Dev Spaces** saves your file directly while you edit it. No nee
 
 Now to check if everything is setup correctly and your app can reach the robot:
 
+* The Robot Control Page will now show a live camera view with detected objects 
 * On the Robot Control Page click on **Check Status**
 
 You should see a confirmation that your Robot is doing ok. If not have a look at the console output in your Dev Spaves Workspace and recheck `config.py`.
 
+image::robot-control-page2-live.png[]
 
 == First Code: Robot Movement
 
