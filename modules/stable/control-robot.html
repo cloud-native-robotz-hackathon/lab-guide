@@ -597,7 +597,7 @@ Note that <strong>Dev Spaces</strong> saves your file directly while you edit it
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
-move_forward(10)
+move_forward(application.config,10)
 print('Done')</code></pre>
 </div>
 </div>
@@ -637,11 +637,11 @@ Sometimes the auto-reload of the app doesn&#8217;t work and the app stops, you&#
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
-move_forward(10)
-turn_left(90)
-turn_right(180)
-turn_left(90)
-move_backward(10)
+move_forward(application.config,10)
+turn_left(application.config,90)
+turn_right(application.config,180)
+turn_left(application.config,90)
+move_backward(application.config,10)
 print('Done')</code></pre>
 </div>
 </div>
@@ -660,7 +660,7 @@ print('Done')</code></pre>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
-dist = distance()
+dist = distance(application.config)
 print ('Got distance -> ', dist)
 print('Done')</code></pre>
 </div>
@@ -721,7 +721,7 @@ print('Done')</code></pre>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
-objects = take_picture_and_detect_objects()
+objects = take_picture_and_detect_objects(application.config, class_labels)
 coordinates = find_highest_score(objects)
 
 if coordinates:
