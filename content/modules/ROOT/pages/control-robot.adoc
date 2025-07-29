@@ -225,7 +225,7 @@ TIP: Note that **Dev Spaces** saves your file directly while you edit it. No nee
 
 Now to check if everything is setup correctly and your app can reach the robot:
 
-* The Robot Control Page will now show a live camera view with detected objects 
+* The Robot Control Page will now show a live camera view with detected objects
 * On the Robot Control Page click on **Check Status**
 
 You should see a confirmation that your Robot is doing ok. If not have a look at the console output in your Dev Spaves Workspace and recheck `config.py`.
@@ -245,7 +245,7 @@ Let's write some code and drive our robot, but this time from our code:
 [source,python,role=execute,subs="attributes"]
 ----
 # Drop your code here
-move_forward(10)
+move_forward(application.config,10)
 print('Done')
 ----
 
@@ -266,11 +266,11 @@ Edit the the function `startRobot()` again so it looks like this:
 [source,python,role=execute,subs="attributes"]
 ----
 # Drop your code here
-move_forward(10)
-turn_left(90)
-turn_right(180)
-turn_left(90)
-move_backward(10)
+move_forward(application.config,10)
+turn_left(application.config,90)
+turn_right(application.config,180)
+turn_left(application.config,90)
+move_backward(application.config,10)
 print('Done')
 ----
 
@@ -285,7 +285,7 @@ To test the distance sensor you can replace your code with this one. You may wan
 [source,python,role=execute,subs="attributes"]
 ----
 # Drop your code here
-dist = distance()
+dist = distance(application.config)
 print ('Got distance -> ', dist)
 print('Done')
 ----
@@ -315,7 +315,7 @@ Change your function `startRobot()` code to detect an object through the camera 
 [source,python,role=execute,subs="attributes"]
 ----
 # Drop your code here
-objects = take_picture_and_detect_objects()
+objects = take_picture_and_detect_objects(application.config, class_labels)
 coordinates = find_highest_score(objects)
 
 if coordinates:
