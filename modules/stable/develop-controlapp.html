@@ -149,9 +149,14 @@
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">log_with_timestamp("startRobot thread has started.")
+
 turn_counter = 0
+
 while thread_event.is_set():
+    log_with_timestamp("Entering main control loop.")
+
+    # Drop your code here
     objects = take_picture_and_detect_objects()
     coordinates = find_highest_score(objects)
 
@@ -181,7 +186,7 @@ while thread_event.is_set():
             move_forward(10)
         else:
             print('Done - arrived at the object')
-            return
+            break
 
     else:
         # no object detected, turn the robot and try again
@@ -190,9 +195,9 @@ while thread_event.is_set():
             turn_counter = turn_counter + 10
         else:
             print('Done - no object found')
-            return
+            break
 
-print('Done')</code></pre>
+log_with_timestamp("Exited main control loop.")</code></pre>
 </div>
 </div>
 </div>

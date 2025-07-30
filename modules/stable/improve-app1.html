@@ -129,7 +129,7 @@
 <h2 id="_add_the_new_search_for_hat_function"><a class="anchor" href="#_add_the_new_search_for_hat_function"></a>Add the new "search_for_hat()" function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Right before the function <code>def take_picture(image_file_name):</code> add this code (as usual check you identation)</p>
+<p>Right after  the function <code>def start_robot():</code> add this code (as usual check you identation)</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
@@ -157,7 +157,7 @@
             return
 
         # Align to and drive towards identified object
-        if coordinates and coordinates.confidence_score > confidence_threshold:
+        if coordinates and coordinates.confidence_score > config.CONFIDENCE_THRESHOLD:
             print(f'''Object with highest score -> [
                 confidence score: {coordinates.confidence_score},
                 x upper left corner: {coordinates.x_upper_left},
@@ -204,20 +204,6 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Look for the line <code>@application.route('/')</code> and right above add these parameters</p>
-</div>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">image_resolution_x = 640 # pixels; resolution of camera used in robot
-confidence_threshold = 0.6 # e.g. 0.6 = 60%; confidence at which an object identified as hat is intercepted
-delta_threshold = 280 # pixels; delta for standard fedora (defines minimum desired pixel size of fedora in image)
-hat_found_and_intercepted = False # boolean; switch for a found and intercepted hat
-# Define parameters for hat search and obstacle bypass algos
-min_distance_to_obstacle = 300 # mm; distance at which the obstacle bypass mode is activated
-angle_delta = 90 # deg; angle used for sidestepping obstacle</code></pre>
-</div>
-</div>
-<div class="paragraph">
 <p>Now you can call these functions from inside the <code>startRobot()</code> function like so</p>
 </div>
 <div class="listingblock execute">
@@ -230,10 +216,10 @@ angle_delta = 90 # deg; angle used for sidestepping obstacle</code></pre>
     # Main loop running until one hat is properly identified and intercepted (or the app ist stopped)
     while thread_event.is_set() and not hat_found_and_intercepted:
 
-        # Search for the hat and intercrept it
+        # Search for the hat and intercept it
         search_for_hat()
 
-    print('Done')</code></pre>
+    log_with_timestamp("Exited main control loop.")</code></pre>
 </div>
 </div>
 </div>

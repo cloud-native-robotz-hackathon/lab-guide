@@ -580,7 +580,7 @@ Once the Python Gunicorn server has started, you will see two Popup windows in t
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
-move_forward(application.config,10)
+move_forward(10)
 print('Done')</code></pre>
 </div>
 </div>
@@ -620,11 +620,11 @@ Sometimes the auto-reload of the app doesn&#8217;t work and the app stops, you&#
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
-move_forward(application.config,10)
-turn_left(application.config,90)
-turn_right(application.config,180)
-turn_left(application.config,90)
-move_backward(application.config,10)
+move_forward(10)
+turn_left(90)
+turn_right(180)
+turn_left(90)
+move_backward(10)
 print('Done')</code></pre>
 </div>
 </div>
@@ -643,7 +643,7 @@ print('Done')</code></pre>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
-dist = distance(application.config)
+dist = distance()
 print ('Got distance -> ', dist)
 print('Done')</code></pre>
 </div>
@@ -704,7 +704,7 @@ print('Done')</code></pre>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
-objects = take_picture_and_detect_objects(application.config, class_labels)
+objects = take_picture_and_detect_objects()
 coordinates = find_highest_score(objects)
 
 if coordinates:
@@ -802,14 +802,25 @@ Your browser does not support the video tag.
 <p>Of course hardcoding distances into you code will not work for changing environments.  Imagine something is blocking your robots path at an unknown distance! Your mission is now to drive straight towards a barrier as fast as possible but stopping right before it (and yes, not crashing into it).</p>
 </div>
 <div class="paragraph">
-<p>That means you will need to create a loop of driving and checking the distance. Use the condition <code>thread_event.is_set()</code> in your while loop, so that the execution can be stopped from the <strong>Stop</strong> button command.</p>
+<p>That means you will need to create a loop of driving and checking the distance. Notice that the current code runs in a while loop with the condition <code>thread_event.is_set()</code>. The execution can be stopped from the <strong>Stop</strong> button command and subsequent API call. Otherwise your robot might go wild on you.</p>
+</div>
+<div class="paragraph">
+<p>At the moment there is a `break`command that exits the loop immediately after your code. But what about just letting it run until you have actually close enough to a barrier? You can use the `break`command when that condition is met and you want to exit the loop. Or you can keep the loop running so the robot can react to moving the barrier.</p>
+</div>
+<div class="paragraph">
+<p>This is roughly what the loop looks like</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Drop your code here
 while thread_event.is_set():
+    log_with_timestamp("Entering main control loop.")
+
     # Put your checks and movement commands here
-print('Done')</code></pre>
+
+    print('Done')
+
+log_with_timestamp("Exited main control loop.")</code></pre>
 </div>
 </div>
 <div class="paragraph">
