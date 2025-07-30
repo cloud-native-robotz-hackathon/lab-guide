@@ -23,6 +23,7 @@ def bypass_obstacle():
 
     # Only continue if an obstacle is ahead
     if not obstacle_in_sight:
+        print ('No obstacle close enough -> returning')
         return
 
     # For debugging only
@@ -62,20 +63,20 @@ Now first test the new obstacle avoidance code by commenting out the function `+
 
 [source,python,role=execute,subs="attributes"]
 ----
-    # Drop your code here
-    # Initialize switch for identifying found and intercepted hats across functions
+    log_with_timestamp("startRobot thread has started.")
+
     global hat_found_and_intercepted
     hat_found_and_intercepted = False
 
-    # Main loop running until one hat is properly identified and intercepted (or the app ist stopped)
     while thread_event.is_set() and not hat_found_and_intercepted:
+        log_with_timestamp("Entering main control loop.")
         # Check for an obstacle directly in front and bypass it, if existing
         bypass_obstacle()
 
-        # Search for the hat and intercrept it
-        #search_for_hat()
+        # Search for the hat and intercept it
+        # search_for_hat()
 
-    print('Done')
+    log_with_timestamp("Exited main control loop.")
 ----
 
 Give the code a try. Place a barrier in front of the robot and test the object avoidance code.

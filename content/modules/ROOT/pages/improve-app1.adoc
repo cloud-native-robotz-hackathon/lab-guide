@@ -4,7 +4,7 @@ That was pretty neat. With just a few lines of MVP code your robot should have p
 
 We will enhance the brains ... I mean the code of your robot:
 
-We have some improved and more complex code for you do work on. This first part is for finding the hat.  
+We have some improved and more complex code for you do work on. This first part is for finding the hat.
 
 * It puts the more complex function to find the hat and drive towards it in the function `+search_for_hat()+`
 * It uses parameters to easily test, optimize and tune different values in your code
@@ -12,7 +12,7 @@ We have some improved and more complex code for you do work on. This first part 
 
 == Add the new "search_for_hat()" function
 
-Right before the function `+def take_picture(image_file_name):+` add this code (as usual check you identation)
+Right after  the function `+def start_robot():+` add this code (as usual check you identation)
 
 [source,python,role=execute,subs="attributes"]
 ----
@@ -40,7 +40,7 @@ def search_for_hat():
             return
 
         # Align to and drive towards identified object
-        if coordinates and coordinates.confidence_score > confidence_threshold:
+        if coordinates and coordinates.confidence_score > config.CONFIDENCE_THRESHOLD:
             print(f'''Object with highest score -> [
                 confidence score: {coordinates.confidence_score},
                 x upper left corner: {coordinates.x_upper_left},
@@ -86,19 +86,6 @@ def search_for_hat():
     print('### Search For Hat Mode - END ###')
 ----
 
-Look for the line `+@application.route('/')+` and right above add these parameters
-
-[source,python,role=execute,subs="attributes"]
-----
-image_resolution_x = 640 # pixels; resolution of camera used in robot
-confidence_threshold = 0.6 # e.g. 0.6 = 60%; confidence at which an object identified as hat is intercepted
-delta_threshold = 280 # pixels; delta for standard fedora (defines minimum desired pixel size of fedora in image)
-hat_found_and_intercepted = False # boolean; switch for a found and intercepted hat
-# Define parameters for hat search and obstacle bypass algos
-min_distance_to_obstacle = 300 # mm; distance at which the obstacle bypass mode is activated
-angle_delta = 90 # deg; angle used for sidestepping obstacle
-----
-
 
 Now you can call these functions from inside the `+startRobot()+` function like so
 
@@ -112,11 +99,11 @@ Now you can call these functions from inside the `+startRobot()+` function like 
 
     # Main loop running until one hat is properly identified and intercepted (or the app ist stopped)
     while thread_event.is_set() and not hat_found_and_intercepted:
-        
-        # Search for the hat and intercrept it
+
+        # Search for the hat and intercept it
         search_for_hat()
 
-    print('Done')
+    log_with_timestamp("Exited main control loop.")
 ----
 
 == Exercise

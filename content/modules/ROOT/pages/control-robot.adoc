@@ -238,7 +238,7 @@ Let's write some code and drive our robot, but this time from our code:
 [source,python,role=execute,subs="attributes"]
 ----
 # Drop your code here
-move_forward(application.config,10)
+move_forward(10)
 print('Done')
 ----
 
@@ -259,11 +259,11 @@ Edit the the function `startRobot()` again so it looks like this:
 [source,python,role=execute,subs="attributes"]
 ----
 # Drop your code here
-move_forward(application.config,10)
-turn_left(application.config,90)
-turn_right(application.config,180)
-turn_left(application.config,90)
-move_backward(application.config,10)
+move_forward(10)
+turn_left(90)
+turn_right(180)
+turn_left(90)
+move_backward(10)
 print('Done')
 ----
 
@@ -278,7 +278,7 @@ To test the distance sensor you can replace your code with this one. You may wan
 [source,python,role=execute,subs="attributes"]
 ----
 # Drop your code here
-dist = distance(application.config)
+dist = distance()
 print ('Got distance -> ', dist)
 print('Done')
 ----
@@ -308,7 +308,7 @@ Change your function `startRobot()` code to detect an object through the camera 
 [source,python,role=execute,subs="attributes"]
 ----
 # Drop your code here
-objects = take_picture_and_detect_objects(application.config, class_labels)
+objects = take_picture_and_detect_objects()
 coordinates = find_highest_score(objects)
 
 if coordinates:
@@ -367,14 +367,23 @@ Create code to simply guide your robot around a barrier. Just use the movement c
 
 Of course hardcoding distances into you code will not work for changing environments.  Imagine something is blocking your robots path at an unknown distance! Your mission is now to drive straight towards a barrier as fast as possible but stopping right before it (and yes, not crashing into it).
 
-That means you will need to create a loop of driving and checking the distance. Use the condition `+thread_event.is_set()+` in your while loop, so that the execution can be stopped from the **Stop** button command.
+That means you will need to create a loop of driving and checking the distance. Notice that the current code runs in a while loop with the condition `+thread_event.is_set()+`. The execution can be stopped from the **Stop** button command and subsequent API call. Otherwise your robot might go wild on you.
+
+At the moment there is a `break`command that exits the loop immediately after your code. But what about just letting it run until you have actually close enough to a barrier? You can use the `break`command when that condition is met and you want to exit the loop. Or you can keep the loop running so the robot can react to moving the barrier.
+
+This is roughly what the loop looks like
 
 [source,python,role=execute,subs="attributes"]
 ----
 # Drop your code here
 while thread_event.is_set():
+    log_with_timestamp("Entering main control loop.")
+
     # Put your checks and movement commands here
-print('Done')
+
+    print('Done')
+
+log_with_timestamp("Exited main control loop.")
 ----
 
 You can create this more prudent or more risky. Try different distances by moving the robot nearer or farther away from the barrier.

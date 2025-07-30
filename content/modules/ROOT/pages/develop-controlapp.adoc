@@ -1,6 +1,6 @@
 = Develop Control Application
 
-In the last chapter you have learned about controling the robot and using the development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, here is a first simplified version of it. Let's call it an MVP (minimal viable product). 
+In the last chapter you have learned about controling the robot and using the development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, here is a first simplified version of it. Let's call it an MVP (minimal viable product).
 
 Review and test the code but don't spend too much time with it.
 
@@ -20,9 +20,14 @@ Change the code in your dev environment to this :
 
 [source,python,role=execute]
 ----
-# Drop your code here
+log_with_timestamp("startRobot thread has started.")
+
 turn_counter = 0
+
 while thread_event.is_set():
+    log_with_timestamp("Entering main control loop.")
+
+    # Drop your code here
     objects = take_picture_and_detect_objects()
     coordinates = find_highest_score(objects)
 
@@ -34,7 +39,7 @@ while thread_event.is_set():
             x lower right corner: {coordinates.x_lower_right},
             y lower right corner: {coordinates.y_lower_right},
             object class: {coordinates.object_class} ]''')
-        
+
         # Find the middle coordinate of the object, image size is 640x480
         move_x = (coordinates.x_upper_left + coordinates.x_lower_right) / 2
         print(f'move_x: {move_x}')
@@ -43,7 +48,7 @@ while thread_event.is_set():
             turn_left(10)
         else:
             turn_right(10)
-        
+
         # calculate the size of the object as it will grow when driving towards it
         delta = coordinates.x_lower_right - coordinates.x_upper_left
         print(f'delta: {delta}')
@@ -52,7 +57,7 @@ while thread_event.is_set():
             move_forward(10)
         else:
             print('Done - arrived at the object')
-            return
+            break
 
     else:
         # no object detected, turn the robot and try again
@@ -61,9 +66,9 @@ while thread_event.is_set():
             turn_counter = turn_counter + 10
         else:
             print('Done - no object found')
-            return
+            break
 
-print('Done')
+log_with_timestamp("Exited main control loop.")
 ----
 
 == What does this code do, you ask?
