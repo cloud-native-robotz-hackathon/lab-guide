@@ -355,6 +355,16 @@ Here’s an example of how to arrange the IDE to optimize your dev workflow:
 
 video::devspaces-devenv.mp4[width=640]
 
+== Working with the Model
+
+As mentioned in the Data Science chapter, our quick trained model might not be perfect.  You might get not optimal or sometimes false detections. These are common Data Science challenges when working with predictive AI.
+
+There is a setting `CONFIDENCE_THRESHOLD` in `app.py` that defines the minimum confidence score a detection must have to be displayed.  This is currently set to `0.3`. If you get too many or false detection, try to raise the value and check your bounding box image.  Play around with the value during your hacking to find the sweet spot.
+
+[TIP]
+If after adjusting the value you still get bad predictions you can always switch over to the pretrained model we provide here xref:data-science.adoc#optional:_what_if_your_model_does_not_perform_that_well?[Optional: What if your Model does not perform that well?].
+
+
 == Coding Exercises
 
 To become more familiar with the robot controls (and have some more fun), here are two exercises for you. Use your new robot skills and change the application to handle an obstacle placed in the robot's path:

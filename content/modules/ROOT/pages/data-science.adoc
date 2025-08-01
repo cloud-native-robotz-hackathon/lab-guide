@@ -311,6 +311,28 @@ If you see multiple bounding boxes over your fedoras, that means you may need to
 
 That's it. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
 
+== Optional: What if your Model does not perform that well?
+
+As we are in a Hackathon environment and we don't have that much time we are using a quick approach to show you the basics of model training.  For a production environment you would rather use images of actual Fedoras to train the model and not random ones sitting on peoples heads.
+
+If you run into any issues later on with the model not detecting Fedoras or identifiying other objects as Fedoras, we have a professionally trained model with custom images and more epochs prepared for you.
+
+[IMPORTANT]
+For the moment just test your own model, but if you do need to switch you can always come back here and deploy the other model like this:
+
+* In your S3-Browser have a look at in the folder `/backup`. You should see a pretrained model called `model-custom-images.onnx`
+* In your DataScience Project, go to *Models* > *Deployed Models* and click on the 1, *Edit* to the right
+* Just change the the Path
+** **Path:**
++
+[source,bash,role=execute,subs="attributes"]
+----
+backup/model-custom-images.onnx
+----
+* Wait a few seconds until the new model is deployed
++ Now you should get more precise preditions
+
+
 == Expected outcome of this chapter
 
 After this chapter you should know:

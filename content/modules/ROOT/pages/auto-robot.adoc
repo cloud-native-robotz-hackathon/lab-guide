@@ -1,6 +1,6 @@
 = Deploy Control App to the Robot!
 
-After your control application performs well enough, it's time to move on to the final stage of the hackathon: Have the robot run autonomously and measure the time it takes to accomplish the mission laid out in the final challenge! 
+After your control application performs well enough, it's time to move on to the final stage of the hackathon: Have the robot run autonomously and measure the time it takes to accomplish the mission laid out in the final challenge!
 
 Testing our solution from OpenShift DevSpaces is fun, but what we really want is an **autonomous robot** that can think for itself and find our fedora in the most disconnected of places. This means the controll app and the object detection service have to run disconnected on the robot
 
@@ -11,6 +11,10 @@ image::edge-devops/architecture.png[]
 == Build a Container Image of the Object Detection Model
 
 Once we are finished with tuning our object detection model we will package it into a container image to be deployed on the robot.
+
+[IMPORTANT]
+The pipeline will use the model `model/model-latest.onnx` in your S3 bucket for the build. So if you have switched from your custom model (`model-latest.onnx`) to our pretrained model (`model-custom-images.onnx`) you will need to go to the *S3 Browser* Workbench, download `backup/model-custom-images.onnx` and upload and replace `model/model-latest.onnx`.
+
 
 An OpenShift pipeline based on Tekton has been prepared for you
 
@@ -123,7 +127,7 @@ Once you commit the changes **OpenShift GitOps** will start to work on the deplo
 
 === Check OpenShift GitOps / ArgoCD rollout
 
-Login into OpenShift GitOps / ArgoCD: 
+Login into OpenShift GitOps / ArgoCD:
 
 * Open: https://openshift-gitops-server-openshift-gitops.{openshift_cluster_ingress_domain}[OpenShift GitOps/ArgoCD, window=_blank]
 * Click **"LOG IN VIA OPENSHIFT"**
@@ -150,7 +154,7 @@ If you click the tile, you'll get a detailed view of your GitOps rollout:
 
 image::argocd-detail.png[width="600px"]
 
-**But the outcome is clear**: The control application and the image detection model are running as containers locally on your robot, enabling autonomous robot operations. 
+**But the outcome is clear**: The control application and the image detection model are running as containers locally on your robot, enabling autonomous robot operations.
 
 == Start the Robot
 
@@ -196,7 +200,7 @@ If anything is unclear about these points, please talk to your friendly facilita
 
 == Next Steps
 
-Now off to the final, go to the next chapter to learn how to prove your robots capabilities in front of your peers! 
+Now off to the final, go to the next chapter to learn how to prove your robots capabilities in front of your peers!
 
 
 
