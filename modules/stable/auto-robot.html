@@ -435,7 +435,7 @@ In real world projects, you would use a tool such as <strong>Kustomize</strong> 
 <p>But we need a way to call <strong>Initiate Run</strong> and <strong>Emergency Stop</strong> like you did before from the web UI. Here good old <code>curl</code> comes to the rescue.</p>
 </div>
 <div class="paragraph">
-<p>To start the robot, go to your DevSpaces VSCode session and open a terminal. In the terminal execute the following command to initiate a run:</p>
+<p>To start the robot, go to your Dev Spaces VSCode session and open a terminal. In the terminal execute the following command to initiate a run:</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
@@ -445,7 +445,7 @@ curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${
 </div>
 </div>
 <div class="paragraph">
-<p>Your robot should now execute your code and start moving. If you want to check the output of your control app, you can do this in GitOps. Go to your ArgoCD UI again and click the box representing your app (<code>starterapp-python-&#8230;&#8203;.</code>) to the left. In the next view chosse the <strong>LOGS</strong> tab:</p>
+<p>Your robot should now execute your code and start moving. If you want to check the output of your control app, you can do this in OpenShift GitOps. Go to your ArgoCD UI again and click the box representing your app (<code>starterapp-python-&#8230;&#8203;.</code>) to the left. In the next view choose the <strong>LOGS</strong> tab:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -453,7 +453,7 @@ curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${
 </div>
 </div>
 <div class="paragraph">
-<p>After a short delay the output of your app will show up in the window, same as what you are used to from developing the app in DevSpaces:</p>
+<p>After a short delay the output of your app will show up in the window, same as what you are used to from developing the app in Dev Spaces:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -461,7 +461,7 @@ curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${
 </div>
 </div>
 <div class="paragraph">
-<p>In some cases when your robot runs wild you might need the emergency stop&#8230;&#8203; you can call it in the same way as you just run the app:</p>
+<p>To stop your robot you can call the stop endpoint in the same way as you just run it:</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
