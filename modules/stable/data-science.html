@@ -833,6 +833,58 @@ token = 'REPLACE_ME'</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_optional_what_if_your_model_does_not_perform_that_well"><a class="anchor" href="#_optional_what_if_your_model_does_not_perform_that_well"></a>Optional: What if your Model does not perform that well?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As we are in a Hackathon environment and we don&#8217;t have that much time we are using a quick approach to show you the basics of model training.  For a production environment you would rather use images of actual Fedoras to train the model and not random ones sitting on peoples heads.</p>
+</div>
+<div class="paragraph">
+<p>If you run into any issues later on with the model not detecting Fedoras or identifiying other objects as Fedoras, we have a professionally trained model with custom images and more epochs prepared for you.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+For the moment just test your own model, but if you do need to switch you can always come back here and deploy the other model like this:
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In your S3-Browser have a look at in the folder <code>/backup</code>. You should see a pretrained model called <code>model-custom-images.onnx</code></p>
+</li>
+<li>
+<p>In your DataScience Project, go to <strong>Models</strong> &gt; <strong>Deployed Models</strong> and click on the 1, <strong>Edit</strong> to the right</p>
+</li>
+<li>
+<p>Just change the the Path</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Path:</strong></p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">backup/model-custom-images.onnx</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Wait a few seconds until the new model is deployed
++ Now you should get more precise preditions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_expected_outcome_of_this_chapter"><a class="anchor" href="#_expected_outcome_of_this_chapter"></a>Expected outcome of this chapter</h2>
 <div class="sectionbody">
 <div class="paragraph">

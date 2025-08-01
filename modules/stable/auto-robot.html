@@ -123,6 +123,18 @@
 <div class="paragraph">
 <p>Once we are finished with tuning our object detection model we will package it into a container image to be deployed on the robot.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The pipeline will use the model <code>model/model-latest.onnx</code> in your S3 bucket for the build. So if you have switched from your custom model (<code>model-latest.onnx</code>) to our pretrained model (<code>model-custom-images.onnx</code>) you will need to go to the <strong>S3 Browser</strong> Workbench, download <code>backup/model-custom-images.onnx</code> and upload and replace <code>model/model-latest.onnx</code>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>An OpenShift pipeline based on Tekton has been prepared for you</p>
 </div>
