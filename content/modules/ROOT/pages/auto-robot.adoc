@@ -158,7 +158,7 @@ As the app is now running locally on the robot, you won't get access to the web 
 
 But we need a way to call **Initiate Run** and **Emergency Stop** like you did before from the web UI. Here good old `curl` comes to the rescue.
 
-To start the robot, go to your DevSpaces VSCode session and open a terminal. In the terminal execute the following command to initiate a run:
+To start the robot, go to your Dev Spaces VSCode session and open a terminal. In the terminal execute the following command to initiate a run:
 
 [source,bash,role=execute]
 ----
@@ -167,15 +167,15 @@ include::partial$export-{user}.adoc[]
 curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${ROBOT_NAME}.robot.svc.cluster.local:80/run
 ----
 
-Your robot should now execute your code and start moving. If you want to check the output of your control app, you can do this in GitOps. Go to your ArgoCD UI again and click the box representing your app (`starterapp-python-....`) to the left. In the next view chosse the **LOGS** tab:
+Your robot should now execute your code and start moving. If you want to check the output of your control app, you can do this in OpenShift GitOps. Go to your ArgoCD UI again and click the box representing your app (`starterapp-python-....`) to the left. In the next view choose the **LOGS** tab:
 
 image::argocd-app.png[width="600px"]
 
-After a short delay the output of your app will show up in the window, same as what you are used to from developing the app in DevSpaces:
+After a short delay the output of your app will show up in the window, same as what you are used to from developing the app in Dev Spaces:
 
 image::argocd-logs.png[width="600px"]
 
-In some cases when your robot runs wild you might need the emergency stop... you can call it in the same way as you just run the app:
+To stop your robot you can call the stop endpoint in the same way as you just run it:
 
 [source,bash,role=execute]
 ----
