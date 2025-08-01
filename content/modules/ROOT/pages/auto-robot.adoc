@@ -188,15 +188,15 @@ include::partial$export-{user}.adoc[]
 curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${ROBOT_NAME}.robot.svc.cluster.local:80/stop
 ----
 
+
 == Expected outcome of this chapter
 
 After this chapter:
 
-* You have configured a GitOps process to deploy your app to the robot
-* Your robot is now able to run autonomously
-* You know how to start and stop the robot using a `curl` call
+* You have used GitOps to deploy your containerized app and AI model to the robot Microshift
+* Your robot is now able to run as an autonomous edge device, while being easily updatable with new versions of your app and model
 
-If anything is unclear about these points, please talk to your friendly facilitators.
+That's it, you have succesfully run a full DevOps and MLOps Deployment Lifecyle all the way to the Edge using OpenShift and Kubernetes paradigms.
 
 == Next Steps
 
