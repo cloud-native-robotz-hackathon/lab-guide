@@ -71,30 +71,6 @@ You will now see the starter code on the left side.
 
 This is a Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.
 
-=== Connecting the App to Endpoints
-
-Our app is running in a **Dev Spaces** container. We need to call the Robot API as well as the Inferencing API to do our coding magic.
-
-So let's go ahead and set up these connection variables. Edit the file `config.py` to add your inferencing endpoint that you created in the previous chapter.
-
-Replace the following placeholders:
-
-* **<REPLACE_WITH_ROBOT_NAME>**:
-+
-[source,bash,role=execute,subs="attributes"]
-----
-include::partial${user}.adoc[]
-----
-* **<REPLACE_WITH_INFERENCING_API>**
-+
-(The Object Detection Service from the DataScience chapter)
-* **<REPLACE_WITH_INFERENCING_API_TOKEN>**
-+
-(The Token of the Object Detection Service from the DataScience chapter)
-
-
-TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart you app or even reload the Robot control page.
-
 === The Robot API
 
 Before starting with the app, let's take a moment to have a look at the Robot REST API that we will be calling.
@@ -159,6 +135,30 @@ curl -v http://api.hub-controller.svc.cluster.local/robot/camera?user_key=${ROBO
 You will find the image file as `image.jpg` in the root folder. Click on it to view.
 
 That was neat, but of course you want to give the robot some personality with your code. Let's move on to configure the app.
+
+=== Connecting the App to Endpoints
+
+Our app will be running in a **Dev Spaces** container. We will need to call the Robot API as well as the Inferencing API to do our coding magic.
+
+So let's go ahead and set up these connection variables. Edit the file `config.py` to add your inferencing endpoint that you created in the previous chapter.
+
+Replace the following placeholders:
+
+* **<REPLACE_WITH_ROBOT_NAME>**:
++
+[source,bash,role=execute,subs="attributes"]
+----
+include::partial${user}.adoc[]
+----
+* **<REPLACE_WITH_INFERENCING_API>**
++
+(The Object Detection Service from the DataScience chapter)
+* **<REPLACE_WITH_INFERENCING_API_TOKEN>**
++
+(The Token of the Object Detection Service from the DataScience chapter)
+
+
+TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart you app or even reload the Robot control page.
 
 === Start the App
 
