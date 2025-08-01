@@ -218,10 +218,10 @@ The buttons:
 
 Now to check if everything is setup correctly and your app can reach the robot:
 
-* The Robot Control Page will now show a live camera view
+* The *Live Visual Feed* will be empty. Don't worry, we get to that later
 * On the Robot Control Page click on **Check Status**
 
-image::robot-control-page2-live.png[]
+image::robot-control-page2.png[]
 
 You should see a confirmation that your Robot is doing ok. If not have a look at the console output in your Dev Spaves Workspace and recheck `config.py`.
 
@@ -342,7 +342,7 @@ Object with highest score -> [
 
 Note that we have found a Fedora (object class = 0) and are pretty certain of of it (confidence score = 0.8).
 
-The robot control page will also display the last image from the camera every 5 seconds. You can use this to check the robot and camera alignment.
+The robot control page will also display the last image from the camera. You can use this to check the robot and camera alignment.
 
 == Set Up Your Robot Development Editor
 
