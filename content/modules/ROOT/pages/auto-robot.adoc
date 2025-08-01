@@ -1,4 +1,4 @@
-= Deploy Control App to the Robot & Compete!
+= Deploy Control App to the Robot!
 
 After your control application performs well enough, it's time to move on to the final stage of the hackathon: Have the robot run autonomously and measure the time it takes to accomplish the mission laid out in the final challenge! 
 
@@ -31,6 +31,8 @@ image::edge-devops/start-pipeline-2.png[width=700px]
 == Build a Container Image of the Application
 
 When done with the app we will package it in a Container Image as well.
+
+TIP: Make sure you have pushed the latest version of your app into Gitea!
 
 A matching pipeline has been added to your template app repository. This pipeline is triggered by the creation of a Tag in Gitea. So once you are ready, all you need to do is create a Tag and the Pipeline will build and push the Image to the local OpenShift Registry.
 
@@ -140,8 +142,62 @@ image::argocd-login.png[width=450px]
 {password}
 ----
 * Click **Allow selected permissions**
-* Now you can follow the rollout:
+* Now you can follow the rollout, this is the entry view:
 +
-image::argocd-overview.png[]
+image::argocd-overview.png[width="600px"]
+
+If you click the tile, you'll get a detailed view of your GitOps rollout:
+
+image::argocd-detail.png[width="600px"]
 
 **But the outcome is clear**: The control application and the image detection model are running as containers locally on your robot, enabling autonomous robot operations. 
+
+== Start the Robot
+
+As the app is now running locally on the robot, you won't get access to the web UI of the app. It's an edge device after all... ;-)
+
+But we need a way to call **Initiate Run** and **Emergency Stop** like you did before from the web UI. Here good old `curl` comes to the rescue.
+
+To start the robot, go to your DevSpaces VSCode session and open a terminal. In the terminal execute the following command to initiate a run:
+
+[source,bash,role=execute]
+----
+include::partial$export-{user}.adoc[]
+
+curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${ROBOT_NAME}.robot.svc.cluster.local:80/run
+----
+
+Your robot should now execute your code and start moving. If you want to check the output of your control app, you can do this in GitOps. Go to your ArgoCD UI again and click the box representing your app (`starterapp-python-....`) to the left. In the next view chosse the **LOGS** tab:
+
+image::argocd-app.png[width="600px"]
+
+After a short delay the output of your app will show up in the window, same as what you are used to from developing the app in DevSpaces:
+
+image::argocd-logs.png[width="600px"]
+
+In some cases when your robot runs wild you might need the emergency stop... you can call it in the same way as you just run the app:
+
+[source,bash,role=execute]
+----
+include::partial$export-{user}.adoc[]
+
+curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${ROBOT_NAME}.robot.svc.cluster.local:80/stop
+----
+
+== Expected outcome of this chapter
+
+After this chapter:
+
+* You have configured a GitOps process to deploy your app to the robot
+* Your robot is now able to run autonomously
+* You know how to start and stop the robot using a `curl` call
+
+If anything is unclear about these points, please talk to your friendly facilitators.
+
+== Next Steps
+
+Now off to the final, go to the next chapter to learn how to prove your robots capabilities in front of your peers! 
+
+
+
+
