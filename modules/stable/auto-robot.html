@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Deploy Control App to the Robot &amp; Compete! :: Cloud Native Robotz Hackathon</title>
+    <title>Deploy Control App to the Robot! :: Cloud Native Robotz Hackathon</title>
     <link rel="canonical" href="https://cloud-native-robotz-hackathon.github.io/modules/stable/auto-robot.html">
     <link rel="prev" href="improve-app2.html">
     <link rel="next" href="challenge-2.html">
@@ -98,7 +98,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Deploy Control App to the Robot &amp; Compete!</h1>
+<h1 class="page">Deploy Control App to the Robot!</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -165,6 +165,18 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>When done with the app we will package it in a Container Image as well.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Make sure you have pushed the latest version of your app into Gitea!
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>A matching pipeline has been added to your template app repository. This pipeline is triggered by the creation of a Tag in Gitea. So once you are ready, all you need to do is create a Tag and the Pipeline will build and push the Image to the local OpenShift Registry.</p>
@@ -390,18 +402,105 @@ In real world projects, you would use a tool such as <strong>Kustomize</strong> 
 <p>Click <strong>Allow selected permissions</strong></p>
 </li>
 <li>
-<p>Now you can follow the rollout:</p>
+<p>Now you can follow the rollout, this is the entry view:</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/argocd-overview.png" alt="argocd overview">
+<img src="_images/argocd-overview.png" alt="argocd overview" width="600px">
 </div>
 </div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
+<p>If you click the tile, you&#8217;ll get a detailed view of your GitOps rollout:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/argocd-detail.png" alt="argocd detail" width="600px">
+</div>
+</div>
+<div class="paragraph">
 <p><strong>But the outcome is clear</strong>: The control application and the image detection model are running as containers locally on your robot, enabling autonomous robot operations.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_start_the_robot"><a class="anchor" href="#_start_the_robot"></a>Start the Robot</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As the app is now running locally on the robot, you won&#8217;t get access to the web UI of the app. It&#8217;s an edge device after all&#8230;&#8203; ;-)</p>
+</div>
+<div class="paragraph">
+<p>But we need a way to call <strong>Initiate Run</strong> and <strong>Emergency Stop</strong> like you did before from the web UI. Here good old <code>curl</code> comes to the rescue.</p>
+</div>
+<div class="paragraph">
+<p>To start the robot, go to your DevSpaces VSCode session and open a terminal. In the terminal execute the following command to initiate a run:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort
+
+curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${ROBOT_NAME}.robot.svc.cluster.local:80/run</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your robot should now execute your code and start moving. If you want to check the output of your control app, you can do this in GitOps. Go to your ArgoCD UI again and click the box representing your app (<code>starterapp-python-&#8230;&#8203;.</code>) to the left. In the next view chosse the <strong>LOGS</strong> tab:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/argocd-app.png" alt="argocd app" width="600px">
+</div>
+</div>
+<div class="paragraph">
+<p>After a short delay the output of your app will show up in the window, same as what you are used to from developing the app in DevSpaces:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/argocd-logs.png" alt="argocd logs" width="600px">
+</div>
+</div>
+<div class="paragraph">
+<p>In some cases when your robot runs wild you might need the emergency stop&#8230;&#8203; you can call it in the same way as you just run the app:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort
+
+curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${ROBOT_NAME}.robot.svc.cluster.local:80/stop</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expected_outcome_of_this_chapter"><a class="anchor" href="#_expected_outcome_of_this_chapter"></a>Expected outcome of this chapter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After this chapter:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You have configured a GitOps process to deploy your app to the robot</p>
+</li>
+<li>
+<p>Your robot is now able to run autonomously</p>
+</li>
+<li>
+<p>You know how to start and stop the robot using a <code>curl</code> call</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If anything is unclear about these points, please talk to your friendly facilitators.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now off to the final, go to the next chapter to learn how to prove your robots capabilities in front of your peers!</p>
 </div>
 </div>
 </div>
