@@ -69,7 +69,7 @@ Now first test the new obstacle avoidance code by commenting out the function `+
     hat_found_and_intercepted = False
 
     while thread_event.is_set() and not hat_found_and_intercepted:
-        log_with_timestamp("Entering main control loop.")
+
         # Check for an obstacle directly in front and bypass it, if existing
         bypass_obstacle()
 
