@@ -102,10 +102,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the last chapter you have learned about controling the robot and using the development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, here is a first simplified version of it. Let&#8217;s call it an MVP (minimal viable product).</p>
+<p>In the last chapter, you learned about controling the robot and using the development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, we provide a first simplified version of it. Let&#8217;s call it an Minimal Viable Product(MVP).</p>
 </div>
 <div class="paragraph">
-<p>Review and test the code but don&#8217;t spend too much time with it.</p>
+<p>Review and test the code, but don&#8217;t spend too much time with it.</p>
 </div>
 </div>
 </div>
@@ -206,16 +206,16 @@ log_with_timestamp("Exited main control loop.")</code></pre>
 <h2 id="_what_does_this_code_do_you_ask"><a class="anchor" href="#_what_does_this_code_do_you_ask"></a>What does this code do, you ask?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Well first of all it keeps on looping until someone presses the <strong>Stop</strong> button. It takes a picture from the camera, finds the Fedora object with higest confidence score.</p>
+<p>First, it keeps on looping until someone presses the <strong>Stop</strong> button. It takes a picture from the camera, finds the Fedora object with higest confidence score.</p>
 </div>
 <div class="paragraph">
-<p>Then it looks for the center of the bounding box. Depending on the position of the center point in the camera image, the code decides if the robot needs to turn left or right to align it with the fedora.</p>
+<p>Then, it looks for the center of the bounding box. Depending on the position of the center point in the camera image, the code decides if the robot needs to turn left or right to align it with the fedora.</p>
 </div>
 <div class="paragraph">
-<p>Then it just keeps on driving until the bounding box has a certain size, which means that you are close enough to the Fedora.</p>
+<p>After that, it keeps on driving until the bounding box has a certain size, which means that you are close enough to the Fedora.</p>
 </div>
 <div class="paragraph">
-<p>Now place a Fedora somewhere near your robot and see if it can find it.</p>
+<p>Now, place a Fedora somewhere near your robot and see if it can find it.</p>
 </div>
 </div>
 </div>
@@ -223,7 +223,7 @@ log_with_timestamp("Exited main control loop.")</code></pre>
 <h2 id="_pushing_your_code"><a class="anchor" href="#_pushing_your_code"></a>Pushing your Code</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Currently your code only resides in your Workspace, which is called the "Inner Loop" in Development terms. To publish and build later you will need to push your code to your Git repository. So let&#8217;s already practice this.</p>
+<p>Currently, your code only resides in your Workspace which is called the "Inner Loop" in Development terms. To publish and build later, you will need to push your code to your Git repository. So let&#8217;s already practice this.</p>
 </div>
 <div class="paragraph">
 <p>To be able to push you need to set up your git email</p>
