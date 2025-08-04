@@ -216,14 +216,14 @@ The buttons:
 * **Initiate Run** - Calls your `startRobot()` function in the `app.py`. This is where you will add your code
 * **Emergency Stop** - Stop execution of you app
 
-Now to check if everything is setup correctly and your app can reach the robot:
+Check if everything is setup correctly and your app can reach the robot:
 
-* The *Live Visual Feed* will be empty. Don't worry, we get to that later
+* The *Live Visual Feed* will be empty. Don't worry, we will get to that later.
 * On the Robot Control Page click on **Check Status**
 
 image::robot-control-page2.png[]
 
-You should see a confirmation that your Robot is doing ok. If not have a look at the console output in your Dev Spaves Workspace and recheck `config.py`.
+You should see a confirmation that your Robot is doing ok. If not, have a look at the console output in your Dev Spaves Workspace and recheck `config.py`.
 
 == First Code: Robot Movement
 
@@ -244,7 +244,7 @@ print('Done')
 
 * Now back on your Robot Control Page click on the **Run** button
 
-If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness!
+If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness! OBS, do make sure the robot is not on the edge of a table or in risk of falling down. 
 
 If it doesn't move, have look at the Terminal output in **Dev Spaces** and recheck your `config.py` entries.
 
@@ -287,7 +287,7 @@ Run the code with the **Run** button as usual.  Hold your hand in front of the s
 
 == Robot Vision
 
-Our robot is still a bit blind so let's work with the camera and the image detection model now.
+Our robot is still a bit blind, so let's work with the camera and the image detection model.
 
 We have two functions that will help us:
 
@@ -375,13 +375,13 @@ Create code to simply guide your robot around a barrier. Just use the movement c
 
 **Second Exercise**
 
-Of course hardcoding distances into you code will not work for changing environments.  Imagine something is blocking your robots path at an unknown distance! Your mission is now to drive straight towards a barrier as fast as possible but stopping right before it (and yes, not crashing into it).
+Of course, hardcoding distances into you code will not work for changing environments. Imagine something is blocking your robots path at an unknown distance! Your mission is now to drive straight towards a barrier as fast as possible but stopping right before it (and yes, not crashing into it).
 
 That means you will need to create a loop of driving and checking the distance. Notice that the current code runs in a while loop with the condition `+thread_event.is_set()+`. The execution can be stopped from the **Stop** button command and subsequent API call. Otherwise your robot might go wild on you.
 
 At the moment there is a `break`command that exits the loop immediately after your code. But what about just letting it run until you have actually close enough to a barrier? You can use the `break`command when that condition is met and you want to exit the loop. Or you can keep the loop running so the robot can react to moving the barrier.
 
-This is roughly what the loop looks like
+This is roughly what the loop looks like:
 
 [source,python,role=execute,subs="attributes"]
 ----
