@@ -1,6 +1,6 @@
 = Improve the Control App
 
-That was pretty neat. With just a few lines of MVP code your robot should have picked up on some Fedoras in the vincinity.  But we are of course striving for more.
+That was pretty neat! With just a few lines of MVP code your robot should have picked up on some Fedoras in the vincinity.  But we are of course striving for more.
 
 We will enhance the brains ... I mean the code of your robot:
 
@@ -87,7 +87,7 @@ def search_for_hat():
 ----
 
 
-Now you can call these functions from inside the `+startRobot()+` function like so
+Now, you can call these functions from inside the `+startRobot()+` function like so:
 
 
 [source,python,role=execute,subs="attributes"]
