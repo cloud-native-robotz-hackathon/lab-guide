@@ -1,7 +1,7 @@
 
 = Data Science
 
-As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an object dection model from the https://docs.ultralytics.com/models/yolov5/[YOLO-family,window=_blank] (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries
+As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an object dection model from the https://docs.ultralytics.com/models/yolov5/[YOLO-family,window=_blank] (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries.
 
 == Instantiate Workbench
 
