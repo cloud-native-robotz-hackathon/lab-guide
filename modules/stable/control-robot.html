@@ -532,12 +532,12 @@ Once the Python Gunicorn server has started, you will see two Popup windows in t
 </ul>
 </div>
 <div class="paragraph">
-<p>Now to check if everything is setup correctly and your app can reach the robot:</p>
+<p>Check if everything is setup correctly and your app can reach the robot:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <strong>Live Visual Feed</strong> will be empty. Don&#8217;t worry, we get to that later</p>
+<p>The <strong>Live Visual Feed</strong> will be empty. Don&#8217;t worry, we will get to that later.</p>
 </li>
 <li>
 <p>On the Robot Control Page click on <strong>Check Status</strong></p>
@@ -550,7 +550,7 @@ Once the Python Gunicorn server has started, you will see two Popup windows in t
 </div>
 </div>
 <div class="paragraph">
-<p>You should see a confirmation that your Robot is doing ok. If not have a look at the console output in your Dev Spaves Workspace and recheck <code>config.py</code>.</p>
+<p>You should see a confirmation that your Robot is doing ok. If not, have a look at the console output in your Dev Spaves Workspace and recheck <code>config.py</code>.</p>
 </div>
 </div>
 </div>
@@ -592,7 +592,7 @@ print('Done')</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness!</p>
+<p>If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness! OBS, do make sure the robot is not on the edge of a table or in risk of falling down.</p>
 </div>
 <div class="paragraph">
 <p>If it doesn&#8217;t move, have look at the Terminal output in <strong>Dev Spaces</strong> and recheck your <code>config.py</code> entries.</p>
@@ -658,7 +658,7 @@ print('Done')</code></pre>
 <h2 id="_robot_vision"><a class="anchor" href="#_robot_vision"></a>Robot Vision</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Our robot is still a bit blind so let&#8217;s work with the camera and the image detection model now.</p>
+<p>Our robot is still a bit blind, so let&#8217;s work with the camera and the image detection model.</p>
 </div>
 <div class="paragraph">
 <p>We have two functions that will help us:</p>
@@ -822,7 +822,7 @@ If after adjusting the value you still get bad predictions you can always switch
 <p><strong>Second Exercise</strong></p>
 </div>
 <div class="paragraph">
-<p>Of course hardcoding distances into you code will not work for changing environments.  Imagine something is blocking your robots path at an unknown distance! Your mission is now to drive straight towards a barrier as fast as possible but stopping right before it (and yes, not crashing into it).</p>
+<p>Of course, hardcoding distances into you code will not work for changing environments. Imagine something is blocking your robots path at an unknown distance! Your mission is now to drive straight towards a barrier as fast as possible but stopping right before it (and yes, not crashing into it).</p>
 </div>
 <div class="paragraph">
 <p>That means you will need to create a loop of driving and checking the distance. Notice that the current code runs in a while loop with the condition <code>thread_event.is_set()</code>. The execution can be stopped from the <strong>Stop</strong> button command and subsequent API call. Otherwise your robot might go wild on you.</p>
@@ -831,7 +831,7 @@ If after adjusting the value you still get bad predictions you can always switch
 <p>At the moment there is a `break`command that exits the loop immediately after your code. But what about just letting it run until you have actually close enough to a barrier? You can use the `break`command when that condition is met and you want to exit the loop. Or you can keep the loop running so the robot can react to moving the barrier.</p>
 </div>
 <div class="paragraph">
-<p>This is roughly what the loop looks like</p>
+<p>This is roughly what the loop looks like:</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
