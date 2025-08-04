@@ -2,7 +2,7 @@
 
 Congratulations if you have made it this far.
 
-Right now we have mainly used the camera of the robot to check for hats, but in a more complex and dangerous environment we don't want our little guy bumping into things. We want to detect obstacles and avoid them.
+Up until now, we have mainly used the camera of the robot to check for hats, but in a more complex and dangerous environment we don't want our little guy bumping into things. We want to detect obstacles and avoid them.
 
 Head back to your DevSpaces Tab and here is a new code drop for you. We now add a second function which will navigate the robot around an obstacle.
 
@@ -59,7 +59,7 @@ def bypass_obstacle():
     print('### Bypass Obstacle Mode - END: SUCCESS! ###')
 ----
 
-Now first test the new obstacle avoidance code by commenting out the function `+search_for_hat())+` from the `+startRobot()+` function and adding the `+bypass_obstacle()+` function like so:
+First test the new obstacle avoidance code by commenting out the function `+search_for_hat())+` from the `+startRobot()+` function and adding the `+bypass_obstacle()+` function like so:
 
 [source,python,role=execute,subs="attributes"]
 ----
@@ -85,7 +85,7 @@ Try to change some of the value parameters and see if you can tune the performan
 
 == Putting it together
 
-You should by now have tested both functions, it's time to combine both functions into one main loop that continuously checks for obstacles and hats. The robot has to:
+You should by now have tested both functions, so it's time to combine both functions into one main loop that continuously checks for obstacles and hats. The robot has to:
 
 * navigate around a barrier
 * find the hat and drive towards it
