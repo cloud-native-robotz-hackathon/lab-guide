@@ -1,8 +1,8 @@
 = Develop Control Application
 
-In the last chapter you have learned about controling the robot and using the development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, here is a first simplified version of it. Let's call it an MVP (minimal viable product).
+In the last chapter, you learned about controling the robot and using the development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, we provide a first simplified version of it. Let's call it an Minimal Viable Product(MVP).
 
-Review and test the code but don't spend too much time with it.
+Review and test the code, but don't spend too much time with it.
 
 == MVP Code
 
@@ -73,17 +73,17 @@ log_with_timestamp("Exited main control loop.")
 
 == What does this code do, you ask?
 
-Well first of all it keeps on looping until someone presses the **Stop** button. It takes a picture from the camera, finds the Fedora object with higest confidence score.
+First, it keeps on looping until someone presses the **Stop** button. It takes a picture from the camera, finds the Fedora object with higest confidence score.
 
-Then it looks for the center of the bounding box. Depending on the position of the center point in the camera image, the code decides if the robot needs to turn left or right to align it with the fedora.
+Then, it looks for the center of the bounding box. Depending on the position of the center point in the camera image, the code decides if the robot needs to turn left or right to align it with the fedora.
 
-Then it just keeps on driving until the bounding box has a certain size, which means that you are close enough to the Fedora.
+After that, it keeps on driving until the bounding box has a certain size, which means that you are close enough to the Fedora.
 
-Now place a Fedora somewhere near your robot and see if it can find it.
+Now, place a Fedora somewhere near your robot and see if it can find it.
 
 == Pushing your Code
 
-Currently your code only resides in your Workspace, which is called the "Inner Loop" in Development terms. To publish and build later you will need to push your code to your Git repository. So let's already practice this.
+Currently, your code only resides in your Workspace which is called the "Inner Loop" in Development terms. To publish and build later, you will need to push your code to your Git repository. So let's already practice this.
 
 To be able to push you need to set up your git email
 
