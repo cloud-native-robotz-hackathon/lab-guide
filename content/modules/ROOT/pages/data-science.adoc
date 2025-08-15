@@ -56,6 +56,16 @@ fedora-detection
 ** **Deployment size**
 *** Container size: 'Small'
 
+** **Cluster storage**
+*** Click on **Attach existing storage**
+**** Select `object-detection-training-pvc` connection
+**** **Standard Path**
++
+[source,bash,role=execute]
+----
+object-detection-training-pvc
+----
+
 ** **Connections**
 *** Click on **Attach existing connections**
 **** Select `workbench-bucket` connection
