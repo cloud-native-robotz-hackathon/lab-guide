@@ -111,7 +111,7 @@ For testing purposes you can call the Robot API directly from your Workspace Ter
 * Open a new Terminal by clicking on the "Hamburger" menu (top left), then **Terminal** > **New Terminal**
 * To drive forward 2 units (make sure your Robot is not falling off the table), enter and execute:
 
-[source,bash,role=execute]
+[source,bash,role=execute,subs="attributes"]
 ----
 curl -X POST http://api.hub-controller.svc.cluster.local/robot/forward/2 -d user_key={robot_name}
 ----
@@ -122,7 +122,7 @@ Awesome, right? You are now an official robot pilot.
 
 To retrieve a camera image and save it as a file:
 
-[source,bash,role=execute]
+[source,bash,role=execute,subs="attributes"]
 ----
 curl -v http://api.hub-controller.svc.cluster.local/robot/camera?user_key={robot_name} | base64 -d > image.jpg
 ----
