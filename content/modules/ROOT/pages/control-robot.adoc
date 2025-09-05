@@ -113,10 +113,7 @@ For testing purposes you can call the Robot API directly from your Workspace Ter
 
 [source,bash,role=execute]
 ----
-include::partial$export-{user}.adoc[]
-
-curl -X POST http://api.hub-controller.svc.cluster.local/robot/forward/2 -d user_key=${ROBOT_NAME}
-
+curl -X POST http://api.hub-controller.svc.cluster.local/robot/forward/2 -d user_key={robot_name}
 ----
 
 TIP: Some Browsers will ask you wether to allow pasting text. Approve this to proceed.
@@ -127,9 +124,7 @@ To retrieve a camera image and save it as a file:
 
 [source,bash,role=execute]
 ----
-include::partial$export-{user}.adoc[]
-
-curl -v http://api.hub-controller.svc.cluster.local/robot/camera?user_key=${ROBOT_NAME} | base64 -d > image.jpg
+curl -v http://api.hub-controller.svc.cluster.local/robot/camera?user_key={robot_name} | base64 -d > image.jpg
 ----
 
 You will find the image file as `image.jpg` in the root folder. Click on it to view.
@@ -144,12 +139,7 @@ So let's go ahead and set up these connection variables. Edit the file `config.p
 
 Replace the following placeholders:
 
-* **<REPLACE_WITH_ROBOT_NAME>**:
-+
-[source,bash,role=execute,subs="attributes"]
-----
-include::partial${user}.adoc[]
-----
+* **<REPLACE_WITH_ROBOT_NAME>**: {robot_name}
 * **<REPLACE_WITH_INFERENCING_API>**
 +
 (The Object Detection Service from the DataScience chapter)
