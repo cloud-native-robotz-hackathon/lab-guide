@@ -113,7 +113,9 @@ For testing purposes you can call the Robot API directly from your Workspace Ter
 
 [source,bash,role=execute,subs="attributes"]
 ----
-curl -X POST http://api.hub-controller.svc.cluster.local/robot/forward/2 -d user_key={robot_name}
+curl -X POST \
+    http://api.hub-controller.svc.cluster.local/robot/forward/2 \
+    -d user_key={robot_name}
 ----
 
 TIP: Some Browsers will ask you wether to allow pasting text. Approve this to proceed.
@@ -124,7 +126,8 @@ To retrieve a camera image and save it as a file:
 
 [source,bash,role=execute,subs="attributes"]
 ----
-curl -v http://api.hub-controller.svc.cluster.local/robot/camera?user_key={robot_name} | base64 -d > image.jpg
+curl -v http://api.hub-controller.svc.cluster.local/robot/camera?user_key={robot_name} \
+    | base64 -d > image.jpg
 ----
 
 You will find the image file as `image.jpg` in the root folder. Click on it to view.
