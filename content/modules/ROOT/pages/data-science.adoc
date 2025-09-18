@@ -56,6 +56,16 @@ fedora-detection
 ** **Deployment size**
 *** Container size: 'Small'
 
+** **Cluster storage**
+*** Click on **Attach existing storage**
+**** Select `object-detection-training-pvc` connection
+**** **Standard Path**
++
+[source,bash,role=execute]
+----
+object-detection-training-pvc
+----
+
 ** **Connections**
 *** Click on **Attach existing connections**
 **** Select `workbench-bucket` connection
@@ -94,7 +104,7 @@ image::workbench-clone.png[width=420]
 
 * On the left side in the menu click on the **Folder** icon.
 
-Next, we will train our model on the basis of a https://docs.ultralytics.com/models/yolov5/[Yolo5,window=_blank] Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
+Next, we will train our model on the basis of a https://docs.ultralytics.com/models/yolov5/[Yolo5,window=_blank] Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. We will provide sample images but you will add some imges of your own as well to customize this model yourself.  After the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
 === Model Training
 
@@ -119,32 +129,10 @@ This will show you a view of our Data Science Pipeline. This pipeline runs sever
 
 Here is a quick explanation what each step of the Pipeline does:
 
-* Step 1 : Downloads a set of sample images with labels and coordinates for our fedora class from the https://storage.googleapis.com/openimages/web/index.html[OpenImages website,window=_blank].
-+
-image::open-images.png[]
-
-TIP: If you want to see the collection the model training is pulling images from, go to above website, click "Explore", set the **Type** to **Detection** and the **Class** to **Fedora**.
-
-* Step 2 : Prepares the class labels and training sets
-* Step 3 : Runs the actual training on a https://docs.ultralytics.com/models/yolov5/[Yolo 5,window=_blank] Model
-* Step 4 : Converts the model format to onnx
-* Step 5 : Uploads it to an ODF S3 bucket
-
-The pipeline can be configured to download and train on a specifc image object class such as  Fedoras, which is want we want.
-
-* To configure a class, open the file called `configuration.yaml`.
-
-You will see that an image class is already defined ('Laptop',). Looking for a new Laptop is great but we want to find red hats today.
-
-* Change the `names` array to look like this
-
-[source,yaml,role=execute,subs="attributes"]
-----
-names: ['Fedora',]
-----
-* Save the file by pressing **ctrl+s** on Linux/Windows or **Command+s** on Mac
-
-This image class is now mapped to the class number 0.
+* Step 1 : Prepares the class labels, images and bound box coordinates as well as training sets
+* Step 2 : Runs the actual training on a https://docs.ultralytics.com/models/yolov5/[Yolo 5,window=_blank] Model
+* Step 3 : Converts the model format to onnx
+* Step 4 : Uploads it to an ODF S3 bucket
 
 * Now back in the `model-training-cpu.pipeline`, on the top menu on the left click on the play icon
 +

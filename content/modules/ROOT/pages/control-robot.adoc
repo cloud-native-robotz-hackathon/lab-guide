@@ -71,6 +71,36 @@ You will now see the starter code on the left side.
 
 This is a Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.
 
+== Set up a AI Coding Assistant (optional)
+
+If you looking for a little help with your upcoming coding endeavors we will help you setup a AI Coding Assistant that runs completely disconnected in OpenShift AI.
+
+We are already serving the OpenSource https://www.ibm.com/granite/docs/models/code/[Granite Coding Model] on the cluster, very similar to how you have set up your object recognition inferencing service. No need for expensive online AI services here. And best of all, your data is under your control.
+
+A single Granite model is running in a high performant vLLm-server accessed by all the teams. Here is how to connect to DevSpaces to it.
+
+First we are will need to copy the configuration file that tells the "Continue" extension how to actually connect to our service, to our home folder.  We have already perepared a script that does this for you as part of the Devfile.
+
+* On the left, click on the **"Hamburger Menu"** > **Terminal** > **Run Task** > **devfile** > **devFile : Setup Continue extension**
+
+A terminal will show up, telling you that the file `config.json` has been copied. Now we are ready to install the extension:
+
+* In the DevSpaces menu on the left click on the "extensions" icon :
+
+image::extension.png[]
+
+* Search for the "Continue" extension and install it by clicking on **Install** button next to it
+
+image::install_continue.png[]
+
+* Click on the newly installed Continue menu item on the left
+
+image::continue-window.png[]
+
+* In the promp dialog, make sure our model **Granite Code (OpenShift)** is selected.
+
+Go ahead and ask the model some questions on the repo (You can refer to a single file by typing @ and then the filename). By asking the right prompts, the model can give hints on how to best to code the upcoming tasks.  But of course this is optional and don't forget to verify the results.
+
 === The Robot API
 
 Before starting with the app, let's take a moment to have a look at the Robot REST API that we will be calling.
@@ -237,7 +267,7 @@ print('Done')
 
 * Now back on your Robot Control Page click on the **Run** button
 
-If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness! OBS, do make sure the robot is not on the edge of a table or in risk of falling down. 
+If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness! OBS, do make sure the robot is not on the edge of a table or in risk of falling down.
 
 If it doesn't move, have look at the Terminal output in **Dev Spaces** and recheck your `config.py` entries.
 
