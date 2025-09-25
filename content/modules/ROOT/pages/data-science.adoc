@@ -65,7 +65,9 @@ fedora-detection
 ----
 object-detection-training-pvc
 ----
-
++
+image::attach-existing-storage.png[]
+**** Click on **Attach storage**
 ** **Connections**
 *** Click on **Attach existing connections**
 **** Select `workbench-bucket` connection
