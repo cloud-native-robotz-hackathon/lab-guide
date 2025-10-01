@@ -106,7 +106,112 @@ image::workbench-clone.png[width=420]
 
 * On the left side in the menu click on the **Folder** icon.
 
-Next, we will train our model on the basis of a https://docs.ultralytics.com/models/yolov5/[Yolo5,window=_blank] Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. We will provide sample images but you will add some imges of your own as well to customize this model yourself.  After the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
+Next, we will train our model on the basis of a https://docs.ultralytics.com/models/yolov5/[Yolo5,window=_blank] Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. 
+
+We will provide sample images but you will add some images of your own as well to customize this model yourself.  After the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
+
+=== The Training Images
+
+To stay in the boundaries of the resources available to us, we provide around 100 images of a Red Hat Fedora together with the label metadata to train our base model with. 
+
+[NOTE]
+====
+Labeling in object detection is the annotation of raw image by humans, where bounding boxes are drawn around specific objects and assign a class label (e.g., "car", "person," "tree". Or "fedora"...) to each object. This basically teaches the base model to recognize a new class of objects.
+==== 
+
+Since we deliberately don't have a lot of variations in the images this will lead to a model that will recognize this particular Fedora pretty well, but not one that deviates slightly. This is commonly called "overfitting" and usually avoided, but in our case for demo and fun it's fine.
+
+If you would like to get a idea what the images look like, in your JupyterLab Notebook navigate to the folder `object-detection-training-pvc/custom_training_images/fedora/images/` and open some of the images. You'll see slight variations of a Red Hat Fedora in front of varying backgrounds. 
+
+image::training-image.png[]
+
+Labeling data in form of a bounding box around the object in question "tells" the model during the training what part of the image is actually the Fedora. This data is kept in  a different folder, if you go to the folder `labels` you'll see text files, each corresponding to one of the images. If you open one of the label files there are coordinates of a rectangle, this describes the bounding box.   
+
+=== Image Labeling
+
+Since image preparation and labeling is an important part of working in data science, even if we provide the training image data set we'd like to provide you with the opportunity to learn how images are labeled. You'll basically add some more images to the training data yourself.
+
+There are a good number of tools available for this task, we'll use a well-known Open Source project called **Label Studio**. Label Studio runs in OpenShift, of course, and was already deployed for you. To access it, return to the OpenShift UI and choose the **Project** `{user}-label-studio`. On the overview page of the **Project**, from the **Inventory** section click the route and open it.
+
+This will open the Label Studio UI, log in:
+
+* Email Address:
++
+[source,text,role=execute,subs="attributes"]
+----
+{user}@example.com
+----
+* Password :
++
+[source,text,role=execute,subs="attributes"]
+----
+{password}
+----
+
+This will take you to the Label Studio Welcome page.
+
+image::label-studio-welcome.png[]
+
+**Configure Label Studio**
+
+Click **Create Project** to get started:
+
+* Project Name: `Fedora`
+* Click **Save**
+
+Now you have to configure Label Studio for the way you going to label the images. Click **Settings** to the upper right, then:
+
+* Choose **Labeling Interface** from the menu to the right
+* From **Computer Vision** choose **Object Detection with Bounding Boxes**
+* Under **add label names** there will be two labels ("Airplane" and "Car") preconfigured, delete them by clicking the red X.
+* In the text box enter our label "Fedora" and click **Add**
+* Click **Save**
+* Return to the Project overview by clicking **Fedora** in the breadcrumb-style path at the top.
+
+image::label-studio-settings.png[]
+
+You'll be greeted with **Looks like you have not imported any data yet**... true, we need some images first before we can proceed to labeling them:
+
+* Click **Go to import**
+* Take some images of the Fedora on the floor with your mobile phone. Make sure they are in jpg-format.
+* If the file extension is not jpg (but jpeg), rename the extension.
+* Transfer them to your laptop and upload them via **Upload Files**, you can upload multiple images at once.
+* Click **Import**
+
+Your UI should now look like this, obviously with different images... ;-)
+
+image::label-studio-images.png[]
+
+**Label your Images**
+
+Now it's time to actually label the images. 
+
+* Click the images to start
+* You'll get into the labeling interface. To label a class, you have to choose it at the bottom. We only have on class, Fedora, so click to activate it.
+* Now in the image draw a rectangle by holding the left mouse button **as close to the Fedora as close as possible**.
+* Click **Submit**
+
+image::label-studio-labeling.png[]
+
+Congrats, you have just labeled your first image! Now do the same for the rest of your images. When you are done with labeling you can use the images with their labels for training the model. We just have to transfer them to your JupyterLab Notebook to add them to the training images.
+
+**Transfer Labeled Images**
+
+On the overview page of your Label Studio project click **Export** and as format choose `YOLO with Images`. Click **Export**, this will download a zip file with the images and label metadata to your laptop. Inspect the content of the file, you'll find an `images` and a `labels` folder with the same content format you have in the training images provided by us.
+
+[NOTE]
+====
+Transfering the labeled images via zip file is of course not the way you would do this in the real world, here you would use e.g. an S3 bucket for data transfer.
+====
+
+Now add the images to the training images in the JupyterLab Notebook:
+
+* Unpack the zip file
+* Go back to your JupyterLab notebook and open the folder `object-detection-training-pvc/custom_training_images/fedora/` 
+* Open the `images` folder and upload your images using the **Upload Files** button.
+* Do the same for the label data, go to folder `labels` and upload your label data from the `labels` folder of the zip file.
+
+You have now added your images to the training data and are ready to train your model!
 
 === Model Training
 
@@ -131,12 +236,12 @@ This will show you a view of our Data Science Pipeline. This pipeline runs sever
 
 Here is a quick explanation what each step of the Pipeline does:
 
-* Step 1 : Prepares the class labels, images and bound box coordinates as well as training sets
+* Step 1 : Prepares the class labels, images and bounding box coordinates as training sets
 * Step 2 : Runs the actual training on a https://docs.ultralytics.com/models/yolov5/[Yolo 5,window=_blank] Model
 * Step 3 : Converts the model format to onnx
 * Step 4 : Uploads it to an ODF S3 bucket
 
-* Now back in the `model-training-cpu.pipeline`, on the top menu on the left click on the play icon
+Now back in the `model-training-cpu.pipeline`, on the top menu on the left click on the play icon
 +
 image::start-pipeline.png[]
 
@@ -218,14 +323,15 @@ You now have a trained model for object recognition. To use the model we will de
 First we need to configure a model server:
 
 * Click on **Data Science Projects** in the main menu on the left and make sure you have selected your `{user}-ai` again
-* Select the tab **Models** and click on **Add model server**
-* Model server name :
+* Select the tab **Models** and choose **Multi-model serving platform** by clicking **Select multi-model**
+* Now deploy a model server by clicking **Add model server**
+* Model deployment name:
 +
 [source,bash,role=execute,subs="attributes"]
 ----
 ovms
 ----
-* Serving runtime : `OpenVINO Model Server`
+* Serving runtime: `OpenVINO Model Server`
 * Make deployed models available ... : `Check`
 * Require token authentication : `Check`
 ** Service account name : `default-name`
@@ -299,11 +405,11 @@ You can test your model with different images in the `sample-images` folder, or 
 If you see multiple bounding boxes over your fedoras, that means you may need to filter out object detections with a lower score. By default the code filters out anything with a lower confidence score that 0.3. Search for the code `+conf_thres=0.3+`. Increase the threshold here by changing the value and rerun your Notebook.
 ====
 
-That's it. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
+And that's it for the data science part. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
 
 == Optional: What if your Model does not perform that well?
 
-As we are in a Hackathon environment and we don't have that much time we are using a quick approach to show you the basics of model training.  For a production environment you would rather use images of actual Fedoras to train the model and not random ones sitting on peoples heads.
+As we are in a Hackathon environment and we don't have that much time we are using a quick approach to show you the basics of model training.  For a production environment you would rather use more images of actual Fedoras in different variations to train the model.
 
 If you run into any issues later on with the model not detecting Fedoras or identifiying other objects as Fedoras, we have a professionally trained model with custom images and more epochs prepared for you.
 
@@ -327,6 +433,7 @@ backup/model-custom-images.onnx
 
 After this chapter you should know:
 
+* How to label images for training an image detection model
 * how to train and test an AI model in OpenShift AI
 * how to make your model available for inferencing using the model server
 
