@@ -106,32 +106,32 @@ image::workbench-clone.png[width=420]
 
 * On the left side in the menu click on the **Folder** icon.
 
-Next, we will train our model on the basis of a https://docs.ultralytics.com/models/yolov5/[Yolo5,window=_blank] Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. 
+Next, we will train our model on the basis of a https://docs.ultralytics.com/models/yolov5/[Yolo5,window=_blank] Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling.
 
 We will provide sample images but you will add some images of your own as well to customize this model yourself.  After the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
 === The Training Images
 
-To stay in the boundaries of the resources available to us, we provide around 100 images of a Red Hat Fedora together with the label metadata to train our base model with. 
+To stay in the boundaries of the resources available to us, we provide around 100 images of a Red Hat Fedora together with the label metadata to train our base model with.
 
 [NOTE]
 ====
 Labeling in object detection is the annotation of raw image by humans, where bounding boxes are drawn around specific objects and assign a class label (e.g., "car", "person," "tree". Or "fedora"...) to each object. This basically teaches the base model to recognize a new class of objects.
-==== 
+====
 
 Since we deliberately don't have a lot of variations in the images this will lead to a model that will recognize this particular Fedora pretty well, but not one that deviates slightly. This is commonly called "overfitting" and usually avoided, but in our case for demo and fun it's fine.
 
-If you would like to get a idea what the images look like, in your JupyterLab Notebook navigate to the folder `object-detection-training-pvc/custom_training_images/fedora/images/` and open some of the images. You'll see slight variations of a Red Hat Fedora in front of varying backgrounds. 
+If you would like to get a idea what the images look like, in your JupyterLab Notebook navigate to the folder `object-detection-training-pvc/custom_training_images/fedora/images/` and open some of the images. You'll see slight variations of a Red Hat Fedora in front of varying backgrounds.
 
 image::training-image.png[]
 
-Labeling data in form of a bounding box around the object in question "tells" the model during the training what part of the image is actually the Fedora. This data is kept in  a different folder, if you go to the folder `labels` you'll see text files, each corresponding to one of the images. If you open one of the label files there are coordinates of a rectangle, this describes the bounding box.   
+Labeling data in form of a bounding box around the object in question "tells" the model during the training what part of the image is actually the Fedora. This data is kept in  a different folder, if you go to the folder `labels` you'll see text files, each corresponding to one of the images. If you open one of the label files there are coordinates of a rectangle, this describes the bounding box.
 
 === Image Labeling
 
 Since image preparation and labeling is an important part of working in data science, even if we provide the training image data set we'd like to provide you with the opportunity to learn how images are labeled. You'll basically add some more images to the training data yourself.
 
-There are a good number of tools available for this task, we'll use a well-known Open Source project called **Label Studio**. Label Studio runs in OpenShift, of course, and was already deployed for you. 
+There are a good number of tools available for this task, we'll use a well-known Open Source project called **Label Studio**. Label Studio runs in OpenShift, of course, and was already deployed for you.
 
 * Login into the https://web-{user}-label-studio.{openshift_cluster_ingress_domain}[Label Studio,window=_blank] with:
 
@@ -166,8 +166,8 @@ Fedora
 
 Now you have to configure Label Studio for the way you going to label the images. Click **Settings** to the upper right, then:
 
-* Choose **Labeling Interface** from the menu to the right
-* Click on **Browse Templates** 
+* Choose **Labeling Interface** from the menu to the left
+* Click on **Browse Templates**
 * From **Computer Vision** choose **Object Detection with Bounding Boxes**
 * Under **add label names** there will be two labels ("Airplane" and "Car") preconfigured, delete them by clicking the red X.
 * In the text box enter our label "Fedora" and click **Add**
@@ -180,7 +180,7 @@ You'll be greeted with **Looks like you have not imported any data yet**... true
 
 * Click **Go to import**
 * Take some images of the Fedora on the floor with your mobile phone. Make sure they are in jpg-format.
-** Or use these two images: 
+** Or use these two images:
 *** link:_images/fedora-demo-image-1.jpg[fedora-demo-image-1.jpg,target=_blank]
 *** link:_images/fedora-demo-image-2.jpg[fedora-demo-image-2.jpg,target=_blank]
 * If the file extension is not jpg (but jpeg), rename the extension.
@@ -193,7 +193,7 @@ image::label-studio-images.png[]
 
 **Label your Images**
 
-Now it's time to actually label the images. 
+Now it's time to actually label the images.
 
 * Click the images to start
 * You'll get into the labeling interface. To label a class, you have to choose it at the bottom. We only have on class, Fedora, so click to activate it.
@@ -206,11 +206,11 @@ Congrats, you have just labeled your first image! Now do the same for the rest o
 
 **Transfer Labeled Images**
 
-* On the overview page of your Label Studio project click **Export** 
-+ 
+* On the overview page of your Label Studio project (click on the **Fedora** in the breadcrumbs menu) click **Export**
++
 image::label-studio-export.png[]
 
-* and as format choose `YOLO with Images`. 
+* and as format choose `YOLO with Images`.
 * Click **Export**
 
 This will download a zip file with the images and label metadata to your laptop. Inspect the content of the file, you'll find an `images` and a `labels` folder with the same content format you have in the training images provided by us.
@@ -240,7 +240,7 @@ Now add the images to the training images in the JupyterLab Notebook:
 3 directories, 6 files
 ----
 
-* Go back to your **JupyterLab notebook** 
+* Go back to your **JupyterLab notebook**
 * open the folder `object-detection-training-pvc/custom_training_images/fedora/`
 +
 image::workbench-upload-1.png[]
