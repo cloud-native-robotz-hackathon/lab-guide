@@ -156,24 +156,33 @@ image::label-studio-welcome.png[]
 
 Click **Create Project** to get started:
 
-* Project Name: `Fedora`
+* Project Name:
++
+[source,text,role=execute,subs="attributes"]
+----
+Fedora
+----
 * Click **Save**
 
 Now you have to configure Label Studio for the way you going to label the images. Click **Settings** to the upper right, then:
 
 * Choose **Labeling Interface** from the menu to the right
+* Click on **Browse Templates** 
 * From **Computer Vision** choose **Object Detection with Bounding Boxes**
 * Under **add label names** there will be two labels ("Airplane" and "Car") preconfigured, delete them by clicking the red X.
 * In the text box enter our label "Fedora" and click **Add**
 * Click **Save**
 * Return to the Project overview by clicking **Fedora** in the breadcrumb-style path at the top.
-
++
 image::label-studio-settings.png[]
 
 You'll be greeted with **Looks like you have not imported any data yet**... true, we need some images first before we can proceed to labeling them:
 
 * Click **Go to import**
 * Take some images of the Fedora on the floor with your mobile phone. Make sure they are in jpg-format.
+** Or use these two images: 
+*** link:_images/fedora-demo-image-1.jpg[fedora-demo-image-1.jpg,target=_blank]
+*** link:_images/fedora-demo-image-2.jpg[fedora-demo-image-2.jpg,target=_blank]
 * If the file extension is not jpg (but jpeg), rename the extension.
 * Transfer them to your laptop and upload them via **Upload Files**, you can upload multiple images at once.
 * Click **Import**
@@ -197,7 +206,15 @@ Congrats, you have just labeled your first image! Now do the same for the rest o
 
 **Transfer Labeled Images**
 
-On the overview page of your Label Studio project click **Export** and as format choose `YOLO with Images`. Click **Export**, this will download a zip file with the images and label metadata to your laptop. Inspect the content of the file, you'll find an `images` and a `labels` folder with the same content format you have in the training images provided by us.
+* On the overview page of your Label Studio project click **Export** 
++ 
+image::label-studio-export.png[]
+
+* and as format choose `YOLO with Images`. 
+* Click **Export**
+
+This will download a zip file with the images and label metadata to your laptop. Inspect the content of the file, you'll find an `images` and a `labels` folder with the same content format you have in the training images provided by us.
+
 
 [NOTE]
 ====
@@ -207,11 +224,36 @@ Transfering the labeled images via zip file is of course not the way you would d
 Now add the images to the training images in the JupyterLab Notebook:
 
 * Unpack the zip file
-* Go back to your JupyterLab notebook and open the folder `object-detection-training-pvc/custom_training_images/fedora/` 
-* Open the `images` folder and upload your images using the **Upload Files** button.
-* Do the same for the label data, go to folder `labels` and upload your label data from the `labels` folder of the zip file.
++
+[source,text,subs="attributes"]
+----
+.
+├── classes.txt
+├── images
+│   ├── 6778ae02-fedora-demo-image-2.jpg
+│   └── ea65fd5b-fedora-demo-image-1.jpg
+├── labels
+│   ├── 6778ae02-fedora-demo-image-2.txt
+│   └── ea65fd5b-fedora-demo-image-1.txt
+└── notes.json
 
-You have now added your images to the training data and are ready to train your model!
+3 directories, 6 files
+----
+
+* Go back to your **JupyterLab notebook** 
+* open the folder `object-detection-training-pvc/custom_training_images/fedora/`
++
+image::workbench-upload-1.png[]
+
+* Open the `images` folder
+** upload your images using the **Upload Files** button.
+** Select the all images in the `images` folder of the zip file.
+
+* Open the `labels` folder
+** upload your label files using the **Upload Files** button.
+** Select the all label files in the `labels` folder of the zip file.
+
+Now you are ready to train your model!
 
 === Model Training
 
@@ -242,7 +284,7 @@ Here is a quick explanation what each step of the Pipeline does:
 * Step 4 : Uploads it to an ODF S3 bucket
 
 Now back in the `model-training-cpu.pipeline`, on the top menu on the left click on the play icon
-+
+
 image::start-pipeline.png[]
 
 * Keep the default settings and click on **OK**
