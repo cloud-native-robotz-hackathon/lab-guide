@@ -131,17 +131,17 @@ Labeling data in form of a bounding box around the object in question "tells" th
 
 Since image preparation and labeling is an important part of working in data science, even if we provide the training image data set we'd like to provide you with the opportunity to learn how images are labeled. You'll basically add some more images to the training data yourself.
 
-There are a good number of tools available for this task, we'll use a well-known Open Source project called **Label Studio**. Label Studio runs in OpenShift, of course, and was already deployed for you. To access it, return to the OpenShift UI and choose the **Project** `{user}-label-studio`. On the overview page of the **Project**, from the **Inventory** section click the route and open it.
+There are a good number of tools available for this task, we'll use a well-known Open Source project called **Label Studio**. Label Studio runs in OpenShift, of course, and was already deployed for you. 
 
-This will open the Label Studio UI, log in:
+* Login into the https://web-{user}-label-studio.{openshift_cluster_ingress_domain}[Label Studio,window=_blank] with:
 
-* Email Address:
+** E-Mail Address:
 +
 [source,text,role=execute,subs="attributes"]
 ----
 {user}@example.com
 ----
-* Password :
+** Password :
 +
 [source,text,role=execute,subs="attributes"]
 ----
