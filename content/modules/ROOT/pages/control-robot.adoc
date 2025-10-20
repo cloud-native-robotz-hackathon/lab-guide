@@ -71,7 +71,7 @@ You will now see the starter code on the left side.
 
 This is a Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.
 
-== Set up a AI Coding Assistant (optional)
+=== Set up a AI Coding Assistant (optional)
 
 If you looking for a little help with your upcoming coding endeavors we will help you setup a AI Coding Assistant that runs completely disconnected in OpenShift AI.
 
@@ -81,23 +81,28 @@ A single Granite model is running in a high performant vLLm-server accessed by a
 
 First we are will need to copy the configuration file that tells the "Continue" extension how to actually connect to our service, to our home folder.  We have already perepared a script that does this for you as part of the Devfile.
 
-* On the left, click on the **"Hamburger Menu"** > **Terminal** > **Run Task** > **devfile** > **devFile : Setup Continue extension**
+* On the left, click on the **"Hamburger Menu"** 
+** > **Terminal** 
+*** > **Run Task**
+**** > **devfile** 
+**** > **devFile : Setup Continue extension**
+
+image::setup-extension.png[width=400px]
 
 A terminal will show up, telling you that the file `config.json` has been copied. Now we are ready to install the extension:
 
 * In the DevSpaces menu on the left click on the "extensions" icon :
-
-image::extension.png[]
-
 * Search for the "Continue" extension and install it by clicking on **Install** button next to it
-
-image::install_continue.png[]
++
+image::install_continue.png[width=400px]
 
 * Click on the newly installed Continue menu item on the left
-
++
 image::continue-window.png[]
 
-* In the promp dialog, make sure our model **Granite Code (OpenShift)** is selected.
+* In the prompt dialog, make sure our model **Granite 8B Code Instruct (OpenShift)** is selected.
+
+image::continue-example.png[]
 
 Go ahead and ask the model some questions on the repo (You can refer to a single file by typing @ and then the filename). By asking the right prompts, the model can give hints on how to best to code the upcoming tasks.  But of course this is optional and don't forget to verify the results.
 
