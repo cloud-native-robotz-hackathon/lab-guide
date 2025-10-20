@@ -365,22 +365,32 @@ You now have a trained model for object recognition. To use the model we will de
 First we need to configure a model server:
 
 * Click on **Data Science Projects** in the main menu on the left and make sure you have selected your `{user}-ai` again
-* Select the tab **Models** and choose **Multi-model serving platform** by clicking **Select multi-model**
+* Select the tab **Models**
+* Choose **Multi-model serving platform** by clicking **Select multi-model**
 * Now deploy a model server by clicking **Add model server**
-* Model deployment name:
+
+==== Fill out the form.
+
+* **Model server name:**
 +
 [source,bash,role=execute,subs="attributes"]
 ----
 ovms
 ----
-* Serving runtime: `OpenVINO Model Server`
-* Make deployed models available ... : `Check`
-* Require token authentication : `Check`
-** Service account name : `default-name`
-* Keep the rest of the settings as is
+* **Serving runtime**: `OpenVINO Model Server`
+* **Accelerator**: `None`
+* **Model route**
+** ☑︎ Make deployed models available through an external route: `Check`
+* **Token authentication**
+** ☑︎ Require token authentication : `Check`
+** **Service account name** : `default-name`
 * Click **Add**
-+
+
+.**Click to reveal the screenshot**
+[%collapsible]
+====
 image::serving-runtime.png[]
+====
 
 === Deploy Model
 
