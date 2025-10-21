@@ -387,7 +387,7 @@ video::devspaces-devenv.mp4[width=640]
 
 As mentioned in the Data Science chapter, our quick trained model might not be perfect.  You might get not optimal or sometimes false detections. These are common Data Science challenges when working with predictive AI.
 
-There is a setting `CONFIDENCE_THRESHOLD` in `app.py` that defines the minimum confidence score a detection must have to be displayed.  This is currently set to `0.3`. If you get too many or false detection, try to raise the value and check your bounding box image.  Play around with the value during your hacking to find the sweet spot.
+There is a setting `CONFIDENCE_THRESHOLD` in `config.py` that defines the minimum confidence score a detection must have to be displayed.  This is currently set to `0.3`. If you get too many or false detection, try to raise the value and check your bounding box image.  Play around with the value during your hacking to find the sweet spot.
 
 [TIP]
 If after adjusting the value you still get bad predictions you can always switch over to the pretrained model we provide here xref:data-science.adoc#optional:_what_if_your_model_does_not_perform_that_well?[Optional: What if your Model does not perform that well?].
