@@ -451,9 +451,9 @@ In real world projects, you would use a tool such as <strong>Kustomize</strong> 
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort
-
-curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${ROBOT_NAME}.robot.svc.cluster.local:80/run</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X POST \
+    -H "Host: starterapp-python-robot-app.apps.gort" \
+    http://gort.robot.svc.cluster.local:80/run</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -477,9 +477,9 @@ curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort
-
-curl -X POST -H "Host: starterapp-python-robot-app.apps.${ROBOT_NAME}" http://${ROBOT_NAME}.robot.svc.cluster.local:80/stop</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X POST \
+    -H "Host: starterapp-python-robot-app.apps.gort" \
+    http://gort.robot.svc.cluster.local:80/stop</code></pre>
 </div>
 </div>
 </div>

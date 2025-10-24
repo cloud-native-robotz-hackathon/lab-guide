@@ -218,6 +218,39 @@
 </div>
 </li>
 <li>
+<p><strong>Cluster storage</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Attach existing storage</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Select <code>object-detection-training-pvc</code> connection</p>
+</li>
+<li>
+<p><strong>Standard Path</strong></p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">object-detection-training-pvc</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/attach-existing-storage.png" alt="attach existing storage">
+</div>
+</div>
+</li>
+<li>
+<p>Click on <strong>Attach storage</strong></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><strong>Connections</strong></p>
 <div class="ulist">
 <ul>
@@ -317,7 +350,322 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Next, we will train our model on the basis of a <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolo5</a> Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling. Sample images will be downloaded automatically and after the training, the model will be exported in onnx format to your S3 <strong>ODF</strong> (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on <strong>OpenShift AI</strong> and serve it to our application.</p>
+<p>Next, we will train our model on the basis of a <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolo5</a> Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling.</p>
+</div>
+<div class="paragraph">
+<p>We will provide sample images but you will add some images of your own as well to customize this model yourself.  After the training, the model will be exported in onnx format to your S3 <strong>ODF</strong> (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on <strong>OpenShift AI</strong> and serve it to our application.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_training_images"><a class="anchor" href="#_the_training_images"></a>The Training Images</h3>
+<div class="paragraph">
+<p>To stay in the boundaries of the resources available to us, we provide around 100 images of a Red Hat Fedora together with the label metadata to train our base model with.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Labeling in object detection is the annotation of raw image by humans, where bounding boxes are drawn around specific objects and assign a class label (e.g., "car", "person," "tree". Or "fedora"&#8230;&#8203;) to each object. This basically teaches the base model to recognize a new class of objects.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Since we deliberately don&#8217;t have a lot of variations in the images this will lead to a model that will recognize this particular Fedora pretty well, but not one that deviates slightly. This is commonly called "overfitting" and usually avoided, but in our case for demo and fun it&#8217;s fine.</p>
+</div>
+<div class="paragraph">
+<p>If you would like to get a idea what the images look like, in your JupyterLab Notebook navigate to the folder <code>object-detection-training-pvc/custom_training_images/fedora/images/</code> and open some of the images. You&#8217;ll see slight variations of a Red Hat Fedora in front of varying backgrounds.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/training-image.png" alt="training image">
+</div>
+</div>
+<div class="paragraph">
+<p>Labeling data in form of a bounding box around the object in question "tells" the model during the training what part of the image is actually the Fedora. This data is kept in  a different folder, if you go to the folder <code>labels</code> you&#8217;ll see text files, each corresponding to one of the images. If you open one of the label files there are coordinates of a rectangle, this describes the bounding box.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_image_labeling"><a class="anchor" href="#_image_labeling"></a>Image Labeling</h3>
+<div class="paragraph">
+<p>Since image preparation and labeling is an important part of working in data science, even if we provide the training image data set we&#8217;d like to provide you with the opportunity to learn how images are labeled. You&#8217;ll basically add some more images to the training data yourself.</p>
+</div>
+<div class="paragraph">
+<p>There are a good number of tools available for this task, we&#8217;ll use a well-known Open Source project called <strong>Label Studio</strong>. Label Studio runs in OpenShift, of course, and was already deployed for you.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Login into the <a href="https://web-team-1-label-studio.apps.example.com" target="_blank" rel="noopener">Label Studio</a> with:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E-Mail Address:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">team-1@example.com</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Password :</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">secret-password</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will take you to the Label Studio Welcome page.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/label-studio-welcome.png" alt="label studio welcome">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Configure Label Studio</strong></p>
+</div>
+<div class="paragraph">
+<p>Click <strong>Create Project</strong> to get started:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Project Name:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Fedora</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Click <strong>Save</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now you have to configure Label Studio for the way you going to label the images. Click <strong>Settings</strong> to the upper right, then:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Choose <strong>Labeling Interface</strong> from the menu to the left</p>
+</li>
+<li>
+<p>Click on <strong>Browse Templates</strong></p>
+</li>
+<li>
+<p>From <strong>Computer Vision</strong> choose <strong>Object Detection with Bounding Boxes</strong></p>
+</li>
+<li>
+<p>Under <strong>add label names</strong> there will be two labels ("Airplane" and "Car") preconfigured, delete them by clicking the red X.</p>
+</li>
+<li>
+<p>In the text box enter our label "Fedora" and click <strong>Add</strong></p>
+</li>
+<li>
+<p>Click <strong>Save</strong></p>
+</li>
+<li>
+<p>Return to the Project overview by clicking <strong>Fedora</strong> in the breadcrumb-style path at the top.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/label-studio-settings.png" alt="label studio settings">
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll be greeted with <strong>Looks like you have not imported any data yet</strong>&#8230;&#8203; true, we need some images first before we can proceed to labeling them:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <strong>Go to import</strong></p>
+</li>
+<li>
+<p>Take some images of the Fedora on the floor with your mobile phone. Make sure they are in jpg-format.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Or use these two images:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="_images/fedora-demo-image-1.jpg">fedora-demo-image-1.jpg</a></p>
+</li>
+<li>
+<p><a href="_images/fedora-demo-image-2.jpg">fedora-demo-image-2.jpg</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If the file extension is not jpg (but jpeg), rename the extension.</p>
+</li>
+<li>
+<p>Transfer them to your laptop and upload them via <strong>Upload Files</strong>, you can upload multiple images at once.</p>
+</li>
+<li>
+<p>Click <strong>Import</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Your UI should now look like this, obviously with different images&#8230;&#8203; ;-)</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/label-studio-images.png" alt="label studio images">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Label your Images</strong></p>
+</div>
+<div class="paragraph">
+<p>Now it&#8217;s time to actually label the images.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click the images to start</p>
+</li>
+<li>
+<p>You&#8217;ll get into the labeling interface. To label a class, you have to choose it at the bottom. We only have on class, Fedora, so click to activate it.</p>
+</li>
+<li>
+<p>Now in the image draw a rectangle by holding the left mouse button <strong>as close to the Fedora as close as possible</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Submit</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/label-studio-labeling.png" alt="label studio labeling">
+</div>
+</div>
+<div class="paragraph">
+<p>Congrats, you have just labeled your first image! Now do the same for the rest of your images. When you are done with labeling you can use the images with their labels for training the model. We just have to transfer them to your JupyterLab Notebook to add them to the training images.</p>
+</div>
+<div class="paragraph">
+<p><strong>Transfer Labeled Images</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the overview page of your Label Studio project (click on the <strong>Fedora</strong> in the breadcrumbs menu) click <strong>Export</strong></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/label-studio-export.png" alt="label studio export">
+</div>
+</div>
+</li>
+<li>
+<p>and as format choose <code>YOLO with Images</code>.</p>
+</li>
+<li>
+<p>Click <strong>Export</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will download a zip file with the images and label metadata to your laptop. Inspect the content of the file, you&#8217;ll find an <code>images</code> and a <code>labels</code> folder with the same content format you have in the training images provided by us.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Transfering the labeled images via zip file is of course not the way you would do this in the real world, here you would use e.g. an S3 bucket for data transfer.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now add the images to the training images in the JupyterLab Notebook:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Unpack the zip file</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">.
+├── classes.txt
+├── images
+│   ├── 6778ae02-fedora-demo-image-2.jpg
+│   └── ea65fd5b-fedora-demo-image-1.jpg
+├── labels
+│   ├── 6778ae02-fedora-demo-image-2.txt
+│   └── ea65fd5b-fedora-demo-image-1.txt
+└── notes.json
+
+3 directories, 6 files</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Go back to your <strong>JupyterLab notebook</strong></p>
+</li>
+<li>
+<p>open the folder <code>object-detection-training-pvc/custom_training_images/fedora/</code></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/workbench-upload-1.png" alt="workbench upload 1">
+</div>
+</div>
+</li>
+<li>
+<p>Open the <code>images</code> folder</p>
+<div class="ulist">
+<ul>
+<li>
+<p>upload your images using the <strong>Upload Files</strong> button.</p>
+</li>
+<li>
+<p>Select the all images in the <code>images</code> folder of the zip file.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Open the <code>labels</code> folder</p>
+<div class="ulist">
+<ul>
+<li>
+<p>upload your label files using the <strong>Upload Files</strong> button.</p>
+</li>
+<li>
+<p>Select the all label files in the <code>labels</code> folder of the zip file.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now you are ready to train your model!</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_model_training"><a class="anchor" href="#_model_training"></a>Model Training</h3>
@@ -370,88 +718,29 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Step 1 : Downloads a set of sample images with labels and coordinates for our fedora class from the <a href="https://storage.googleapis.com/openimages/web/index.html" target="_blank" rel="noopener">OpenImages website</a>.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/open-images.png" alt="open images">
-</div>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you want to see the collection the model training is pulling images from, go to above website, click "Explore", set the <strong>Type</strong> to <strong>Detection</strong> and the <strong>Class</strong> to <strong>Fedora</strong>.
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Step 2 : Prepares the class labels and training sets</p>
+<p>Step 1 : Prepares the class labels, images and bounding box coordinates as training sets</p>
 </li>
 <li>
-<p>Step 3 : Runs the actual training on a <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolo 5</a> Model</p>
+<p>Step 2 : Runs the actual training on a <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolo 5</a> Model</p>
 </li>
 <li>
-<p>Step 4 : Converts the model format to onnx</p>
+<p>Step 3 : Converts the model format to onnx</p>
 </li>
 <li>
-<p>Step 5 : Uploads it to an ODF S3 bucket</p>
+<p>Step 4 : Uploads it to an ODF S3 bucket</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The pipeline can be configured to download and train on a specifc image object class such as  Fedoras, which is want we want.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>To configure a class, open the file called <code>configuration.yaml</code>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>You will see that an image class is already defined ('Laptop',). Looking for a new Laptop is great but we want to find red hats today.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Change the <code>names</code> array to look like this</p>
-</li>
-</ul>
-</div>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">names: ['Fedora',]</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Save the file by pressing <strong>ctrl+s</strong> on Linux/Windows or <strong>Command+s</strong> on Mac</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This image class is now mapped to the class number 0.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
 <p>Now back in the <code>model-training-cpu.pipeline</code>, on the top menu on the left click on the play icon</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/start-pipeline.png" alt="start pipeline">
 </div>
 </div>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>Keep the default settings and click on <strong>OK</strong></p>
 </li>
@@ -649,10 +938,22 @@ If you want to see the collection the model training is pulling images from, go 
 <p>Click on <strong>Data Science Projects</strong> in the main menu on the left and make sure you have selected your <code>team-1-ai</code> again</p>
 </li>
 <li>
-<p>Select the tab <strong>Models</strong> and click on <strong>Add model server</strong></p>
+<p>Select the tab <strong>Models</strong></p>
 </li>
 <li>
-<p>Model server name :</p>
+<p>Choose <strong>Multi-model serving platform</strong> by clicking <strong>Select multi-model</strong></p>
+</li>
+<li>
+<p>Now deploy a model server by clicking <strong>Add model server</strong></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_fill_out_the_form"><a class="anchor" href="#_fill_out_the_form"></a>Fill out the form.</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Model server name:</strong></p>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ovms</code></pre>
@@ -660,33 +961,49 @@ If you want to see the collection the model training is pulling images from, go 
 </div>
 </li>
 <li>
-<p>Serving runtime : <code>OpenVINO Model Server</code></p>
+<p><strong>Serving runtime</strong>: <code>OpenVINO Model Server</code></p>
 </li>
 <li>
-<p>Make deployed models available &#8230;&#8203; : <code>Check</code></p>
+<p><strong>Accelerator</strong>: <code>None</code></p>
 </li>
 <li>
-<p>Require token authentication : <code>Check</code></p>
+<p><strong>Model route</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Service account name : <code>default-name</code></p>
+<p>☑︎ Make deployed models available through an external route: <code>Check</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Keep the rest of the settings as is</p>
+<p><strong>Token authentication</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>☑︎ Require token authentication : <code>Check</code></p>
+</li>
+<li>
+<p><strong>Service account name</strong> : <code>default-name</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Click <strong>Add</strong></p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title"><strong>Click to reveal the screenshot</strong></summary>
+<div class="content">
 <div class="imageblock">
 <div class="content">
 <img src="_images/serving-runtime.png" alt="serving runtime">
 </div>
 </div>
-</li>
-</ul>
+</div>
+</details>
 </div>
 </div>
 <div class="sect2">
@@ -828,7 +1145,7 @@ token = 'REPLACE_ME'</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>That&#8217;s it. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values <code>prediction_url</code> and <code>token</code> in your app in the next chapter.</p>
+<p>And that&#8217;s it for the data science part. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values <code>prediction_url</code> and <code>token</code> in your app in the next chapter.</p>
 </div>
 </div>
 </div>
@@ -836,7 +1153,7 @@ token = 'REPLACE_ME'</code></pre>
 <h2 id="_optional_what_if_your_model_does_not_perform_that_well"><a class="anchor" href="#_optional_what_if_your_model_does_not_perform_that_well"></a>Optional: What if your Model does not perform that well?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As we are in a Hackathon environment and we don&#8217;t have that much time we are using a quick approach to show you the basics of model training.  For a production environment you would rather use images of actual Fedoras to train the model and not random ones sitting on peoples heads.</p>
+<p>As we are in a Hackathon environment and we don&#8217;t have that much time we are using a quick approach to show you the basics of model training.  For a production environment you would rather use more images of actual Fedoras in different variations to train the model.</p>
 </div>
 <div class="paragraph">
 <p>If you run into any issues later on with the model not detecting Fedoras or identifiying other objects as Fedoras, we have a professionally trained model with custom images and more epochs prepared for you.</p>
@@ -894,6 +1211,9 @@ For the moment just test your own model, but if you do need to switch you can al
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>How to label images for training an image detection model</p>
+</li>
 <li>
 <p>how to train and test an AI model in OpenShift AI</p>
 </li>

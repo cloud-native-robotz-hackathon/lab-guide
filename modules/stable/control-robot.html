@@ -256,6 +256,94 @@ copy the URL.
 <p>This is a Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.</p>
 </div>
 <div class="sect2">
+<h3 id="_set_up_a_ai_coding_assistant_optional"><a class="anchor" href="#_set_up_a_ai_coding_assistant_optional"></a>Set up a AI Coding Assistant (optional)</h3>
+<div class="paragraph">
+<p>If you looking for a little help with your upcoming coding endeavors we will help you setup a AI Coding Assistant that runs completely disconnected in OpenShift AI.</p>
+</div>
+<div class="paragraph">
+<p>We are already serving the OpenSource <a href="https://www.ibm.com/granite/docs/models/code/">Granite Coding Model</a> on the cluster, very similar to how you have set up your object recognition inferencing service. No need for expensive online AI services here. And best of all, your data is under your control.</p>
+</div>
+<div class="paragraph">
+<p>A single Granite model is running in a high performant vLLm-server accessed by all the teams. Here is how to connect to DevSpaces to it.</p>
+</div>
+<div class="paragraph">
+<p>First we are will need to copy the configuration file that tells the "Continue" extension how to actually connect to our service, to our home folder.  We have already perepared a script that does this for you as part of the Devfile.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the left, click on the <strong>"Hamburger Menu"</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>&gt; <strong>Terminal</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>&gt; <strong>Run Task</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>&gt; <strong>devfile</strong></p>
+</li>
+<li>
+<p>&gt; <strong>devFile : Setup Continue extension</strong></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup-extension.png" alt="setup extension" width="400px">
+</div>
+</div>
+<div class="paragraph">
+<p>A terminal will show up, telling you that the file <code>config.json</code> has been copied. Now we are ready to install the extension:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the DevSpaces menu on the left click on the "extensions" icon :</p>
+</li>
+<li>
+<p>Search for the "Continue" extension and install it by clicking on <strong>Install</strong> button next to it</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install_continue.png" alt="install continue" width="400px">
+</div>
+</div>
+</li>
+<li>
+<p>Click on the newly installed Continue menu item on the left</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/continue-window.png" alt="continue window">
+</div>
+</div>
+</li>
+<li>
+<p>In the prompt dialog, make sure our model <strong>Granite 8B Code Instruct (OpenShift)</strong> is selected.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/continue-example.png" alt="continue example">
+</div>
+</div>
+<div class="paragraph">
+<p>Go ahead and ask the model some questions on the repo (You can refer to a single file by typing @ and then the filename). By asking the right prompts, the model can give hints on how to best to code the upcoming tasks.  But of course this is optional and don&#8217;t forget to verify the results.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_the_robot_api"><a class="anchor" href="#_the_robot_api"></a>The Robot API</h3>
 <div class="paragraph">
 <p>Before starting with the app, let&#8217;s take a moment to have a look at the Robot REST API that we will be calling.</p>
@@ -324,9 +412,9 @@ copy the URL.
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort
-
-curl -X POST http://api.hub-controller.svc.cluster.local/robot/forward/2 -d user_key=${ROBOT_NAME}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X POST \
+    http://api.hub-controller.svc.cluster.local/robot/forward/2 \
+    -d user_key=gort</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -349,9 +437,8 @@ Some Browsers will ask you wether to allow pasting text. Approve this to proceed
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export ROBOT_NAME=gort
-
-curl -v http://api.hub-controller.svc.cluster.local/robot/camera?user_key=${ROBOT_NAME} | base64 -d &gt; image.jpg</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -v http://api.hub-controller.svc.cluster.local/robot/camera?user_key=gort \
+    | base64 -d > image.jpg</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -375,12 +462,7 @@ curl -v http://api.hub-controller.svc.cluster.local/robot/camera?user_key=${ROBO
 <div class="ulist">
 <ul>
 <li>
-<p><strong>&lt;REPLACE_WITH_ROBOT_NAME&gt;</strong>:</p>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gort</code></pre>
-</div>
-</div>
+<p><strong>&lt;REPLACE_WITH_ROBOT_NAME&gt;</strong>: gort</p>
 </li>
 <li>
 <p><strong>&lt;REPLACE_WITH_INFERENCING_API&gt;</strong></p>
@@ -790,7 +872,7 @@ Your browser does not support the video tag.
 <p>As mentioned in the Data Science chapter, our quick trained model might not be perfect.  You might get not optimal or sometimes false detections. These are common Data Science challenges when working with predictive AI.</p>
 </div>
 <div class="paragraph">
-<p>There is a setting <code>CONFIDENCE_THRESHOLD</code> in <code>app.py</code> that defines the minimum confidence score a detection must have to be displayed.  This is currently set to <code>0.3</code>. If you get too many or false detection, try to raise the value and check your bounding box image.  Play around with the value during your hacking to find the sweet spot.</p>
+<p>There is a setting <code>CONFIDENCE_THRESHOLD</code> in <code>config.py</code> that defines the minimum confidence score a detection must have to be displayed.  This is currently set to <code>0.3</code>. If you get too many or false detection, try to raise the value and check your bounding box image.  Play around with the value during your hacking to find the sweet spot.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
