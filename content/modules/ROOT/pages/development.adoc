@@ -175,8 +175,6 @@ print('Done')
 
 🎉 **Congratulations!** Your robot just moved! You're officially a robot pilot! 
 
-OBS: Make sure the robot is not on the edge of a table or in risk of falling down.
-
 If it doesn't move, have a look at the Terminal output in **Dev Spaces** and recheck your `config.py` entries.
 
 TIP: Sometimes the auto-reload of the app doesn't work and the app stops, you'll see this in the terminal window. If this happens, just follow the steps above under **If you missed the Popups** and the app will restart.
@@ -266,8 +264,9 @@ The robot control page will also display the last image from the camera every 5 
 === Ready
 
 🎯 Perfect! You now have all the tools required to create a fedora seeking robot:
+
 * ✅ Robot movement controls
 * ✅ AI vision integration
 * ✅ Object detection working
 
-Head on over to the next chapter to put it all together and make your robot autonomous!
+Head on over to the next chapter to create the Fedora finding robot control app!
