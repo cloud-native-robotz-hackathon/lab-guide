@@ -75,6 +75,8 @@ print('Done')
 
 Now place a Fedora somewhere near your robot and see if it can find it.
 
+🏆 **Mission accomplished!** Your robot found the hat! 
+
 == Dev & AI Collaboration
 
 Have a look at this code. Perhaps there is something you can optimize?
