@@ -5,7 +5,7 @@
 To develop our flashy AI enhanced app, we will use **OpenShift Dev Spaces**, a web IDE that comes with every OpenShift installation. No need to setup IDEs, runtimes and tools on your laptop.
 
 
-* If you are not already logged in, login into the {openshift_console_url}[OpenShift Console,window=_blank] with:
+* If you are not still logged in, login into the {openshift_console_url}[OpenShift Console,window=_blank] using SSO with:
 ** username:
 +
 [source,text,role=execute,subs="attributes"]
@@ -20,7 +20,7 @@ To develop our flashy AI enhanced app, we will use **OpenShift Dev Spaces**, a w
 ----
 
 * In the OpenShift Console on the top right, click on the square icon and select **Red Hat OpenShift Dev Spaces**
-* Login with your OpenShift credentials
+* Click **Login with OpenShift**
 * Give permissions if required
 
 Next we are going to start a new Workspace where all the editing is done and we will initialize it with a https://devfile.io/[DevFile].
@@ -35,7 +35,7 @@ TIP: A  **DevFile** is a definition for environment, tooling, settings and runti
 {gitea_console_url}/{user}/starter-app-python/raw/branch/master/devfile.yaml
 ----
 
-TIP: You could also find the url to this DevFile manually by opening your {gitea_console_url}[Gitea,window=_blank], navigate to the repo `starter-app-python` and then `devfile.yaml`. Click on "Originalversion / Raw" and
+TIP: You could also find the url to this DevFile manually by opening your {gitea_console_url}[Gitea,window=_blank], logging in with your team's credentials and navigating to the repo `starter-app-python` and then `devfile.yaml`. Click on "Originalversion / Raw" and
 copy the URL.
 
 * Click on **Create and Open**

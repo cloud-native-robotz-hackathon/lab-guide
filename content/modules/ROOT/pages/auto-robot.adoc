@@ -18,7 +18,7 @@ The pipeline will use the model `model/model-latest.onnx` in your S3 bucket for 
 
 An OpenShift pipeline based on Tekton has been prepared for you
 
-- Login into the {openshift_console_url}["OpenShift Console",window=_blank] with username: {user} and password : {password}
+- If not already, login to the {openshift_console_url}["OpenShift Console",window=_blank] via SSO with **username: {user}** and **password: {password}**
 
 - Go to the the project {user}-ai
 - Click **Pipelines** on the left
@@ -133,18 +133,7 @@ Login into OpenShift GitOps / ArgoCD:
 * Click **"LOG IN VIA OPENSHIFT"**
 +
 image::argocd-login.png[width=450px]
-* Username:
-+
-[source,text,role=execute,subs="attributes"]
-----
-{user}
-----
-* Password :
-+
-[source,text,role=execute,subs="attributes"]
-----
-{password}
-----
+
 * Click **Allow selected permissions**
 * Now you can follow the rollout, this is the entry view:
 +

@@ -1,13 +1,19 @@
 
 = Data Science
 
-As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an object dection model from the https://docs.ultralytics.com/models/yolov5/[YOLO-family,window=_blank] (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries.
+As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an object dection model from the https://docs.ultralytics.com/models/yolov5/[YOLO-family,window=_blank] (You Only Look Once), on a set of fedora images we prepared for you. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries.
 
 == Instantiate Workbench
 
 Let's login into **OpenShift AI**
 
-* Login into the {openshift_console_url}[OpenShift Console,window=_blank] with:
+[NOTE]
+====
+Most of the applications you are about to use are enabled for Single Sign-On using **Red Hat build of Keycloak**. So when you first access the OpenShift Console, you'll be directed to Keycloak for authentication.
+====
+
+
+* Login into the Keycloak Realm by accessing the {openshift_console_url}[OpenShift Console,window=_blank] with:
 ** username:
 +
 [source,text,role=execute,subs="attributes"]
@@ -21,6 +27,8 @@ Let's login into **OpenShift AI**
 {password}
 ----
 
+After you have authenticated you'll get to the OpenShift Console.
+
 * Click *Skip tour*
 +
 image::skip-tour.png[width=420,align=left]
@@ -31,7 +39,7 @@ image::skip-tour.png[width=420,align=left]
 image::rhoai-menu.png[width=350]
 
 * Click on **Login with OpenShift**
-* Login with the same credentials as before
+* Thanks to the SSO magic you don't have to authenticate again
 
 This is the main Console where all Data Science related projects and assets are managed.
 
@@ -87,7 +95,6 @@ image::workbench-running.png[]
 == Create your Model in JupyterLab
 
 * Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench
-* Login with you OpenShift credentials and allow selected permissions
 
 The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced Data Scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:
 
@@ -183,6 +190,7 @@ You'll be greeted with **Looks like you have not imported any data yet**... true
 ** Or use these two images:
 *** link:_images/fedora-demo-image-1.jpg[fedora-demo-image-1.jpg,target=_blank]
 *** link:_images/fedora-demo-image-2.jpg[fedora-demo-image-2.jpg,target=_blank]
+* Make sure the camera is taking pictures in JPG format and not HEIC or any other fancy format... :-)
 * If the file extension is not jpg (but jpeg), rename the extension.
 * Transfer them to your laptop and upload them via **Upload Files**, you can upload multiple images at once.
 * Click **Import**
@@ -344,7 +352,6 @@ image::workbench-running-s3.png[]
 ====
 
 * Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench
-* Login with your OpenShift credentials and allow selected permissions
 * Accept the disclaimer
 
 The browser will show you the contents of your bucket.  Except for a folder called `backup` that contains some backup models, it will look fairly empty before the pipeline finishes.
@@ -458,28 +465,6 @@ If you see multiple bounding boxes over your fedoras, that means you may need to
 ====
 
 And that's it for the data science part. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
-
-== Optional: What if your Model does not perform that well?
-
-As we are in a Hackathon environment and we don't have that much time we are using a quick approach to show you the basics of model training.  For a production environment you would rather use more images of actual Fedoras in different variations to train the model.
-
-If you run into any issues later on with the model not detecting Fedoras or identifiying other objects as Fedoras, we have a professionally trained model with custom images and more epochs prepared for you.
-
-[IMPORTANT]
-For the moment just test your own model, but if you do need to switch you can always come back here and deploy the other model like this:
-
-* In your S3-Browser have a look at in the folder `/backup`. You should see a pretrained model called `model-custom-images.onnx`
-* In your DataScience Project, go to *Models* > *Deployed Models* and click on the 1, *Edit* to the right
-* Just change the the Path
-** **Path:**
-+
-[source,bash,role=execute,subs="attributes"]
-----
-backup/model-custom-images.onnx
-----
-* Wait a few seconds until the new model is deployed
-* Now you should get more precise predictions
-
 
 == Expected outcome of this chapter
 
