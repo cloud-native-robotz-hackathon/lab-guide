@@ -66,17 +66,18 @@ print('Done')
 Now place a Fedora somewhere near your robot and see if it can find it.
 
 == Dev & AI Collaboration
-Have look at this code. Perhaps there is something you can optimize?
 
-Think about these points :
+Have a look at this code. Perhaps there is something you can optimize?
 
-* How can I align the robot towards the fedora with the coordinate information
-* How do I know when to stop the robot
-* How can I optimize the "think" and "react" phases
-* How can I handle corner cases
-* Perhaps the model should be tuned increase detection results?
+Think about these points:
+
+* How can I align the robot towards the fedora with the coordinate information?
+* How do I know when to stop the robot?
+* How can I optimize the "think" and "react" phases?
+* How can I handle corner cases?
+* Perhaps the model should be tuned to increase detection results?
 
 == Feature Freeze
-That's it. You now have a fully autonmous robot that can help you find your lost Fedora.
+That's it. You now have a fully autonomous robot that can help you find your lost Fedora.
 
 This was actually the short version of our Robo Vision AI Workshop. There is a longer version, where you will build and deploy your app and model directly to the robot. It can then run completely disconnected as an autonomous Edge Unit. Reach out to your Red Hat team if you are interested.

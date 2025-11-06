@@ -5,9 +5,24 @@
 To develop our flashy AI enhanced app, we will use **OpenShift Dev Spaces**, a web IDE that comes with every OpenShift installation. No need to setup IDEs, runtimes and tools on your laptop.
 
 
+[NOTE]
+====
+Most of the applications you are about to use are enabled for Single Sign-On using **Red Hat build of Keycloak**. So when you first access the OpenShift Console, you'll be directed to Keycloak for authentication.
+====
+
 * If you are not already logged in, login into the {openshift_console_url}[OpenShift Console,window=_blank] with:
-** username: {user}
-** password : {password}
+** username:
++
+[source,text,role=execute,subs="attributes"]
+----
+{user}
+----
+** password :
++
+[source,text,role=execute,subs="attributes"]
+----
+{password}
+----
 
 * In the OpenShift Console on the top right, click on the square icon and select **Red Hat OpenShift Dev Spaces**
 * Login with your OpenShift credentials
@@ -15,7 +30,7 @@ To develop our flashy AI enhanced app, we will use **OpenShift Dev Spaces**, a w
 
 Next we are going to start a new Workspace where all the editing is done and we will initialize it with a https://devfile.io/[DevFile].
 
-TIP: A  **DevFile** is a definition for environment, tooling, settings and runtimes for our development Workspace. No more endless installations and configurations. We will be  ready to hack right away. Since a matching **DevFile** is already checked into out Git repo, we can use it directly to initialize a workspace.
+TIP: A **DevFile** is a definition for environment, tooling, settings and runtimes for our development Workspace. No more endless installations and configurations. We will be ready to hack right away. Since a matching **DevFile** is already checked into our Git repo, we can use it directly to initialize a workspace.
 
 * Select **Create Workspace** in the left menu
 * Enter **Git Repo URL** :
@@ -25,8 +40,7 @@ TIP: A  **DevFile** is a definition for environment, tooling, settings and runti
 {gitea_console_url}/{user}/starter-app-python/raw/branch/master/devfile.yaml
 ----
 
-TIP: You could also find the url to this DevFile manually by opening your {gitea_console_url}[Gitea,window=_blank], navigate to the repo `starter-app-python` and then `devfile.yaml`. Click on "Originalversion / Raw" and
-copy the URL.
+TIP: You could also find the URL to this DevFile manually by opening your {gitea_console_url}[Gitea,window=_blank], navigate to the repo `starter-app-python` and then `devfile.yaml`. Click on "Original version / Raw" and copy the URL.
 
 * Click on **Create and Open**
 
@@ -59,9 +73,7 @@ This is a Python application that is served as a REST API server through the Gun
 
 === Start the App
 
-To start the app you can use a task that is defined in the **DevFile** and runs all the pip and Python commands under the hood.
-
-=== Starting the App through the Workspace Task
+To start the app, you can use a task that is defined in the **DevFile** and runs all the pip and Python commands under the hood.
 
 * In the top left, click on the "hamburger" menu > **Terminal** > **Run Task ...**
 * In the selection menu at the top, click on **devfile**
@@ -71,23 +83,29 @@ This will install the python dependencies and start the server of your app.
 
 === Open the Robot Control Page
 
-**Important:** Once the Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a **Route** in OpenShift through which you can reach the website of your app running the Workspace.
+TIP: Once the Python Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a **Route** in OpenShift through which you can reach the website of your app running the Workspace.
 
-* Click on **Yes**
-
+* Click on **Yes**:
++
 image::devspaces-allow_route.png[]
 
 * Click on **Open in new tab**
-
++
 image::devspaces-open-new-tab.png[]
 
 * Click on **Open**
-
++
 image::devspaces-open-tab.png[]
 
-A new Browser tab with the web interface of the Robot Control app will open. Make sure you are on `http://` if the page does not open.
+A new browser tab with the web interface of the Robot Control app will open. Make sure you are on `http://` if the page does not open.
 
-**If you have missed the first Popup (the port forwarding), you need to end and restart the process:**
+=== If you missed the Popups
+
+.Click here to restart the Control Page
+[%collapsible]
+====
+
+**If you have missed any of the Popups, you need to end and restart the process:**
 
 * Click on the garbage can icon on the right of the terminal
 
@@ -104,19 +122,24 @@ If you have missed the second of the Popups (opening the Route), there is anothe
 
 image::open-endpoints.png[]
 
+====
+
 === Robot Control Page Overview
 
-WARNING: Don't click any of the buttons yet, we need to setup things before.
-
-This webpage has a few buttons that essentially just call REST endpoints in your app.  You will use it to start your robot control code.   The website features a **Run** button that you will use to execute your code.
-
-image::robot-control-page.png[]
+This webpage has a few buttons that essentially just call REST endpoints in your app.  You will use it to start your robot control code.   The website features an **Initiate Run** button that you will use to execute your code.
 
 The buttons:
 
 * **Check Status** - Calls the app to see if the robot is connected
-* **Run** - Calls your `startRobot()` function in the `app.py`. This is where you will add your code
-* **Stop** - Stop execution of you app
+* **Initiate Run** - Calls your `startRobot()` function in the `app.py`. This is where you will add your code
+* **Emergency Stop** - Stop execution of your app
+
+Check if everything is setup correctly and your app can reach the robot:
+
+* The *Live Visual Feed* will be empty. Don't worry, we will get to that later.
+* On the Robot Control Page click on **Check Status**
+
+image::robot-control-page2.png[]
 
 === The Robot API
 
@@ -152,7 +175,7 @@ curl -X POST http://hub-controller-live.red-hat-service-interconnect-data-center
 
 ----
 
-TIP: Some Browers wil ask you wether to allow pasting text. Approve this to proceed.
+TIP: Some browsers will ask you whether to allow pasting text. Approve this to proceed.
 
 Awesome, right? You are now an official robot pilot.
 
@@ -194,16 +217,11 @@ include::partial${user}.adoc[]
 (The Token of the Object Detection Service from the DataScience chapter)
 
 
-TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart you app or even reload the Robot control page.
-
-Now to check if everything is setup correctly and your app can reach the robot:
-
-* On the Robot Control Page click on **Check Status**
-
-You should see a confirmation that your Robot is doing ok. If not have a look at the console output in your Dev Spaves Workspace and recheck `config.py`.
+TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart your app or even reload the Robot control page.
 
 
-=== First Code
+
+=== First Code: Robot Movement
 
 To make things a bit easier some helper functions are already in place, for example to create REST requests for the robot operations and to work with the array response coming from the inferencing service.
 
@@ -220,17 +238,19 @@ move_forward(10)
 print('Done')
 ----
 
-* Now back on your Robot Control Page click on the **Run** button
+* Now back on your Robot Control Page click on the **Initiate Run** button
 
-If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness!
+If all goes well your robot should move forward. Congratulations, your robot has gained a bit of consciousness! OBS, do make sure the robot is not on the edge of a table or in risk of falling down.
 
-If it doesn't move, have look at the Terminal output in **Dev Spaces** and recheck your `config.py` entries.
+If it doesn't move, have a look at the Terminal output in **Dev Spaces** and recheck your `config.py` entries.
 
-=== Advanced movement
+TIP: Sometimes the auto-reload of the app doesn't work and the app stops, you'll see this in the terminal window. If this happens, just follow the steps above under **If you missed the Popups** and the app will restart.
 
-Now let the robot do a drive forward, look left and right and then retreat again.
+=== Some more movement
 
-Edit the code so it looks like this:
+Now let the robot drive forward, look left and right and then retreat again.
+
+Edit the function `startRobot()` again so it looks like this:
 
 [source,python,role=execute,subs="attributes"]
 ----
@@ -243,7 +263,7 @@ move_backward(10)
 print('Done')
 ----
 
-Run the code by clicking the **Run** button.
+Run the code by clicking the **Initiate Run** button.
 
 Wow, almost a robot ballet there.
 
@@ -286,7 +306,7 @@ else:
 print('Done')
 ----
 
-* Now place some objects in front of the camera and execute your code by pressing the **Run** button
+* Now place some objects in front of the camera and execute your code by pressing the **Initiate Run** button
 * Have a look at the Console output in your Dev Spaces Workspace
 * Place a fedora in front of the camera, run your code again and see if that makes a difference:
 
