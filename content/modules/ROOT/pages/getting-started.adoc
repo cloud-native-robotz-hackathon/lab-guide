@@ -1,0 +1,183 @@
+= Getting Started
+
+== Access the Environment
+
+[NOTE]
+====
+Most of the applications you are about to use are enabled for Single Sign-On using **Red Hat build of Keycloak**. So when you first access the OpenShift Console, you'll be directed to Keycloak for authentication.
+====
+
+* Login into the {openshift_console_url}[OpenShift Console,window=_blank] with:
+** username:
++
+[source,text,role=execute,subs="attributes"]
+----
+{user}
+----
+** password :
++
+[source,text,role=execute,subs="attributes"]
+----
+{password}
+----
+
+After you have authenticated you'll get to the OpenShift Console.
+
+* Click *Skip tour* if prompted
+
+== Set Up Your Development Environment
+
+To develop your robot control code, we will use **OpenShift Dev Spaces**, a web IDE that comes with every OpenShift installation. No need to setup IDEs, runtimes and tools on your laptop.
+
+* In the OpenShift Console on the top right, click on the square icon and select **Red Hat OpenShift Dev Spaces**
+* Click **Login with OpenShift**
+* Give permissions if required
+
+=== Create Your Workspace
+
+We'll initialize a workspace using a https://devfile.io/[DevFile] that defines the environment, tooling, and runtimes.
+
+* Select **Create Workspace** in the left menu
+* Enter **Git Repo URL** :
++
+[source,bash,role=execute,subs="attributes"]
+----
+{gitea_console_url}/{user}/starter-app-python/raw/branch/master/devfile.yaml
+----
+
+* Click on **Create and Open**
+
+image::devspaces-create-workspace.png[]
+
+Wait for the Workspace to deploy (this may take a minute or two). Once your Workspace is up and running, you should see a view that looks familiar if you have used VSCode before.
+
+* If you see a Popup asking you to "Do you trust the authors", click check **Always ...**  and click **Yes ...**
+
+image::vscode-trust.png[]
+
+=== Clone the Starter Code
+
+* On the left side click on the button **Clone Repository**
+* In the form at the top enter the git url
++
+[source,bash,role=execute,subs="attributes"]
+----
+{gitea_console_url}/{user}/starter-app-python.git
+----
+* Hit **Enter**
+* In the next form keep the path as is ( `/projects` ) and hit **Enter** again
+* In the next dialog click on the **Open** button to reopen the workspace in this directory
+
+You will now see the starter code on the left side. This is a Python application that is served as a REST API server through the Gunicorn framework.
+
+=== Start the Application
+
+* In the top left, click on the "hamburger" menu > **Terminal** > **Run Task ...**
+* In the selection menu at the top, click on **devfile**
+* Then click on **devfile: Run the application**
+
+This will install the python dependencies and start the server of your app.
+
+=== Open the Robot Control Page
+
+TIP: Once the Python Gunicorn server has started, you will see two Popup windows in the bottom right corner that you will need to approve. These will setup a port forwarding and publish a **Route** in OpenShift.
+
+* Click on **Yes** to allow port forwarding
++
+image::devspaces-allow_route.png[]
+
+* Click on **Open in new tab**
++
+image::devspaces-open-new-tab.png[]
+
+* Click on **Open**
++
+image::devspaces-open-tab.png[]
+
+A new browser tab with the web interface of the Robot Control app will open. Make sure you are on `http://` if the page does not open.
+
+image::robot-control-page2.png[]
+
+The Robot Control Page has these buttons:
+
+* **Check Status** - Calls the app to see if the robot is connected
+* **Initiate Run** - Calls your `startRobot()` function in the `app.py`. This is where you will add your code
+* **Emergency Stop** - Stop execution of your app
+
+=== Configure Your Robot Connection
+
+Edit the file `config.py` to set up your robot connection:
+
+* **<REPLACE_WITH_ROBOT_NAME>**:
++
+[source,bash,role=execute,subs="attributes"]
+----
+include::partial${user}.adoc[]
+----
+
+TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app automatically, so there is also no need to restart your app.
+
+Now check if everything is setup correctly:
+
+* On the Robot Control Page click on **Check Status**
+
+You should see a confirmation that your Robot is doing ok. If not, have a look at the console output in your Dev Spaces Workspace and recheck `config.py`.
+
+== The Robot API
+
+The Robot REST API is simple and straightforward. Here are the available endpoints:
+
+* `POST /forward/<length>` - Drive forward by length
+* `POST /backward/<length>` - Drive backwards by length
+* `POST /left/<degrees>` - Turn left by degrees
+* `POST /right/<degrees>` - Turn right by degrees
+* `GET /camera` - Returns a base64 image of the current camera image
+* `GET /status` - Returns the status of the robot
+* `GET /power` - Returns the current power of the robot
+* `GET /distance` - Returns the distance to an object in front of the robot (max value is 3000 mm)
+
+== Helper Functions
+
+The starter code provides helper functions to make coding easier:
+
+* `move_forward(length)` - Drive the robot forward
+* `move_backward(length)` - Drive the robot backward
+* `turn_left(degrees)` - Turn the robot left
+* `turn_right(degrees)` - Turn the robot right
+* `take_picture()` - Get a camera image
+* `distance()` - Get distance reading from the sensor
+* `distance_int()` - Get distance as an integer
+
+== Your Code Location
+
+Your code goes in the `startRobot()` function in `app.py`. Look for the comment `# Drop your code here`.
+
+[source,python]
+----
+def startRobot():
+    # Drop your code here
+    pass
+----
+
+== Testing Your Code
+
+* Write your code in the `startRobot()` function
+* Click the **Initiate Run** button on the Robot Control Page
+* Watch your robot execute your code!
+* Use **Emergency Stop** if you need to stop execution
+
+TIP: Sometimes the auto-reload of the app doesn't work and the app stops. If this happens:
+* Click on the garbage can icon on the right of the terminal to stop the process
+* Restart the app using the task: **Terminal** > **Run Task ...** > **devfile** > **devfile: Run the application**
+
+== Ready to Code!
+
+You're all set! You now have:
+
+* ✅ Development environment running
+* ✅ Robot connection configured
+* ✅ Robot Control Page open
+* ✅ Understanding of the Robot API
+
+You're ready to tackle the coding challenges! Good luck! 🚀
+
