@@ -2,7 +2,7 @@
 
 == The Challenge
 
-The task that you are working on will be to enable your robot to identify a fedora on the floor. Your robot should drive towards the fedora and stop shortly before it.
+The task that you are working on will be to enable your robot to identify a fedora on the floor, navigate around obstacles, and drive towards the fedora stopping shortly before it.
 
 The basic flow for your app will be:
 
@@ -12,58 +12,164 @@ The basic flow for your app will be:
 ** detected class
 ** confidence score
 ** coordinates of the bounding boxes in your camera image
+* checking for obstacles using the distance sensor
 * working with the result to determine where the robot should move to next
 
-== MVP (Minimal Viable Product)
+We will enhance the code of your robot with a more structured approach:
 
-To speed things up we will give you a solution as an MVP.
+* It puts the function to find the hat and drive towards it in the function `search_for_hat()`
+* It puts the code to navigate around obstacles in the function `bypass_obstacle()`
+* It uses parameters to easily test, optimize and tune different values in your code
 
-Change your code to this :
+== Add the "search_for_hat()" function
 
-[source,python,role=execute]
+Right after the function `def startRobot():` add this code (as usual check your indentation):
+
+[source,python,role=execute,subs="attributes"]
 ----
-# Drop your code here
-turn_counter = 0
-while thread_event.is_set():
-    objects = take_picture_and_detect_objects()
-    coordinates = find_highest_score(objects)
+def search_for_hat():
+    # Define switch for identifying found and intercepted hats across functions
+    global hat_found_and_intercepted
 
-    if coordinates and coordinates.confidence_score > 0.5:
-        print(f'''Object with highest score -> [
-            confidence score: {coordinates.confidence_score},
-            x upper left corner: {coordinates.x_upper_left},
-            y upper left corner: {coordinates.y_upper_left},
-            x lower right corner: {coordinates.x_lower_right},
-            y lower right corner: {coordinates.y_lower_right},
-            object class: {coordinates.object_class} ]''')
+    print('\n### Search For Hat Mode - START ###')
 
-        move_x = (coordinates.x_upper_left + coordinates.x_lower_right) / 2
-        print(f'move_x: {move_x}')
-        if move_x < 320:
-            turn_left(10)
+    # Circle, capture images, apply model and drive towards an identified object
+    turn_counter = 0
+    while thread_event.is_set():
+        print('\n')
+
+        # Take picture and find the object with the highest probability of being a hat
+        objects = take_picture_and_detect_objects()
+        coordinates = find_highest_score(objects)
+
+        # Output distance from sensor
+        print('Got distance -> ', distance())
+
+        # Align to and drive towards identified object
+        if coordinates and coordinates.confidence_score > config.CONFIDENCE_THRESHOLD:
+            print(f'''Object with highest score -> [
+                confidence score: {coordinates.confidence_score},
+                x upper left corner: {coordinates.x_upper_left},
+                y upper left corner: {coordinates.y_upper_left},
+                x lower right corner: {coordinates.x_lower_right},
+                y lower right corner: {coordinates.y_lower_right},
+                object class: {coordinates.object_class} ]''')
+
+            # Align so that the most likely hat identified is in the center (within 20 pixels)
+            center_x = (coordinates.x_upper_left + coordinates.x_lower_right) / 2
+            print(f'center_x: {center_x}')
+
+            # Center of hat needs to be within 20 pixels
+            if abs(image_resolution_x/2 - center_x) >= 20:
+                if center_x < 320:
+                    turn_left(10)
+                else:
+                    turn_right(10)
+
+            # Determine size of the object in the image (not the real size!)
+            delta = coordinates.x_lower_right - coordinates.x_upper_left
+            print(f'delta: {delta}')
+
+            # Move forward, if size of identified object in image is not big enough
+            # (i.e. if it's not close enough)
+            if delta < delta_threshold:
+                move_forward(10)
+            else:
+                hat_found_and_intercepted = True
+                print('### Search For Hat Mode - END: OBJECT FOUND! ###')
+                return
+
         else:
-            turn_right(10)
+            # Circle in case no hat could be identified
+            if turn_counter <= 360:
+                turn_right(10)
+                turn_counter = turn_counter + 10
+            else:
+                # After a full circle, move forward and circle again to find the hat
+                move_forward(40)
+                turn_counter = 0
 
-        delta = coordinates.x_lower_right - coordinates.x_upper_left
-        print(f'delta: {delta}')
-        if delta < 350:
-            move_forward(10)
-        else:
-            print('Done - arrived at the object')
-            return
-
-    else:
-        if turn_counter < 360:
-            turn_left(10)
-            turn_counter = turn_counter + 10
-        else:
-            print('Done - no object found')
-            return
-
-print('Done')
+    print('### Search For Hat Mode - END ###')
 ----
 
-Now place a Fedora somewhere near your robot and see if it can find it.
+== Add the "bypass_obstacle()" function
+
+Below the `search_for_hat()` function, add this function (as usual check your indentation):
+
+[source,python,role=execute,subs="attributes"]
+----
+# Check for an obstacle directly in front and bypass it, if existing
+def bypass_obstacle():
+    # Determine if an obstacle is in sight
+    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
+
+    # Only continue if an obstacle is ahead
+    if not obstacle_in_sight:
+        print('No obstacle close enough -> returning')
+        return
+
+    # Determine distance to obstacle
+    distance_to_object = distance_int()
+
+    print('### Bypass Obstacle Mode - START ###')
+
+    # Turn left
+    turn_left(angle_delta)
+
+    # Determine if there is another obstacle in sight
+    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
+    print('Got distance -> ', distance())
+
+    # If no other obstacle is in the bypass direction, move a bit forward
+    # and then go back again on course
+    if not obstacle_in_sight:
+        move_forward(20)
+        turn_right(angle_delta)
+
+    # Determine if original obstacle is still in sight (after having turned back in original direction)
+    obstacle_in_sight = distance_int() <= min_distance_to_obstacle
+    print('Got distance -> ', distance())
+
+    # If original obstacle is not in sight anymore, move forward to bypass it
+    if not obstacle_in_sight:
+        # Move forward using the original distance to the obstacle and a buffer
+        move_forward(math.ceil(distance_to_object / 10) + 40)
+
+    print('### Bypass Obstacle Mode - END: SUCCESS! ###')
+----
+
+== Putting it together
+
+Now, update your `startRobot()` function to call both functions in a main loop that continuously checks for obstacles and hats:
+
+[source,python,role=execute,subs="attributes"]
+----
+    # Drop your code here
+    # Initialize switch for identifying found and intercepted hats across functions
+    global hat_found_and_intercepted
+    hat_found_and_intercepted = False
+
+    # Main loop running until one hat is properly identified and intercepted (or the app is stopped)
+    while thread_event.is_set() and not hat_found_and_intercepted:
+
+        # Check for an obstacle directly in front and bypass it, if existing
+        bypass_obstacle()
+
+        # Search for the hat and intercept it
+        search_for_hat()
+
+    log_with_timestamp("Exited main control loop.")
+----
+
+== Test your robot
+
+Now place a Fedora somewhere near your robot (optionally behind an obstacle) and see if it can find it. The robot should:
+
+* navigate around any obstacles using the distance sensor
+* find the fedora using the camera and object detection
+* drive towards it and stop when close enough
+
+Try to change some of the value parameters in `config.py` and see if you can tune the performance of your robot.
 
 == Dev & AI Collaboration
 
@@ -78,6 +184,7 @@ Think about these points:
 * Perhaps the model should be tuned to increase detection results?
 
 == Feature Freeze
-That's it. You now have a fully autonomous robot that can help you find your lost Fedora.
+
+That's it. You now have a fully autonomous robot that can help you find your lost Fedora, even when obstacles are in the way!
 
 This was actually the short version of our Robo Vision AI Workshop. There is a longer version, where you will build and deploy your app and model directly to the robot. It can then run completely disconnected as an autonomous Edge Unit. Reach out to your Red Hat team if you are interested.
