@@ -102,7 +102,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an object dection model from the <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">YOLO-family</a> (You Only Look Once), on a set of fedora images publicly available. To achieve this we will use <strong>OpenShift AI</strong>, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries.</p>
+<p>As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an object dection model from the <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">YOLO-family</a> (You Only Look Once), on a set of fedora images we prepared for you. To achieve this we will use <strong>OpenShift AI</strong>, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries.</p>
 </div>
 </div>
 </div>
@@ -112,10 +112,24 @@
 <div class="paragraph">
 <p>Let&#8217;s login into <strong>OpenShift AI</strong></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Most of the applications you are about to use are enabled for Single Sign-On using <strong>Red Hat build of Keycloak</strong>. So when you first access the OpenShift Console, you&#8217;ll be directed to Keycloak for authentication.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Login into the <a href="https://console-openshift-console.apps.example.com" target="_blank" rel="noopener">OpenShift Console</a> with:</p>
+<p>Login into the Keycloak Realm by accessing the <a href="https://console-openshift-console.apps.example.com" target="_blank" rel="noopener">OpenShift Console</a> with:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -137,6 +151,13 @@
 </ul>
 </div>
 </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After you have authenticated you&#8217;ll get to the OpenShift Console.</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Click <strong>Skip tour</strong></p>
 <div class="imageblock text-left">
@@ -157,7 +178,7 @@
 <p>Click on <strong>Login with OpenShift</strong></p>
 </li>
 <li>
-<p>Login with the same credentials as before</p>
+<p>Thanks to the SSO magic you don&#8217;t have to authenticate again</p>
 </li>
 </ul>
 </div>
@@ -311,9 +332,6 @@
 <ul>
 <li>
 <p>Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench</p>
-</li>
-<li>
-<p>Login with you OpenShift credentials and allow selected permissions</p>
 </li>
 </ul>
 </div>
@@ -513,6 +531,9 @@
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>Make sure the camera is taking pictures in JPG format and not HEIC or any other fancy format&#8230;&#8203; :-)</p>
 </li>
 <li>
 <p>If the file extension is not jpg (but jpeg), rename the extension.</p>
@@ -891,9 +912,6 @@
 <p>Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench</p>
 </li>
 <li>
-<p>Login with your OpenShift credentials and allow selected permissions</p>
-</li>
-<li>
 <p>Accept the disclaimer</p>
 </li>
 </ul>
@@ -1146,60 +1164,6 @@ token = 'REPLACE_ME'</code></pre>
 </div>
 <div class="paragraph">
 <p>And that&#8217;s it for the data science part. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values <code>prediction_url</code> and <code>token</code> in your app in the next chapter.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_optional_what_if_your_model_does_not_perform_that_well"><a class="anchor" href="#_optional_what_if_your_model_does_not_perform_that_well"></a>Optional: What if your Model does not perform that well?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>As we are in a Hackathon environment and we don&#8217;t have that much time we are using a quick approach to show you the basics of model training.  For a production environment you would rather use more images of actual Fedoras in different variations to train the model.</p>
-</div>
-<div class="paragraph">
-<p>If you run into any issues later on with the model not detecting Fedoras or identifiying other objects as Fedoras, we have a professionally trained model with custom images and more epochs prepared for you.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-For the moment just test your own model, but if you do need to switch you can always come back here and deploy the other model like this:
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>In your S3-Browser have a look at in the folder <code>/backup</code>. You should see a pretrained model called <code>model-custom-images.onnx</code></p>
-</li>
-<li>
-<p>In your DataScience Project, go to <strong>Models</strong> &gt; <strong>Deployed Models</strong> and click on the 1, <strong>Edit</strong> to the right</p>
-</li>
-<li>
-<p>Just change the the Path</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Path:</strong></p>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">backup/model-custom-images.onnx</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Wait a few seconds until the new model is deployed</p>
-</li>
-<li>
-<p>Now you should get more precise predictions</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
