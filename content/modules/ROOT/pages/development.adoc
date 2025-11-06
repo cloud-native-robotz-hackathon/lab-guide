@@ -1,5 +1,7 @@
 = Development
 
+Now that your AI model is ready and serving predictions, let's build the app that will use it to control the robot!
+
 == Start Coding in Dev Spaces
 
 To develop our flashy AI enhanced app, we will use **OpenShift Dev Spaces**, a web IDE that comes with every OpenShift installation. No need to setup IDEs, runtimes and tools on your laptop.
@@ -269,12 +271,12 @@ Wow, almost a robot ballet there.
 
 === Robo Vision
 
-Our robot is still a bit blind so let's work with the camera now.
+Now comes the exciting part! Let's give your robot vision by connecting it to your AI model.
 
-We have two functions that will help us:
+We have two helper functions that will help us:
 
-* `take_picture_and_detect_objects()`- gets a camera image, runs it through the inferencing and returns an array of detected objects
-* `find_highest_score(objects)`- returns the object with the highest score.
+* `take_picture_and_detect_objects()` - gets a camera image, runs it through the inferencing service and returns an array of detected objects
+* `find_highest_score(objects)` - returns the object with the highest confidence score
 
 The `object` itself will have these fields that you can use:
 
@@ -285,7 +287,7 @@ The `object` itself will have these fields that you can use:
 * `x_lower_right` - Bounding box lower right corner x coordinate
 * `y_lower_right` - Bounding box lower left corner y coordinate
 
-Change your code to detect an object through the camera and print the resulting object :
+Let's test the AI vision! Change your code to detect an object through the camera:
 
 [source,python,role=execute,subs="attributes"]
 ----
@@ -310,7 +312,7 @@ print('Done')
 * Have a look at the Console output in your Dev Spaces Workspace
 * Place a fedora in front of the camera, run your code again and see if that makes a difference:
 
-You should now see an output similar to this :
+You should now see an output similar to this:
 
 ----
 Object with highest score -> [
@@ -322,13 +324,18 @@ Object with highest score -> [
             object class: 0.0 ]
 ----
 
-Note that we have found a Fedora (object class = 0) and a pretty certain of of it (confidence score = 0.8).
+🤖 **Awesome!** Your AI just detected a Fedora (object class = 0) with a confidence score of 0.8! Your robot can now see!
 
-The robot control page will also display the last image from the camera every 5 seconds. You can use this check the robot and camera alignment.
+The robot control page will also display the last image from the camera every 5 seconds. You can use this to check the robot and camera alignment.
 
 === Ready
 
-You now have all the tools required to create a fedora seeking robot. Head on over to the next chapter to put it all together.
+🎯 Perfect! You now have all the tools required to create a fedora seeking robot:
+* ✅ Robot movement controls
+* ✅ AI vision integration
+* ✅ Object detection working
+
+Head on over to the next chapter to put it all together and make your robot autonomous!
 
 
 

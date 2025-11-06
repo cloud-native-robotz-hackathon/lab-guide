@@ -14,9 +14,19 @@ The basic flow for your app will be:
 ** coordinates of the bounding boxes in your camera image
 * working with the result to determine where the robot should move to next
 
+== Quick Challenge (Optional)
+
+Before we give you the full solution, want to try it yourself? 
+
+**Can you write code that turns the robot toward a detected fedora?**
+
+Hint: Calculate the center of the bounding box using `(coordinates.x_upper_left + coordinates.x_lower_right) / 2`. If the center is less than 320 (the middle of a 640px wide image), turn left. Otherwise, turn right.
+
+Give it 2-3 minutes, then check out the MVP solution below!
+
 == MVP (Minimal Viable Product)
 
-To speed things up we will give you a solution as an MVP.
+To speed things up, here's a complete solution as an MVP.
 
 Change your code to this :
 

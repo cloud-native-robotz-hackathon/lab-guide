@@ -334,4 +334,8 @@ You can test your model with different images in the `sample-images` folder, or 
 If you see multiple bounding boxes over your fedoras, that means you may need to filter out object detections with a lower score. By default the code filters out anything with a lower confidence score that 0.3. Search for the code `+conf_thres=0.3+`. Increase the threshold here by changing the value and rerun your Notebook.
 ====
 
+🎉 **Excellent work!** You've successfully trained and deployed an AI model! 
+
 And that's it for the data science part. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
+
+Ready to build the app that will use this AI to control the robot? Let's go!
