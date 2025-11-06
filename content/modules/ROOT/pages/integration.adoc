@@ -89,7 +89,10 @@ Think about these points:
 * How can I handle corner cases?
 * Perhaps the model should be tuned to increase detection results?
 
+**Optimization Challenge:** Can you improve the stopping distance? Try adjusting the `delta` threshold value (currently 350) to make the robot stop closer or farther from the fedora.
+
 == Feature Freeze
-That's it. You now have a fully autonomous robot that can help you find your lost Fedora.
+
+🎉 **Congratulations!** You now have a fully autonomous robot that can help you find your lost Fedora!
 
 This was actually the short version of our Robo Vision AI Workshop. There is a longer version, where you will build and deploy your app and model directly to the robot. It can then run completely disconnected as an autonomous Edge Unit. Reach out to your Red Hat team if you are interested.
