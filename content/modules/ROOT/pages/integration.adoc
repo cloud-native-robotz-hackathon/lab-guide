@@ -169,7 +169,7 @@ Now place a Fedora somewhere near your robot (optionally behind an obstacle) and
 * find the fedora using the camera and object detection
 * drive towards it and stop when close enough
 
-Try to change some of the value parameters in `config.py` and see if you can tune the performance of your robot.
+Try to change some of the value parameters in `app.py` and see if you can tune the performance of your robot.
 
 == Dev & AI Collaboration
 
