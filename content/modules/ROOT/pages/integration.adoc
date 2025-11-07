@@ -1,4 +1,4 @@
-= Integration
+= The Control App
 
 == The Challenge
 
@@ -14,9 +14,19 @@ The basic flow for your app will be:
 ** coordinates of the bounding boxes in your camera image
 * working with the result to determine where the robot should move to next
 
+== Quick Challenge (Optional)
+
+Before we give you the full solution, want to try it yourself? 
+
+**Can you write code that turns the robot toward a detected fedora?**
+
+Hint: Calculate the center of the bounding box using `(coordinates.x_upper_left + coordinates.x_lower_right) / 2`. If the center is less than 320 (the middle of a 640px wide image), turn left. Otherwise, turn right.
+
+Give it 2-3 minutes, then check out the MVP solution below!
+
 == MVP (Minimal Viable Product)
 
-To speed things up we will give you a solution as an MVP.
+To speed things up, here's a complete solution as an MVP.
 
 Change your code to this :
 
@@ -65,18 +75,24 @@ print('Done')
 
 Now place a Fedora somewhere near your robot and see if it can find it.
 
+If yes: 🏆 **Mission accomplished!** Your robot found the hat! 
+
+Otherwise try to tweak the code some more.
+
 == Dev & AI Collaboration
-Have look at this code. Perhaps there is something you can optimize?
 
-Think about these points :
+Have a look at this code. Perhaps there is something you can optimize?
 
-* How can I align the robot towards the fedora with the coordinate information
-* How do I know when to stop the robot
-* How can I optimize the "think" and "react" phases
-* How can I handle corner cases
-* Perhaps the model should be tuned increase detection results?
+Think about these points:
 
-== Feature Freeze
-That's it. You now have a fully autonmous robot that can help you find your lost Fedora.
+* How can I align the robot towards the fedora with the coordinate information?
+* How do I know when to stop the robot?
+* How can I optimize the "think" and "react" phases?
+* How can I handle corner cases?
+* Perhaps the model should be tuned to increase detection results?
+
+**Optimization Challenge:** Can you improve the stopping distance? Try adjusting the `delta` threshold value (currently 350) to make the robot stop closer or farther from the fedora.
+
+== Feature Freeze... for now
 
 This was actually the short version of our Robo Vision AI Workshop. There is a longer version, where you will build and deploy your app and model directly to the robot. It can then run completely disconnected as an autonomous Edge Unit. Reach out to your Red Hat team if you are interested.
