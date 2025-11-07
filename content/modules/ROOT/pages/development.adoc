@@ -266,20 +266,6 @@ Run the code by clicking the **Run** button.
 
 Wow, almost a robot ballet there.
 
-=== Test the distance sensor
-
-To test the distance sensor you can replace your code with this one. You may want to save your previous code somewhere.
-
-[source,python,role=execute,subs="attributes"]
-----
-# Drop your code here
-dist = distance()
-print ('Got distance -> ', dist)
-print('Done')
-----
-
-Run the code with the **Run** button as usual, you'll see the distance in the output of your app in the terminal. Hold your hand in front of the sensor and see how the value changes. Pretty cool. No more bumping into stuff.
-
 == Robot Vision
 
 Our robot is still a bit blind, so let's work with the camera and the image detection model.
