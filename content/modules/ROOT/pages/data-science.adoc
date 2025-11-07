@@ -117,6 +117,11 @@ Next, we will train our model on the basis of a https://docs.ultralytics.com/mod
 
 We have provided sample images for training. After the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
 
+[NOTE]
+====
+Inferencing in AI is the process of using a trained model to make a prediction or generate a response based on new, live data. If training is the "studying" phase where the model learns patterns from a large dataset, inference is the "application" phase where it uses that knowledge to do its job.
+====
+
 === The Training Images
 
 To stay in the boundaries of the resources available to us, we provide around 100 images of a Red Hat Fedora together with the label metadata to train our base model with.
@@ -184,7 +189,7 @@ image::view-runs.png[]
 +
 image::view-runs2.png[]
 
-This will show the running steps of the pipeline
+This will show the running steps of the pipeline. Click on the steps to get more information like e.g. the logs.
 
 image::running-pipeline.png[]
 
@@ -338,4 +343,4 @@ If you see multiple bounding boxes over your fedoras, that means you may need to
 
 And that's it for the data science part. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
 
-Ready to build the app that will use this AI to control the robot? Let's go!
+Ready to build the app that will use this AI model to control the robot? Let's go!
