@@ -1,4 +1,4 @@
-= Integration
+= The Control App
 
 == The Challenge
 
@@ -75,7 +75,9 @@ print('Done')
 
 Now place a Fedora somewhere near your robot and see if it can find it.
 
-🏆 **Mission accomplished!** Your robot found the hat! 
+If yes: 🏆 **Mission accomplished!** Your robot found the hat! 
+
+Otherwise try to tweak the code some more.
 
 == Dev & AI Collaboration
 
@@ -91,8 +93,6 @@ Think about these points:
 
 **Optimization Challenge:** Can you improve the stopping distance? Try adjusting the `delta` threshold value (currently 350) to make the robot stop closer or farther from the fedora.
 
-== Feature Freeze
-
-🎉 **Congratulations!** You now have a fully autonomous robot that can help you find your lost Fedora!
+== Feature Freeze... for now
 
 This was actually the short version of our Robo Vision AI Workshop. There is a longer version, where you will build and deploy your app and model directly to the robot. It can then run completely disconnected as an autonomous Edge Unit. Reach out to your Red Hat team if you are interested.
