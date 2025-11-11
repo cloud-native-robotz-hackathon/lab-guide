@@ -1,5 +1,17 @@
 = Getting Started
 
+Here are the steps you have do go through in order to work on the robot challenges:
+
+* Setup the coding environment
+* Clone example code
+* Connect the application to your robot, the robot will be assigned by the challenge supporters 
+* Connect to the OpenShift AI Model Server
+
+[NOTE]
+====
+You need the inferencing API and access token you created in the OpenShift AI challenge to work on the robot vision challenge!
+====
+
 == Access the Environment
 
 [NOTE]
@@ -83,7 +95,7 @@ So let's go ahead and set up these connection variables. Edit the file `config.p
 
 Replace the following placeholders:
 
-* **<REPLACE_WITH_ROBOT_NAME>**: {robot_name}
+* **<REPLACE_WITH_ROBOT_NAME>**: **The robot name will be supplied from the robot challenge supporters!**
 * **<REPLACE_WITH_INFERENCING_API>**
 +
 (The Object Detection Service from the OpenShift AI challenge)
