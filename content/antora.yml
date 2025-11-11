@@ -21,6 +21,7 @@ asciidoc:
     password: secret-password
     showroom_primary_view_url: https://showroom-showroom-team-1.apps.example.com/
     user: team-1
+    robot_name: gort
 
   extensions:
     - ./content/lib/tab-block.js

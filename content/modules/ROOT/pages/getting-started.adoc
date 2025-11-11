@@ -70,6 +70,30 @@ image::vscode-trust.png[]
 
 You will now see the starter code on the left side. This is a Python application that is served as a REST API server through the Gunicorn framework.
 
+=== Connecting the App to Endpoints
+
+Our app will be running in a **Dev Spaces** container. We will need to call the Robot API as well as the Inferencing Server API in OpenShift AI to do our coding magic.
+
+[WARNING]
+====
+You must have solved the OpenShift AI challenges first so your model server is running. Take the information for the inferencing API and token from there.
+====
+
+So let's go ahead and set up these connection variables. Edit the file `config.py` to add your inferencing endpoint that you created in the previous chapter.
+
+Replace the following placeholders:
+
+* **<REPLACE_WITH_ROBOT_NAME>**: {robot_name}
+* **<REPLACE_WITH_INFERENCING_API>**
++
+(The Object Detection Service from the OpenShift AI challenge)
+* **<REPLACE_WITH_INFERENCING_API_TOKEN>**
++
+(The Token of the Object Detection Service from the OpenShift AI challenge)
+
+
+TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart you app or even reload the Robot control page.
+
 === Start the Application
 
 * In the top left, click on the "hamburger" menu > **Terminal** > **Run Task ...**
@@ -129,19 +153,6 @@ The Robot Control Page has these buttons:
 * **Initiate Run** - Calls your `startRobot()` function in the `app.py`. This is where you will add your code
 * **Emergency Stop** - Stop execution of your app
 
-=== Configure Your Robot Connection
-
-Edit the file `config.py` to set up your robot connection:
-
-* **<REPLACE_WITH_ROBOT_NAME>**:
-+
-[source,bash,role=execute,subs="attributes"]
-----
-include::partial${user}.adoc[]
-----
-
-TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app automatically, so there is also no need to restart your app.
-
 Now check if everything is setup correctly:
 
 * On the Robot Control Page click on **Check Status**
@@ -181,14 +192,14 @@ Your code goes in the `startRobot()` function in `app.py`. Look for the comment 
 ----
 def startRobot():
     # Drop your code here
-    pass
+    move_forward(10)
 ----
 
 == Testing Your Code
 
-* Write your code in the `startRobot()` function
+* Write your code in the `startRobot()` function as above
 * Click the **Initiate Run** button on the Robot Control Page
-* Watch your robot execute your code!
+* Watch your robot execute your code and move forward!
 * Use **Emergency Stop** if you need to stop execution
 
 == Ready to Code!
