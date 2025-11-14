@@ -1,10 +1,10 @@
 = Getting Started
 
-Here are the steps you have do go through in order to work on the robot challenges:
+Here are the steps you will to go through in order to work on the robot challenges:
 
 * Setup the coding environment
 * Clone example code
-* Connect the application to your robot, the robot will be assigned by the challenge supporters 
+* Connect the application to your robot (the robot will be assigned by the challenge facilitators)
 * Connect to the OpenShift AI Model Server
 
 [NOTE]
@@ -16,7 +16,7 @@ You need the inferencing API and access token you created in the OpenShift AI ch
 
 [NOTE]
 ====
-Most of the applications you are about to use are enabled for Single Sign-On using **Red Hat build of Keycloak**. So when you first access the OpenShift Console, you'll be directed to Keycloak for authentication.
+Most of the applications you are about to use are enabled for Single Sign-On using **Red Hat Build of Keycloak**. So when you first access the OpenShift Console, you'll be directed to Keycloak for authentication.
 ====
 
 * Login into the {openshift_console_url}[OpenShift Console,window=_blank] with:
@@ -82,7 +82,7 @@ image::vscode-trust.png[]
 
 You will now see the starter code on the left side. This is a Python application that is served as a REST API server through the Gunicorn framework.
 
-=== Connecting the App to Endpoints
+=== Connecting the App to Robot API Endpoints
 
 Our app will be running in a **Dev Spaces** container. We will need to call the Robot API as well as the Inferencing Server API in OpenShift AI to do our coding magic.
 
@@ -104,7 +104,7 @@ Replace the following placeholders:
 (The Token of the Object Detection Service from the OpenShift AI challenge)
 
 
-TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart you app or even reload the Robot control page.
+TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus **Gunicorn** reloads your python app, so there is also no need to restart you app or even reload the Robot control page.
 
 === Start the Application
 
@@ -186,7 +186,7 @@ The Robot REST API is simple and straightforward. Here are the available endpoin
 
 == Helper Functions
 
-The starter code provides helper functions to make coding easier:
+The starter code provides helper functions to make coding and using the API easier:
 
 * `move_forward(length)` - Drive the robot forward
 * `move_backward(length)` - Drive the robot backward
@@ -213,6 +213,7 @@ def startRobot():
 * Click the **Initiate Run** button on the Robot Control Page
 * Watch your robot execute your code and move forward!
 * Use **Emergency Stop** if you need to stop execution
+* If the Gunicorn robot app server crashes for some reason, just restart it via the **Terminal DevFile Task**
 
 == Ready to Code!
 
