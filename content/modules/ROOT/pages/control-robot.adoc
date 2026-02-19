@@ -139,6 +139,12 @@ It is fairly simple:
 
 | `GET /distance`
 | Returns the distance to an object in front of the robot, max value is 3000 mm
+
+| `POST /led_on/<color>`
+| Turns leds on, color can be red, green or blue
+
+| `POST /led_off`
+| Turns leds off
 |===
 
 For testing purposes you can call the Robot API directly from your Workspace Terminal with `curl`.
