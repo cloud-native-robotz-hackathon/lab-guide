@@ -61,6 +61,9 @@ fedora-detection
 ** **Notebook image**
 *** Image selection: `Object Detection`
 
+** **Version selection**
+*** Version selection: `3.01`
+
 ** **Deployment size**
 *** Container size: 'Small'
 
