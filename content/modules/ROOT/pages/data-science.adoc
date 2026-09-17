@@ -29,10 +29,6 @@ Most of the applications you are about to use are enabled for Single Sign-On usi
 
 After you have authenticated you'll get to the OpenShift Console.
 
-* Click *Skip tour*
-+
-image::skip-tour.png[width=420,align=left]
-
 * Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
 +
 [.text-left]
