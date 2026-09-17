@@ -38,18 +38,24 @@ image::skip-tour.png[width=420,align=left]
 [.text-left]
 image::rhoai-menu.png[width=350]
 
-* Click on **Login with OpenShift**
 * Thanks to the SSO magic you don't have to authenticate again
 
 This is the main Console where all Data Science related projects and assets are managed.
 
-- In the left menu click on **Data Science Projects** to see all available Data Science Projects
+- Close the Welcome to OpenShift AI dialog  
++
+image::welcome-to-openshift-3.5.png[width=350]
+
+- In the left menu click on **Projects** to see all available Projects
++
+image::rhoai-projects-menu.png[width=350]
+
 - A project has already been prepared for you to work in
 - Click on the project `{user}-ai`
 
 As Data Scientists, we are in need of an interactive developement environment(IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let's create a new JupyterLab Workbench in our Data Science project and get started:
 
-* Click on **Create Workbench**
+* Click on **Create a Workbench**
 * Enter these fields :
 ** **Name:**
 +
@@ -58,14 +64,11 @@ As Data Scientists, we are in need of an interactive developement environment(ID
 fedora-detection
 ----
 
-** **Notebook image**
+** **Workbench image**
 *** Image selection: `Object Detection`
 
 ** **Version selection**
 *** Version selection: `3.01`
-
-** **Deployment size**
-*** Container size: 'Small'
 
 ** **Cluster storage**
 *** Click on **Attach existing storage**
@@ -179,7 +182,7 @@ Now you have to configure Label Studio for the way you going to label the images
 * Choose **Labeling Interface** from the menu to the left
 * Click on **Browse Templates**
 * From **Computer Vision** choose **Object Detection with Bounding Boxes**
-* Under **add label names** there will be two labels ("Airplane" and "Car") preconfigured, delete them by clicking the red X.
+* Under **Add label names** there will be two labels ("Airplane" and "Car") preconfigured, delete them by clicking the red X.
 * In the text box enter our label "Fedora" and click **Add**
 * Click **Save**
 * Return to the Project overview by clicking **Fedora** in the breadcrumb-style path at the top.
@@ -304,8 +307,8 @@ image::start-pipeline.png[]
 
 This will submit the pipeline to OpenShift to run the training
 
-* Switch to the *OpenShift AI* tab in your browser
-* Select your Data Science Project {user}-ai
+* Switch to the *Red Hat OpenShift AI* tab in your browser
+* Select your Project {user}-ai
 * Select **Pipelines** tab
 * Expand the **model-training-cpu** Pipeline by clicking on the **>**
 * Click on **View runs**
@@ -324,7 +327,7 @@ With the default settings, the Pipeline will run around 15 minutes.  Let's use t
 
 == Deploy S3 Browser
 
-* In the left menu click on **Data Science Projects** to see all available Data Science Projects
+* In the left menu click on **Projects** to see all available Projects
 * A project has already been prepared for you to work in
 * Click on the project `{user}-ai`
 * In your project go on the tab **Workbenches**
@@ -335,7 +338,7 @@ With the default settings, the Pipeline will run around 15 minutes.  Let's use t
 ----
 s3-browser
 ----
-** **Notebook image**
+** **Workbench image**
 *** Image Selection: `S3 Browser`
 
 ** **Connections**
@@ -374,8 +377,8 @@ You now have a trained model for object recognition. To use the model we will de
 
 First we need to configure a model server:
 
-* Click on **Data Science Projects** in the main menu on the left and make sure you have selected your `{user}-ai` again
-* Select the tab **Models**
+* Click on **Projects** in the main menu on the left and make sure you have selected your `{user}-ai` again
+* Select the tab **Deployments**
 * Choose **Multi-model serving platform** by clicking **Select multi-model**
 * Now deploy a model server by clicking **Add model server**
 
