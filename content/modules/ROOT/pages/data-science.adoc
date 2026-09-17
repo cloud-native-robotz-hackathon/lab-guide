@@ -14,13 +14,13 @@ Most of the applications you are about to use are enabled for Single Sign-On usi
 
 
 * Login into the Keycloak Realm by accessing the {openshift_console_url}[OpenShift Console,window=_blank] with:
-** username:
+** Username:
 +
 [source,text,role=execute,subs="attributes"]
 ----
 {user}
 ----
-** password :
+** Password:
 +
 [source,text,role=execute,subs="attributes"]
 ----
