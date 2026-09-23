@@ -29,10 +29,6 @@ Most of the applications you are about to use are enabled for Single Sign-On usi
 
 After you have authenticated you'll get to the OpenShift Console.
 
-* Click *Skip tour*
-+
-image::skip-tour.png[width=420,align=left]
-
 * Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
 +
 [.text-left]
@@ -42,7 +38,7 @@ image::rhoai-menu.png[width=350]
 
 This is the main Console where all Data Science related projects and assets are managed.
 
-- Close the Welcome to OpenShift AI dialog  
+- Close the "Welcome to OpenShift AI" dialog
 +
 image::welcome-to-openshift-3.5.png[width=350]
 
@@ -53,7 +49,7 @@ image::rhoai-projects-menu.png[width=350]
 - A project has already been prepared for you to work in
 - Click on the project `{user}-ai`
 
-As Data Scientists, we are in need of an interactive developement environment(IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let's create a new JupyterLab Workbench in our Data Science project and get started:
+As Data Scientists, we are in need of an interactive developement environment (IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let's create a new JupyterLab Workbench in our Data Science project and get started:
 
 * Click on **Create a Workbench**
 * Enter these fields :
@@ -100,7 +96,7 @@ image::workbench-running.png[]
 
 == Create your Model in JupyterLab
 
-* Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench
+* Click on  the Workbench name to open the JuypterLab Workbench
 
 The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced Data Scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:
 
@@ -328,7 +324,6 @@ With the default settings, the Pipeline will run around 15 minutes.  Let's use t
 == Deploy S3 Browser
 
 * In the left menu click on **Projects** to see all available Projects
-* A project has already been prepared for you to work in
 * Click on the project `{user}-ai`
 * In your project go on the tab **Workbenches**
 * Click on **Create workbench** and enter these values
@@ -379,8 +374,8 @@ First we need to configure a model server:
 
 * Click on **Projects** in the main menu on the left and make sure you have selected your `{user}-ai` again
 * Select the tab **Deployments**
-* Choose **Multi-model serving platform** by clicking **Select multi-model**
-* Now deploy a model server by clicking **Add model server**
+* Click on **Deploy model**
+
 
 ==== Fill out the form.
 
@@ -390,41 +385,28 @@ First we need to configure a model server:
 ----
 ovms
 ----
-* **Serving runtime**: `OpenVINO Model Server`
-* **Accelerator**: `None`
-* **Model route**
+* **Select model location**: `Exiting connection`
+* **Connection**: `workbench-bucket`
+* **Path:**
++
+[source,bash,role=execute,subs="attributes"]
+----
+models/model
+----
+* **Model type**: `Predictive model`
+* Click **Next**
+
+* **Model deployment name**: `ovms`
+* **Model framework (name - version)**: `onnx - 1`
+* **Serving runtime template**: `OpenVINO Model Server`
+* Click **Next**
+
 ** ☑︎ Make deployed models available through an external route: `Check`
-* **Token authentication**
-** ☑︎ Require token authentication : `Check`
-** **Service account name** : `default-name`
-* Click **Add**
-
-.**Click to reveal the screenshot**
-[%collapsible]
-====
-image::serving-runtime.png[]
-====
-
-=== Deploy Model
-
-* Under **Models and model servers** you'll see your new model server
+** ☑︎ Require token authentication: `Check`
+* Click **Next**
 * Click **Deploy model**
-* In the form enter
-** Model deployment name:
-+
-[source,bash,role=execute,subs="attributes"]
-----
-fedora-detection-service
-----
-** Model framework (name-version): `onnx-1`
-** Existing data connection: `workbench-bucket`
-** Path:
-+
-[source,bash,role=execute,subs="attributes"]
-----
-models/model-latest.onnx
-----
-** Click **Deploy**
+
+
 
 [IMPORTANT]
 ====
@@ -438,8 +420,6 @@ Now it's time to finally test the model. And since we are Data Scientists here, 
 * Copy the inference endpoint URL that is published through an OpenShift Route (and save it somewhere)
 +
 image::copy-inference-url.png[]
-+
-image::copy-inference-url2.png[]
 
 * Copy the token of the endpoint
 +
