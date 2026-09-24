@@ -61,7 +61,7 @@ Next we will clone the starter code for our robot control app into our Workspace
 +
 [source,bash,role=execute,subs="attributes"]
 ----
-{gitea_console_url}/{user}/starter-app-python.git
+{gitea_console_url_plain}/{user}/starter-app-python.git
 ----
 * Hit **Enter**
 * In the next form keep the path as is ( `/projects` ) and hit **Enter** again
@@ -81,10 +81,10 @@ A single Granite model is running in a high performant vLLm-server accessed by a
 
 First we are will need to copy the configuration file that tells the "Continue" extension how to actually connect to our service, to our home folder.  We have already perepared a script that does this for you as part of the Devfile.
 
-* On the left, click on the **"Hamburger Menu"** 
-** > **Terminal** 
+* On the left, click on the **"Hamburger Menu"**
+** > **Terminal**
 *** > **Run Task**
-**** > **devfile** 
+**** > **devfile**
 **** > **devFile : Setup Continue extension**
 
 image::setup-extension.png[width=400px]

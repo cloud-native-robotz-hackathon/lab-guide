@@ -13,6 +13,7 @@ asciidoc:
     console_url: https://console-openshift-console.apps.example.com
     devspaces_url: https://devspaces.apps.example.com
     gitea_console_url: https://gitea.apps.example.com
+    gitea_console_url_plain: http://gitea.apps.example.com
     gitea_password: secret-password
     gitea_user: team-1
     login_command: oc login --insecure-skip-tls-verify=false -u team-1 -p openshift https://api.example.com:6443

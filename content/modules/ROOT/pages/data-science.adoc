@@ -417,11 +417,11 @@ Wait for the server to start. It may take a bit before the model server is able 
 
 Now it's time to finally test the model. And since we are Data Scientists here, we'll run the first tests to see how the model is performing in our JupyterLab Workbench.
 
-* Copy the inference endpoint URL that is published through an OpenShift Route (and save it somewhere)
+* Copy the external inference endpoint URL that is published through an OpenShift Route (and save it somewhere)
 +
 image::copy-inference-url.png[]
 
-* Copy the token of the endpoint
+* Copy the token of the endpoint by expanding the ovms model server entry
 +
 image::copy-token.png[]
 
