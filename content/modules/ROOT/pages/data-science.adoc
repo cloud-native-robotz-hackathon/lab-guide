@@ -278,92 +278,46 @@ Therefore, have some realistic expectations on the model and dont get hooked up 
 If we accept this, lets go ahead and train the model!
 ====
 
-* In JupyterLab navigate to the directory `object-detection-notebooks/model-training`.
+In JupyterLab navigate to the directory `object-detection-notebooks/model-training/kfp`.
 
-Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a `configuration.yaml` file as well as pipeline definition itself. By clicking on the different scripts, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so let's open it:
+There are a couple of scripts here :
 
-* Double click on `model-training-cpu.pipeline`
+*kfp_pipeline.py* - contains the python scripts for each step of our pipeline
 
-This will show you a view of our Data Science Pipeline. This pipeline runs several steps / Python scripts in sequence to train our model. Again you don't have to change anything here but feel free to have a look at the steps by clicking on them.
+*kfp_pipeline.yaml* - the pipeline definition for our training, referencing and executing the steps from kfp_pipeline.py
 
-Here is a quick explanation what each step of the Pipeline does:
+*kfp_client.py* -  a helper prepare and deploy our pipeline to OpenShift AI
 
-* Step 1 : Prepares the class labels, images and bounding box coordinates as training sets
-* Step 2 : Runs the actual training on a https://docs.ultralytics.com/models/yolov5/[Yolo 5,window=_blank] Model
-* Step 3 : Converts the model format to onnx
-* Step 4 : Uploads it to an ODF S3 bucket
+*deploy_pipeline.ipynb* -  A Juypter Notebook to deploy the pipeline to OpenShift AI
 
-Now back in the `model-training-cpu.pipeline`, on the top menu on the left click on the play icon
+* Double click on `deploy_pipeline.ipynb`
 
-image::start-pipeline.png[]
+This notbook executes a couple of steps to compile, visualize, set the parameters and deploy the pipeline.
 
-* Keep the default settings and click on **OK**
+* At the top click on *Restart the kernel an run all cells* (the icon with the two triangles)
 
-* Click on **OK** at the *Job submission to Data Science Pipelines succeeded* dialog
+Juypter will now show a visualization of the pipeline and deploy it.
 
-This will submit the pipeline to OpenShift to run the training
+image::kfp_pipeline.png[]
 
 * Switch to the *Red Hat OpenShift AI* tab in your browser
 * Select your Project {user}-ai
 * Select **Pipelines** tab
-* Expand the **model-training-cpu** Pipeline by clicking on the **>**
-* Click on **View runs**
-+
-image::view-runs.png[]
 
-* Click on **model-training-cpu-xxxxx** at the Run column
-+
-image::view-runs2.png[]
+You will see you new pipeline `object-detection-training-sdk`
 
-This will show the running steps of the pipeline
+* In the three dot menu on the right, click in *Create Run*
+
+image::run_kfp_pipeline.png[]
+
+* In the form just give a unique name like `Pipeline Run 1`
+* Click *Create Run*
+
+This will see the running steps of the pipeline now. You can click on a node to see the logs of each step.
 
 image::running-pipeline.png[]
 
-With the default settings, the Pipeline will run around 15 minutes.  Let's use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.
-
-== Deploy S3 Browser
-
-* In the left menu click on **Projects** to see all available Projects
-* Click on the project `{user}-ai`
-* In your project go on the tab **Workbenches**
-* Click on **Create workbench** and enter these values
-** **Name:**
-+
-[source,bash,role=execute,subs="attributes"]
-----
-s3-browser
-----
-** **Workbench image**
-*** Image Selection: `S3 Browser`
-
-** **Connections**
-*** Click on **Attach existing connections**
-**** Select `workbench-bucket` connection
-+
-image::attach-existing-connection.png[]
-**** Click on **Attach**
-
-* Click on **Create Workbench**
-+
-[IMPORTANT]
-====
-Wait until the **Status** of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.
-
-image::workbench-running-s3.png[]
-====
-
-* Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench
-* Accept the disclaimer
-
-The browser will show you the contents of your bucket.  Except for a folder called `backup` that contains some backup models, it will look fairly empty before the pipeline finishes.
-
-Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the https://docs.ultralytics.com/models/yolov5/[Yolov5,window=_blank] and compute requirements. In the pipeline start form you could actually change the model version, and while the pipeline is at the model training step, you can see the loss functions in the logs.
-
-Once the pipeline has run (Check the run) successfully the final model named latest-version.onnx will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
-
-* Click on `models` and you see
-+
-image::s3-browser.png[]
+With the default settings, the Pipeline will run around 15 minutes. Grab a coffee and once the pipeline is finished continue on to the next chapter.
 
 == Model Serving
 You now have a trained model for object recognition. To use the model we will deploy it into **OpenShift AI** Model Serving, which will make it available via an API.
