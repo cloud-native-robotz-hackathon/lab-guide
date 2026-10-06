@@ -54,6 +54,20 @@ We have prepared some sample code that you can use to quickly get started with y
 +
 image::vscode-trust.png[]
 
+When we initallly start DevSpaces we will be in `Restricted Mode` for security reasons. `Restricted Mode` is essentially a safe mode for browsing code without any kind ofer intercations.  Since we want to actually engineer some code we need to disable this mode.
+
+At the very top you will see the banner for the `Restricted Mode`.
+
+* Click on *Manage*
+
+image::restricted_mode_banner.png[]
+
+* Choose *In a Trusted Workspace* > *Trust*
+
+image::restricted_trust.png[]
+
+* Close the Dialog with the *X*
+
 Next we will clone the starter code for our robot control app into our Workspace.
 
 * On the left side click on the button **Clone Repository**
@@ -61,13 +75,15 @@ Next we will clone the starter code for our robot control app into our Workspace
 +
 [source,bash,role=execute,subs="attributes"]
 ----
-{gitea_console_url_plain}/{user}/starter-app-python.git
+{gitea_console_url}/{user}/starter-app-python.git
 ----
 * Hit **Enter**
 * In the next form keep the path as is ( `/projects` ) and hit **Enter** again
 * In the next dialog click on the **Open** button to reopen the workspace in this directory
 
 You will now see the starter code on the left side.
+
+* As a you have just created a new workspace you need to disable `Restricted mode` in this workspace as well, through the banner on top as before
 
 This is a Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.
 
