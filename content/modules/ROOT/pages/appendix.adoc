@@ -22,7 +22,7 @@ In this case `model-2410151507.onnx` is the new model created by this pipeline r
 * Change the **Path** value to your new model (e.g. models/model-2410151507.onnx)
 * This wil trigger a redeploy and you can now test the new model
 
-TIP: There is another more kube native way to update the model. You can actually change the yaml of the underlying OpenShift ressource.
+TIP: There is another more kube native way to update the model. You can actually change the yaml of the underlying OpenShift resource.
 
 == Model redeploy by editing Resource yaml
 
@@ -39,4 +39,4 @@ Look for the **path** entry
 ----
 and change it to your new model name
 
-This opens up possibilities to use GitOps to configure your MLOps ressources by the way.
+This opens up possibilities to use GitOps to configure your MLOps resources by the way.

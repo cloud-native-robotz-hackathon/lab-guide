@@ -1,6 +1,6 @@
 = Develop Control Application
 
-In the last chapter, you learned about controling the robot and using the development environment. To get you one stop nearer to the final goal, an application that will finally navigate obstacles and find a hat, we provide a first simplified version of it. Let's call it an Minimal Viable Product(MVP).
+In the last chapter, you learned about controlling the robot and using the development environment. To get you one step nearer to the final goal, an application that will finally navigate obstacles and find a hat, we provide a first simplified version of it. Let's call it a Minimal Viable Product (MVP).
 
 Review and test the code, but don't spend too much time with it.
 
@@ -73,7 +73,7 @@ log_with_timestamp("Exited main control loop.")
 
 == What does this code do, you ask?
 
-First, it keeps on looping until someone presses the **Stop** button. It takes a picture from the camera, finds the Fedora object with higest confidence score.
+First, it keeps on looping until someone presses the **Stop** button. It takes a picture from the camera, finds the Fedora object with highest confidence score.
 
 Then, it looks for the center of the bounding box. Depending on the position of the center point in the camera image, the code decides if the robot needs to turn left or right to align it with the fedora.
 
@@ -127,7 +127,7 @@ image::git-push-username.png[]
 ----
 {password}
 ----
-Now you code has been pushed to your repo. You can check in Gitea if you want.
+Now your code has been pushed to your repo. You can check in Gitea if you want.
 
 == Expected outcome of this chapter
 

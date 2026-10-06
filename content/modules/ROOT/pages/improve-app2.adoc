@@ -6,13 +6,13 @@ Up until now, we have mainly used the camera of the robot to check for hats, but
 
 Head back to your DevSpaces Tab and here is a new code drop for you. We now add a second function which will navigate the robot around an obstacle.
 
-* It use the distance sensor to navigate around obstacles
+* It uses the distance sensor to navigate around obstacles
 * Puts the code to drive around obstacles in the function `+bypass_obstacle()+`
 * Creates some more parameters to test, optimize and tune different values in your code
 
 == Add the new "bypass_obstacle()" function
 
-Below the new function `+def search_for_hat:+` add this function (as usual check you identation)
+Below the new function `+def search_for_hat():+` add this function (as usual check your indentation)
 
 [source,python,role=execute,subs="attributes"]
 ----
@@ -47,7 +47,7 @@ def bypass_obstacle():
         move_forward(20)
         turn_right(angle_delta)
 
-    # Determine if original obsctacle is still in sight (after having turned back in original direction)
+    # Determine if original obstacle is still in sight (after having turned back in original direction)
     obstacle_in_sight = distance_int() <= min_distance_to_obstacle
     print ('Got distance -> ', distance())
 
@@ -59,7 +59,7 @@ def bypass_obstacle():
     print('### Bypass Obstacle Mode - END: SUCCESS! ###')
 ----
 
-First test the new obstacle avoidance code by commenting out the function `+search_for_hat())+` from the `+startRobot()+` function and adding the `+bypass_obstacle()+` function like so:
+First test the new obstacle avoidance code by commenting out the function `+search_for_hat()+` from the `+startRobot()+` function and adding the `+bypass_obstacle()+` function like so:
 
 [source,python,role=execute,subs="attributes"]
 ----
@@ -94,7 +94,7 @@ You have worked enough with the code to tackle this without a lot of instruction
 
 == Exercise
 
-**Your mission: Your robot should be positioned in front of a barrier. It needs to drive around it, indentify the red fedora behind it and drive towards it, stopping before.**
+**Your mission: Your robot should be positioned in front of a barrier. It needs to drive around it, identify the red fedora behind it and drive towards it, stopping before.**
 
 The playing field should look like in the first challenge with a barrier added:
 

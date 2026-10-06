@@ -49,7 +49,7 @@ image::rhoai-projects-menu.png[width=350]
 - A project has already been prepared for you to work in
 - Click on the project `{user}-ai`
 
-As Data Scientists, we are in need of an interactive developement environment (IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let's create a new JupyterLab Workbench in our Data Science project and get started:
+As Data Scientists, we are in need of an interactive development environment (IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let's create a new JupyterLab Workbench in our Data Science project and get started:
 
 * Click on **Create a Workbench**
 * Enter these fields :
@@ -96,9 +96,9 @@ image::workbench-running.png[]
 
 == Create your Model in JupyterLab
 
-* Click on  the Workbench name to open the JuypterLab Workbench
+* Click on  the Workbench name to open the JupyterLab Workbench
 
-The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced Data Scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:
+The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced Data Scientists who know the importance of documentation, version handling and reproducibility. Therefore, in JupyterLab we are going to clone a complete Jupyter Notebook to get started with our object detection project:
 
 * In the menu on the left, click on the **Git** icon
 * Click on **Clone a Repository**
@@ -130,7 +130,7 @@ Labeling in object detection is the annotation of raw image by humans, where bou
 
 Since we deliberately don't have a lot of variations in the images this will lead to a model that will recognize this particular Fedora pretty well, but not one that deviates slightly. This is commonly called "overfitting" and usually avoided, but in our case for demo and fun it's fine.
 
-If you would like to get a idea what the images look like, in your JupyterLab Notebook navigate to the folder `object-detection-training-pvc/custom_training_images/fedora/images/` and open some of the images. You'll see slight variations of a Red Hat Fedora in front of varying backgrounds.
+If you would like to get an idea what the images look like, in your JupyterLab Notebook navigate to the folder `object-detection-training-pvc/custom_training_images/fedora/images/` and open some of the images. You'll see slight variations of a Red Hat Fedora in front of varying backgrounds.
 
 image::training-image.png[]
 
@@ -206,7 +206,7 @@ image::label-studio-images.png[]
 Now it's time to actually label the images.
 
 * Click the images to start
-* You'll get into the labeling interface. To label a class, you have to choose it at the bottom. We only have on class, Fedora, so click to activate it.
+* You'll get into the labeling interface. To label a class, you have to choose it at the bottom. We only have one class, Fedora, so click to activate it.
 * Now in the image draw a rectangle by holding the left mouse button **as close to the Fedora as close as possible**.
 * Click **Submit**
 
@@ -228,7 +228,7 @@ This will download a zip file with the images and label metadata to your laptop.
 
 [NOTE]
 ====
-Transfering the labeled images via zip file is of course not the way you would do this in the real world, here you would use e.g. an S3 bucket for data transfer.
+Transferring the labeled images via zip file is of course not the way you would do this in the real world, here you would use e.g. an S3 bucket for data transfer.
 ====
 
 Now add the images to the training images in the JupyterLab Notebook:
@@ -273,9 +273,9 @@ When training the model the confidence score and accuracy will be a limiting fac
 
 This is a limiting factor edge cases face, finding the balance between accuracy and sizing requirements for the model to run.
 
-Therefore, have some realistic expectations on the model and dont get hooked up on fine tuning it.
+Therefore, have some realistic expectations on the model and don't get hooked up on fine tuning it.
 
-If we accept this, lets go ahead and train the model!
+If we accept this, let's go ahead and train the model!
 ====
 
 In JupyterLab navigate to the directory `object-detection-notebooks/model-training/kfp`.
@@ -288,7 +288,7 @@ There are a couple of scripts here :
 
 *kfp_client.py* -  a helper prepare and deploy our pipeline to OpenShift AI
 
-*deploy_pipeline.ipynb* -  A Juypter Notebook to deploy the pipeline to OpenShift AI
+*deploy_pipeline.ipynb* -  A Jupyter Notebook to deploy the pipeline to OpenShift AI
 
 * Double click on `deploy_pipeline.ipynb`
 
@@ -296,7 +296,7 @@ This notbook executes a couple of steps to compile, visualize, set the parameter
 
 * At the top click on *Restart the kernel an run all cells* (the icon with the two triangles)
 
-Juypter will now show a visualization of the pipeline and deploy it.
+Jupyter will now show a visualization of the pipeline and deploy it.
 
 image::kfp_pipeline.png[]
 
@@ -339,7 +339,7 @@ First we need to configure a model server:
 ----
 ovms
 ----
-* **Select model location**: `Exiting connection`
+* **Select model location**: `Existing connection`
 * **Connection**: `workbench-bucket`
 * **Path:**
 +
@@ -397,7 +397,7 @@ image::run-full-notebook.png[]
 
 You will see any identified classes with bounding boxes and confidence score at the end of the notebook.
 
-You can test your model with different images in the `sample-images` folder, or even better, you can upload your own images. Take some pictures with your laptop or smartphone of a the fedora on the floor and upload them into the `sample_images` folder. Make sure you adjust the image name in `image_path` variable before running the notebook again AND that the format of the images you take is set to square resolution. This can be adjusted in most smartphones today. If you dont use square resolution, the printed bounding boxes may be drawn in the wrong areas of the pictures.
+You can test your model with different images in the `sample-images` folder, or even better, you can upload your own images. Take some pictures with your laptop or smartphone of the fedora on the floor and upload them into the `sample_images` folder. Make sure you adjust the image name in `image_path` variable before running the notebook again AND that the format of the images you take is set to square resolution. This can be adjusted in most smartphones today. If you don't use square resolution, the printed bounding boxes may be drawn in the wrong areas of the pictures.
 
 [TIP]
 ====
