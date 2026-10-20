@@ -205,7 +205,7 @@ image::label-studio-images.png[]
 
 Now it's time to actually label the images.
 
-* Click the images to start
+* Click the first image to start
 * You'll get into the labeling interface. To label a class, you have to choose it at the bottom. We only have one class, Fedora, so click to activate it.
 * Now in the image draw a rectangle by holding the left mouse button **as close to the Fedora as close as possible**.
 * Click **Submit**
@@ -284,7 +284,7 @@ There are a couple of scripts here :
 
 *kfp_pipeline.py* - contains the python scripts for each step of our pipeline
 
-*kfp_pipeline.yaml* - the pipeline definition for our training, referencing and executing the steps from kfp_pipeline.py
+*pipeline.yaml* - the pipeline definition for our training, referencing and executing the steps from kfp_pipeline.py
 
 *kfp_client.py* -  a helper prepare and deploy our pipeline to OpenShift AI
 
@@ -304,7 +304,7 @@ image::kfp_pipeline.png[]
 * Select your Project {user}-ai
 * Select **Pipelines** tab
 
-You will see you new pipeline `object-detection-training-sdk`
+You will see your new pipeline `object-detection-training-sdk`
 
 * In the three dot menu on the right, click in *Create Run*
 
@@ -333,12 +333,6 @@ First we need to configure a model server:
 
 ==== Fill out the form.
 
-* **Model server name:**
-+
-[source,bash,role=execute,subs="attributes"]
-----
-ovms
-----
 * **Select model location**: `Existing connection`
 * **Connection**: `workbench-bucket`
 * **Path:**
