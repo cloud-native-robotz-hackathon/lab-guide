@@ -48,13 +48,7 @@ image::trust.png[]
 
 Wait for the Workspace to deploy (this may take some time). Once your Workspace is up and running, you should see a view that looks familiar if you have used VSCode before.
 
-We have prepared some sample code that you can use to quickly get started with your app.
-
-* If you see a Popup asking you to "Do you trust the authors", click check **Always ...**  and click **Yes ...**
-+
-image::vscode-trust.png[]
-
-When we initially start DevSpaces we will be in `Restricted Mode` for security reasons. `Restricted Mode` is essentially a safe mode for browsing code without any kind of interactions.  Since we want to actually engineer some code we need to disable this mode.
+DevSpaces we will be in `Restricted Mode` for security reasons. `Restricted Mode` is essentially a safe mode for browsing code without any kind of interactions.  Since we want to actually engineer some code we need to disable this mode.
 
 At the very top you will see the banner for the `Restricted Mode`.
 
@@ -68,7 +62,7 @@ image::restricted_trust.png[]
 
 * Close the Dialog with the *X*
 
-Next we will clone the starter code for our robot control app into our Workspace.
+We have prepared some sample code that you can use to quickly get started with your app. Clone the starter code for our robot control app into our Workspace.
 
 * On the left side click on the button **Clone Repository**
 * In the form at the top enter the git url
