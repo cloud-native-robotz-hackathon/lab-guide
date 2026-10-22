@@ -48,13 +48,21 @@ image::trust.png[]
 
 Wait for the Workspace to deploy (this may take some time). Once your Workspace is up and running, you should see a view that looks familiar if you have used VSCode before.
 
-We have prepared some sample code that you can use to quickly get started with your app.
+DevSpaces we will be in `Restricted Mode` for security reasons. `Restricted Mode` is essentially a safe mode for browsing code without any kind of interactions.  Since we want to actually engineer some code we need to disable this mode.
 
-* If you see a Popup asking you to "Do you trust the authors", click check **Always ...**  and click **Yes ...**
-+
-image::vscode-trust.png[]
+At the very top you will see the banner for the `Restricted Mode`.
 
-Next we will clone the starter code for our robot control app into our Workspace.
+* Click on *Manage*
+
+image::restricted_mode_banner.png[]
+
+* Choose *In a Trusted Workspace* > *Trust*
+
+image::restricted_trust.png[]
+
+* Close the Dialog with the *X*
+
+We have prepared some sample code that you can use to quickly get started with your app. Clone the starter code for our robot control app into our Workspace.
 
 * On the left side click on the button **Clone Repository**
 * In the form at the top enter the git url
@@ -69,6 +77,8 @@ Next we will clone the starter code for our robot control app into our Workspace
 
 You will now see the starter code on the left side.
 
+* As a you have just created a new workspace you need to disable `Restricted mode` in this workspace as well, through the banner on top as before
+
 This is a Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.
 
 === Set up a AI Coding Assistant (optional)
@@ -79,12 +89,12 @@ We are already serving the OpenSource https://www.ibm.com/granite/docs/models/co
 
 A single Granite model is running in a high performant vLLm-server accessed by all the teams. Here is how to connect to DevSpaces to it.
 
-First we are will need to copy the configuration file that tells the "Continue" extension how to actually connect to our service, to our home folder.  We have already perepared a script that does this for you as part of the Devfile.
+First we are will need to copy the configuration file that tells the "Continue" extension how to actually connect to our service, to our home folder.  We have already prepared a script that does this for you as part of the Devfile.
 
-* On the left, click on the **"Hamburger Menu"** 
-** > **Terminal** 
+* On the left, click on the **"Hamburger Menu"**
+** > **Terminal**
 *** > **Run Task**
-**** > **devfile** 
+**** > **devfile**
 **** > **devFile : Setup Continue extension**
 
 image::setup-extension.png[width=400px]
@@ -159,7 +169,7 @@ curl -X POST \
     -d user_key={robot_name}
 ----
 
-TIP: Some Browsers will ask you wether to allow pasting text. Approve this to proceed.
+TIP: Some Browsers will ask you whether to allow pasting text. Approve this to proceed.
 
 Awesome, right? You are now an official robot pilot.
 
@@ -192,7 +202,7 @@ Replace the following placeholders:
 (The Token of the Object Detection Service from the DataScience chapter)
 
 
-TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart you app or even reload the Robot control page.
+TIP: Note that **Dev Spaces** saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart your app or even reload the Robot control page.
 
 === Start the App
 
@@ -257,7 +267,7 @@ Check if everything is setup correctly and your app can reach the robot:
 
 image::robot-control-page2.png[]
 
-You should see a confirmation that your Robot is doing ok. If not, have a look at the console output in your Dev Spaves Workspace and recheck `config.py`.
+You should see a confirmation that your Robot is doing ok. If not, have a look at the console output in your Dev Spaces Workspace and recheck `config.py`.
 
 == First Code: Robot Movement
 
@@ -278,7 +288,7 @@ print('Done')
 
 * Now back on your Robot Control Page click on the **Run** button
 
-If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness! OBS, do make sure the robot is not on the edge of a table or in risk of falling down.
+If all goes well your robot should move forward. Congratulations, your robot has gained a bit of consciousness! OBS, do make sure the robot is not on the edge of a table or in risk of falling down.
 
 If it doesn't move, have look at the Terminal output in **Dev Spaces** and recheck your `config.py` entries.
 
@@ -288,7 +298,7 @@ TIP: Sometimes the auto-reload of the app doesn't work and the app stops, you'll
 
 Now let the robot drive forward, look left and right and then retreat again.
 
-Edit the the function `startRobot()` again so it looks like this:
+Edit the function `startRobot()` again so it looks like this:
 
 [source,python,role=execute,subs="attributes"]
 ----
@@ -335,7 +345,7 @@ The `object` itself will have these fields that you can use:
 * `x_upper_left` - Bounding box upper left corner x coordinate
 * `y_upper_left` - Bounding box upper left corner y coordinate
 * `x_lower_right` - Bounding box lower right corner x coordinate
-* `y_lower_right` - Bounding box lower left corner y coordinate
+* `y_lower_right` - Bounding box lower right corner y coordinate
 
 Change your function `startRobot()` code to detect an object through the camera and print the resulting object:
 
@@ -374,7 +384,7 @@ Object with highest score -> [
             object class: 0.0 ]
 ----
 
-Note that we have found a Fedora (object class = 0) and are pretty certain of of it (confidence score = 0.8).
+Note that we have found a Fedora (object class = 0) and are pretty certain of it (confidence score = 0.8).
 
 The robot control page will also display the last image from the camera. You can use this to check the robot and camera alignment.
 
@@ -391,7 +401,7 @@ video::devspaces-devenv.mp4[width=640]
 
 == Working with the Model
 
-As mentioned in the Data Science chapter, our quick trained model might not be perfect.  You might get not optimal or sometimes false detections. These are common Data Science challenges when working with predictive AI.
+As mentioned in the Data Science chapter, our quickly trained model might not be perfect.  You might get not optimal or sometimes false detections. These are common Data Science challenges when working with predictive AI.
 
 There is a setting `CONFIDENCE_THRESHOLD` in `config.py` that defines the minimum confidence score a detection must have to be displayed.  This is currently set to `0.3`. If you get too many or false detection, try to raise the value and check your bounding box image.  Play around with the value during your hacking to find the sweet spot.
 

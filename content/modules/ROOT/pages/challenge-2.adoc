@@ -2,7 +2,7 @@
 
 Now let's put the super powers of your robot together and tackle a more challenging mission.
 
-**Your mission: Your robot will be positioned in front of a barrier. It needs to drive around it, indentify the red fedora behind it and drive towards it, stopping before.**
+**Your mission: Your robot will be positioned in front of a barrier. It needs to drive around it, identify the red fedora behind it and drive towards it, stopping before.**
 
 The playing field will look like in the first challenge with a barrier added:
 
