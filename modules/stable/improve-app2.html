@@ -113,7 +113,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>It use the distance sensor to navigate around obstacles</p>
+<p>It uses the distance sensor to navigate around obstacles</p>
 </li>
 <li>
 <p>Puts the code to drive around obstacles in the function <code>bypass_obstacle()</code></p>
@@ -129,7 +129,7 @@
 <h2 id="_add_the_new_bypass_obstacle_function"><a class="anchor" href="#_add_the_new_bypass_obstacle_function"></a>Add the new "bypass_obstacle()" function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Below the new function <code>def search_for_hat:</code> add this function (as usual check you identation)</p>
+<p>Below the new function <code>def search_for_hat():</code> add this function (as usual check your indentation)</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
@@ -164,7 +164,7 @@ def bypass_obstacle():
         move_forward(20)
         turn_right(angle_delta)
 
-    # Determine if original obsctacle is still in sight (after having turned back in original direction)
+    # Determine if original obstacle is still in sight (after having turned back in original direction)
     obstacle_in_sight = distance_int() <= min_distance_to_obstacle
     print ('Got distance -> ', distance())
 
@@ -177,7 +177,7 @@ def bypass_obstacle():
 </div>
 </div>
 <div class="paragraph">
-<p>First test the new obstacle avoidance code by commenting out the function <code>search_for_hat())</code> from the <code>startRobot()</code> function and adding the <code>bypass_obstacle()</code> function like so:</p>
+<p>First test the new obstacle avoidance code by commenting out the function <code>search_for_hat()</code> from the <code>startRobot()</code> function and adding the <code>bypass_obstacle()</code> function like so:</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
@@ -230,7 +230,7 @@ def bypass_obstacle():
 <h2 id="_exercise"><a class="anchor" href="#_exercise"></a>Exercise</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Your mission: Your robot should be positioned in front of a barrier. It needs to drive around it, indentify the red fedora behind it and drive towards it, stopping before.</strong></p>
+<p><strong>Your mission: Your robot should be positioned in front of a barrier. It needs to drive around it, identify the red fedora behind it and drive towards it, stopping before.</strong></p>
 </div>
 <div class="paragraph">
 <p>The playing field should look like in the first challenge with a barrier added:</p>

@@ -133,7 +133,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>username:</p>
+<p>Username:</p>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">team-1</code></pre>
@@ -141,7 +141,7 @@
 </div>
 </li>
 <li>
-<p>password :</p>
+<p>Password:</p>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">secret-password</code></pre>
@@ -159,23 +159,12 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Click <strong>Skip tour</strong></p>
-<div class="imageblock text-left">
-<div class="content">
-<img src="_images/skip-tour.png" alt="skip tour" width="420">
-</div>
-</div>
-</li>
-<li>
 <p>Click on the top right menu with the squares and select <strong>OpenShift AI</strong> to access the <strong>OpenShift AI Dashboard</strong></p>
 <div class="imageblock text-left">
 <div class="content">
 <img src="_images/rhoai-menu.png" alt="rhoai menu" width="350">
 </div>
 </div>
-</li>
-<li>
-<p>Click on <strong>Login with OpenShift</strong></p>
 </li>
 <li>
 <p>Thanks to the SSO magic you don&#8217;t have to authenticate again</p>
@@ -188,7 +177,20 @@
 <div class="ulist">
 <ul>
 <li>
-<p>In the left menu click on <strong>Data Science Projects</strong> to see all available Data Science Projects</p>
+<p>Close the "Welcome to OpenShift AI" dialog</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/welcome-to-openshift-3.5.png" alt="welcome to openshift 3.5" width="350">
+</div>
+</div>
+</li>
+<li>
+<p>In the left menu click on <strong>Projects</strong> to see all available Projects</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/rhoai-projects-menu.png" alt="rhoai projects menu" width="350">
+</div>
+</div>
 </li>
 <li>
 <p>A project has already been prepared for you to work in</p>
@@ -199,12 +201,12 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>As Data Scientists, we are in need of an interactive developement environment(IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let&#8217;s create a new JupyterLab Workbench in our Data Science project and get started:</p>
+<p>As Data Scientists, we are in need of an interactive development environment (IDE) to do our programming. One of the most common one (and provided by OpenShift AI) is JupyterLab. Let&#8217;s create a new JupyterLab Workbench in our Data Science project and get started:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Click on <strong>Create Workbench</strong></p>
+<p>Click on <strong>Create a Workbench</strong></p>
 </li>
 <li>
 <p>Enter these fields :</p>
@@ -219,7 +221,7 @@
 </div>
 </li>
 <li>
-<p><strong>Notebook image</strong></p>
+<p><strong>Workbench image</strong></p>
 <div class="ulist">
 <ul>
 <li>
@@ -234,16 +236,6 @@
 <ul>
 <li>
 <p>Version selection: <code>3.01</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Deployment size</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Container size: 'Small'</p>
 </li>
 </ul>
 </div>
@@ -341,12 +333,12 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench</p>
+<p>Click on  the Workbench name to open the JupyterLab Workbench</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The first thing we notice when logging into our workbench is that it&#8217;s quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don&#8217;t worry, we are experienced Data Scientists who know the importance of documentation, version handling and reproducability. Therefore, in JuypterLab we are going to clone a complete JuypterNotebook to get started with our object detection project:</p>
+<p>The first thing we notice when logging into our workbench is that it&#8217;s quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don&#8217;t worry, we are experienced Data Scientists who know the importance of documentation, version handling and reproducibility. Therefore, in JupyterLab we are going to clone a complete Jupyter Notebook to get started with our object detection project:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -406,7 +398,7 @@
 <p>Since we deliberately don&#8217;t have a lot of variations in the images this will lead to a model that will recognize this particular Fedora pretty well, but not one that deviates slightly. This is commonly called "overfitting" and usually avoided, but in our case for demo and fun it&#8217;s fine.</p>
 </div>
 <div class="paragraph">
-<p>If you would like to get a idea what the images look like, in your JupyterLab Notebook navigate to the folder <code>object-detection-training-pvc/custom_training_images/fedora/images/</code> and open some of the images. You&#8217;ll see slight variations of a Red Hat Fedora in front of varying backgrounds.</p>
+<p>If you would like to get an idea what the images look like, in your JupyterLab Notebook navigate to the folder <code>object-detection-training-pvc/custom_training_images/fedora/images/</code> and open some of the images. You&#8217;ll see slight variations of a Red Hat Fedora in front of varying backgrounds.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -496,7 +488,7 @@
 <p>From <strong>Computer Vision</strong> choose <strong>Object Detection with Bounding Boxes</strong></p>
 </li>
 <li>
-<p>Under <strong>add label names</strong> there will be two labels ("Airplane" and "Car") preconfigured, delete them by clicking the red X.</p>
+<p>Under <strong>Add label names</strong> there will be two labels ("Airplane" and "Car") preconfigured, delete them by clicking the red X.</p>
 </li>
 <li>
 <p>In the text box enter our label "Fedora" and click <strong>Add</strong></p>
@@ -573,10 +565,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Click the images to start</p>
+<p>Click the first image to start</p>
 </li>
 <li>
-<p>You&#8217;ll get into the labeling interface. To label a class, you have to choose it at the bottom. We only have on class, Fedora, so click to activate it.</p>
+<p>You&#8217;ll get into the labeling interface. To label a class, you have to choose it at the bottom. We only have one class, Fedora, so click to activate it.</p>
 </li>
 <li>
 <p>Now in the image draw a rectangle by holding the left mouse button <strong>as close to the Fedora as close as possible</strong>.</p>
@@ -626,7 +618,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Transfering the labeled images via zip file is of course not the way you would do this in the real world, here you would use e.g. an S3 bucket for data transfer.</p>
+<p>Transferring the labeled images via zip file is of course not the way you would do this in the real world, here you would use e.g. an S3 bucket for data transfer.</p>
 </div>
 </td>
 </tr>
@@ -714,109 +706,98 @@
 <p>This is a limiting factor edge cases face, finding the balance between accuracy and sizing requirements for the model to run.</p>
 </div>
 <div class="paragraph">
-<p>Therefore, have some realistic expectations on the model and dont get hooked up on fine tuning it.</p>
+<p>Therefore, have some realistic expectations on the model and don&#8217;t get hooked up on fine tuning it.</p>
 </div>
 <div class="paragraph">
-<p>If we accept this, lets go ahead and train the model!</p>
+<p>If we accept this, let&#8217;s go ahead and train the model!</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>In JupyterLab navigate to the directory <code>object-detection-notebooks/model-training</code>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>In JupyterLab navigate to the directory <code>object-detection-notebooks/model-training/kfp</code>.</p>
 </div>
 <div class="paragraph">
-<p>Notice that we now have a couple of python scripts containing code to execute the individual steps of the pipeline, a <code>configuration.yaml</code> file as well as pipeline definition itself. By clicking on the different scripts, you can view and edit them in your IDE. However, we are specifically interested in the pipeline definition, so let&#8217;s open it:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Double click on <code>model-training-cpu.pipeline</code></p>
-</li>
-</ul>
+<p>There are a couple of scripts here :</p>
 </div>
 <div class="paragraph">
-<p>This will show you a view of our Data Science Pipeline. This pipeline runs several steps / Python scripts in sequence to train our model. Again you don&#8217;t have to change anything here but feel free to have a look at the steps by clicking on them.</p>
+<p><strong>kfp_pipeline.py</strong> - contains the python scripts for each step of our pipeline</p>
 </div>
 <div class="paragraph">
-<p>Here is a quick explanation what each step of the Pipeline does:</p>
+<p><strong>pipeline.yaml</strong> - the pipeline definition for our training, referencing and executing the steps from kfp_pipeline.py</p>
+</div>
+<div class="paragraph">
+<p><strong>kfp_client.py</strong> -  a helper prepare and deploy our pipeline to OpenShift AI</p>
+</div>
+<div class="paragraph">
+<p><strong>deploy_pipeline.ipynb</strong> -  A Jupyter Notebook to deploy the pipeline to OpenShift AI</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Step 1 : Prepares the class labels, images and bounding box coordinates as training sets</p>
-</li>
-<li>
-<p>Step 2 : Runs the actual training on a <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolo 5</a> Model</p>
-</li>
-<li>
-<p>Step 3 : Converts the model format to onnx</p>
-</li>
-<li>
-<p>Step 4 : Uploads it to an ODF S3 bucket</p>
+<p>Double click on <code>deploy_pipeline.ipynb</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Now back in the <code>model-training-cpu.pipeline</code>, on the top menu on the left click on the play icon</p>
+<p>This notbook executes a couple of steps to compile, visualize, set the parameters and deploy the pipeline.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>At the top click on <strong>Restart the kernel an run all cells</strong> (the icon with the two triangles)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Jupyter will now show a visualization of the pipeline and deploy it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/start-pipeline.png" alt="start pipeline">
+<img src="_images/kfp_pipeline.png" alt="kfp pipeline">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Keep the default settings and click on <strong>OK</strong></p>
+<p>Switch to the <strong>Red Hat OpenShift AI</strong> tab in your browser</p>
 </li>
 <li>
-<p>Click on <strong>OK</strong> at the <strong>Job submission to Data Science Pipelines succeeded</strong> dialog</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This will submit the pipeline to OpenShift to run the training</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Switch to the <strong>OpenShift AI</strong> tab in your browser</p>
-</li>
-<li>
-<p>Select your Data Science Project team-1-ai</p>
+<p>Select your Project team-1-ai</p>
 </li>
 <li>
 <p>Select <strong>Pipelines</strong> tab</p>
 </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You will see your new pipeline <code>object-detection-training-sdk</code></p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p>Expand the <strong>model-training-cpu</strong> Pipeline by clicking on the <strong>&gt;</strong></p>
+<p>In the three dot menu on the right, click in <strong>Create Run</strong></p>
 </li>
-<li>
-<p>Click on <strong>View runs</strong></p>
+</ul>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/view-runs.png" alt="view runs">
+<img src="_images/run_kfp_pipeline.png" alt="run kfp pipeline">
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the form just give a unique name like <code>Pipeline Run 1</code></p>
 </li>
 <li>
-<p>Click on <strong>model-training-cpu-xxxxx</strong> at the Run column</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/view-runs2.png" alt="view runs2">
-</div>
-</div>
+<p>Click <strong>Create Run</strong></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This will show the running steps of the pipeline</p>
+<p>This will see the running steps of the pipeline now. You can click on a node to see the logs of each step.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -824,128 +805,8 @@
 </div>
 </div>
 <div class="paragraph">
-<p>With the default settings, the Pipeline will run around 15 minutes.  Let&#8217;s use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.</p>
+<p>With the default settings, the Pipeline will run around 15 minutes. Grab a coffee and once the pipeline is finished continue on to the next chapter.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_deploy_s3_browser"><a class="anchor" href="#_deploy_s3_browser"></a>Deploy S3 Browser</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>In the left menu click on <strong>Data Science Projects</strong> to see all available Data Science Projects</p>
-</li>
-<li>
-<p>A project has already been prepared for you to work in</p>
-</li>
-<li>
-<p>Click on the project <code>team-1-ai</code></p>
-</li>
-<li>
-<p>In your project go on the tab <strong>Workbenches</strong></p>
-</li>
-<li>
-<p>Click on <strong>Create workbench</strong> and enter these values</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Name:</strong></p>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">s3-browser</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Notebook image</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Image Selection: <code>S3 Browser</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Connections</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Click on <strong>Attach existing connections</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Select <code>workbench-bucket</code> connection</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/attach-existing-connection.png" alt="attach existing connection">
-</div>
-</div>
-</li>
-<li>
-<p>Click on <strong>Attach</strong></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Click on <strong>Create Workbench</strong></p>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Wait until the <strong>Status</strong> of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/workbench-running-s3.png" alt="workbench running s3">
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench</p>
-</li>
-<li>
-<p>Accept the disclaimer</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The browser will show you the contents of your bucket.  Except for a folder called <code>backup</code> that contains some backup models, it will look fairly empty before the pipeline finishes.</p>
-</div>
-<div class="paragraph">
-<p>Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolov5 model family</a>. There are different sizing versions of the <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolov5</a> and compute requirements. In the pipeline start form you could actually change the model version, and while the pipeline is at the model training step, you can see the loss functions in the logs.</p>
-</div>
-<div class="paragraph">
-<p>Once the pipeline has run (Check the run) successfully the final model named latest-version.onnx will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Click on <code>models</code> and you see</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/s3-browser.png" alt="s3 browser">
-</div>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -963,16 +824,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Click on <strong>Data Science Projects</strong> in the main menu on the left and make sure you have selected your <code>team-1-ai</code> again</p>
+<p>Click on <strong>Projects</strong> in the main menu on the left and make sure you have selected your <code>team-1-ai</code> again</p>
 </li>
 <li>
-<p>Select the tab <strong>Models</strong></p>
+<p>Select the tab <strong>Deployments</strong></p>
 </li>
 <li>
-<p>Choose <strong>Multi-model serving platform</strong> by clicking <strong>Select multi-model</strong></p>
-</li>
-<li>
-<p>Now deploy a model server by clicking <strong>Add model server</strong></p>
+<p>Click on <strong>Deploy model</strong></p>
 </li>
 </ul>
 </div>
@@ -981,100 +839,52 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Model server name:</strong></p>
+<p><strong>Select model location</strong>: <code>Existing connection</code></p>
+</li>
+<li>
+<p><strong>Connection</strong>: <code>workbench-bucket</code></p>
+</li>
+<li>
+<p><strong>Path:</strong></p>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ovms</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">models/model</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p><strong>Serving runtime</strong>: <code>OpenVINO Model Server</code></p>
+<p><strong>Model type</strong>: <code>Predictive model</code></p>
 </li>
 <li>
-<p><strong>Accelerator</strong>: <code>None</code></p>
+<p>Click <strong>Next</strong></p>
 </li>
 <li>
-<p><strong>Model route</strong></p>
+<p><strong>Model deployment name</strong>: <code>ovms</code></p>
+</li>
+<li>
+<p><strong>Model framework (name - version)</strong>: <code>onnx - 1</code></p>
+</li>
+<li>
+<p><strong>Serving runtime template</strong>: <code>OpenVINO Model Server</code></p>
+</li>
+<li>
+<p>Click <strong>Next</strong></p>
 <div class="ulist">
 <ul>
 <li>
 <p>☑︎ Make deployed models available through an external route: <code>Check</code></p>
 </li>
-</ul>
-</div>
-</li>
 <li>
-<p><strong>Token authentication</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>☑︎ Require token authentication : <code>Check</code></p>
-</li>
-<li>
-<p><strong>Service account name</strong> : <code>default-name</code></p>
+<p>☑︎ Require token authentication: <code>Check</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Click <strong>Add</strong></p>
-</li>
-</ul>
-</div>
-<details>
-<summary class="title"><strong>Click to reveal the screenshot</strong></summary>
-<div class="content">
-<div class="imageblock">
-<div class="content">
-<img src="_images/serving-runtime.png" alt="serving runtime">
-</div>
-</div>
-</div>
-</details>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_deploy_model"><a class="anchor" href="#_deploy_model"></a>Deploy Model</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Under <strong>Models and model servers</strong> you&#8217;ll see your new model server</p>
+<p>Click <strong>Next</strong></p>
 </li>
 <li>
 <p>Click <strong>Deploy model</strong></p>
-</li>
-<li>
-<p>In the form enter</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Model deployment name:</p>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">fedora-detection-service</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Model framework (name-version): <code>onnx-1</code></p>
-</li>
-<li>
-<p>Existing data connection: <code>workbench-bucket</code></p>
-</li>
-<li>
-<p>Path:</p>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">models/model-latest.onnx</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Click <strong>Deploy</strong></p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -1095,6 +905,7 @@
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="_model_testing"><a class="anchor" href="#_model_testing"></a>Model Testing</h2>
 <div class="sectionbody">
@@ -1104,20 +915,15 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Copy the inference endpoint URL that is published through an OpenShift Route (and save it somewhere)</p>
+<p>Copy the external inference endpoint URL that is published through an OpenShift Route (and save it somewhere)</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/copy-inference-url.png" alt="copy inference url">
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/copy-inference-url2.png" alt="copy inference url2">
-</div>
-</div>
 </li>
 <li>
-<p>Copy the token of the endpoint</p>
+<p>Copy the token of the endpoint by expanding the ovms model server entry</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/copy-token.png" alt="copy token">
@@ -1156,7 +962,7 @@ token = 'REPLACE_ME'</code></pre>
 <p>You will see any identified classes with bounding boxes and confidence score at the end of the notebook.</p>
 </div>
 <div class="paragraph">
-<p>You can test your model with different images in the <code>sample-images</code> folder, or even better, you can upload your own images. Take some pictures with your laptop or smartphone of a the fedora on the floor and upload them into the <code>sample_images</code> folder. Make sure you adjust the image name in <code>image_path</code> variable before running the notebook again AND that the format of the images you take is set to square resolution. This can be adjusted in most smartphones today. If you dont use square resolution, the printed bounding boxes may be drawn in the wrong areas of the pictures.</p>
+<p>You can test your model with different images in the <code>sample-images</code> folder, or even better, you can upload your own images. Take some pictures with your laptop or smartphone of the fedora on the floor and upload them into the <code>sample_images</code> folder. Make sure you adjust the image name in <code>image_path</code> variable before running the notebook again AND that the format of the images you take is set to square resolution. This can be adjusted in most smartphones today. If you don&#8217;t use square resolution, the printed bounding boxes may be drawn in the wrong areas of the pictures.</p>
 </div>
 <div class="admonitionblock tip">
 <table>

@@ -208,22 +208,44 @@ copy the URL.
 <p>Wait for the Workspace to deploy (this may take some time). Once your Workspace is up and running, you should see a view that looks familiar if you have used VSCode before.</p>
 </div>
 <div class="paragraph">
-<p>We have prepared some sample code that you can use to quickly get started with your app.</p>
+<p>DevSpaces we will be in <code>Restricted Mode</code> for security reasons. <code>Restricted Mode</code> is essentially a safe mode for browsing code without any kind of interactions.  Since we want to actually engineer some code we need to disable this mode.</p>
+</div>
+<div class="paragraph">
+<p>At the very top you will see the banner for the <code>Restricted Mode</code>.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>If you see a Popup asking you to "Do you trust the authors", click check <strong>Always &#8230;&#8203;</strong>  and click <strong>Yes &#8230;&#8203;</strong></p>
+<p>Click on <strong>Manage</strong></p>
+</li>
+</ul>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/vscode-trust.png" alt="vscode trust">
+<img src="_images/restricted_mode_banner.png" alt="restricted mode banner">
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Choose <strong>In a Trusted Workspace</strong> &gt; <strong>Trust</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/restricted_trust.png" alt="restricted trust">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Close the Dialog with the <strong>X</strong></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Next we will clone the starter code for our robot control app into our Workspace.</p>
+<p>We have prepared some sample code that you can use to quickly get started with your app. Clone the starter code for our robot control app into our Workspace.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -252,6 +274,13 @@ copy the URL.
 <div class="paragraph">
 <p>You will now see the starter code on the left side.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>As a you have just created a new workspace you need to disable <code>Restricted mode</code> in this workspace as well, through the banner on top as before</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>This is a Python application that is served as a REST API server through the Gunicorn framework. You will call the endpoints through a website and the app in turn will call the endpoints of the Robot.</p>
 </div>
@@ -267,7 +296,7 @@ copy the URL.
 <p>A single Granite model is running in a high performant vLLm-server accessed by all the teams. Here is how to connect to DevSpaces to it.</p>
 </div>
 <div class="paragraph">
-<p>First we are will need to copy the configuration file that tells the "Continue" extension how to actually connect to our service, to our home folder.  We have already perepared a script that does this for you as part of the Devfile.</p>
+<p>First we are will need to copy the configuration file that tells the "Continue" extension how to actually connect to our service, to our home folder.  We have already prepared a script that does this for you as part of the Devfile.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -432,7 +461,7 @@ copy the URL.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Some Browsers will ask you wether to allow pasting text. Approve this to proceed.
+Some Browsers will ask you whether to allow pasting text. Approve this to proceed.
 </td>
 </tr>
 </table>
@@ -493,7 +522,7 @@ Some Browsers will ask you wether to allow pasting text. Approve this to proceed
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Note that <strong>Dev Spaces</strong> saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart you app or even reload the Robot control page.
+Note that <strong>Dev Spaces</strong> saves your file directly while you edit it. No need to save manually. And as an added bonus gunicorn reloads your python app, so there is also no need to restart your app or even reload the Robot control page.
 </td>
 </tr>
 </table>
@@ -640,7 +669,7 @@ Once the Python Gunicorn server has started, you will see two Popup windows in t
 </div>
 </div>
 <div class="paragraph">
-<p>You should see a confirmation that your Robot is doing ok. If not, have a look at the console output in your Dev Spaves Workspace and recheck <code>config.py</code>.</p>
+<p>You should see a confirmation that your Robot is doing ok. If not, have a look at the console output in your Dev Spaces Workspace and recheck <code>config.py</code>.</p>
 </div>
 </div>
 </div>
@@ -682,7 +711,7 @@ print('Done')</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>If all goes well your robot should move forward. Congratulations, your robot has gained a bit of conciousness! OBS, do make sure the robot is not on the edge of a table or in risk of falling down.</p>
+<p>If all goes well your robot should move forward. Congratulations, your robot has gained a bit of consciousness! OBS, do make sure the robot is not on the edge of a table or in risk of falling down.</p>
 </div>
 <div class="paragraph">
 <p>If it doesn&#8217;t move, have look at the Terminal output in <strong>Dev Spaces</strong> and recheck your <code>config.py</code> entries.</p>
@@ -705,7 +734,7 @@ Sometimes the auto-reload of the app doesn&#8217;t work and the app stops, you&#
 <p>Now let the robot drive forward, look left and right and then retreat again.</p>
 </div>
 <div class="paragraph">
-<p>Edit the the function <code>startRobot()</code> again so it looks like this:</p>
+<p>Edit the function <code>startRobot()</code> again so it looks like this:</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
@@ -784,7 +813,7 @@ print('Done')</code></pre>
 <p><code>x_lower_right</code> - Bounding box lower right corner x coordinate</p>
 </li>
 <li>
-<p><code>y_lower_right</code> - Bounding box lower left corner y coordinate</p>
+<p><code>y_lower_right</code> - Bounding box lower right corner y coordinate</p>
 </li>
 </ul>
 </div>
@@ -838,7 +867,7 @@ print('Done')</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that we have found a Fedora (object class = 0) and are pretty certain of of it (confidence score = 0.8).</p>
+<p>Note that we have found a Fedora (object class = 0) and are pretty certain of it (confidence score = 0.8).</p>
 </div>
 <div class="paragraph">
 <p>The robot control page will also display the last image from the camera. You can use this to check the robot and camera alignment.</p>
@@ -877,7 +906,7 @@ Your browser does not support the video tag.
 <h2 id="_working_with_the_model"><a class="anchor" href="#_working_with_the_model"></a>Working with the Model</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As mentioned in the Data Science chapter, our quick trained model might not be perfect.  You might get not optimal or sometimes false detections. These are common Data Science challenges when working with predictive AI.</p>
+<p>As mentioned in the Data Science chapter, our quickly trained model might not be perfect.  You might get not optimal or sometimes false detections. These are common Data Science challenges when working with predictive AI.</p>
 </div>
 <div class="paragraph">
 <p>There is a setting <code>CONFIDENCE_THRESHOLD</code> in <code>config.py</code> that defines the minimum confidence score a detection must have to be displayed.  This is currently set to <code>0.3</code>. If you get too many or false detection, try to raise the value and check your bounding box image.  Play around with the value during your hacking to find the sweet spot.</p>

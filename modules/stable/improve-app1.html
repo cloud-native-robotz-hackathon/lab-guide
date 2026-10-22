@@ -102,7 +102,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>That was pretty neat! With just a few lines of MVP code your robot should have picked up on some Fedoras in the vincinity.  But we are of course striving for more.</p>
+<p>That was pretty neat! With just a few lines of MVP code your robot should have picked up on some Fedoras in the vicinity.  But we are of course striving for more.</p>
 </div>
 <div class="paragraph">
 <p>We will enhance the brains &#8230;&#8203; I mean the code of your robot:</p>
@@ -129,7 +129,7 @@
 <h2 id="_add_the_new_search_for_hat_function"><a class="anchor" href="#_add_the_new_search_for_hat_function"></a>Add the new "search_for_hat()" function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Right after  the function <code>def start_robot():</code> add this code (as usual check you identation)</p>
+<p>Right after  the function <code>def start_robot():</code> add this code (as usual check your indentation)</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
@@ -144,7 +144,7 @@
     while thread_event.is_set():
         print('\n')
 
-        # Take picture and find the object with the highest probabilty of being a hat
+        # Take picture and find the object with the highest probability of being a hat
         objects = take_picture_and_detect_objects()
         coordinates = find_highest_score(objects)
 
@@ -187,11 +187,11 @@
                 move_forward(10)
             else:
                 hat_found_and_intercepted = True
-                print('### Search For Hat Mode - END: OJECT FOUND ! ###')
+                print('### Search For Hat Mode - END: OBJECT FOUND ! ###')
                 return
 
         else:
-            # Circle in case no hat could be identied
+            # Circle in case no hat could be identified
             if turn_counter <= 360:
                 turn_right(10)
                 turn_counter = turn_counter + 10
@@ -213,7 +213,7 @@
     global hat_found_and_intercepted
     hat_found_and_intercepted = False
 
-    # Main loop running until one hat is properly identified and intercepted (or the app ist stopped)
+    # Main loop running until one hat is properly identified and intercepted (or the app is stopped)
     while thread_event.is_set() and not hat_found_and_intercepted:
 
         # Search for the hat and intercept it
@@ -239,7 +239,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Once you little mechanical friend has completed his mission, you may continue to the next chapter.</p>
+<p>Once your little mechanical friend has completed his mission, you may continue to the next chapter.</p>
 </div>
 </div>
 </div>
