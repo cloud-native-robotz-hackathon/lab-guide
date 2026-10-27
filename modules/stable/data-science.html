@@ -805,8 +805,125 @@
 </div>
 </div>
 <div class="paragraph">
-<p>With the default settings, the Pipeline will run around 15 minutes. Grab a coffee and once the pipeline is finished continue on to the next chapter.</p>
+<p>With the default settings, the Pipeline will run around 15 minutes. Grab a coffee and once the pipeline is finished continue on to the next chapter. Let&#8217;s use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_s3_browser"><a class="anchor" href="#_deploy_s3_browser"></a>Deploy S3 Browser</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>In the left menu click on <strong>Projects</strong> to see all available Projects</p>
+</li>
+<li>
+<p>Click on the project <code>team-1-ai</code></p>
+</li>
+<li>
+<p>In your project go on the tab <strong>Workbenches</strong></p>
+</li>
+<li>
+<p>Click on <strong>Create workbench</strong> and enter these values</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name:</strong></p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">s3-browser</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Workbench image</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Image Selection: <code>S3 Browser</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Connections</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Attach existing connections</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Select <code>workbench-bucket</code> connection</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/attach-existing-connection.png" alt="attach existing connection">
+</div>
+</div>
+</li>
+<li>
+<p>Click on <strong>Attach</strong></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click on <strong>Create Workbench</strong></p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Wait until the <strong>Status</strong> of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/workbench-running-s3.png" alt="workbench running s3">
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench</p>
+</li>
+<li>
+<p>Accept the disclaimer</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The browser will show you the contents of your bucket.  Except for a folder called <code>backup</code> that contains some backup models, it will look fairly empty before the pipeline finishes.</p>
+</div>
+<div class="paragraph">
+<p>Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolov5 model family</a>. There are different sizing versions of the <a href="https://docs.ultralytics.com/models/yolov5/" target="_blank" rel="noopener">Yolov5</a> and compute requirements. In the pipeline start form you could actually change the model version, and while the pipeline is at the model training step, you can see the loss functions in the logs.</p>
+</div>
+<div class="paragraph">
+<p>Once the pipeline has run (Check the run) successfully the final model named latest-version.onnx will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <code>models</code> and you see</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s3-browser.png" alt="s3 browser">
+</div>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
