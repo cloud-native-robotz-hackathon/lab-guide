@@ -2,7 +2,7 @@
 
 == The Challenge
 
-The task that you are working on will be to enable your robot to identify a fedora on the floor. Your robot should drive towards the fedora and stop shortly before it.
+Your task is to enable your robot to identify a fedora on the floor, drive towards it, and stop shortly before reaching it.
 
 The basic flow for your app will be:
 
@@ -16,9 +16,9 @@ The basic flow for your app will be:
 
 == MVP (Minimal Viable Product)
 
-To speed things up, here's a complete solution as an MVP.
+To speed things up, here is a complete MVP solution.
 
-Change your code to this :
+Replace your code with the following:
 
 [source,python,role=execute]
 ----
@@ -63,9 +63,9 @@ while thread_event.is_set():
 print('Done')
 ----
 
-Now place a Fedora somewhere near your robot and see if it can find it.
+Now place a fedora near your robot and see if it can find it.
 
-If yes: 🏆 **Mission accomplished!** Your robot found the hat! 
+If yes: 🏆 **Mission accomplished!** Your robot found the hat!
 
 Otherwise try to tweak the code some more.
 
@@ -83,6 +83,6 @@ Think about these points:
 
 **Optimization Challenge:** Can you improve the stopping distance? Try adjusting the `delta` threshold value (currently 350) to make the robot stop closer or farther from the fedora.
 
-== Feature Freeze... for now
+== Feature Freeze—for Now
 
-This was actually the short version of our Robo Vision AI Workshop. There is a longer version, where you will build and deploy your app and model directly to the robot. It can then run completely disconnected as an autonomous Edge Unit. Reach out to your Red Hat team if you are interested.
+This is the short version of our Robo Vision AI Workshop. In the longer version, you build and deploy the application and model directly to the robot, allowing it to run as a disconnected autonomous edge unit. Reach out to your Red Hat team if you are interested.

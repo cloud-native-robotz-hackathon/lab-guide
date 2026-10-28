@@ -1,11 +1,11 @@
 
 = Data Science
 
-As Data Scientists, we have been given a task to provide a robot the understanding of what a red hat (a fedora) looks like, correctly identify it and act on the object detection. You will be fine tuning an object detection model from the https://docs.ultralytics.com/models/yolov5/[YOLO-family,window=_blank] (You Only Look Once), on a set of fedora images we prepared for you. To achieve this we will use **OpenShift AI**, an extension to OpenShift that provides a platform for Data Scientists to work with their favourite tools and libraries.
+As data scientists, our task is to help a robot recognize a red hat—a fedora—and respond to the detection. You will fine-tune a https://docs.ultralytics.com/models/yolov5/[YOLOv5,window=_blank] (You Only Look Once) object-detection model using a prepared set of fedora images. To do this, you will use **OpenShift AI**, an OpenShift extension that provides a platform for data scientists to work with their preferred tools and libraries.
 
-== Instantiate Workbench
+== Create a Workbench
 
-Let's login into **OpenShift AI**
+Log in to **OpenShift AI**.
 
 [NOTE]
 ====
@@ -13,7 +13,7 @@ Most of the applications you are about to use are enabled for Single Sign-On usi
 ====
 
 
-* Login into the Keycloak Realm by accessing the {openshift_console_url}[OpenShift Console,window=_blank] with:
+* Log in to the Keycloak realm through the {openshift_console_url}[OpenShift Console,window=_blank] with:
 ** Username:
 +
 [source,text,role=execute,subs="attributes"]
@@ -29,30 +29,30 @@ Most of the applications you are about to use are enabled for Single Sign-On usi
 
 After you have authenticated you'll get to the OpenShift Console.
 
-* Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
+* In the top-right menu, click the squares icon and select **OpenShift AI** to open the **OpenShift AI Dashboard**
 +
 [.text-left]
-image::rhoai-menu.png[width=350]
+image::rhoai-menu.png[width=350, link=self]
 
 * Thanks to the SSO magic you don't have to authenticate again
 
-This is the main Console where all Data Science related projects and assets are managed.
+This is the main console where all data science projects and assets are managed.
 
 - Close the "Welcome to OpenShift AI" dialog
 +
-image::welcome-to-openshift-3.5.png[width=350]
+image::welcome-to-openshift-3.5.png[width=350, link=self]
 
-- In the left menu click on **Projects** to see all available Projects
+- In the left menu, click **Projects** to see all available projects
 +
-image::rhoai-projects-menu.png[width=350]
+image::rhoai-projects-menu.png[width=350, link=self]
 
 - A project has already been prepared for you to work in
 - Click on the project `{user}-ai`
 
-As Data Scientists, we are in need of an interactive development environment (IDE) to do our programming. One of the most common ones (and provided by OpenShift AI) is JupyterLab. Let's create a new JupyterLab Workbench in our Data Science project and get started:
+To program and train the model, you need an interactive development environment (IDE). OpenShift AI provides JupyterLab, so create a JupyterLab workbench in the data science project. Attach persistent storage and an S3 connection so that you can work with the code and share model files:
 
 * Click on **Create a Workbench**
-* Enter these fields :
+* Enter the following fields:
 ** **Name:**
 +
 [source,bash,role=execute]
@@ -64,7 +64,7 @@ fedora-detection
 *** Image selection: `Object Detection`
 
 ** **Version selection**
-*** Version selection: `3.01`
+*** Version selection: `3.0.1`
 
 ** **Cluster storage**
 *** Click on **Attach existing storage**
@@ -76,33 +76,33 @@ fedora-detection
 object-detection-training-pvc
 ----
 +
-image::attach-existing-storage.png[]
+image::attach-existing-storage.png[link=self]
 **** Click on **Attach storage**
 ** **Connections**
 *** Click on **Attach existing connections**
 **** Select `workbench-bucket` connection
 +
-image::attach-existing-connection.png[]
+image::attach-existing-connection.png[link=self]
 **** Click on **Attach**
 
 * Click on **Create Workbench**
 +
 [IMPORTANT]
 ====
-Wait until the **Status** of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.
+Wait until the workbench **Status** changes from "Starting" to "Running". This can take two to three minutes.
 
-image::workbench-running.png[]
+image::workbench-running.png[link=self]
 ====
 
 == Create your Model in JupyterLab
 
 * Click on the Workbench name to open the JupyterLab Workbench
 
-The first thing we notice when logging into our workbench is that it's quite empty. If this is your first time seeing JupyterLab, take a couple of minutes to look around! But don't worry, we are experienced Data Scientists who know the importance of documentation, version handling and reproducibility. Therefore, in JupyterLab we are going to clone a complete Jupyter Notebook to get started with our object detection project:
+The workbench is initially empty. If this is your first time using JupyterLab, take a few minutes to look around. To get started with the object-detection project, you will clone the prepared notebook repository:
 
 * In the menu on the left, click on the **Git** icon
 * Click on **Clone a Repository**
-* Enter the Git Url to the notebooks repo that has been prepared for you:
+* Enter the Git URL for the prepared notebook repository:
 +
 [source,bash,role=execute,subs="attributes"]
 ----
@@ -111,96 +111,97 @@ The first thing we notice when logging into our workbench is that it's quite emp
 
 * Click on **Clone**
 +
-image::workbench-clone.png[width=420]
+image::workbench-clone.png[width=420, link=self]
 
-* On the left side in the menu click on the **Folder** icon.
+* In the left menu, click the **Folder** icon.
 
-Next, we will train our model on the basis of a https://docs.ultralytics.com/models/yolov5/[Yolo5,window=_blank] Image Detection model to identify fedoras by providing sample images. The whole training process will run in a Pipeline leveraging OpenShift resource scaling.
+Next, train the model using a https://docs.ultralytics.com/models/yolov5/[YOLOv5,window=_blank] object-detection model and the provided fedora images. The training process runs in a pipeline that uses OpenShift resource scaling.
 
-We have provided sample images for training. After the training, the model will be exported in onnx format to your S3 **ODF** (OpenShift Data Foundation) bucket. In this format we can deploy it to an inferencing service on **OpenShift AI** and serve it to our application.
+After training, the model is exported in ONNX format to your S3 bucket on **ODF** (OpenShift Data Foundation). You can then deploy it to an inference service on **OpenShift AI** and serve it to the application.
 
 [NOTE]
 ====
-Inferencing in AI is the process of using a trained model to make a prediction or generate a response based on new, live data. If training is the "studying" phase where the model learns patterns from a large dataset, inference is the "application" phase where it uses that knowledge to do its job.
+Inference in AI is the process of using a trained model to make a prediction or generate a response from new, live data. If training is the "studying" phase, inference is the "application" phase, where the model uses what it has learned to do its job.
 ====
 
 === The Training Images
 
-To stay in the boundaries of the resources available to us, we provide around 100 images of a Red Hat Fedora together with the label metadata to train our base model with.
+To stay within the available resources, we provide about 100 images of a Red Hat fedora and their label metadata to train the base model.
 
 [NOTE]
 ====
-Labeling in object detection is the annotation of raw image by humans, where bounding boxes are drawn around specific objects and assign a class label (e.g., "car", "person," "tree". Or "fedora"...) to each object. This basically teaches the base model to recognize a new class of objects.
+In object detection, labeling is the human annotation of raw images. Bounding boxes are drawn around specific objects, and each object receives a class label, such as "car", "person", "tree", or "fedora". This teaches the base model to recognize a new class of objects.
 ====
 
-Since we deliberately don't have a lot of variations in the images this will lead to a model that will recognize this particular Fedora pretty well, but not one that deviates slightly. This is commonly called "overfitting" and usually avoided, but in our case for demo and fun it's fine.
+Because the training images deliberately contain little variation, the model will recognize this particular fedora well but may struggle with slightly different ones. This is called "overfitting" and is usually avoided, but it is acceptable for this demonstration.
 
-If you would like to get an idea what the images look like, in your JupyterLab Notebook navigate to the folder `object-detection-training-pvc/custom_training_images/fedora/images/` and open some of the images. You'll see slight variations of a Red Hat Fedora in front of varying backgrounds.
+To see what the images look like, navigate in JupyterLab to `object-detection-training-pvc/custom_training_images/fedora/images/` and open a few images. You will see slight variations of a Red Hat fedora against different backgrounds.
 
-image::training-image.png[]
+image::training-image.png[link=self]
 
-Labeling data in the form of a bounding box around the object in question "tells" the model during training what part of the image is actually the Fedora. This data is kept in a different folder; if you go to the folder `labels` you'll see text files, each corresponding to one of the images. If you open one of the label files, there are coordinates of a rectangle that describe the bounding box.
+Bounding-box labels tell the model which part of an image contains the fedora. This data is stored in the `labels` folder. Each text file corresponds to an image and contains the coordinates that define its bounding box.
 
 === Model Training
 
 [NOTE]
 ====
-When training the model the confidence score and accuracy will be a limiting factor going forward. In order to stay within hardware restrictions such as no GPUs in the data center and the physical robot, a compromise has been made in terms of the size of the base model as well as training epochs, batch size, number of images to train upon and how much time will be left on the hackathon for other tasks. Of course, these variables may be changed by you attendees, however, the changes such as increased epoch and increased sample count might yield little to no improvement while taking longer time to train.
+Model accuracy is limited by the available compute. To fit the data center and physical robot constraints, the base-model size, training epochs, batch size, and number of training images are intentionally limited. You can change these values, but more epochs or images may substantially increase training time without improving the result.
 
-This is a limiting factor edge cases face, finding the balance between accuracy and sizing requirements for the model to run.
+These trade-offs are common for edge deployments, where model accuracy must be balanced against model size and runtime requirements.
 
-Therefore, have some realistic expectations on the model and don't get hooked up on fine tuning it.
+Set realistic expectations for the model and avoid spending too much time fine-tuning it.
 
-If we accept this, let's go ahead and train the model!
+With these constraints in mind, let's train the model.
 ====
 
-In JupyterLab navigate to the directory `object-detection-notebooks/model-training/kfp`.
+In JupyterLab, navigate to `object-detection-notebooks/model-training/kfp`.
 
-There are a couple of scripts here :
+There are several files here:
 
-*kfp_pipeline.py* - contains the python scripts for each step of our pipeline
+* `kfp_pipeline.py` - Contains the Python code for each pipeline step
 
-*pipeline.yaml* - the pipeline definition for our training, referencing and executing the steps from kfp_pipeline.py
+* `pipeline.yaml` - Defines the training pipeline and references the steps in `kfp_pipeline.py`
 
-*kfp_client.py* -  a helper prepare and deploy our pipeline to OpenShift AI
+* `kfp_client.py` - Helps prepare and deploy the pipeline to OpenShift AI
 
-*deploy_pipeline.ipynb* -  A Jupyter Notebook to deploy the pipeline to OpenShift AI
+* `deploy_pipeline.ipynb` - Compiles, visualizes, and deploys the pipeline to OpenShift AI
 
-* Double click on `deploy_pipeline.ipynb`
+* Double-click `deploy_pipeline.ipynb`
 
-This notbook executes a couple of steps to compile, visualize, set the parameters and deploy the pipeline.
+This notebook compiles and visualizes the pipeline, sets its parameters, and deploys it.
 
-* At the top click on *Restart the kernel an run all cells* (the icon with the two triangles)
+* At the top menu, click on *Restart the kernel and run all cells* (the icon with the two triangles)
+* Click the button *Restart*
 
-Jupyter will now show a visualization of the pipeline and deploy it.
+This executes the notebook, shows a visualization of the pipeline, and deploys it.
 
-image::kfp_pipeline.png[]
+image::kfp_pipeline.png[link=self]
 
 * Switch to the *Red Hat OpenShift AI* tab in your browser
-* Select your Project {user}-ai
-* Select **Pipelines** tab
+* Select your project `{user}-ai`
+* Select the **Pipelines** tab
 
-You will see your new pipeline `object-detection-training-sdk`
+You will see the new `object-detection-training-sdk` pipeline.
 
-* In the three dot menu on the right, click in *Create Run*
+* Expand the pipeline details by clicking the `>` icon
+* In the first pipeline-version row (`model-training-...`), click *View runs*
 
-image::run_kfp_pipeline.png[]
+image::view-runs.png[link=self]
 
-* In the form just give a unique name like `Pipeline Run 1`
-* Click *Create Run*
+* Click the running instance (`model-training-run-...`)
 
-This will see the running steps of the pipeline now. You can click on a node to see the logs of each step.
+You will now see the running pipeline steps. Click a node to see the logs for that step in the right panel.
 
-image::running-pipeline.png[]
+image::running-pipeline.png[link=self]
 
-With the default settings, the Pipeline will run around 15 minutes. Grab a coffee and once the pipeline is finished continue on to the next chapter. Let's use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.
+With the default settings, the pipeline runs for about 15 minutes. While it runs, deploy another workbench to inspect the S3 bucket and view the model when it is ready.
 
 == Deploy S3 Browser
 
-* In the left menu click on **Projects** to see all available Projects
-* Click on the project `{user}-ai`
-* In your project go on the tab **Workbenches**
-* Click on **Create workbench** and enter these values
+* In the left menu, click **Projects** to see all available projects
+* Click the `{user}-ai` project
+* In the project, open the **Workbenches** tab
+* Click **Create workbench** and enter these values:
 ** **Name:**
 +
 [source,bash,role=execute,subs="attributes"]
@@ -214,43 +215,51 @@ s3-browser
 *** Click on **Attach existing connections**
 **** Select `workbench-bucket` connection
 +
-image::attach-existing-connection.png[]
+image::attach-existing-connection.png[link=self]
 **** Click on **Attach**
 
 * Click on **Create Workbench**
 +
 [IMPORTANT]
 ====
-Wait until the **Status** of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.
+Wait until the workbench **Status** changes from "Starting" to "Running". This can take two to three minutes.
 
-image::workbench-running-s3.png[]
+image::workbench-running-s3.png[link=self]
 ====
 
-* Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench
+* Click the **Open** link next to the workbench name to open the JupyterLab workbench
 * Accept the disclaimer
 
-The browser will show you the contents of your bucket.  Except for a folder called `backup` that contains some backup models, it will look fairly empty before the pipeline finishes.
+The S3 Browser displays the contents of your bucket.
 
-Now is a good time to grab some coffee, or if you are curious read up on the architecture and requirements of the https://docs.ultralytics.com/models/yolov5/[Yolov5 model family,window=_blank]. There are different sizing versions of the https://docs.ultralytics.com/models/yolov5/[Yolov5,window=_blank] and compute requirements. In the pipeline start form you could actually change the model version, and while the pipeline is at the model training step, you can see the loss functions in the logs.
+When the pipeline run completes successfully, it saves the model as `model.onnx` under `models/model/<version>/` in the S3 bucket.
 
-Once the pipeline has run (Check the run) successfully the final model named latest-version.onnx will be saved in your S3 bucket. Have look in your S3 Browser. You should see a folder models with you models.
-
-* Click on `models` and you see
+* Click `models` to see:
 +
-image::s3-browser.png[]
+image::s3-browser.png[Workbench running, width=700, link=self]
+
+* `backup-custom-images` - Contains a model pre-trained on the same images
+* `backup-open-images` - Contains a model trained on an Open Images dataset of fedora photos
+* `model` - Contains the model you just trained
 
 == Model Serving
-You now have a trained model for object recognition. To use the model we will deploy it into **OpenShift AI** Model Serving, which will make it available via an API.
+You now have a trained model for object recognition. To actually use the model we will deploy it into **OpenShift AI** Model Serving, which will make it available via an API.
 
 === Model Runtime
 
-First we need to configure a model server:
+First, configure a model server:
 
-* Click on **Projects** in the main menu on the left and make sure you have selected your `{user}-ai` again
-* Select the tab **Deployments**
+* Switch back to the OpenShift AI browser tab
+* Click **Projects** in the main menu and make sure that `{user}-ai` is selected
+* Select the **Deployments** tab
 * Click on **Deploy model**
 
-==== Fill out the form.
+[IMPORTANT]
+====
+Check the pipeline run and the S3 Browser if your model is actually ready. To use a pretrained model instead, change the path from `models/model` to `models/backup-custom-images` in the following form.
+====
+
+==== Fill Out the Form
 
 * **Select model location**: `Existing connection`
 * **Connection**: `workbench-bucket`
@@ -268,8 +277,8 @@ models/model
 * **Serving runtime template**: `OpenVINO Model Server`
 * Click **Next**
 
-** ☑︎ Make deployed models available through an external route: `Check`
-** ☑︎ Require token authentication: `Check`
+* **Make deployed models available through an external route**: Select this option.
+* **Require token authentication**: Select this option.
 * Click **Next**
 * Click **Deploy model**
 
@@ -284,11 +293,11 @@ Now it's time to finally test the model. And since we are Data Scientists here, 
 
 * Copy the external inference endpoint URL that is published through an OpenShift Route (and save it somewhere)
 +
-image::copy-inference-url.png[]
+image::copy-inference-url.png[link=self]
 
-* Copy the token of the endpoint by expanding the ovms model server entry
+* Copy the token for the endpoint by expanding the `ovms` model-server entry
 +
-image::copy-token.png[]
+image::copy-token.png[link=self]
 
 * Back in your JupyterLab Workbench in the `object-detection-notebooks` directory, open the `online-scoring.ipynb` notebook
 * Look for the variables `prediction_url` and `token`
@@ -302,21 +311,21 @@ token = 'REPLACE_ME'
 
 * Run the full notebook (the button with the two play icons in the top menu)
 +
-image::run-full-notebook.png[]
+image::run-full-notebook.png[link=self]
 
 * Confirm to **Restart the Kernel**
 
 You will see any identified classes with bounding boxes and confidence score at the end of the notebook.
 
-You can test your model with different images in the `sample-images` folder, or even better, you can upload your own images. Take some pictures with your laptop or smartphone of the fedora on the floor and upload them into the `sample_images` folder. Make sure you adjust the image name in the `image_path` variable before running the notebook again AND that the format of the images you take is set to square resolution. This can be adjusted in most smartphones today. If you don't use square resolution, the printed bounding boxes may be drawn in the wrong areas of the pictures.
+You can test the model with images in the `sample-images` folder or upload your own. Take pictures of the fedora on the floor with a laptop or smartphone, then upload them to the `sample-images` folder. Update the image name in `image_path` before running the notebook again. Use square images when possible; otherwise, bounding boxes may be drawn in the wrong location.
 
 [TIP]
 ====
-If you see multiple bounding boxes over your fedoras, that means you may need to filter out object detections with a lower score. By default the code filters out anything with a lower confidence score that 0.3. Search for the code `+conf_thres=0.3+`. Increase the threshold here by changing the value and rerun your Notebook.
+If you see multiple bounding boxes around a fedora, you may need to filter out lower-scoring detections. By default, the code filters out detections with a confidence score lower than `0.3`. Search for `+conf_thres=0.3+`, increase the value, and rerun the notebook.
 ====
 
 🎉 **Excellent work!** You've successfully trained and deployed an AI model! 
 
-And that's it for the data science part. It is finally time to handoff your amazing AI Fedora Detection service to the dev team. Make a note and use the two values `prediction_url` and `token` in your app in the next chapter.
+That completes the data science section. It is now time to hand off the AI-powered fedora-detection service to the development team. Make a note of `prediction_url` and `token`; you will use both values in the application in the next chapter.
 
 Ready to build the app that will use this AI model to control the robot? Let's go!
