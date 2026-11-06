@@ -19,7 +19,7 @@ Most of the applications you are about to use are enabled for Single Sign-On usi
 ----
 {user}
 ----
-** password :
+** password:
 +
 [source,text,role=execute,subs="attributes"]
 ----
@@ -122,7 +122,7 @@ The API is simple:
 | Turns LEDs on; the color can be red, green, or blue
 
 | `POST /led_off`
-| Turns leds off
+| Turns LEDs off
 |===
 
 For testing, you can call the Robot API directly from the workspace terminal with `curl`.
@@ -294,7 +294,7 @@ We have two functions that will help us:
 
 The `object` itself will have these fields that you can use:
 
-* `object class` - what object class was detected (will be 0 for a fedora)
+* `object_class` - what object class was detected (will be 0 for a fedora)
 * `confidence_score` - How certain the inference service is that this is the detected object (the higher, the better)
 * `x_upper_left` - Bounding box upper left corner x coordinate
 * `y_upper_left` - Bounding box upper left corner y coordinate
