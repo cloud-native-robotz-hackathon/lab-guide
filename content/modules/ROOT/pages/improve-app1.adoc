@@ -112,6 +112,6 @@ Now, you can call these functions from inside the `+startRobot()+` function like
 
 The playing field where the fedora and robot will be placed is defined inside these boundaries:
 
-image::challenge1.png[link=self]
+image::challenge1.png[link=self, window=_blank]
 
 Once your little mechanical friend has completed his mission, you may continue to the next chapter.
