@@ -6,7 +6,7 @@ Testing our solution from OpenShift DevSpaces is fun, but what we really want is
 
 You will have to provide your solution assets in the form of container images. It is time to package them and deploy them onto the robot itself.
 
-image::edge-devops/architecture.png[link=self]
+image::edge-devops/architecture.png[link=self, window=_blank]
 
 == Build a Container Image of the Object Detection Model
 
@@ -26,11 +26,11 @@ An OpenShift pipeline based on Tekton has been prepared for you
 
 - Click on Actions -> Start
 +
-image::edge-devops/start-pipeline.png[link=self]
+image::edge-devops/start-pipeline.png[link=self, window=_blank]
 
 - Click on Start to start the pipeline
 +
-image::edge-devops/start-pipeline-2.png[width=700px, link=self]
+image::edge-devops/start-pipeline-2.png[width=700px, link=self, window=_blank]
 
 == Build a Container Image of the Application
 
@@ -56,7 +56,7 @@ A matching pipeline has been added to your template app repository. This pipelin
 * Select the repository `starter-app-python`
 * Click on **Releases**
 +
-image::gitea-release.png[link=self]
+image::gitea-release.png[link=self, window=_blank]
 * Click on **New Release**
 * Enter the **Tag name**:
 +
@@ -132,16 +132,16 @@ Login into OpenShift GitOps / ArgoCD:
 * Open: https://openshift-gitops-server-openshift-gitops.{openshift_cluster_ingress_domain}[OpenShift GitOps/ArgoCD, window=_blank]
 * Click **"LOG IN VIA OPENSHIFT"**
 +
-image::argocd-login.png[width=450px, link=self]
+image::argocd-login.png[width=450px, link=self, window=_blank]
 
 * Click **Allow selected permissions**
 * Now you can follow the rollout, this is the entry view:
 +
-image::argocd-overview.png[width="600px", link=self]
+image::argocd-overview.png[width="600px", link=self, window=_blank]
 
 If you click the tile, you'll get a detailed view of your GitOps rollout:
 
-image::argocd-detail.png[width="600px", link=self]
+image::argocd-detail.png[width="600px", link=self, window=_blank]
 
 **But the outcome is clear**: The control application and the image detection model are running as containers locally on your robot, enabling autonomous robot operations.
 
@@ -162,11 +162,11 @@ curl -X POST \
 
 Your robot should now execute your code and start moving. If you want to check the output of your control app, you can do this in OpenShift GitOps. Go to your ArgoCD UI again and click the box representing your app (`starterapp-python-....`) to the left. In the next view choose the **LOGS** tab:
 
-image::argocd-app.png[width="600px", link=self]
+image::argocd-app.png[width="600px", link=self, window=_blank]
 
 After a short delay the output of your app will show up in the window, same as what you are used to from developing the app in Dev Spaces:
 
-image::argocd-logs.png[width="600px", link=self]
+image::argocd-logs.png[width="600px", link=self, window=_blank]
 
 To stop your robot you can call the stop endpoint in the same way as you just run it:
 

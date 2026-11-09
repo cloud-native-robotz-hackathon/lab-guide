@@ -98,4 +98,4 @@ You have worked enough with the code to tackle this without a lot of instruction
 
 The playing field should look like in the first challenge with a barrier added:
 
-image::challenge2.png[link=self]
+image::challenge2.png[link=self, window=_blank]
