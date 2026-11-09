@@ -32,7 +32,7 @@ After you have authenticated you'll get to the OpenShift Console.
 * In the top-right menu, click the squares icon and select **OpenShift AI** to open the **OpenShift AI Dashboard**
 +
 [.text-left]
-image::rhoai-menu.png[width=350, link=self]
+image::rhoai-menu.png[width=350, link=self, window=_blank]
 
 * Thanks to the SSO magic you don't have to authenticate again
 
@@ -40,11 +40,11 @@ This is the main console where all data science projects and assets are managed.
 
 - Close the "Welcome to OpenShift AI" dialog
 +
-image::welcome-to-openshift-3.5.png[width=350, link=self]
+image::welcome-to-openshift-3.5.png[width=350, link=self, window=_blank]
 
 - In the left menu, click **Projects** to see all available projects
 +
-image::rhoai-projects-menu.png[width=350, link=self]
+image::rhoai-projects-menu.png[width=350, link=self, window=_blank]
 
 - A project has already been prepared for you to work in
 - Click on the project `{user}-ai`
@@ -76,13 +76,13 @@ fedora-detection
 object-detection-training-pvc
 ----
 +
-image::attach-existing-storage.png[link=self]
+image::attach-existing-storage.png[link=self, window=_blank]
 **** Click on **Attach storage**
 ** **Connections**
 *** Click on **Attach existing connections**
 **** Select `workbench-bucket` connection
 +
-image::attach-existing-connection.png[link=self]
+image::attach-existing-connection.png[link=self, window=_blank]
 **** Click on **Attach**
 
 * Click on **Create Workbench**
@@ -91,7 +91,7 @@ image::attach-existing-connection.png[link=self]
 ====
 Wait until the workbench **Status** changes from "Starting" to "Running". This can take two to three minutes.
 
-image::workbench-running.png[link=self]
+image::workbench-running.png[link=self, window=_blank]
 ====
 
 == Create your Model in JupyterLab
@@ -111,7 +111,7 @@ The workbench is initially empty. If this is your first time using JupyterLab, t
 
 * Click on **Clone**
 +
-image::workbench-clone.png[width=420, link=self]
+image::workbench-clone.png[width=420, link=self, window=_blank]
 
 * In the left menu, click the **Folder** icon.
 
@@ -137,7 +137,7 @@ Because the training images deliberately contain little variation, the model wil
 
 To see what the images look like, navigate in JupyterLab to `object-detection-training-pvc/custom_training_images/fedora/images/` and open a few images. You will see slight variations of a Red Hat fedora against different backgrounds.
 
-image::training-image.png[link=self]
+image::training-image.png[link=self, window=_blank]
 
 Bounding-box labels tell the model which part of an image contains the fedora. This data is stored in the `labels` folder. Each text file corresponds to an image and contains the coordinates that define its bounding box.
 
@@ -175,7 +175,7 @@ This notebook compiles and visualizes the pipeline, sets its parameters, and dep
 
 This executes the notebook, shows a visualization of the pipeline, and deploys it.
 
-image::kfp_pipeline.png[link=self]
+image::kfp_pipeline.png[link=self, window=_blank]
 
 * Switch to the *Red Hat OpenShift AI* tab in your browser
 * Select your project `{user}-ai`
@@ -186,13 +186,13 @@ You will see the new `object-detection-training-sdk` pipeline.
 * Expand the pipeline details by clicking the `>` icon
 * In the first pipeline-version row (`model-training-...`), click *View runs*
 
-image::view-runs.png[link=self]
+image::view-runs.png[link=self, window=_blank]
 
 * Click the running instance (`model-training-run-...`)
 
 You will now see the running pipeline steps. Click a node to see the logs for that step in the right panel.
 
-image::running-pipeline.png[link=self]
+image::running-pipeline.png[link=self, window=_blank]
 
 With the default settings, the pipeline runs for about 15 minutes. While it runs, deploy another workbench to inspect the S3 bucket and view the model when it is ready.
 
@@ -215,7 +215,7 @@ s3-browser
 *** Click on **Attach existing connections**
 **** Select `workbench-bucket` connection
 +
-image::attach-existing-connection.png[link=self]
+image::attach-existing-connection.png[link=self, window=_blank]
 **** Click on **Attach**
 
 * Click on **Create Workbench**
@@ -224,7 +224,7 @@ image::attach-existing-connection.png[link=self]
 ====
 Wait until the workbench **Status** changes from "Starting" to "Running". This can take two to three minutes.
 
-image::workbench-running-s3.png[link=self]
+image::workbench-running-s3.png[link=self, window=_blank]
 ====
 
 * Click the **Open** link next to the workbench name to open the JupyterLab workbench
@@ -236,7 +236,7 @@ When the pipeline run completes successfully, it saves the model as `model.onnx`
 
 * Click `models` to see:
 +
-image::s3-browser.png[Workbench running, width=700, link=self]
+image::s3-browser.png[Workbench running, width=700, link=self, window=_blank]
 
 * `backup-custom-images` - Contains a model pre-trained on the same images
 * `backup-open-images` - Contains a model trained on an Open Images dataset of fedora photos
@@ -293,11 +293,11 @@ Now it's time to finally test the model. And since we are Data Scientists here, 
 
 * Copy the external inference endpoint URL that is published through an OpenShift Route (and save it somewhere)
 +
-image::copy-inference-url.png[link=self]
+image::copy-inference-url.png[link=self, window=_blank]
 
 * Copy the token for the endpoint by expanding the `ovms` model-server entry
 +
-image::copy-token.png[link=self]
+image::copy-token.png[link=self, window=_blank]
 
 * Back in your JupyterLab Workbench in the `object-detection-notebooks` directory, open the `online-scoring.ipynb` notebook
 * Look for the variables `prediction_url` and `token`
@@ -311,7 +311,7 @@ token = 'REPLACE_ME'
 
 * Run the full notebook (the button with the two play icons in the top menu)
 +
-image::run-full-notebook.png[link=self]
+image::run-full-notebook.png[link=self, window=_blank]
 
 * Confirm to **Restart the Kernel**
 

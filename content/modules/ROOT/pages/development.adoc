@@ -44,7 +44,7 @@ TIP: A **devfile** defines the environment, tools, settings, and runtimes for a 
 
 TIP: You can also find the devfile URL manually: open {gitea_console_url}[Gitea,window=_blank], log in with your team's credentials, navigate to the `starter-app-python` repository, and open `devfile.yaml`. Click **Original version / Raw** and copy the URL.
 
-image::devspaces-create-workspace.png[link=self]
+image::devspaces-create-workspace.png[link=self, window=_blank]
 
 * Click on **Create and Open**
 * When asked "Do you trust the authors ...", click *Continue*
@@ -57,11 +57,11 @@ At the very top you will see the banner for the `Restricted Mode`.
 
 * Click on *Manage*
 
-image::restricted_mode_banner.png[link=self]
+image::restricted_mode_banner.png[link=self, window=_blank]
 
 * Choose *In a Trusted Workspace* > *Trust*
 
-image::restricted_trust.png[link=self]
+image::restricted_trust.png[link=self, window=_blank]
 
 * Close the dialog with the *X*
 
@@ -190,15 +190,15 @@ TIP: Once the Gunicorn server starts, two pop-up windows appear in the lower-rig
 
 * Click on **Yes**:
 +
-image::devspaces-allow_route.png[link=self]
+image::devspaces-allow_route.png[link=self, window=_blank]
 
 * Click on **Open in new tab**
 +
-image::devspaces-open-new-tab.png[link=self]
+image::devspaces-open-new-tab.png[link=self, window=_blank]
 
 * Click on **Open**
 +
-image::devspaces-open-tab.png[link=self]
+image::devspaces-open-tab.png[link=self, window=_blank]
 
 A new browser tab with the Robot Control application opens. If the page does not open, make sure the URL begins with `http://`.
 
@@ -212,7 +212,7 @@ A new browser tab with the Robot Control application opens. If the page does not
 
 * Click on the garbage can icon on the right of the terminal
 
-image::kill-terminal.png[link=self]
+image::kill-terminal.png[link=self, window=_blank]
 
 * Now restart the Gunicorn server with the task as explained above
 
@@ -233,7 +233,7 @@ Check whether everything is set up correctly and the application can reach the r
 * The *Live Visual Feed* will be empty. Don't worry, we will get to that later.
 * On the Robot Control Page click on **Check Status**
 
-image::robot-control-page2.png[link=self]
+image::robot-control-page2.png[link=self, window=_blank]
 
 You should see confirmation that the robot is working. If not, check the terminal output in your Dev Spaces workspace and review `config.py`.
 
