@@ -4,6 +4,10 @@
 
 To develop our flashy AI enhanced app, we will use **OpenShift Dev Spaces**, a web IDE that comes with every OpenShift installation. No need to setup IDEs, runtimes and tools on your laptop.
 
+[NOTE]
+====
+Most of the applications you are about to use are enabled for Single Sign-On using **Red Hat build of Keycloak**. So when you first access the OpenShift Console, you'll be directed to Keycloak for authentication.
+====
 
 * If you are not still logged in, login into the {openshift_console_url}[OpenShift Console,window=_blank] using SSO with:
 ** username:
@@ -40,11 +44,11 @@ copy the URL.
 
 * Click on **Create and Open**
 +
-image::devspaces-create-workspace.png[]
+image::devspaces-create-workspace.png[link=self]
 
 * "Trust" the repo clicking **Continue**
 +
-image::trust.png[]
+image::trust.png[link=self]
 
 Wait for the Workspace to deploy (this may take some time). Once your Workspace is up and running, you should see a view that looks familiar if you have used VSCode before.
 
@@ -54,11 +58,11 @@ At the very top you will see the banner for the `Restricted Mode`.
 
 * Click on *Manage*
 
-image::restricted_mode_banner.png[]
+image::restricted_mode_banner.png[link=self]
 
 * Choose *In a Trusted Workspace* > *Trust*
 
-image::restricted_trust.png[]
+image::restricted_trust.png[link=self]
 
 * Close the Dialog with the *X*
 
@@ -97,22 +101,22 @@ First we are will need to copy the configuration file that tells the "Continue" 
 **** > **devfile**
 **** > **devFile : Setup Continue extension**
 
-image::setup-extension.png[width=400px]
+image::setup-extension.png[width=400px, link=self]
 
 A terminal will show up, telling you that the file `config.json` has been copied. Now we are ready to install the extension:
 
 * In the DevSpaces menu on the left click on the "extensions" icon :
 * Search for the "Continue" extension and install it by clicking on **Install** button next to it
 +
-image::install_continue.png[width=400px]
+image::install_continue.png[width=400px, link=self]
 
 * Click on the newly installed Continue menu item on the left
 +
-image::continue-window.png[]
+image::continue-window.png[link=self]
 
 * In the prompt dialog, make sure our model **Granite 8B Code Instruct (OpenShift)** is selected.
 
-image::continue-example.png[]
+image::continue-example.png[link=self]
 
 Go ahead and ask the model some questions on the repo (You can refer to a single file by typing @ and then the filename). By asking the right prompts, the model can give hints on how to best to code the upcoming tasks.  But of course this is optional and don't forget to verify the results.
 
@@ -222,15 +226,15 @@ TIP: Once the Python Gunicorn server has started, you will see two Popup windows
 
 * Click on **Yes**:
 +
-image::devspaces-allow_route.png[]
+image::devspaces-allow_route.png[link=self]
 
 * Click on **Open in new tab**
 +
-image::devspaces-open-new-tab.png[]
+image::devspaces-open-new-tab.png[link=self]
 
 * Click on **Open**
 +
-image::devspaces-open-tab.png[]
+image::devspaces-open-tab.png[link=self]
 
 A new Browser tab with the web interface of the Robot Control app will open. Make sure you are on `http://` if the page does not open.
 
@@ -244,7 +248,7 @@ A new Browser tab with the web interface of the Robot Control app will open. Mak
 
 * Click on the garbage can icon on the right of the terminal
 
-image::kill-terminal.png[]
+image::kill-terminal.png[link=self]
 
 * Now restart the Gunicorn server with the task as explained above
 
@@ -265,7 +269,7 @@ Check if everything is setup correctly and your app can reach the robot:
 * The *Live Visual Feed* will be empty. Don't worry, we will get to that later.
 * On the Robot Control Page click on **Check Status**
 
-image::robot-control-page2.png[]
+image::robot-control-page2.png[link=self]
 
 You should see a confirmation that your Robot is doing ok. If not, have a look at the console output in your Dev Spaces Workspace and recheck `config.py`.
 

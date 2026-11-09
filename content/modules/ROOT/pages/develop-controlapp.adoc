@@ -89,7 +89,7 @@ To be able to push you need to set up your git email
 
 * Open a new Terminal by click on the **+** Icon in the bottom right and choosing **New Terminal**
 +
-image::open-terminal.png[]
+image::open-terminal.png[link=self]
 
 * enter
 +
@@ -105,16 +105,16 @@ To push your code:
 * Your modified files will be shown
 * Select the relevant files (`app.py` and `config.py`)
 +
-image::git-push.png[]
+image::git-push.png[link=self]
 
 * Right Click and select **Stage Changes**
 * Enter a comment in the top field
 * At the blue **Commit** button, click on the downwards bracket at the very right and choose **Commit & Push**
 +
-image::git-commit-and-push.png[width=420]
+image::git-commit-and-push.png[width=420, link=self]
 * On the top a prompt dialog will open to enter your Gitea username and password
 +
-image::git-push-username.png[]
+image::git-push-username.png[link=self]
 ** username:
 +
 [source,text,role=execute,subs="attributes"]
