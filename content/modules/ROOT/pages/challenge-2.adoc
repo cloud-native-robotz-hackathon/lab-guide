@@ -6,7 +6,7 @@ Now let's put the super powers of your robot together and tackle a more challeng
 
 The playing field will look like in the first challenge with a barrier added:
 
-image::challenge2.png[]
+image::challenge2.png[link=self]
 
 Taking into account the code from you previous chapter, optimize the solution for this navigation and detection sequence.
 

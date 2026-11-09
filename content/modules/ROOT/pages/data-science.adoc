@@ -32,7 +32,7 @@ After you have authenticated you'll get to the OpenShift Console.
 * Click on the top right menu with the squares and select **OpenShift AI** to access the **OpenShift AI Dashboard**
 +
 [.text-left]
-image::rhoai-menu.png[width=350]
+image::rhoai-menu.png[width=350, link=self]
 
 * Thanks to the SSO magic you don't have to authenticate again
 
@@ -40,11 +40,11 @@ This is the main Console where all Data Science related projects and assets are 
 
 - Close the "Welcome to OpenShift AI" dialog
 +
-image::welcome-to-openshift-3.5.png[width=350]
+image::welcome-to-openshift-3.5.png[width=350, link=self]
 
 - In the left menu click on **Projects** to see all available Projects
 +
-image::rhoai-projects-menu.png[width=350]
+image::rhoai-projects-menu.png[width=350, link=self]
 
 - A project has already been prepared for you to work in
 - Click on the project `{user}-ai`
@@ -64,7 +64,7 @@ fedora-detection
 *** Image selection: `Object Detection`
 
 ** **Version selection**
-*** Version selection: `3.01`
+*** Version selection: `3.0.1`
 
 ** **Cluster storage**
 *** Click on **Attach existing storage**
@@ -76,13 +76,13 @@ fedora-detection
 object-detection-training-pvc
 ----
 +
-image::attach-existing-storage.png[]
+image::attach-existing-storage.png[link=self]
 **** Click on **Attach storage**
 ** **Connections**
 *** Click on **Attach existing connections**
 **** Select `workbench-bucket` connection
 +
-image::attach-existing-connection.png[]
+image::attach-existing-connection.png[link=self]
 **** Click on **Attach**
 
 * Click on **Create Workbench**
@@ -91,7 +91,7 @@ image::attach-existing-connection.png[]
 ====
 Wait until the **Status** of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.
 
-image::workbench-running.png[]
+image::workbench-running.png[link=self]
 ====
 
 == Create your Model in JupyterLab
@@ -111,7 +111,7 @@ The first thing we notice when logging into our workbench is that it's quite emp
 
 * Click on **Clone**
 +
-image::workbench-clone.png[width=420]
+image::workbench-clone.png[width=420, link=self]
 
 * On the left side in the menu click on the **Folder** icon.
 
@@ -132,7 +132,7 @@ Since we deliberately don't have a lot of variations in the images this will lea
 
 If you would like to get an idea what the images look like, in your JupyterLab Notebook navigate to the folder `object-detection-training-pvc/custom_training_images/fedora/images/` and open some of the images. You'll see slight variations of a Red Hat Fedora in front of varying backgrounds.
 
-image::training-image.png[]
+image::training-image.png[link=self]
 
 Labeling data in form of a bounding box around the object in question "tells" the model during the training what part of the image is actually the Fedora. This data is kept in  a different folder, if you go to the folder `labels` you'll see text files, each corresponding to one of the images. If you open one of the label files there are coordinates of a rectangle, this describes the bounding box.
 
@@ -159,7 +159,7 @@ There are a good number of tools available for this task, we'll use a well-known
 
 This will take you to the Label Studio Welcome page.
 
-image::label-studio-welcome.png[]
+image::label-studio-welcome.png[link=self]
 
 **Configure Label Studio**
 
@@ -183,7 +183,7 @@ Now you have to configure Label Studio for the way you going to label the images
 * Click **Save**
 * Return to the Project overview by clicking **Fedora** in the breadcrumb-style path at the top.
 +
-image::label-studio-settings.png[]
+image::label-studio-settings.png[link=self]
 
 You'll be greeted with **Looks like you have not imported any data yet**... true, we need some images first before we can proceed to labeling them:
 
@@ -199,7 +199,7 @@ You'll be greeted with **Looks like you have not imported any data yet**... true
 
 Your UI should now look like this, obviously with different images... ;-)
 
-image::label-studio-images.png[]
+image::label-studio-images.png[link=self]
 
 **Label your Images**
 
@@ -210,7 +210,7 @@ Now it's time to actually label the images.
 * Now in the image draw a rectangle by holding the left mouse button **as close to the Fedora as close as possible**.
 * Click **Submit**
 
-image::label-studio-labeling.png[]
+image::label-studio-labeling.png[link=self]
 
 Congrats, you have just labeled your first image! Now do the same for the rest of your images. When you are done with labeling you can use the images with their labels for training the model. We just have to transfer them to your JupyterLab Notebook to add them to the training images.
 
@@ -218,7 +218,7 @@ Congrats, you have just labeled your first image! Now do the same for the rest o
 
 * On the overview page of your Label Studio project (click on the **Fedora** in the breadcrumbs menu) click **Export**
 +
-image::label-studio-export.png[]
+image::label-studio-export.png[link=self]
 
 * and as format choose `YOLO with Images`.
 * Click **Export**
@@ -253,7 +253,7 @@ Now add the images to the training images in the JupyterLab Notebook:
 * Go back to your **JupyterLab notebook**
 * open the folder `object-detection-training-pvc/custom_training_images/fedora/`
 +
-image::workbench-upload-1.png[]
+image::workbench-upload-1.png[link=self]
 
 * Open the `images` folder
 ** upload your images using the **Upload Files** button.
@@ -298,7 +298,7 @@ This notbook executes a couple of steps to compile, visualize, set the parameter
 
 Jupyter will now show a visualization of the pipeline and deploy it.
 
-image::kfp_pipeline.png[]
+image::kfp_pipeline.png[link=self]
 
 * Switch to the *Red Hat OpenShift AI* tab in your browser
 * Select your Project {user}-ai
@@ -308,14 +308,14 @@ You will see your new pipeline `object-detection-training-sdk`
 
 * In the three dot menu on the right, click in *Create Run*
 
-image::run_kfp_pipeline.png[]
+image::run_kfp_pipeline.png[link=self]
 
 * In the form just give a unique name like `Pipeline Run 1`
 * Click *Create Run*
 
 This will see the running steps of the pipeline now. You can click on a node to see the logs of each step.
 
-image::running-pipeline.png[]
+image::running-pipeline.png[link=self]
 
 With the default settings, the Pipeline will run around 15 minutes. Grab a coffee and once the pipeline is finished continue on to the next chapter. Let's use the time to deploy another Workbench that we can use to inspect our S3 bucket and see our model when ready.
 
@@ -338,7 +338,7 @@ s3-browser
 *** Click on **Attach existing connections**
 **** Select `workbench-bucket` connection
 +
-image::attach-existing-connection.png[]
+image::attach-existing-connection.png[link=self]
 **** Click on **Attach**
 
 * Click on **Create Workbench**
@@ -347,7 +347,7 @@ image::attach-existing-connection.png[]
 ====
 Wait until the **Status** of the Workbench is changed from "Starting" to "Running", this can take 2-3 minutes.
 
-image::workbench-running-s3.png[]
+image::workbench-running-s3.png[link=self]
 ====
 
 * Click on the Open link, next to the Workbench name link to open the JuypterLab Workbench
@@ -361,7 +361,7 @@ Once the pipeline has run (Check the run) successfully the final model named lat
 
 * Click on `models` and you see
 +
-image::s3-browser.png[]
+image::s3-browser.png[link=self]
 
 == Model Serving
 You now have a trained model for object recognition. To use the model we will deploy it into **OpenShift AI** Model Serving, which will make it available via an API.
@@ -411,11 +411,11 @@ Now it's time to finally test the model. And since we are Data Scientists here, 
 
 * Copy the external inference endpoint URL that is published through an OpenShift Route (and save it somewhere)
 +
-image::copy-inference-url.png[]
+image::copy-inference-url.png[link=self]
 
 * Copy the token of the endpoint by expanding the ovms model server entry
 +
-image::copy-token.png[]
+image::copy-token.png[link=self]
 
 * Back in your JupyterLab Workbench in the `object-detection-notebooks` directory, open the `online-scoring.ipynb` notebook
 * Look for the variables `prediction_url` and `token`
@@ -429,13 +429,13 @@ token = 'REPLACE_ME'
 
 * Run the full notebook (the button with the two play icons in the top menu)
 +
-image::run-full-notebook.png[]
+image::run-full-notebook.png[link=self]
 
 * Confirm to **Restart the Kernel**
 
 You will see any identified classes with bounding boxes and confidence score at the end of the notebook.
 
-You can test your model with different images in the `sample-images` folder, or even better, you can upload your own images. Take some pictures with your laptop or smartphone of the fedora on the floor and upload them into the `sample_images` folder. Make sure you adjust the image name in `image_path` variable before running the notebook again AND that the format of the images you take is set to square resolution. This can be adjusted in most smartphones today. If you don't use square resolution, the printed bounding boxes may be drawn in the wrong areas of the pictures.
+You can test your model with different images in the `sample-images` folder, or even better, you can upload your own images. Take some pictures with your laptop or smartphone of the fedora on the floor and upload them into the `sample-images` folder. Make sure you adjust the image name in `image_path` variable before running the notebook again AND that the format of the images you take is set to square resolution. This can be adjusted in most smartphones today. If you don't use square resolution, the printed bounding boxes may be drawn in the wrong areas of the pictures.
 
 [TIP]
 ====
